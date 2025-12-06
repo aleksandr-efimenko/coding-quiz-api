@@ -13,10 +13,10 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     println!("Resetting database...");
 
-    // Truncate tables but keep schema
-    sqlx::query!("TRUNCATE TABLE quiz_tags, question_options, questions, quizzes, categories, tags, users RESTART IDENTITY CASCADE")
-        .execute(&pool)
-        .await?;
+    // Drop schema to fully wipe everything including types, tables, and migration history
+    sqlx::query!("DROP SCHEMA public CASCADE").execute(&pool).await?;
+    sqlx::query!("CREATE SCHEMA public").execute(&pool).await?;
+    sqlx::query!("GRANT ALL ON SCHEMA public TO public").execute(&pool).await?;
 
     println!("Database reset successfully!");
     Ok(())
