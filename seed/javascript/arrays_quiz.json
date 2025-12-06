@@ -1,6 +1,11 @@
 {
     "title": "JavaScript Arrays",
     "category_id": null,
+    "tags": [
+        "javascript",
+        "fundamentals",
+        "arrays"
+    ],
     "questions": [
         {
             "text": "Which method adds elements to the end of an array?",

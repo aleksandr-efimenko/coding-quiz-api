@@ -73,7 +73,8 @@ def seed_quiz_file(filepath, token):
                 quiz_data["category_id"] = category_id
                 print(f"Auto-assigned category '{cat_name}' to {quiz_data['title']}")
 
-    print(f"Seeding quiz: {quiz_data['title']}")
+    tags_info = f" with tags {quiz_data.get('tags', [])}" if quiz_data.get('tags') else ""
+    print(f"Seeding quiz: {quiz_data['title']}{tags_info}")
     
     resp = requests.post(
         f"{BASE_URL}/quizzes",

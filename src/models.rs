@@ -9,6 +9,7 @@ pub struct Quiz {
     pub category_id: Option<uuid::Uuid>,
     #[sqlx(skip)]
     pub questions: Vec<Question>,
+    pub tags: Vec<String>,
 }
 
 #[derive(Debug, Serialize, Deserialize, Clone, FromRow, ToSchema)]
@@ -33,6 +34,7 @@ pub struct CreateQuizRequest {
     pub title: String,
     pub category_id: Option<uuid::Uuid>,
     pub questions: Vec<CreateQuestionRequest>,
+    pub tags: Option<Vec<String>>,
 }
 
 #[derive(Debug, Deserialize, ToSchema)]
@@ -97,5 +99,11 @@ pub struct Category {
 
 #[derive(Debug, Deserialize, ToSchema)]
 pub struct CreateCategoryRequest {
+    pub name: String,
+}
+
+#[derive(Debug, Serialize, Deserialize, FromRow, ToSchema)]
+pub struct Tag {
+    pub id: uuid::Uuid,
     pub name: String,
 }

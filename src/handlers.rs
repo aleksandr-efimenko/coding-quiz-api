@@ -100,15 +100,44 @@ pub async fn create_quiz(
         });
     }
 
+    if let Some(tags) = &req.tags {
+        for tag_name in tags {
+            // Upsert tag
+            let tag_id = match sqlx::query!(
+                "INSERT INTO tags (id, name) VALUES ($1, $2) ON CONFLICT (name) DO UPDATE SET name = EXCLUDED.name RETURNING id",
+                Uuid::new_v4(),
+                tag_name
+            )
+            .fetch_one(&mut *tx)
+            .await {
+                Ok(rec) => rec.id,
+                Err(_) => return HttpResponse::InternalServerError().body("Failed to upsert tag"),
+            };
+
+            // Link quiz to tag
+            if let Err(_) = sqlx::query!(
+                "INSERT INTO quiz_tags (quiz_id, tag_id) VALUES ($1, $2) ON CONFLICT DO NOTHING",
+                quiz_id,
+                tag_id
+            )
+            .execute(&mut *tx)
+            .await {
+                return HttpResponse::InternalServerError().body("Failed to link tag");
+            }
+        }
+    }
+
     if let Err(_) = tx.commit().await {
         return HttpResponse::InternalServerError().body("Failed to commit transaction");
     }
 
+    // Since we just committed, we can create the response object directly (or re-fetch, but direct is faster)
     HttpResponse::Created().json(Quiz {
         id: quiz_id,
         title: req.title.clone(),
         category_id: req.category_id,
         questions: response_questions,
+        tags: req.tags.clone().unwrap_or_default(),
     })
 }
 
@@ -169,6 +198,18 @@ pub async fn get_quiz(
     let mut full_quiz = quiz;
     full_quiz.questions = full_questions;
 
+    // Fetch tags
+    let tags = match sqlx::query!(
+        "SELECT t.name FROM tags t JOIN quiz_tags qt ON t.id = qt.tag_id WHERE qt.quiz_id = $1",
+        quiz_id
+    )
+    .fetch_all(&data.db)
+    .await {
+        Ok(recs) => recs.into_iter().map(|r| r.name).collect(),
+        Err(_) => return HttpResponse::InternalServerError().body("Database error fetching tags"),
+    };
+    full_quiz.tags = tags;
+
     HttpResponse::Ok().json(full_quiz)
 }
 
@@ -189,22 +230,35 @@ pub struct ListQuizzesFilter {
     )
 )]
 pub async fn list_quizzes(data: web::Data<AppState>, filter: web::Query<ListQuizzesFilter>) -> impl Responder {
-    let query_str = if let Some(cat_id) = filter.category_id {
-        format!("SELECT id, title, category_id FROM quizzes WHERE category_id = '{}'", cat_id)
+    let where_clause = if let Some(cat_id) = filter.category_id {
+        format!("WHERE q.category_id = '{}'", cat_id)
     } else {
-        "SELECT id, title, category_id FROM quizzes".to_string()
+        "".to_string()
     };
+
+    let query_str = format!(
+        r#"
+        SELECT 
+            q.id, q.title, q.category_id, 
+            COALESCE(array_agg(t.name) FILTER (WHERE t.name IS NOT NULL), '{{}}') as tags
+        FROM quizzes q
+        LEFT JOIN quiz_tags qt ON q.id = qt.quiz_id
+        LEFT JOIN tags t ON qt.tag_id = t.id
+        {}
+        GROUP BY q.id
+        "#,
+        where_clause
+    );
 
     let quizzes = match sqlx::query_as::<_, Quiz>(&query_str)
     .fetch_all(&data.db)
     .await {
         Ok(qs) => qs,
-        Err(_) => return HttpResponse::InternalServerError().body("Database error"),
+        Err(e) => {
+            log::error!("List quizzes error: {}", e);
+            return HttpResponse::InternalServerError().body("Database error");
+        }
     };
-
-    // Note: questions will be empty vec as initialized by default struct or we might need to be careful.
-    // Actually, SQLx FromRow will try to fill fields. questions has #[sqlx(skip)].
-    // So it will use Default implementation for Vec which is empty. 
     
     HttpResponse::Ok().json(quizzes)
 }
