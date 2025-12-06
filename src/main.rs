@@ -24,13 +24,16 @@ use models::*;
         handlers::get_quiz,
         handlers::list_quizzes,
         handlers::submit_answer,
+        handlers::delete_quiz,
+        handlers::update_quiz,
     ),
     components(
         schemas(
             CreateQuizRequest, Quiz, Question, QuestionOption, 
             SubmitAnswerRequest, AnswerResponse,
             RegisterRequest, LoginRequest, TokenResponse, 
-            Category, CreateCategoryRequest, CreateQuestionRequest, CreateOptionRequest
+            Category, CreateCategoryRequest, CreateQuestionRequest, CreateOptionRequest,
+            UpdateQuizRequest
         )
     ),
     tags(
@@ -106,6 +109,8 @@ async fn main() -> std::io::Result<()> {
                     .route("", web::post().to(create_quiz))
                     .route("", web::get().to(list_quizzes))
                     .route("/{id}", web::get().to(get_quiz))
+                    .route("/{id}", web::put().to(handlers::update_quiz))
+                    .route("/{id}", web::delete().to(handlers::delete_quiz))
                     .route("/{id}/solve", web::post().to(submit_answer))
             )
     })

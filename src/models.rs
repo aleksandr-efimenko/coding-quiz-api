@@ -15,10 +15,10 @@ pub struct Quiz {
 #[derive(Debug, Serialize, Deserialize, Clone, FromRow, ToSchema)]
 pub struct Question {
     pub id: uuid::Uuid,
-    #[sqlx(skip)] // Not in DB directly on the struct usually, but handled via query
     pub text: String,
     #[sqlx(skip)]
     pub options: Vec<QuestionOption>,
+    pub explanation: Option<String>,
 }
 
 #[derive(Debug, Serialize, Deserialize, Clone, FromRow, ToSchema)]
@@ -38,9 +38,17 @@ pub struct CreateQuizRequest {
 }
 
 #[derive(Debug, Deserialize, ToSchema)]
+pub struct UpdateQuizRequest {
+    pub title: Option<String>,
+    pub category_id: Option<uuid::Uuid>,
+    pub tags: Option<Vec<String>>,
+}
+
+#[derive(Debug, Deserialize, ToSchema)]
 pub struct CreateQuestionRequest {
     pub text: String,
     pub options: Vec<CreateOptionRequest>,
+    pub explanation: Option<String>,
 }
 
 #[derive(Debug, Deserialize, ToSchema)]
@@ -59,6 +67,8 @@ pub struct SubmitAnswerRequest {
 pub struct AnswerResponse {
     pub correct: bool,
     pub message: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub explanation: Option<String>,
 }
 
 #[derive(Debug, Serialize, Deserialize, FromRow)]

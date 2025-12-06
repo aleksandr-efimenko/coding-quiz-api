@@ -3,7 +3,7 @@ use crate::models::{
     CreateQuizRequest, Quiz, Question, QuestionOption, 
     SubmitAnswerRequest, AnswerResponse,
     RegisterRequest, LoginRequest, TokenResponse, User,
-    Category, CreateCategoryRequest
+    Category, CreateCategoryRequest, UpdateQuizRequest, Tag
 };
 use crate::state::AppState;
 use crate::auth;
@@ -62,10 +62,11 @@ pub async fn create_quiz(
     for q in &req.questions {
         let question_id = Uuid::new_v4();
         if let Err(_) = sqlx::query!(
-            "INSERT INTO questions (id, quiz_id, text) VALUES ($1, $2, $3)",
+            "INSERT INTO questions (id, quiz_id, text, explanation) VALUES ($1, $2, $3, $4)",
             question_id,
             quiz_id,
-            q.text
+            q.text,
+            q.explanation
         )
         .execute(&mut *tx)
         .await {
@@ -97,6 +98,7 @@ pub async fn create_quiz(
             id: question_id,
             text: q.text.clone(),
             options: response_options,
+            explanation: q.explanation.clone(),
         });
     }
 
@@ -159,19 +161,27 @@ pub async fn get_quiz(
 ) -> impl Responder {
     let quiz_id = path.into_inner();
     
-    let quiz = match sqlx::query_as::<_, Quiz>(
-        "SELECT id, title, category_id FROM quizzes WHERE id = $1"
+    let rec = match sqlx::query!(
+        "SELECT id, title, category_id FROM quizzes WHERE id = $1",
+        quiz_id
     )
-    .bind(quiz_id)
     .fetch_optional(&data.db)
     .await {
         Ok(Some(q)) => q,
         Ok(None) => return HttpResponse::NotFound().body("Quiz not found"),
-        Err(_) => return HttpResponse::InternalServerError().body("Database error"),
+        Err(_) => return HttpResponse::InternalServerError().body("Database error fetching quiz"),
+    };
+
+    let mut full_quiz = Quiz {
+        id: rec.id,
+        title: rec.title,
+        category_id: rec.category_id,
+        questions: vec![],
+        tags: vec![],
     };
 
     let questions = match sqlx::query_as::<_, Question>(
-        "SELECT id, text FROM questions WHERE quiz_id = $1"
+        "SELECT id, text, explanation FROM questions WHERE quiz_id = $1"
     )
     .bind(quiz_id)
     .fetch_all(&data.db)
@@ -195,7 +205,6 @@ pub async fn get_quiz(
         full_questions.push(q);
     }
 
-    let mut full_quiz = quiz;
     full_quiz.questions = full_questions;
 
     // Fetch tags
@@ -294,9 +303,22 @@ pub async fn submit_answer(
         Err(_) => return HttpResponse::InternalServerError().body("Database error"),
     };
 
+    // Fetch explanation if needed, but usually we want it regardless of correct/incorrect to learn
+    // Or maybe only on correct? The user prompt said "Make them helpful". Showing explanation on incorrect is very helpful.
+    let question = match sqlx::query!(
+        "SELECT explanation FROM questions WHERE id = $1",
+        req.question_id
+    )
+    .fetch_optional(&data.db)
+    .await {
+        Ok(Some(q)) => q,
+        _ => return HttpResponse::InternalServerError().body("Database error fetching question"),
+    };
+
     HttpResponse::Ok().json(AnswerResponse {
         correct: is_correct,
         message: if is_correct { "Correct!".to_string() } else { "Incorrect.".to_string() },
+        explanation: question.explanation,
     })
 }
 
@@ -422,4 +444,201 @@ pub async fn list_categories(data: web::Data<AppState>) -> impl Responder {
         Err(_) => return HttpResponse::InternalServerError().body("Database error"),
     };
     HttpResponse::Ok().json(categories)
+}
+
+#[utoipa::path(
+    delete,
+    path = "/quizzes/{id}",
+    params(
+        ("id" = Uuid, Path, description = "Quiz ID")
+    ),
+    responses(
+        (status = 204, description = "Quiz deleted"),
+        (status = 404, description = "Quiz not found"),
+        (status = 500, description = "Internal Server Error")
+    ),
+    security(
+        ("jwt" = [])
+    )
+)]
+pub async fn delete_quiz(
+    data: web::Data<AppState>,
+    path: web::Path<Uuid>,
+    _: auth::JwtMiddleware,
+) -> impl Responder {
+    let quiz_id = path.into_inner();
+    let result = sqlx::query!("DELETE FROM quizzes WHERE id = $1", quiz_id)
+        .execute(&data.db)
+        .await;
+
+    match result {
+        Ok(res) => {
+            if res.rows_affected() == 0 {
+                HttpResponse::NotFound().body("Quiz not found")
+            } else {
+                HttpResponse::NoContent().finish()
+            }
+        }
+        Err(_) => HttpResponse::InternalServerError().body("Database error"),
+    }
+}
+
+#[utoipa::path(
+    put,
+    path = "/quizzes/{id}",
+    request_body = UpdateQuizRequest,
+    params(
+        ("id" = Uuid, Path, description = "Quiz ID")
+    ),
+    responses(
+        (status = 200, description = "Quiz updated", body = Quiz),
+        (status = 404, description = "Quiz not found"),
+        (status = 500, description = "Internal Server Error")
+    ),
+    security(
+        ("jwt" = [])
+    )
+)]
+pub async fn update_quiz(
+    data: web::Data<AppState>,
+    path: web::Path<Uuid>,
+    req: web::Json<UpdateQuizRequest>,
+    _: auth::JwtMiddleware,
+) -> impl Responder {
+    let quiz_id = path.into_inner();
+    let mut tx = match data.db.begin().await {
+        Ok(tx) => tx,
+        Err(_) => return HttpResponse::InternalServerError().body("Database error starting transaction")
+    };
+
+    let mut exists = false;
+    let check = sqlx::query!("SELECT id FROM quizzes WHERE id = $1", quiz_id).fetch_optional(&mut *tx).await;
+    match check {
+        Ok(Some(_)) => exists = true,
+        Ok(None) => return HttpResponse::NotFound().body("Quiz not found"),
+        Err(_) => return HttpResponse::InternalServerError().body("Database error checking quiz"),
+    }
+
+    if let Some(title) = &req.title {
+        if let Err(_) = sqlx::query!("UPDATE quizzes SET title = $1 WHERE id = $2", title, quiz_id)
+            .execute(&mut *tx).await {
+             return HttpResponse::InternalServerError().body("Error updating title");
+        }
+    }
+    
+    if let Some(category_id) = req.category_id {
+         if let Err(_) = sqlx::query!("UPDATE quizzes SET category_id = $1 WHERE id = $2", category_id, quiz_id)
+            .execute(&mut *tx).await {
+             return HttpResponse::InternalServerError().body("Error updating category");
+        }
+    }
+
+    // Handle Tags if provided
+    if let Some(tags) = &req.tags {
+        // Clear existing tags
+        if let Err(_) = sqlx::query!("DELETE FROM quiz_tags WHERE quiz_id = $1", quiz_id)
+            .execute(&mut *tx).await {
+            return HttpResponse::InternalServerError().body("Error clearing tags");
+        }
+
+        // Add new tags
+        for tag_name in tags {
+             let tag = sqlx::query_as!(
+                Tag,
+                r#"
+                WITH inserted_tag AS (
+                    INSERT INTO tags (id, name)
+                    VALUES ($1, $2)
+                    ON CONFLICT (name) DO NOTHING
+                    RETURNING id, name
+                )
+                SELECT id AS "id!", name AS "name!" FROM inserted_tag
+                UNION ALL
+                SELECT id AS "id!", name AS "name!" FROM tags WHERE name = $2
+                "#,
+                Uuid::new_v4(),
+                tag_name
+            )
+            .fetch_one(&mut *tx)
+            .await;
+
+            match tag {
+                Ok(t) => {
+                    if let Err(_) = sqlx::query!(
+                        "INSERT INTO quiz_tags (quiz_id, tag_id) VALUES ($1, $2)",
+                        quiz_id,
+                        t.id
+                    )
+                    .execute(&mut *tx)
+                    .await {
+                         return HttpResponse::InternalServerError().body("Error linking tag");
+                    }
+                },
+                Err(_) => return HttpResponse::InternalServerError().body("Error upserting tag"),
+            }
+        }
+    }
+    
+    if let Err(_) = tx.commit().await {
+        return HttpResponse::InternalServerError().body("Database error committing transaction");
+    }
+
+    // Re-fetch quiz logic
+    let rec = match sqlx::query!(
+        "SELECT id, title, category_id FROM quizzes WHERE id = $1",
+        quiz_id
+    )
+    .fetch_optional(&data.db)
+    .await {
+        Ok(Some(q)) => q,
+        Ok(None) => return HttpResponse::NotFound().body("Quiz not found"),
+        Err(_) => return HttpResponse::InternalServerError().body("Database error fetching quiz"),
+    };
+
+    let questions = match sqlx::query_as::<_, Question>(
+        "SELECT id, text, explanation FROM questions WHERE quiz_id = $1"
+    )
+    .bind(quiz_id)
+    .fetch_all(&data.db)
+    .await {
+        Ok(qs) => qs,
+        Err(_) => return HttpResponse::InternalServerError().body("Database error fetching questions"),
+    };
+
+    let mut full_questions = Vec::new();
+    for mut q in questions {
+        let options = match sqlx::query_as::<_, QuestionOption>(
+            "SELECT id, text, is_correct FROM question_options WHERE question_id = $1"
+        )
+        .bind(q.id)
+        .fetch_all(&data.db)
+        .await {
+            Ok(opts) => opts,
+            Err(_) => return HttpResponse::InternalServerError().body("Database error fetching options"),
+        };
+        q.options = options;
+        full_questions.push(q);
+    }
+    
+    let mut full_quiz = Quiz {
+        id: rec.id,
+        title: rec.title,
+        category_id: rec.category_id,
+        questions: full_questions,
+        tags: vec![],
+    };
+
+    // Fetch tags
+    let tags = match sqlx::query!(
+        "SELECT t.name FROM tags t JOIN quiz_tags qt ON t.id = qt.tag_id WHERE qt.quiz_id = $1",
+        quiz_id
+    )
+    .fetch_all(&data.db)
+    .await {
+        Ok(recs) => recs.into_iter().map(|r| r.name).collect(),
+        Err(_) => return HttpResponse::InternalServerError().body("Database error fetching tags"),
+    };
+    full_quiz.tags = tags;
+
+    HttpResponse::Ok().json(full_quiz)
 }

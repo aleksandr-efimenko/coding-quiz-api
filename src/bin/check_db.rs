@@ -31,12 +31,24 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         println!("Tag: {:?}", t);
     }
 
-    let quiz_tags: Vec<QuizTag> = sqlx::query_as("SELECT quiz_id, tag_id FROM quiz_tags")
-        .fetch_all(&pool)
-        .await?;
-    println!("QuizTags count: {}", quiz_tags.len());
-    for qt in quiz_tags {
-        println!("QuizTag: {:?}", qt);
+    // Check constraints
+    let constraints: Vec<(String, String, String)> = sqlx::query_as(
+        r#"
+        SELECT tc.constraint_name::text, tc.table_name::text, kcu.column_name::text
+        FROM information_schema.table_constraints AS tc
+        JOIN information_schema.key_column_usage AS kcu
+          ON tc.constraint_name = kcu.constraint_name
+          AND tc.table_schema = kcu.table_schema
+        WHERE tc.constraint_type = 'FOREIGN KEY'
+          AND tc.table_name IN ('questions', 'question_options')
+        "#
+    )
+    .fetch_all(&pool)
+    .await?;
+    
+    println!("Constraints:");
+    for (name, table, col) in constraints {
+        println!("Table: {}, Column: {}, Constraint: {}", table, col, name);
     }
 
     Ok(())
