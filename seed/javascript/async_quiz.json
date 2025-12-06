@@ -1,0 +1,40 @@
+{
+    "title": "JavaScript Async/Await",
+    "category_id": null,
+    "questions": [
+        {
+            "text": "What does async function return?",
+            "options": [
+                {
+                    "text": "A Promise",
+                    "is_correct": true
+                },
+                {
+                    "text": "A value directly",
+                    "is_correct": false
+                },
+                {
+                    "text": "undefined",
+                    "is_correct": false
+                }
+            ]
+        },
+        {
+            "text": "Which keyword pauses execution in async function?",
+            "options": [
+                {
+                    "text": "yield",
+                    "is_correct": false
+                },
+                {
+                    "text": "await",
+                    "is_correct": true
+                },
+                {
+                    "text": "stop",
+                    "is_correct": false
+                }
+            ]
+        }
+    ]
+}

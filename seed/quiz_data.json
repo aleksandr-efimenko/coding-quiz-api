@@ -1,0 +1,36 @@
+{
+    "title": "Rust Concurrency",
+    "category_id": null,
+    "questions": [
+        {
+            "text": "Which type is shareable between threads?",
+            "options": [
+                {
+                    "text": "Rc<T>",
+                    "is_correct": false
+                },
+                {
+                    "text": "Arc<T>",
+                    "is_correct": true
+                },
+                {
+                    "text": "Box<T>",
+                    "is_correct": false
+                }
+            ]
+        },
+        {
+            "text": "What does Mutex provide?",
+            "options": [
+                {
+                    "text": "Interior Mutability",
+                    "is_correct": true
+                },
+                {
+                    "text": "Asynchronous execution",
+                    "is_correct": false
+                }
+            ]
+        }
+    ]
+}
