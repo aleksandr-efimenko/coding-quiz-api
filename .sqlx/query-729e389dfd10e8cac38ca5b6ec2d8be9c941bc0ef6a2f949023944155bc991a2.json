@@ -1,0 +1,29 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "\n                WITH inserted_tag AS (\n                    INSERT INTO tags (id, name)\n                    VALUES ($1, $2)\n                    ON CONFLICT (name) DO NOTHING\n                    RETURNING id, name\n                )\n                SELECT id AS \"id!\", name AS \"name!\" FROM inserted_tag\n                UNION ALL\n                SELECT id AS \"id!\", name AS \"name!\" FROM tags WHERE name = $2\n                ",
+  "describe": {
+    "columns": [
+      {
+        "ordinal": 0,
+        "name": "id!",
+        "type_info": "Uuid"
+      },
+      {
+        "ordinal": 1,
+        "name": "name!",
+        "type_info": "Varchar"
+      }
+    ],
+    "parameters": {
+      "Left": [
+        "Uuid",
+        "Varchar"
+      ]
+    },
+    "nullable": [
+      null,
+      null
+    ]
+  },
+  "hash": "729e389dfd10e8cac38ca5b6ec2d8be9c941bc0ef6a2f949023944155bc991a2"
+}

@@ -1,0 +1,41 @@
+@baseUrl = http://127.0.0.1:8080
+@apiKey = PASTE_YOUR_API_KEY_HERE
+
+# -----------------------------------------------------
+# CONSUMPTION API (Requires API Key)
+# -----------------------------------------------------
+
+### 1. List Quizzes
+GET {{baseUrl}}/quizzes?page=1&per_page=50
+X-API-Key: {{apiKey}}
+
+### 2. List Quizzes (Excluded)
+# Example: Filter out a specific quiz ID to show only "unsolved" ones.
+@excludeId = e9591404-3316-43f1-b1e4-d2424903332a
+GET {{baseUrl}}/quizzes?page=1&per_page=50&exclude_ids={{excludeId}}
+X-API-Key: {{apiKey}}
+
+### 3. List Categories
+GET {{baseUrl}}/categories?page=1&per_page=50
+X-API-Key: {{apiKey}}
+
+### 4. Get Quiz Details
+# Replace with a valid ID from the List Quizzes response
+@quizId = e9591404-3316-43f1-b1e4-d2424903332a
+GET {{baseUrl}}/quizzes/{{quizId}}
+X-API-Key: {{apiKey}}
+
+### 5. Submit Answer
+# Replace with valid IDs
+@submitQuizId = {{quizId}}
+@questionId = 445f1b2b-0925-455b-9195-24900138722e
+@optionId = 96425c27-7757-4f61-b44c-35cdb3b3a010
+
+POST {{baseUrl}}/quizzes/{{submitQuizId}}/solve
+X-API-Key: {{apiKey}}
+Content-Type: application/json
+
+{
+    "question_id": "{{questionId}}",
+    "option_id": "{{optionId}}"
+}

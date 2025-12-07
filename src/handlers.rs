@@ -2,8 +2,9 @@ use actix_web::{web, HttpResponse, Responder};
 use crate::models::{
     CreateQuizRequest, Quiz, Question, QuestionOption, 
     SubmitAnswerRequest, AnswerResponse,
-    RegisterRequest, LoginRequest, TokenResponse, User,
-    Category, CreateCategoryRequest, UpdateQuizRequest, Tag
+    RegisterRequest, LoginRequest, TokenResponse, Developer,
+    Category, CreateCategoryRequest, UpdateQuizRequest, Tag,
+    PaginationParams, DeveloperResponse, ErrorResponse
 };
 use crate::state::AppState;
 use crate::auth;
@@ -12,6 +13,7 @@ use uuid::Uuid;
 #[utoipa::path(
     get,
     path = "/health",
+    tag = "System",
     responses(
         (status = 200, description = "Health Check", body = String)
     )
@@ -24,6 +26,7 @@ pub async fn health_check() -> impl Responder {
     post,
     path = "/quizzes",
     request_body = CreateQuizRequest,
+    tag = "Management",
     responses(
         (status = 201, description = "Quiz created", body = Quiz),
         (status = 401, description = "Unauthorized"),
@@ -146,19 +149,36 @@ pub async fn create_quiz(
 #[utoipa::path(
     get,
     path = "/quizzes/{id}",
+    tag = "Consumption",
     params(
         ("id" = Uuid, Path, description = "Quiz ID")
     ),
     responses(
         (status = 200, description = "Get Quiz by ID", body = Quiz),
         (status = 404, description = "Quiz not found"),
+        (status = 401, description = "Unauthorized"),
         (status = 500, description = "Internal Server Error")
+    ),
+    security(
+        ("api_key" = [])
     )
 )]
 pub async fn get_quiz(
     data: web::Data<AppState>,
     path: web::Path<uuid::Uuid>,
+    auth: auth::ApiKeyMiddleware,
 ) -> impl Responder {
+    // Log usage
+    let _ = sqlx::query!(
+        "INSERT INTO usage_logs (id, api_key_id, endpoint, status_code) VALUES ($1, $2, $3, $4)",
+        Uuid::new_v4(),
+        auth.api_key_id,
+        "get_quiz",
+        200
+    )
+    .execute(&data.db)
+    .await;
+
     let quiz_id = path.into_inner();
     
     let rec = match sqlx::query!(
@@ -225,11 +245,15 @@ pub async fn get_quiz(
 #[derive(serde::Deserialize, utoipa::IntoParams)]
 pub struct ListQuizzesFilter {
     category_id: Option<Uuid>,
+    pub exclude_ids: Option<String>,
+    pub page: Option<u32>,
+    pub per_page: Option<u32>,
 }
 
 #[utoipa::path(
     get,
     path = "/quizzes",
+    tag = "Consumption",
     params(
         ListQuizzesFilter
     ),
@@ -238,11 +262,48 @@ pub struct ListQuizzesFilter {
         (status = 500, description = "Internal Server Error")
     )
 )]
-pub async fn list_quizzes(data: web::Data<AppState>, filter: web::Query<ListQuizzesFilter>) -> impl Responder {
-    let where_clause = if let Some(cat_id) = filter.category_id {
-        format!("WHERE q.category_id = '{}'", cat_id)
-    } else {
+pub async fn list_quizzes(
+    data: web::Data<AppState>, 
+    filter: web::Query<ListQuizzesFilter>,
+    auth: auth::ApiKeyMiddleware,
+) -> impl Responder {
+    // Log usage
+    let _ = sqlx::query!(
+        "INSERT INTO usage_logs (id, api_key_id, endpoint, status_code) VALUES ($1, $2, $3, $4)",
+        Uuid::new_v4(),
+        auth.api_key_id,
+        "list_quizzes",
+        200
+    )
+    .execute(&data.db)
+    .await;
+
+    let page = filter.page.unwrap_or(1);
+    let per_page = filter.per_page.unwrap_or(10);
+    let offset = (page - 1) * per_page;
+
+    let mut where_conditions = Vec::new();
+    
+    if let Some(cat_id) = filter.category_id {
+        where_conditions.push(format!("q.category_id = '{}'", cat_id));
+    }
+
+    if let Some(ex_ids) = &filter.exclude_ids {
+        let ids: Vec<String> = ex_ids.split(',')
+            .map(|s| s.trim())
+            .filter_map(|s| Uuid::parse_str(s).ok())
+            .map(|u| format!("'{}'", u))
+            .collect();
+        
+        if !ids.is_empty() {
+            where_conditions.push(format!("q.id NOT IN ({})", ids.join(",")));
+        }
+    }
+
+    let where_clause = if where_conditions.is_empty() {
         "".to_string()
+    } else {
+        format!("WHERE {}", where_conditions.join(" AND "))
     };
 
     let query_str = format!(
@@ -255,8 +316,12 @@ pub async fn list_quizzes(data: web::Data<AppState>, filter: web::Query<ListQuiz
         LEFT JOIN tags t ON qt.tag_id = t.id
         {}
         GROUP BY q.id
+        ORDER BY q.title
+        LIMIT {} OFFSET {}
         "#,
-        where_clause
+        where_clause,
+        per_page,
+        offset
     );
 
     let quizzes = match sqlx::query_as::<_, Quiz>(&query_str)
@@ -265,7 +330,7 @@ pub async fn list_quizzes(data: web::Data<AppState>, filter: web::Query<ListQuiz
         Ok(qs) => qs,
         Err(e) => {
             log::error!("List quizzes error: {}", e);
-            return HttpResponse::InternalServerError().body("Database error");
+            return HttpResponse::InternalServerError().json(ErrorResponse { error: "Database error".to_string() });
         }
     };
     
@@ -276,21 +341,38 @@ pub async fn list_quizzes(data: web::Data<AppState>, filter: web::Query<ListQuiz
     post,
     path = "/quizzes/{id}/solve",
     request_body = SubmitAnswerRequest,
+    tag = "Consumption",
     params(
         ("id" = Uuid, Path, description = "Quiz ID")
     ),
     responses(
         (status = 200, description = "Answer result", body = AnswerResponse),
         (status = 400, description = "Invalid request"),
+        (status = 401, description = "Unauthorized"),
         (status = 500, description = "Internal Server Error")
+    ),
+    security(
+        ("jwt" = [])
     )
 )]
 pub async fn submit_answer(
     data: web::Data<AppState>,
-    _path: web::Path<uuid::Uuid>, // We don't strictly need quiz_id if we have question_id/option_id globally unique UUIDs, but usually good to validate hierarchy.
+    _path: web::Path<uuid::Uuid>,
     req: web::Json<SubmitAnswerRequest>,
+    auth: auth::ApiKeyMiddleware,
 ) -> impl Responder {
-    // We can just check the option directly if UUIDs are unique global.
+    // Log usage
+    let _ = sqlx::query!(
+        "INSERT INTO usage_logs (id, api_key_id, endpoint, status_code) VALUES ($1, $2, $3, $4)",
+        Uuid::new_v4(),
+        auth.api_key_id,
+        "submit_answer",
+        200
+    )
+    .execute(&data.db)
+    .await;
+
+    // Determine correctness (stateless check)
     let is_correct = match sqlx::query!(
         "SELECT is_correct FROM question_options WHERE id = $1 AND question_id = $2",
         req.option_id,
@@ -299,33 +381,37 @@ pub async fn submit_answer(
     .fetch_optional(&data.db)
     .await {
         Ok(Some(rec)) => rec.is_correct,
-        Ok(None) => return HttpResponse::BadRequest().body("Invalid question or option"),
-        Err(_) => return HttpResponse::InternalServerError().body("Database error"),
+        Ok(None) => return HttpResponse::BadRequest().json(ErrorResponse{ error: "Invalid question or option".to_string() }),
+        Err(_) => return HttpResponse::InternalServerError().json(ErrorResponse{ error: "Database error".to_string() }),
     };
 
-    // Fetch explanation if needed, but usually we want it regardless of correct/incorrect to learn
-    // Or maybe only on correct? The user prompt said "Make them helpful". Showing explanation on incorrect is very helpful.
-    let question = match sqlx::query!(
+    // Fetch explanation
+    let question_data = match sqlx::query!(
         "SELECT explanation FROM questions WHERE id = $1",
         req.question_id
     )
     .fetch_optional(&data.db)
     .await {
         Ok(Some(q)) => q,
-        _ => return HttpResponse::InternalServerError().body("Database error fetching question"),
+        _ => return HttpResponse::InternalServerError().json(ErrorResponse{ error: "Database error".to_string() }),
     };
+
+    // No user_answer logging anymore!
 
     HttpResponse::Ok().json(AnswerResponse {
         correct: is_correct,
         message: if is_correct { "Correct!".to_string() } else { "Incorrect.".to_string() },
-        explanation: question.explanation,
+        explanation: question_data.explanation,
     })
 }
+
+
 
 #[utoipa::path(
     post,
     path = "/auth/register",
     request_body = RegisterRequest,
+    tag = "Management",
     responses(
         (status = 200, description = "Registered successfully", body = String),
         (status = 500, description = "Internal Server Error")
@@ -343,7 +429,7 @@ pub async fn auth_register(
     let user_id = Uuid::new_v4();
 
     if let Err(_) = sqlx::query!(
-        "INSERT INTO users (id, username, password_hash) VALUES ($1, $2, $3)",
+        "INSERT INTO developers (id, username, password_hash) VALUES ($1, $2, $3)",
         user_id,
         req.username,
         password_hash
@@ -360,6 +446,7 @@ pub async fn auth_register(
     post,
     path = "/auth/login",
     request_body = LoginRequest,
+    tag = "Management",
     responses(
         (status = 200, description = "Logged in successfully", body = TokenResponse),
         (status = 401, description = "Unauthorized"),
@@ -371,8 +458,8 @@ pub async fn auth_login(
     req: web::Json<LoginRequest>,
 ) -> impl Responder {
     let user = match sqlx::query_as!(
-        User,
-        "SELECT id, username, password_hash FROM users WHERE username = $1",
+        Developer,
+        "SELECT id, username, password_hash FROM developers WHERE username = $1",
         req.username
     )
     .fetch_optional(&data.db)
@@ -398,6 +485,7 @@ pub async fn auth_login(
     post,
     path = "/categories",
     request_body = CreateCategoryRequest,
+    tag = "Management",
     responses(
         (status = 201, description = "Category created", body = Category),
         (status = 401, description = "Unauthorized"),
@@ -428,27 +516,127 @@ pub async fn create_category(
 #[utoipa::path(
     get,
     path = "/categories",
+    tag = "Consumption",
+    params(
+        PaginationParams
+    ),
     responses(
         (status = 200, description = "List Categories", body = Vec<Category>),
         (status = 500, description = "Internal Server Error")
     )
 )]
-pub async fn list_categories(data: web::Data<AppState>) -> impl Responder {
+pub async fn list_categories(
+    data: web::Data<AppState>, 
+    filter: web::Query<PaginationParams>,
+    auth: auth::ApiKeyMiddleware
+) -> impl Responder {
+    // Log usage
+    let _ = sqlx::query!(
+        "INSERT INTO usage_logs (id, api_key_id, endpoint, status_code) VALUES ($1, $2, $3, $4)",
+        Uuid::new_v4(),
+        auth.api_key_id,
+        "list_categories",
+        200
+    )
+    .execute(&data.db)
+    .await;
+
+    let page = filter.page.unwrap_or(1);
+    let per_page = filter.per_page.unwrap_or(10);
+    let offset = (page - 1) * per_page;
+
     let categories = match sqlx::query_as!(
         Category,
-        "SELECT id, name FROM categories"
+        "SELECT id, name FROM categories LIMIT $1 OFFSET $2",
+        per_page as i64,
+        offset as i64
     )
     .fetch_all(&data.db)
     .await {
         Ok(cats) => cats,
-        Err(_) => return HttpResponse::InternalServerError().body("Database error"),
+        Err(_) => return HttpResponse::InternalServerError().json(ErrorResponse { error: "Database error".to_string() }),
     };
     HttpResponse::Ok().json(categories)
 }
 
 #[utoipa::path(
+    get,
+    path = "/auth/me",
+    tag = "Management",
+    responses(
+        (status = 200, description = "Current User", body = UserResponse),
+        (status = 401, description = "Unauthorized"),
+        (status = 500, description = "Internal Server Error")
+    ),
+    security(
+        ("jwt" = [])
+    )
+)]
+pub async fn get_me(
+    data: web::Data<AppState>,
+    auth: auth::JwtMiddleware,
+) -> impl Responder {
+    let user = match sqlx::query!("SELECT id, username FROM developers WHERE username = $1", auth.user_id)
+        .fetch_optional(&data.db)
+        .await {
+            Ok(Some(u)) => u,
+            Ok(None) => return HttpResponse::Unauthorized().json(ErrorResponse { error: "Developer not found".to_string() }),
+            Err(_) => return HttpResponse::InternalServerError().json(ErrorResponse { error: "Database error".to_string() }),
+        };
+
+    HttpResponse::Ok().json(DeveloperResponse {
+        id: user.id,
+        username: user.username,
+    })
+}
+
+#[utoipa::path(
+    post,
+    path = "/auth/api-keys",
+    tag = "Management",
+    responses(
+        (status = 201, description = "API Key created", body = String),
+        (status = 401, description = "Unauthorized"),
+        (status = 500, description = "Internal Server Error")
+    ),
+    security(
+        ("jwt" = [])
+    )
+)]
+pub async fn generate_api_key(
+    data: web::Data<AppState>,
+    auth: auth::JwtMiddleware,
+) -> impl Responder {
+    let dev = match sqlx::query!("SELECT id FROM developers WHERE username = $1", auth.user_id)
+        .fetch_optional(&data.db)
+        .await {
+            Ok(Some(u)) => u,
+            Ok(None) => return HttpResponse::Unauthorized().json(ErrorResponse{ error: "Developer not found".to_string() }),
+            Err(_) => return HttpResponse::InternalServerError().json(ErrorResponse{ error: "Database error".to_string() }),
+        };
+
+    let (key, hash) = auth::generate_api_key();
+    let key_id = Uuid::new_v4();
+
+    if let Err(e) = sqlx::query!(
+        "INSERT INTO api_keys (id, developer_id, key_hash) VALUES ($1, $2, $3)",
+        key_id,
+        dev.id,
+        hash
+    )
+    .execute(&data.db)
+    .await {
+        log::error!("Failed to create API key: {}", e);
+        return HttpResponse::InternalServerError().json(ErrorResponse{ error: "Failed to create API key".to_string() });
+    }
+
+    HttpResponse::Created().json(serde_json::json!({ "api_key": key }))
+}
+
+#[utoipa::path(
     delete,
     path = "/quizzes/{id}",
+    tag = "Management",
     params(
         ("id" = Uuid, Path, description = "Quiz ID")
     ),
@@ -487,6 +675,7 @@ pub async fn delete_quiz(
     put,
     path = "/quizzes/{id}",
     request_body = UpdateQuizRequest,
+    tag = "Management",
     params(
         ("id" = Uuid, Path, description = "Quiz ID")
     ),

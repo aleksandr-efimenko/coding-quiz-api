@@ -8,9 +8,14 @@ use argon2::{
 use jsonwebtoken::{encode, decode, Header, Validation, EncodingKey, DecodingKey};
 use chrono::{Utc, Duration};
 use crate::models::Claims;
-use actix_web::{FromRequest, Error as ActixError, http};
+use crate::state::AppState;
+use actix_web::{web, FromRequest, Error as ActixError, http};
 use std::future::{Ready, ready};
 use actix_web::dev::Payload;
+use sha2::{Sha256, Digest};
+use rand::{distributions::Alphanumeric, Rng};
+use std::pin::Pin;
+use std::future::Future;
 
 const SECRET: &[u8] = b"supersecretkeydontshareThisIsJustATestKeyPleaseChangeItInProd"; // Should be in env in prod
 
@@ -76,5 +81,72 @@ impl FromRequest for JwtMiddleware {
         }
         
         ready(Err(actix_web::error::ErrorUnauthorized("Invalid or missing token")))
+    }
+}
+
+pub fn generate_api_key() -> (String, String) {
+    let key: String = rand::thread_rng()
+        .sample_iter(&Alphanumeric)
+        .take(32)
+        .map(char::from)
+        .collect();
+    
+    let mut hasher = Sha256::new();
+    hasher.update(key.as_bytes());
+    let hash = format!("{:x}", hasher.finalize());
+    
+    (key, hash)
+}
+
+pub struct ApiKeyMiddleware {
+    pub developer_id: uuid::Uuid,
+    pub api_key_id: uuid::Uuid,
+}
+
+impl FromRequest for ApiKeyMiddleware {
+    type Error = ActixError;
+    type Future = Pin<Box<dyn Future<Output = Result<Self, Self::Error>>>>;
+
+    fn from_request(req: &actix_web::HttpRequest, _: &mut Payload) -> Self::Future {
+        let req = req.clone();
+        Box::pin(async move {
+            let key_val = match req.headers().get("X-API-Key") {
+                Some(k) => k,
+                None => return Err(actix_web::error::ErrorUnauthorized("Missing X-API-Key header")),
+            };
+            
+            let key_str = match key_val.to_str() {
+                Ok(s) => s,
+                Err(_) => return Err(actix_web::error::ErrorUnauthorized("Invalid API Key format")),
+            };
+
+            let mut hasher = Sha256::new();
+            hasher.update(key_str.as_bytes());
+            let hash = format!("{:x}", hasher.finalize());
+
+            let data = match req.app_data::<web::Data<AppState>>() {
+                Some(d) => d,
+                None => return Err(actix_web::error::ErrorInternalServerError("State not found")),
+            };
+
+            let record = match sqlx::query!(
+                "SELECT id, developer_id FROM api_keys WHERE key_hash = $1",
+                hash
+            )
+            .fetch_optional(&data.db)
+            .await {
+                Ok(Some(r)) => r,
+                Ok(None) => return Err(actix_web::error::ErrorUnauthorized("Invalid API Key")),
+                Err(e) => {
+                    log::error!("API Key DB Error: {}", e);
+                    return Err(actix_web::error::ErrorInternalServerError("Database error"));
+                }
+            };
+            
+            Ok(ApiKeyMiddleware {
+                developer_id: record.developer_id,
+                api_key_id: record.id,
+            })
+        })
     }
 }

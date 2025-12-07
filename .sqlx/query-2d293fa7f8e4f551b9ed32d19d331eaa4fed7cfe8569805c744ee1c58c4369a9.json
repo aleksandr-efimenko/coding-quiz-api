@@ -1,0 +1,15 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "INSERT INTO quiz_tags (quiz_id, tag_id) VALUES ($1, $2)",
+  "describe": {
+    "columns": [],
+    "parameters": {
+      "Left": [
+        "Uuid",
+        "Uuid"
+      ]
+    },
+    "nullable": []
+  },
+  "hash": "2d293fa7f8e4f551b9ed32d19d331eaa4fed7cfe8569805c744ee1c58c4369a9"
+}

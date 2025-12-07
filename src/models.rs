@@ -1,6 +1,6 @@
 use serde::{Deserialize, Serialize};
 use sqlx::FromRow;
-use utoipa::ToSchema;
+use utoipa::{ToSchema, IntoParams};
 
 #[derive(Debug, Serialize, Deserialize, Clone, FromRow, ToSchema)]
 pub struct Quiz {
@@ -72,7 +72,7 @@ pub struct AnswerResponse {
 }
 
 #[derive(Debug, Serialize, Deserialize, FromRow)]
-pub struct User {
+pub struct Developer {
     pub id: uuid::Uuid,
     pub username: String,
     pub password_hash: String,
@@ -116,4 +116,37 @@ pub struct CreateCategoryRequest {
 pub struct Tag {
     pub id: uuid::Uuid,
     pub name: String,
+}
+#[derive(Debug, Serialize, Deserialize, FromRow)]
+pub struct ApiKey {
+    pub id: uuid::Uuid,
+    pub developer_id: uuid::Uuid,
+    pub key_hash: String,
+    pub created_at: chrono::DateTime<chrono::Utc>,
+}
+
+#[derive(Debug, Serialize, FromRow)]
+pub struct UsageLog {
+    pub id: uuid::Uuid,
+    pub api_key_id: uuid::Uuid,
+    pub endpoint: String,
+    pub status_code: i32,
+    pub created_at: chrono::DateTime<chrono::Utc>,
+}
+
+#[derive(Debug, Deserialize, ToSchema, IntoParams)]
+pub struct PaginationParams {
+    pub page: Option<u32>,
+    pub per_page: Option<u32>,
+}
+
+#[derive(Debug, Serialize, ToSchema)]
+pub struct DeveloperResponse {
+    pub id: uuid::Uuid,
+    pub username: String,
+}
+
+#[derive(Debug, Serialize, ToSchema)]
+pub struct ErrorResponse {
+    pub error: String,
 }

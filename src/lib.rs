@@ -12,7 +12,7 @@ pub mod handlers;
 pub mod auth;
 
 use state::AppState;
-use handlers::{health_check, create_quiz, get_quiz, list_quizzes, submit_answer, delete_quiz, update_quiz};
+
 use models::*;
 
 #[derive(OpenApi)]
@@ -21,6 +21,8 @@ use models::*;
         handlers::health_check,
         handlers::auth_register,
         handlers::auth_login,
+        handlers::get_me,
+        handlers::generate_api_key,
         handlers::create_category,
         handlers::list_categories,
         handlers::create_quiz,
@@ -36,11 +38,14 @@ use models::*;
             SubmitAnswerRequest, AnswerResponse,
             RegisterRequest, LoginRequest, TokenResponse, 
             Category, CreateCategoryRequest, CreateQuestionRequest, CreateOptionRequest,
-            UpdateQuizRequest
+            UpdateQuizRequest,
+            PaginationParams, DeveloperResponse, ErrorResponse
         )
     ),
     tags(
-        (name = "coding-quiz-api", description = "Coding Quiz API")
+        (name = "System", description = "System endpoints"),
+        (name = "Management", description = "Developer management endpoints (JWT)"),
+        (name = "Consumption", description = "Public consumption endpoints (API Key)")
     ),
     modifiers(&SecurityAddon)
 )]
@@ -59,7 +64,16 @@ impl utoipa::Modify for SecurityAddon {
                         .bearer_format("JWT")
                         .build(),
                 ),
-            )
+            );
+
+            components.add_security_scheme(
+                "api_key",
+                utoipa::openapi::security::SecurityScheme::ApiKey(
+                    utoipa::openapi::security::ApiKey::Header(
+                        utoipa::openapi::security::ApiKeyValue::new("X-API-Key"),
+                    ),
+                ),
+            );
         }
     }
 }
@@ -79,11 +93,13 @@ pub fn run(listener: TcpListener, db_pool: PgPool) -> Result<Server, std::io::Er
             .service(
                 SwaggerUi::new("/swagger-ui/{_:.*}").url("/api-docs/openapi.json", ApiDoc::openapi())
             )
-            .route("/health", web::get().to(health_check))
+            .route("/health", web::get().to(handlers::health_check))
             .service(
                 web::scope("/auth")
                     .route("/register", web::post().to(handlers::auth_register))
                     .route("/login", web::post().to(handlers::auth_login))
+                    .route("/me", web::get().to(handlers::get_me))
+                    .route("/api-keys", web::post().to(handlers::generate_api_key))
             )
             .service(
                 web::scope("/categories")
@@ -92,12 +108,12 @@ pub fn run(listener: TcpListener, db_pool: PgPool) -> Result<Server, std::io::Er
             )
             .service(
                 web::scope("/quizzes")
-                    .route("", web::post().to(create_quiz))
-                    .route("", web::get().to(list_quizzes))
-                    .route("/{id}", web::get().to(get_quiz))
+                    .route("", web::post().to(handlers::create_quiz))
+                    .route("", web::get().to(handlers::list_quizzes))
+                    .route("/{id}", web::get().to(handlers::get_quiz))
                     .route("/{id}", web::put().to(handlers::update_quiz))
                     .route("/{id}", web::delete().to(handlers::delete_quiz))
-                    .route("/{id}/solve", web::post().to(submit_answer))
+                    .route("/{id}/solve", web::post().to(handlers::submit_answer))
             )
     })
     .listen(listener)?

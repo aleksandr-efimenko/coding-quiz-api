@@ -1,0 +1,85 @@
+@baseUrl = http://127.0.0.1:8080
+@developerToken = {{login.response.body.token}}
+
+# -----------------------------------------------------
+# MANAGEMENT API (Requires JWT)
+# -----------------------------------------------------
+
+### Health Check (System)
+GET {{baseUrl}}/health
+
+### 1. Register Developer
+POST {{baseUrl}}/auth/register
+Content-Type: application/json
+
+{
+  "username": "dev_user_new",
+  "password": "password123"
+}
+
+### 2. Login Developer (Get JWT)
+# @name login
+POST {{baseUrl}}/auth/login
+Content-Type: application/json
+
+{
+  "username": "dev_user_new",
+  "password": "password123"
+}
+
+### 3. Generate API Key
+# @name generate_key
+POST {{baseUrl}}/auth/api-keys
+Authorization: Bearer {{developerToken}}
+
+### 4. Get Developer Profile
+GET {{baseUrl}}/auth/me
+Authorization: Bearer {{developerToken}}
+
+### 5. Create Category
+# @name create_category
+POST {{baseUrl}}/categories
+Authorization: Bearer {{developerToken}}
+Content-Type: application/json
+
+{
+  "name": "Rust Programming"
+}
+
+### 6. Create Quiz
+@categoryId = {{create_category.response.body.id}}
+# @name create_quiz
+POST {{baseUrl}}/quizzes
+Authorization: Bearer {{developerToken}}
+Content-Type: application/json
+
+{
+    "title": "Rust Basics",
+    "category_id": "{{categoryId}}", 
+    "tags": ["rust", "variables"],
+    "questions": [
+        {
+            "text": "What is the keyword for variables?",
+            "explanation": "let is used for variables.",
+            "options": [
+                { "text": "let", "is_correct": true },
+                { "text": "var", "is_correct": false }
+            ]
+        }
+    ]
+}
+
+### 7. Update Quiz
+@quizId = {{create_quiz.response.body.id}}
+PUT {{baseUrl}}/quizzes/{{quizId}}
+Authorization: Bearer {{developerToken}}
+Content-Type: application/json
+
+{
+    "title": "Rust Basics (Updated)",
+    "tags": ["rust", "variables", "updated"]
+}
+
+### 8. Delete Quiz
+# DELETE {{baseUrl}}/quizzes/{{quizId}}
+# Authorization: Bearer {{developerToken}}
