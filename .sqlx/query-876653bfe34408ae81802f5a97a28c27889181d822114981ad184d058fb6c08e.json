@@ -1,6 +1,6 @@
 {
   "db_name": "PostgreSQL",
-  "query": "SELECT id FROM quizzes WHERE id = $1",
+  "query": "SELECT id FROM quiz_users WHERE developer_id = $1 AND email = $2",
   "describe": {
     "columns": [
       {
@@ -11,12 +11,13 @@
     ],
     "parameters": {
       "Left": [
-        "Int8"
+        "Int8",
+        "Text"
       ]
     },
     "nullable": [
       false
     ]
   },
-  "hash": "eae99ade760c3ffa7226f898c4f41fef39f264ff2681c9096e5245eaeb698825"
+  "hash": "876653bfe34408ae81802f5a97a28c27889181d822114981ad184d058fb6c08e"
 }

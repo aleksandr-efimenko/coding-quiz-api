@@ -1,0 +1,23 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "SELECT qo.is_correct FROM question_options qo JOIN questions q ON qo.question_id = q.id WHERE qo.id = $1 AND qo.question_id = $2 AND q.verified = true",
+  "describe": {
+    "columns": [
+      {
+        "ordinal": 0,
+        "name": "is_correct",
+        "type_info": "Bool"
+      }
+    ],
+    "parameters": {
+      "Left": [
+        "Int8",
+        "Int8"
+      ]
+    },
+    "nullable": [
+      false
+    ]
+  },
+  "hash": "85dc10e8760ea51087ede4a40a83d5805acf323cb38a9c888753d90a86c3cad5"
+}

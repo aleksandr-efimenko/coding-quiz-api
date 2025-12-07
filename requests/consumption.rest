@@ -1,41 +1,61 @@
 @baseUrl = http://127.0.0.1:8080
-@apiKey = PASTE_YOUR_API_KEY_HERE
+@apiKey = b2T2K05nVbGRs8NrqDauaLMHLNYeMiFj
+@userEmail = alice@example.com
 
 # -----------------------------------------------------
 # CONSUMPTION API (Requires API Key)
 # -----------------------------------------------------
 
-### 1. List Quizzes
-GET {{baseUrl}}/quizzes?page=1&per_page=50
-X-API-Key: {{apiKey}}
-
-### 2. List Quizzes (Excluded)
-# Example: Filter out a specific quiz ID to show only "unsolved" ones.
-@excludeId = e9591404-3316-43f1-b1e4-d2424903332a
-GET {{baseUrl}}/quizzes?page=1&per_page=50&exclude_ids={{excludeId}}
-X-API-Key: {{apiKey}}
-
-### 3. List Categories
-GET {{baseUrl}}/categories?page=1&per_page=50
-X-API-Key: {{apiKey}}
-
-### 4. Get Quiz Details
-# Replace with a valid ID from the List Quizzes response
-@quizId = e9591404-3316-43f1-b1e4-d2424903332a
-GET {{baseUrl}}/quizzes/{{quizId}}
-X-API-Key: {{apiKey}}
-
-### 5. Submit Answer
-# Replace with valid IDs
-@submitQuizId = {{quizId}}
-@questionId = 445f1b2b-0925-455b-9195-24900138722e
-@optionId = 96425c27-7757-4f61-b44c-35cdb3b3a010
-
-POST {{baseUrl}}/quizzes/{{submitQuizId}}/solve
+### 1. Register Quiz User
+POST {{baseUrl}}/users
 X-API-Key: {{apiKey}}
 Content-Type: application/json
 
 {
+    "email": "{{userEmail}}"
+}
+
+### 2. List Quizzes (with Search)
+GET {{baseUrl}}/quizzes?page=1&per_page=50&search=rust
+X-API-Key: {{apiKey}}
+
+### 3. Get Random Quiz (Smart - excludes solved)
+GET {{baseUrl}}/quizzes/random?user_email={{userEmail}}
+X-API-Key: {{apiKey}}
+
+### 4. Get Random Quiz (With Filters)
+# Filter by tag, category, and optionally include solved quizzes
+GET {{baseUrl}}/quizzes/random?user_email={{userEmail}}&tags=rust,async&difficulty=Medium&include_solved=true
+X-API-Key: {{apiKey}}
+
+### 5. Solve Quiz
+# Replace with valid IDs from List or Random response
+@quizId = REPLACE_WITH_QUIZ_ID
+@questionId = REPLACE_WITH_QUESTION_ID
+@optionId = REPLACE_WITH_OPTION_ID
+
+POST {{baseUrl}}/quizzes/{{quizId}}/solve
+X-API-Key: {{apiKey}}
+Content-Type: application/json
+
+{
+    "user_email": "{{userEmail}}",
     "question_id": "{{questionId}}",
     "option_id": "{{optionId}}"
 }
+
+### 6. Get User History
+GET {{baseUrl}}/users/{{userEmail}}/history
+X-API-Key: {{apiKey}}
+
+### 7. Delete Quiz User (Cleanup)
+DELETE {{baseUrl}}/users/{{userEmail}}
+X-API-Key: {{apiKey}}
+
+### 8. List Tags (Discovery)
+GET {{baseUrl}}/tags
+X-API-Key: {{apiKey}}
+
+### 9. Get User Stats
+GET {{baseUrl}}/users/{{userEmail}}/stats
+X-API-Key: {{apiKey}}

@@ -1,0 +1,713 @@
+{
+  "title": "JavaScript General Quiz",
+  "tags": [
+    "general",
+    "javascript"
+  ],
+  "questions": [
+    {
+      "text": "Why do you need modules",
+      "explanation": "Below are the list of benefits using modules in javascript ecosystem\n\n    1. Maintainability\n    2. Reusability\n    3. Namespacing\n\n    **[\u2b06 Back to Top](#table-of-contents)**\n\n31.",
+      "options": [
+        {
+          "text": "Below are the list of benefits using modules in javascript ecosystem\n\n    1",
+          "is_correct": true
+        },
+        {
+          "text": "The `switch case` statement in JavaScript is used for decision making purposes",
+          "is_correct": false
+        },
+        {
+          "text": "In JavaScript, primitives are immutable i",
+          "is_correct": false
+        },
+        {
+          "text": "The label statement allows us to name loops and blocks in JavaScript",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "What are global variables",
+      "explanation": "Global variables are those that are available throughout the length of the code without any scope. The var keyword is used to declare a local variable but if you omit it then it will become global variable\n\n    ```javascript\n    msg = \"Hello\"; // var is missing, it becomes global variable\n    ```\n\n    **[\u2b06 Back to Top](#table-of-contents)**\n\n83.",
+      "options": [
+        {
+          "text": "Yes, JavaScript is faster than server side scripts",
+          "is_correct": false
+        },
+        {
+          "text": "Since parameters defined earlier are available to later default parameters, this code snippet doesn't throw any error",
+          "is_correct": false
+        },
+        {
+          "text": "The problem with global variables is the conflict of variable names of local and global scope",
+          "is_correct": false
+        },
+        {
+          "text": "Global variables are those that are available throughout the length of the code without any scope",
+          "is_correct": true
+        }
+      ]
+    },
+    {
+      "text": "What are the problems with global variables",
+      "explanation": "The problem with global variables is the conflict of variable names of local and global scope. It is also difficult to debug and test the code that relies on global variables.\n\n    **[\u2b06 Back to Top](#table-of-contents)**\n\n84.",
+      "options": [
+        {
+          "text": "The problem with global variables is the conflict of variable names of local and global scope",
+          "is_correct": true
+        },
+        {
+          "text": "Internal JavaScript:** It is the source code within the script tag",
+          "is_correct": false
+        },
+        {
+          "text": "Below are the list of benefits of Getters and Setters,\n\n      1",
+          "is_correct": false
+        },
+        {
+          "text": "In comparison operators, the expression `[0]` converted to Number([0]",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "What are the tools or techniques used for debugging JavaScript code",
+      "explanation": "You can use below tools or techniques for debugging javascript\n\n    1. Chrome Devtools\n    2. debugger statement\n    3. Good old console.log statement\n\n    **[\u2b06 Back to Top](#table-of-contents)**\n\n94.",
+      "options": [
+        {
+          "text": "Since parameters defined earlier are available to later default parameters, this code snippet doesn't throw any error",
+          "is_correct": false
+        },
+        {
+          "text": "Infinity is the initial comparant because almost every other value is bigger",
+          "is_correct": false
+        },
+        {
+          "text": "You can use below tools or techniques for debugging javascript\n\n    1",
+          "is_correct": true
+        },
+        {
+          "text": "Below are the list of benefits of Getters and Setters,\n\n      1",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Why is JavaScript treated as Single threaded",
+      "explanation": "JavaScript is a single-threaded language. Because the language specification does not allow the programmer to write code so that the interpreter can run parts of it in parallel in multiple threads or processes. Whereas languages like java, go, C++ can make multi-threaded and multi-process programs.\n\n      **[\u2b06 Back to Top](#table-of-contents)**\n\n110.",
+      "options": [
+        {
+          "text": "ECMAScript is the scripting language that forms the basis of JavaScript",
+          "is_correct": false
+        },
+        {
+          "text": "The for-loop is a commonly used iteration syntax in javascript",
+          "is_correct": false
+        },
+        {
+          "text": "Proxies are not used in regular day to day JavaScript work but they enabled many exciting programming patterns",
+          "is_correct": false
+        },
+        {
+          "text": "JavaScript is a single-threaded language",
+          "is_correct": true
+        }
+      ]
+    },
+    {
+      "text": "What is ECMAScript",
+      "explanation": "ECMAScript is the scripting language that forms the basis of JavaScript. ECMAScript standardized by the ECMA International standards organization in the ECMA-262 and ECMA-402 specifications. The first edition of ECMAScript was released in 1997.\n\n      **[\u2b06 Back to Top](#table-of-contents)**\n\n112.",
+      "options": [
+        {
+          "text": "ECMAScript is the scripting language that forms the basis of JavaScript",
+          "is_correct": true
+        },
+        {
+          "text": "The variable \"a\" declared inside \"if\" has block scope and does not affect the value of the outer \"a\" variable",
+          "is_correct": false
+        },
+        {
+          "text": "Below are the list of benefits using modules in javascript ecosystem\n\n    1",
+          "is_correct": false
+        },
+        {
+          "text": "The module loaders provides the below features,\n\n      1",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "What are the pros and cons of for loops",
+      "explanation": "The for-loop is a commonly used iteration syntax in javascript. It has both pros and cons",
+      "options": [
+        {
+          "text": "The label statement allows us to name loops and blocks in JavaScript",
+          "is_correct": false
+        },
+        {
+          "text": "The for-loop is a commonly used iteration syntax in javascript",
+          "is_correct": true
+        },
+        {
+          "text": "In JavaScript, primitives are immutable i",
+          "is_correct": false
+        },
+        {
+          "text": "Internal JavaScript:** It is the source code within the script tag",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Is the !-- notation represents a special operator",
+      "explanation": "No,that's not a special operator. But it is a combination of 2 standard operators one after the other,\n\n      1. A logical not (!)\n      2. A prefix decrement (--)\n\n      At first, the value decremented by one and then tested to see if it is equal to zero or not for determining the truthy/falsy value.\n\n      **[\u2b06 Back to Top](#table-of-contents)**\n\n138.",
+      "options": [
+        {
+          "text": "No,that's not a special operator",
+          "is_correct": true
+        },
+        {
+          "text": "Internal JavaScript:** It is the source code within the script tag",
+          "is_correct": false
+        },
+        {
+          "text": "You can use the `test()` method of regular expression in order to search a string for a pattern, and return true or false depending on the result",
+          "is_correct": false
+        },
+        {
+          "text": "The double tilde operator(~~) is known as double NOT bitwise operator",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "What are break and continue statements",
+      "explanation": "The break statement is used to \"jump out\" of a loop. i.e, It breaks the loop and continues executing the code after the loop.\n\n      ```javascript\n      for (i = 0; i < 10; i++) {\n        if (i === 5) {\n          break;\n        }\n        text += \"Number: \" + i + \"<br>\";\n      }\n      ```\n\n      The continue statement is used to \"jump over\" one iteration in the loop. i.e, It breaks one iteration (in the loop), if a specified condition occurs, and continues with the next iteration in the loop.\n\n      ```javascript\n      for (i = 0; i < 10; i++) {\n        if (i === 5) {\n          continue;\n        }\n        text += \"Number: \" + i + \"<br>\";\n      }\n      ```\n\n      **[\u2b06 Back to Top](#table-of-contents)**\n\n145.",
+      "options": [
+        {
+          "text": "Yes, JavaScript is faster than server side scripts",
+          "is_correct": false
+        },
+        {
+          "text": "The break statement is used to \"jump out\" of a loop",
+          "is_correct": true
+        },
+        {
+          "text": "As per the comparison algorithm in the ECMAScript specification(ECMA-262), the above expression converted into JS as below\n\n\n\nSo it doesn't matter about number brackets([]) around the number, it is always converted to a number in the expression",
+          "is_correct": false
+        },
+        {
+          "text": "The module loaders provides the below features,\n\n      1",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "What are js labels",
+      "explanation": "The label statement allows us to name loops and blocks in JavaScript. We can then use these labels to refer back to the code later. For example, the below code with labels avoids printing the numbers when they are same,\n\n      ```javascript\n      var i, j;\n\n      loop1: for (i = 0; i < 3; i++) {\n        loop2: for (j = 0; j < 3; j++) {\n          if (i === j) {\n            continue loop1;\n          }\n          console.log(\"i = \" + i + \", j = \" + j);\n        }\n      }\n\n      // Output is:\n      //   \"i = 1, j = 0\"\n      //   \"i = 2, j = 0\"\n      //   \"i = 2, j = 1\"\n      ```\n\n      **[\u2b06 Back to Top](#table-of-contents)**\n\n146.",
+      "options": [
+        {
+          "text": "Global variables are those that are available throughout the length of the code without any scope",
+          "is_correct": false
+        },
+        {
+          "text": "ECMAScript is the scripting language that forms the basis of JavaScript",
+          "is_correct": false
+        },
+        {
+          "text": "The label statement allows us to name loops and blocks in JavaScript",
+          "is_correct": true
+        },
+        {
+          "text": "The break statement is used to \"jump out\" of a loop",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "How do you search a string for a pattern",
+      "explanation": "You can use the `test()` method of regular expression in order to search a string for a pattern, and return true or false depending on the result.\n\n      ```javascript\n      var pattern = /you/;\n      console.log(pattern.test(\"How are you?\")); //true\n      ```\n\n      **[\u2b06 Back to Top](#table-of-contents)**\n\n161.",
+      "options": [
+        {
+          "text": "Proxies are not used in regular day to day JavaScript work but they enabled many exciting programming patterns",
+          "is_correct": false
+        },
+        {
+          "text": "You can use the `test()` method of regular expression in order to search a string for a pattern, and return true or false depending on the result",
+          "is_correct": true
+        },
+        {
+          "text": "ECMAScript is the scripting language that forms the basis of JavaScript",
+          "is_correct": false
+        },
+        {
+          "text": "The variable \"a\" declared inside \"if\" has block scope and does not affect the value of the outer \"a\" variable",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "What is a conditional operator in javascript",
+      "explanation": "The conditional (ternary) operator is the only JavaScript operator that takes three operands which acts as a shortcut for `if` statements.\n\n      ```javascript\n      var isAuthenticated = false;\n      console.log(\n        isAuthenticated ? \"Hello, welcome\" : \"Sorry, you are not authenticated\"\n      ); // Sorry, you are not authenticated\n      ```\n\n      **[\u2b06 Back to Top](#table-of-contents)**\n\n175.",
+      "options": [
+        {
+          "text": "The double tilde operator(~~) is known as double NOT bitwise operator",
+          "is_correct": false
+        },
+        {
+          "text": "The for-loop is a commonly used iteration syntax in javascript",
+          "is_correct": false
+        },
+        {
+          "text": "The conditional (ternary) operator is the only JavaScript operator that takes three operands which acts as a shortcut for `if` statements",
+          "is_correct": true
+        },
+        {
+          "text": "Global variables are those that are available throughout the length of the code without any scope",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "What are the bitwise operators available in javascript",
+      "explanation": "Below are the list of bitwise logical operators used in JavaScript\n\n      1. Bitwise AND ( & )\n      2. Bitwise OR ( | )\n      3. Bitwise XOR ( ^ )\n      4. Bitwise NOT ( ~ )\n      5. Left Shift ( << )\n      6. Sign Propagating Right Shift ( >> )\n      7. Zero fill Right Shift ( >>> )\n\n      **[\u2b06 Back to Top](#table-of-contents)**\n\n189.",
+      "options": [
+        {
+          "text": "Since parameters defined earlier are available to later default parameters, this code snippet doesn't throw any error",
+          "is_correct": false
+        },
+        {
+          "text": "The `switch case` statement in JavaScript is used for decision making purposes",
+          "is_correct": false
+        },
+        {
+          "text": "Below are the list of bitwise logical operators used in JavaScript\n\n      1",
+          "is_correct": true
+        },
+        {
+          "text": "The output of the above expression is \"W\"",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "What are the advantages of Getters and Setters",
+      "explanation": "Below are the list of benefits of Getters and Setters,\n\n      1. They provide simpler syntax\n      2. They are used for defining computed properties, or accessors in JS.\n      3. Useful to provide equivalence relation between properties and methods\n      4. They can provide better data quality\n      5. Useful for doing things behind the scenes with the encapsulated logic.\n\n      **[\u2b06 Back to Top](#table-of-contents)**\n\n221.",
+      "options": [
+        {
+          "text": "JavaScript is a single-threaded language",
+          "is_correct": false
+        },
+        {
+          "text": "The module loaders provides the below features,\n\n      1",
+          "is_correct": false
+        },
+        {
+          "text": "In comparison operators, the expression `[0]` converted to Number([0]",
+          "is_correct": false
+        },
+        {
+          "text": "Below are the list of benefits of Getters and Setters,\n\n      1",
+          "is_correct": true
+        }
+      ]
+    },
+    {
+      "text": "What is the purpose of switch-case",
+      "explanation": "The `switch case` statement in JavaScript is used for decision making purposes. In a few cases, using the `switch case` statement is going to be more convenient than `if-else` statements. The syntax would be as below,\n\n      ```javascript\n      switch (expression)\n      {\n          case value1:\n              statement1;\n              break;\n          case value2:\n              statement2;\n              break;\n          .\n          .\n          case valueN:\n              statementN;\n              break;\n          default:\n              statementDefault;\n      }\n      ```\n\n      The above multi-way branch statement provides an easy way to dispatch execution to different parts of code based on the value of the expression.\n\n      **[\u2b06 Back to Top](#table-of-contents)**\n\n223.",
+      "options": [
+        {
+          "text": "The label statement allows us to name loops and blocks in JavaScript",
+          "is_correct": false
+        },
+        {
+          "text": "The `switch case` statement in JavaScript is used for decision making purposes",
+          "is_correct": true
+        },
+        {
+          "text": "The important point is that if the statement contains the same operators(e",
+          "is_correct": false
+        },
+        {
+          "text": "You can use the `test()` method of regular expression in order to search a string for a pattern, and return true or false depending on the result",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "What are the various statements in error handling",
+      "explanation": "Below are the list of statements used in an error handling,\n\n      1. **try:** This statement is used to test a block of code for errors\n      2. **catch:** This statement is used to handle the error\n      3. **throw:** This statement is used to create custom errors.\n      4. **finally:** This statement is used to execute code after try and catch regardless of the result.\n\n      **[\u2b06 Back to Top](#table-of-contents)**\n\n231.",
+      "options": [
+        {
+          "text": "The variable \"a\" declared inside \"if\" has block scope and does not affect the value of the outer \"a\" variable",
+          "is_correct": false
+        },
+        {
+          "text": "Below are the list of statements used in an error handling,\n\n      1",
+          "is_correct": true
+        },
+        {
+          "text": "You can use `new Date()",
+          "is_correct": false
+        },
+        {
+          "text": "In JavaScript, primitives are immutable i",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "What are the advantages of module loaders",
+      "explanation": "The module loaders provides the below features,\n\n      1. Dynamic loading\n      2. State isolation\n      3. Global namespace isolation\n      4. Compilation hooks\n      5. Nested virtualization\n\n      **[\u2b06 Back to Top](#table-of-contents)**\n\n323.",
+      "options": [
+        {
+          "text": "Internal JavaScript:** It is the source code within the script tag",
+          "is_correct": false
+        },
+        {
+          "text": "Below are the list of benefits using modules in javascript ecosystem\n\n    1",
+          "is_correct": false
+        },
+        {
+          "text": "Yes, JavaScript is faster than server side scripts",
+          "is_correct": false
+        },
+        {
+          "text": "The module loaders provides the below features,\n\n      1",
+          "is_correct": true
+        }
+      ]
+    },
+    {
+      "text": "What is the difference between internal and external javascript",
+      "explanation": "**Internal JavaScript:** It is the source code within the script tag.\n      **External JavaScript:** The source code is stored in an external file(stored with .js extension) and referred with in the tag.\n\n      **[\u2b06 Back to Top](#table-of-contents)**\n\n333.",
+      "options": [
+        {
+          "text": "In comparison operators, the expression `[0]` converted to Number([0]",
+          "is_correct": false
+        },
+        {
+          "text": "Internal JavaScript:** It is the source code within the script tag",
+          "is_correct": true
+        },
+        {
+          "text": "The important point is that if the statement contains the same operators(e",
+          "is_correct": false
+        },
+        {
+          "text": "The `switch case` statement in JavaScript is used for decision making purposes",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Is JavaScript faster than server side script",
+      "explanation": "Yes, JavaScript is faster than server side scripts. Because JavaScript is a client-side script it does not require any web server\u2019s help for its computation or calculation. So JavaScript is always faster than any server-side script like ASP, PHP, etc.\n\n      **[\u2b06 Back to Top](#table-of-contents)**\n\n334.",
+      "options": [
+        {
+          "text": "As per the comparison algorithm in the ECMAScript specification(ECMA-262), the above expression converted into JS as below\n\n\n\nSo it doesn't matter about number brackets([]) around the number, it is always converted to a number in the expression",
+          "is_correct": false
+        },
+        {
+          "text": "Below are the list of benefits of Getters and Setters,\n\n      1",
+          "is_correct": false
+        },
+        {
+          "text": "Yes, JavaScript is faster than server side scripts",
+          "is_correct": true
+        },
+        {
+          "text": "Infinity is the initial comparant because almost every other value is bigger",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "What is the purpose of double tilde operator",
+      "explanation": "The double tilde operator(~~) is known as double NOT bitwise operator. This operator is a slightly quicker substitute for Math.floor().\n\n      **[\u2b06 Back to Top](#table-of-contents)**\n\n336.",
+      "options": [
+        {
+          "text": "The problem with global variables is the conflict of variable names of local and global scope",
+          "is_correct": false
+        },
+        {
+          "text": "The double tilde operator(~~) is known as double NOT bitwise operator",
+          "is_correct": true
+        },
+        {
+          "text": "As per the comparison algorithm in the ECMAScript specification(ECMA-262), the above expression converted into JS as below\n\n\n\nSo it doesn't matter about number brackets([]) around the number, it is always converted to a number in the expression",
+          "is_correct": false
+        },
+        {
+          "text": "You can use below tools or techniques for debugging javascript\n\n    1",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "What is the output of below string expression",
+      "explanation": "```javascript\n      console.log(\"Welcome to JS world\"[0]);\n      ```\n\n      The output of the above expression is \"W\".\n      **Explanation:** The bracket notation with specific index on a string returns the character at a specific location. Hence, it returns the character \"W\" of the string. Since this is not supported in IE7 and below versions, you may need to use the .charAt() method to get the desired result.\n\n      **[\u2b06 Back to Top](#table-of-contents)**\n\n339.",
+      "options": [
+        {
+          "text": "You can use the `test()` method of regular expression in order to search a string for a pattern, and return true or false depending on the result",
+          "is_correct": false
+        },
+        {
+          "text": "Proxies are not used in regular day to day JavaScript work but they enabled many exciting programming patterns",
+          "is_correct": false
+        },
+        {
+          "text": "The problem with global variables is the conflict of variable names of local and global scope",
+          "is_correct": false
+        },
+        {
+          "text": "The output of the above expression is \"W\"",
+          "is_correct": true
+        }
+      ]
+    },
+    {
+      "text": "What is the shortcut to get timestamp",
+      "explanation": "You can use `new Date().getTime()` to get the current timestamp. There is an alternative shortcut to get the value.\n\n      ```javascript\n      console.log(+new Date());\n      console.log(Date.now());\n      ```\n\n      **[\u2b06 Back to Top](#table-of-contents)**\n\n379.",
+      "options": [
+        {
+          "text": "The variable \"a\" declared inside \"if\" has block scope and does not affect the value of the outer \"a\" variable",
+          "is_correct": false
+        },
+        {
+          "text": "The output of the above expression is \"W\"",
+          "is_correct": false
+        },
+        {
+          "text": "You can use `new Date()",
+          "is_correct": true
+        },
+        {
+          "text": "The for-loop is a commonly used iteration syntax in javascript",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "How do you group and nest console output?",
+      "explanation": "The `console.group()` can be used to group related log messages to be able to easily read the logs and use console.groupEnd()to close the group. Along with this, you can also nest groups which allows to output message in hierarchical manner.\n\n     For example, if you\u2019re logging a user\u2019s details:\n\n     ```js\n     console.group(\"User Details\");\n     console.log(\"name: Sudheer Jonna\");\n     console.log(\"job: Software Developer\");\n\n     // Nested Group\n     console.group(\"Address\");\n     console.log(\"Street: Commonwealth\");\n     console.log(\"City: Los Angeles\");\n     console.log(\"State: California\");\n\n     // Close nested group\n     console.groupEnd();\n\n     // Close outer group\n     console.groupEnd();\n     ```\n\n     You can also use `console.groupCollapsed()` instead of `console.group()` if you want the groups to be collapsed by default.\n\n     **[\u2b06 Back to Top](#table-of-contents)**\n\n430.",
+      "options": [
+        {
+          "text": "Below are the list of benefits using modules in javascript ecosystem\n\n    1",
+          "is_correct": false
+        },
+        {
+          "text": "Below are the list of benefits of Getters and Setters,\n\n      1",
+          "is_correct": false
+        },
+        {
+          "text": "group()` can be used to group related log messages to be able to easily read the logs and use console",
+          "is_correct": true
+        },
+        {
+          "text": "In JavaScript, primitives are immutable i",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "What are the real world use cases of proxy?",
+      "explanation": "Proxies are not used in regular day to day JavaScript work but they enabled many exciting programming patterns. Some of the real world use cases are listed below,\n\n     1. Vue3 used proxy concept to implement reactive state\n     2. SolidJS implemented reactive stores\n     3. Immerjs built upon proxy to track updates to immutable updates\n     4. ZenStack improved Prisma ORM for access control layer\n\n**[\u2b06 Back to Top](#table-of-contents)**\n\n464.",
+      "options": [
+        {
+          "text": "Internal JavaScript:** It is the source code within the script tag",
+          "is_correct": false
+        },
+        {
+          "text": "Proxies are not used in regular day to day JavaScript work but they enabled many exciting programming patterns",
+          "is_correct": true
+        },
+        {
+          "text": "You can use below tools or techniques for debugging javascript\n\n    1",
+          "is_correct": false
+        },
+        {
+          "text": "The module loaders provides the below features,\n\n      1",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "#Answer: 1",
+      "explanation": "This is due to the float point math problem. Since the floating point numbers are encoded in binary format, the addition operations on them lead to rounding errors. Hence, the comparison of floating points doesn't give expected results.\nYou can find more details about the explanation here [0.30000000000000004.com/](https://0.30000000000000004.com/)\n\n</p>\n</details>\n\n---\n\n**[\u2b06 Back to Top](#table-of-contents)**",
+      "options": [
+        {
+          "text": "This is due to the float point math problem",
+          "is_correct": true
+        },
+        {
+          "text": "Global variables are those that are available throughout the length of the code without any scope",
+          "is_correct": false
+        },
+        {
+          "text": "The for-loop is a commonly used iteration syntax in javascript",
+          "is_correct": false
+        },
+        {
+          "text": "The conditional (ternary) operator is the only JavaScript operator that takes three operands which acts as a shortcut for `if` statements",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "#Answer: 2",
+      "explanation": "The important point is that if the statement contains the same operators(e.g, < or >) then it can be evaluated from left to right.\nThe first statement follows the below order,\n\n1. console.log(1 < 2 < 3);\n2. console.log(true < 3);\n3. console.log(1 < 3); // True converted as `1` during comparison\n4. True\n\nWhereas the second statement follows the below order,\n\n1. console.log(3 > 2 > 1);\n2. console.log(true > 1);\n3. console.log(1 > 1); // False converted as `0` during comparison\n4. False\n\n</p>\n</details>\n\n---\n\n**[\u2b06 Back to Top](#table-of-contents)**",
+      "options": [
+        {
+          "text": "No,that's not a special operator",
+          "is_correct": false
+        },
+        {
+          "text": "The variable \"a\" declared inside \"if\" has block scope and does not affect the value of the outer \"a\" variable",
+          "is_correct": false
+        },
+        {
+          "text": "The important point is that if the statement contains the same operators(e",
+          "is_correct": true
+        },
+        {
+          "text": "The for-loop is a commonly used iteration syntax in javascript",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "#Answer: 4",
+      "explanation": "-Infinity is the initial comparant because almost every other value is bigger. So when no arguments are provided, -Infinity is going to be returned.\n**Note:** Zero number of arguments is a valid case.\n\n</p>\n</details>\n\n---\n\n**[\u2b06 Back to Top](#table-of-contents)**",
+      "options": [
+        {
+          "text": "You can use `new Date()",
+          "is_correct": false
+        },
+        {
+          "text": "Below are the list of bitwise logical operators used in JavaScript\n\n      1",
+          "is_correct": false
+        },
+        {
+          "text": "The important point is that if the statement contains the same operators(e",
+          "is_correct": false
+        },
+        {
+          "text": "Infinity is the initial comparant because almost every other value is bigger",
+          "is_correct": true
+        }
+      ]
+    },
+    {
+      "text": "#Answer: 1",
+      "explanation": "As per the comparison algorithm in the ECMAScript specification(ECMA-262), the above expression converted into JS as below\n\n```javascript\n10 === Number([10].valueOf().toString()); // 10\n```\n\nSo it doesn't matter about number brackets([]) around the number, it is always converted to a number in the expression.\n\n</p>\n</details>\n\n---\n\n**[\u2b06 Back to Top](#table-of-contents)**",
+      "options": [
+        {
+          "text": "In JavaScript, primitives are immutable i",
+          "is_correct": false
+        },
+        {
+          "text": "Yes, JavaScript is faster than server side scripts",
+          "is_correct": false
+        },
+        {
+          "text": "The label statement allows us to name loops and blocks in JavaScript",
+          "is_correct": false
+        },
+        {
+          "text": "As per the comparison algorithm in the ECMAScript specification(ECMA-262), the above expression converted into JS as below\n\n\n\nSo it doesn't matter about number brackets([]) around the number, it is always converted to a number in the expression",
+          "is_correct": true
+        }
+      ]
+    },
+    {
+      "text": "#Answer: 1",
+      "explanation": "In comparison operators, the expression `[0]` converted to Number([0].valueOf().toString()) which is resolved to false. Whereas `[0]` just becomes a truthy value without any conversion because there is no comparison operator.\n\n</p>\n</details>",
+      "options": [
+        {
+          "text": "The double tilde operator(~~) is known as double NOT bitwise operator",
+          "is_correct": false
+        },
+        {
+          "text": "In comparison operators, the expression `[0]` converted to Number([0]",
+          "is_correct": true
+        },
+        {
+          "text": "Below are the list of statements used in an error handling,\n\n      1",
+          "is_correct": false
+        },
+        {
+          "text": "As per the comparison algorithm in the ECMAScript specification(ECMA-262), the above expression converted into JS as below\n\n\n\nSo it doesn't matter about number brackets([]) around the number, it is always converted to a number in the expression",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "#Answer: 2",
+      "explanation": "Since parameters defined earlier are available to later default parameters, this code snippet doesn't throw any error.\n\n</p>\n\n</details>\n\n---\n\n**[\u2b06 Back to Top](#table-of-contents)**",
+      "options": [
+        {
+          "text": "Since parameters defined earlier are available to later default parameters, this code snippet doesn't throw any error",
+          "is_correct": true
+        },
+        {
+          "text": "The important point is that if the statement contains the same operators(e",
+          "is_correct": false
+        },
+        {
+          "text": "Below are the list of benefits of Getters and Setters,\n\n      1",
+          "is_correct": false
+        },
+        {
+          "text": "The variable \"a\" declared inside \"if\" has block scope and does not affect the value of the outer \"a\" variable",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "#Answer: 3",
+      "explanation": "In JavaScript, primitives are immutable i.e. there is no way to change a primitive value once it gets created. So when you try to update the string's first character, there is no change in the string value and prints the same initial value `Hello World!`. Whereas in the later example, the concatenated value is re-assigned to the same variable which will result into creation of new memory block with the reference pointing to `John Smith` value and the old memory block value(`John`) will be garbage collected.\n\n</p>\n</details>\n\n---\n\n**[\u2b06 Back to Top](#table-of-contents)**",
+      "options": [
+        {
+          "text": "In JavaScript, primitives are immutable i",
+          "is_correct": true
+        },
+        {
+          "text": "The important point is that if the statement contains the same operators(e",
+          "is_correct": false
+        },
+        {
+          "text": "The conditional (ternary) operator is the only JavaScript operator that takes three operands which acts as a shortcut for `if` statements",
+          "is_correct": false
+        },
+        {
+          "text": "In comparison operators, the expression `[0]` converted to Number([0]",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "#Answer: 2",
+      "explanation": "The variable \"a\" declared inside \"if\" has block scope and does not affect the value of the outer \"a\" variable.\n\n</p>\n</details>\n\n---\n\n**[\u2b06 Back to Top](#table-of-contents)**",
+      "options": [
+        {
+          "text": "Below are the list of bitwise logical operators used in JavaScript\n\n      1",
+          "is_correct": false
+        },
+        {
+          "text": "The variable \"a\" declared inside \"if\" has block scope and does not affect the value of the outer \"a\" variable",
+          "is_correct": true
+        },
+        {
+          "text": "Yes, JavaScript is faster than server side scripts",
+          "is_correct": false
+        },
+        {
+          "text": "Global variables are those that are available throughout the length of the code without any scope",
+          "is_correct": false
+        }
+      ]
+    }
+  ]
+}

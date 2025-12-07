@@ -1,0 +1,537 @@
+{
+  "title": "JavaScript Types Quiz",
+  "tags": [
+    "types",
+    "javascript"
+  ],
+  "questions": [
+    {
+      "text": "What is the difference between == and === operators",
+      "explanation": "JavaScript provides two types of equality operators:\n\n    - **Loose equality (`==`, `!=`)**: Performs type conversion if the types differ, comparing values after converting them to a common type.\n    - **Strict equality (`===`, `!==`)**: Compares both value and type, without any type conversion.",
+      "options": [
+        {
+          "text": "The NaN property is a global property that represents \"Not-a-Number\" value",
+          "is_correct": false
+        },
+        {
+          "text": "An enum is a type restricting variables to one value from a predefined set of constants",
+          "is_correct": false
+        },
+        {
+          "text": "JavaScript provides two types of equality operators:\n\n    - **Loose equality (`==`, `!=`)**: Performs type conversion if the types differ, comparing values after converting them to a common type",
+          "is_correct": true
+        },
+        {
+          "text": "The nesting template is a feature supported within template literals syntax to allow inner backticks inside a placeholder ${ } within the template",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Loose Equality (`==`)",
+      "explanation": "- Converts operands to the same type before making the comparison.\n    - `null == undefined` is `true`.\n    - `\"1\" == 1` is `true` because the string is converted to a number.\n    - `0 == false` is `true` because `false` is converted to `0`.",
+      "options": [
+        {
+          "text": "Converts operands to the same type before making the comparison",
+          "is_correct": true
+        },
+        {
+          "text": "A primitive data type is data that has a primitive value (which has no properties or methods)",
+          "is_correct": false
+        },
+        {
+          "text": "You can use the logical or operator `||` in an assignment expression to provide a default value",
+          "is_correct": false
+        },
+        {
+          "text": "An operator is capable of manipulating(mathematical and logical computations) a certain value or operand",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "What is the Temporal Dead Zone",
+      "explanation": "The **Temporal Dead Zone (TDZ)** refers to the period between the start of a block and the point where a variable declared with `let` or `const` is initialized. During this time, the variable exists in scope but **cannot be accessed**, and attempting to do so results in a `ReferenceError`.\n    \n    This behavior is part of **JavaScript's ES6 (ECMAScript 2015)** specification and applies **only to variables declared with `let` and `const`**, not `var`. Variables declared with `var` are **hoisted** and initialized with `undefined`, so accessing them before the declaration does not throw an error, though it can lead to unexpected results.",
+      "options": [
+        {
+          "text": "Converts operands to the same type before making the comparison",
+          "is_correct": false
+        },
+        {
+          "text": "The **Temporal Dead Zone (TDZ)** refers to the period between the start of a block and the point where a variable declared with `let` or `const` is initialized",
+          "is_correct": true
+        },
+        {
+          "text": "Set has few exceptions from equality check,\n\n1",
+          "is_correct": false
+        },
+        {
+          "text": "An enum is a type restricting variables to one value from a predefined set of constants",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "What is undefined property",
+      "explanation": "The undefined property indicates that a variable has not been assigned a value, or declared but not initialized at all. The type of undefined value is undefined too.\n\n    ```javascript\n    var user; // Value is undefined, type is undefined\n    console.log(typeof user); //undefined\n    ```\n\n    Any variable can be emptied by setting the value to undefined.\n\n    ```javascript\n    user = undefined;\n    ```\n\n    **[\u2b06 Back to Top](#table-of-contents)**\n\n74.",
+      "options": [
+        {
+          "text": "You can use the logical or operator `||` in an assignment expression to provide a default value",
+          "is_correct": false
+        },
+        {
+          "text": "The undefined property indicates that a variable has not been assigned a value, or declared but not initialized at all",
+          "is_correct": true
+        },
+        {
+          "text": "An operator is capable of manipulating(mathematical and logical computations) a certain value or operand",
+          "is_correct": false
+        },
+        {
+          "text": "JavaScript provides two types of equality operators:\n\n    - **Loose equality (`==`, `!=`)**: Performs type conversion if the types differ, comparing values after converting them to a common type",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "What is NaN property",
+      "explanation": "The NaN property is a global property that represents \"Not-a-Number\" value. i.e, It indicates that a value is not a legal number. It is very rare to use NaN in a program but it can be used as return value for few cases\n\n    ```javascript\n    Math.sqrt(-1);\n    parseInt(\"Hello\");\n    ```\n\n    **[\u2b06 Back to Top](#table-of-contents)**\n\n85.",
+      "options": [
+        {
+          "text": "**Entry Controlled loops:** In this kind of loop type, the test condition is tested before entering the loop body",
+          "is_correct": false
+        },
+        {
+          "text": "The NaN property is a global property that represents \"Not-a-Number\" value",
+          "is_correct": true
+        },
+        {
+          "text": "It is recommended to initialize variables because of the below benefits,\n\n      1",
+          "is_correct": false
+        },
+        {
+          "text": "JavaScript follows IEEE 754 spec standards",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "What are PWAs",
+      "explanation": "Progressive web applications (PWAs) are a type of mobile app delivered through the web, built using common web technologies including HTML, CSS and JavaScript. These PWAs are deployed to servers, accessible through URLs, and indexed by search engines.\n\n      **[\u2b06 Back to Top](#table-of-contents)**\n\n118.",
+      "options": [
+        {
+          "text": "The unary(+) operator is used to convert a variable to a number",
+          "is_correct": false
+        },
+        {
+          "text": "Progressive web applications (PWAs) are a type of mobile app delivered through the web, built using common web technologies including HTML, CSS and JavaScript",
+          "is_correct": true
+        },
+        {
+          "text": "**Entry Controlled loops:** In this kind of loop type, the test condition is tested before entering the loop body",
+          "is_correct": false
+        },
+        {
+          "text": "JavaScript follows IEEE 754 spec standards",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "How do you assign default values to variables",
+      "explanation": "You can use the logical or operator `||` in an assignment expression to provide a default value. The syntax looks like as below,\n\n      ```javascript\n      var a = b || c;\n      ```\n\n      As per the above expression, variable 'a 'will get the value of 'c' only if 'b' is falsy (if is null, false, undefined, 0, empty string, or NaN), otherwise 'a' will get the value of 'b'.\n\n      **[\u2b06 Back to Top](#table-of-contents)**\n\n139.",
+      "options": [
+        {
+          "text": "You can use the logical or operator `||` in an assignment expression to provide a default value",
+          "is_correct": true
+        },
+        {
+          "text": "Converts operands to the same type before making the comparison",
+          "is_correct": false
+        },
+        {
+          "text": "The unary(+) operator is used to convert a variable to a number",
+          "is_correct": false
+        },
+        {
+          "text": "The undefined property indicates that a variable has not been assigned a value, or declared but not initialized at all",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "What are the benefits of initializing variables",
+      "explanation": "It is recommended to initialize variables because of the below benefits,\n\n      1. It gives cleaner code\n      2. It provides a single place to initialize variables\n      3. Avoid undefined values in the code\n\n      **[\u2b06 Back to Top](#table-of-contents)**\n\n148.",
+      "options": [
+        {
+          "text": "JavaScript follows IEEE 754 spec standards",
+          "is_correct": false
+        },
+        {
+          "text": "An operator is capable of manipulating(mathematical and logical computations) a certain value or operand",
+          "is_correct": false
+        },
+        {
+          "text": "Deno is a simple, modern and secure runtime for JavaScript and TypeScript that uses V8 JavaScript engine and the Rust programming language",
+          "is_correct": false
+        },
+        {
+          "text": "It is recommended to initialize variables because of the below benefits,\n\n      1",
+          "is_correct": true
+        }
+      ]
+    },
+    {
+      "text": "What is a Regular Expression",
+      "explanation": "A regular expression is a sequence of characters that forms a search pattern. You can use this search pattern for searching data in a text. These can be used to perform all types of text search and text replace operations. Let's see the syntax format now,\n\n      ```javascript\n      /pattern/modifiers;\n      ```\n\n      For example, the regular expression or search pattern with case-insensitive username would be,\n\n      ```javascript\n      /John/i;\n      ```\n\n      **[\u2b06 Back to Top](#table-of-contents)**\n\n156.",
+      "options": [
+        {
+          "text": "A primitive data type is data that has a primitive value (which has no properties or methods)",
+          "is_correct": false
+        },
+        {
+          "text": "An enum is a type restricting variables to one value from a predefined set of constants",
+          "is_correct": false
+        },
+        {
+          "text": "The concatenation operator(+) is applicable for both number and string types",
+          "is_correct": false
+        },
+        {
+          "text": "A regular expression is a sequence of characters that forms a search pattern",
+          "is_correct": true
+        }
+      ]
+    },
+    {
+      "text": "What would be the result of 1+2+'3'",
+      "explanation": "The output is going to be `33`. Since `1` and `2` are numeric values, the result of the first two digits is going to be a numeric value `3`. The next digit is a string type value because of that the addition of numeric value `3` and string type value `3` is just going to be a concatenation value `33`. Other operationrs like `3 * '3'` do yield correct results because the string is coerced into a number.\n\n      **[\u2b06 Back to Top](#table-of-contents)**\n\n164.",
+      "options": [
+        {
+          "text": "The return value of `typeof myNumber` or `typeof myString` is always a truthy value (either \"number\" or \"string\")",
+          "is_correct": false
+        },
+        {
+          "text": "The output is going to be `33`",
+          "is_correct": true
+        },
+        {
+          "text": "A primitive data type is data that has a primitive value (which has no properties or methods)",
+          "is_correct": false
+        },
+        {
+          "text": "**Entry Controlled loops:** In this kind of loop type, the test condition is tested before entering the loop body",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "What are various operators supported by javascript",
+      "explanation": "An operator is capable of manipulating(mathematical and logical computations) a certain value or operand. There are various operators supported by JavaScript as below,\n\n      1. **Arithmetic Operators:** Includes + (Addition), \u2013 (Subtraction), \\* (Multiplication), / (Division), % (Modulus), ++ (Increment) and \u2013 \u2013 (Decrement)\n      2. **Comparison Operators:** Includes == (Equal), != (Not Equal), === (Equal with type), > (Greater than), >= (Greater than or Equal to), < (Less than), <= (Less than or Equal to)\n      3. **Logical Operators:** Includes && (Logical AND), || (Logical OR), ! (Logical NOT)\n      4. **Assignment Operators:** Includes = (Assignment Operator), += (Add and Assignment Operator), \u2013= (Subtract and Assignment Operator), \\*= (Multiply and Assignment), /= (Divide and Assignment), %= (Modules and Assignment)\n      5. **Ternary Operators:** It includes conditional(: ?) Operator\n      6. **typeof Operator:** It uses to find type of variable. The syntax looks like `typeof variable`\n\n      **[\u2b06 Back to Top](#table-of-contents)**\n\n186.",
+      "options": [
+        {
+          "text": "In ES5, you would have to use newline escape characters('\\\\n') and concatenation symbols(+) in order to get multi-line strings",
+          "is_correct": false
+        },
+        {
+          "text": "An operator is capable of manipulating(mathematical and logical computations) a certain value or operand",
+          "is_correct": true
+        },
+        {
+          "text": "It is recommended to initialize variables because of the below benefits,\n\n      1",
+          "is_correct": false
+        },
+        {
+          "text": "Set has few exceptions from equality check,\n\n1",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "What are primitive data types",
+      "explanation": "A primitive data type is data that has a primitive value (which has no properties or methods). There are 7 types of primitive data types.\n\n      1. string\n      2. number\n      3. boolean\n      4. null\n      5. undefined\n      6. bigint\n      7. symbol\n\n      **[\u2b06 Back to Top](#table-of-contents)**\n\n225.",
+      "options": [
+        {
+          "text": "Set has few exceptions from equality check,\n\n1",
+          "is_correct": false
+        },
+        {
+          "text": "An enum is a type restricting variables to one value from a predefined set of constants",
+          "is_correct": false
+        },
+        {
+          "text": "Converts operands to the same type before making the comparison",
+          "is_correct": false
+        },
+        {
+          "text": "A primitive data type is data that has a primitive value (which has no properties or methods)",
+          "is_correct": true
+        }
+      ]
+    },
+    {
+      "text": "What are the two types of loops in javascript",
+      "explanation": "1. **Entry Controlled loops:** In this kind of loop type, the test condition is tested before entering the loop body. For example, For Loop and While Loop comes under this category.\n      2. **Exit Controlled Loops:** In this kind of loop type, the test condition is tested or evaluated at the end of the loop body. i.e, the loop body will execute at least once irrespective of test condition true or false. For example, do-while loop comes under this category.\n\n      **[\u2b06 Back to Top](#table-of-contents)**\n\n232.",
+      "options": [
+        {
+          "text": "**Entry Controlled loops:** In this kind of loop type, the test condition is tested before entering the loop body",
+          "is_correct": true
+        },
+        {
+          "text": "The NaN property is a global property that represents \"Not-a-Number\" value",
+          "is_correct": false
+        },
+        {
+          "text": "A primitive data type is data that has a primitive value (which has no properties or methods)",
+          "is_correct": false
+        },
+        {
+          "text": "An enum is a type restricting variables to one value from a predefined set of constants",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "What is an Unary operator",
+      "explanation": "The unary(+) operator is used to convert a variable to a number.If the variable cannot be converted, it will still become a number but with the value NaN. Let's see this behavior in an action.\n\n      ```javascript\n      var x = \"100\";\n      var y = +x;\n      console.log(typeof x, typeof y); // string, number\n\n      var a = \"Hello\";\n      var b = +a;\n      console.log(typeof a, typeof b, b); // string, number, NaN\n      ```\n\n      **[\u2b06 Back to Top](#table-of-contents)**\n\n243.",
+      "options": [
+        {
+          "text": "In ES5, you would have to use newline escape characters('\\\\n') and concatenation symbols(+) in order to get multi-line strings",
+          "is_correct": false
+        },
+        {
+          "text": "An operator is capable of manipulating(mathematical and logical computations) a certain value or operand",
+          "is_correct": false
+        },
+        {
+          "text": "The unary(+) operator is used to convert a variable to a number",
+          "is_correct": true
+        },
+        {
+          "text": "You can use the logical or operator `||` in an assignment expression to provide a default value",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "What is an enum",
+      "explanation": "An enum is a type restricting variables to one value from a predefined set of constants. JavaScript has no enums but typescript provides built-in enum support.\n\n      ```javascript\n      enum Color {\n       RED, GREEN, BLUE\n      }\n      ```\n\n      **[\u2b06 Back to Top](#table-of-contents)**\n\n281.",
+      "options": [
+        {
+          "text": "The nesting template is a feature supported within template literals syntax to allow inner backticks inside a placeholder ${ } within the template",
+          "is_correct": false
+        },
+        {
+          "text": "The undefined property indicates that a variable has not been assigned a value, or declared but not initialized at all",
+          "is_correct": false
+        },
+        {
+          "text": "An enum is a type restricting variables to one value from a predefined set of constants",
+          "is_correct": true
+        },
+        {
+          "text": "The NaN property is a global property that represents \"Not-a-Number\" value",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "How do you write multi-line strings in template literals",
+      "explanation": "In ES5, you would have to use newline escape characters('\\\\n') and concatenation symbols(+) in order to get multi-line strings.\n\n      ```javascript\n      console.log(\"This is string sentence 1\\n\" + \"This is string sentence 2\");\n      ```\n\n      Whereas in ES6, You don't need to mention any newline sequence character,\n\n      ```javascript\n      console.log(`This is string sentence\n      'This is string sentence 2`);\n      ```\n\n      **[\u2b06 Back to Top](#table-of-contents)**\n\n312.",
+      "options": [
+        {
+          "text": "A primitive data type is data that has a primitive value (which has no properties or methods)",
+          "is_correct": false
+        },
+        {
+          "text": "The return value of `typeof myNumber` or `typeof myString` is always a truthy value (either \"number\" or \"string\")",
+          "is_correct": false
+        },
+        {
+          "text": "An operator is capable of manipulating(mathematical and logical computations) a certain value or operand",
+          "is_correct": false
+        },
+        {
+          "text": "In ES5, you would have to use newline escape characters('\\\\n') and concatenation symbols(+) in order to get multi-line strings",
+          "is_correct": true
+        }
+      ]
+    },
+    {
+      "text": "What are nesting templates",
+      "explanation": "The nesting template is a feature supported within template literals syntax to allow inner backticks inside a placeholder ${ } within the template. For example, the below nesting template is used to display the icons based on user permissions whereas outer template checks for platform type,\n\n      ```javascript\n      const iconStyles = `icon ${\n        isMobilePlatform()\n          ? \"\"\n          : `icon-${user.isAuthorized ? \"submit\" : \"disabled\"}`\n      }`;\n      ```\n\n      You can write the above use case without nesting template features as well. However, the nesting template feature is more compact and readable.\n\n      ```javascript\n      //Without nesting templates\n      const iconStyles = `icon ${\n        isMobilePlatform()\n          ? \"\"\n          : user.isAuthorized\n          ? \"icon-submit\"\n          : \"icon-disabled\"\n      }`;\n      ```\n\n      **[\u2b06 Back to Top](#table-of-contents)**\n\n313.",
+      "options": [
+        {
+          "text": "The nesting template is a feature supported within template literals syntax to allow inner backticks inside a placeholder ${ } within the template",
+          "is_correct": true
+        },
+        {
+          "text": "It is recommended to initialize variables because of the below benefits,\n\n      1",
+          "is_correct": false
+        },
+        {
+          "text": "The concatenation operator(+) is applicable for both number and string types",
+          "is_correct": false
+        },
+        {
+          "text": "Progressive web applications (PWAs) are a type of mobile app delivered through the web, built using common web technologies including HTML, CSS and JavaScript",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "What is deno",
+      "explanation": "Deno is a simple, modern and secure runtime for JavaScript and TypeScript that uses V8 JavaScript engine and the Rust programming language. It solves the inherent problems of Node.Js and has been officially released in May 2018. Unlike Node.JS, by default Deno executes the code in a sandbox, which means that runtime has no access to below areas:\n\n     1. The file system\n     2. The network\n     3. Execution of other scripts\n     4. The environment variables\n\n     **[\u2b06 Back to Top](#table-of-contents)**\n\n413.",
+      "options": [
+        {
+          "text": "Deno is a simple, modern and secure runtime for JavaScript and TypeScript that uses V8 JavaScript engine and the Rust programming language",
+          "is_correct": true
+        },
+        {
+          "text": "Emojis are unicodes and the unicode for smile symbol is \"U+1F642\"",
+          "is_correct": false
+        },
+        {
+          "text": "JavaScript follows IEEE 754 spec standards",
+          "is_correct": false
+        },
+        {
+          "text": "A primitive data type is data that has a primitive value (which has no properties or methods)",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "What is nullish coalescing operator (??)?",
+      "explanation": "It is a logical operator that returns its right-hand side operand when its left-hand side operand is null or undefined, and otherwise returns its left-hand side operand. This can be contrasted with the logical OR (||) operator, which returns the right-hand side operand if the left operand is any falsy value, not only null or undefined.\n\n     ```js\n     console.log(null ?? true); // true\n     console.log(false ?? true); // false\n     console.log(undefined ?? true); // true\n     ```\n\n     **[\u2b06 Back to Top](#table-of-contents)**\n\n429.",
+      "options": [
+        {
+          "text": "The unary(+) operator is used to convert a variable to a number",
+          "is_correct": false
+        },
+        {
+          "text": "The return value of `typeof myNumber` or `typeof myString` is always a truthy value (either \"number\" or \"string\")",
+          "is_correct": false
+        },
+        {
+          "text": "JavaScript follows IEEE 754 spec standards",
+          "is_correct": false
+        },
+        {
+          "text": "It is a logical operator that returns its right-hand side operand when its left-hand side operand is null or undefined, and otherwise returns its left-hand side operand",
+          "is_correct": true
+        }
+      ]
+    },
+    {
+      "text": "#Answer: 2",
+      "explanation": "The concatenation operator(+) is applicable for both number and string types. So if any operand is string type then both operands concatenated as strings. Whereas subtract(-) operator tries to convert the operands as number type.\n\n</p>\n</details>\n\n---\n\n**[\u2b06 Back to Top](#table-of-contents)**",
+      "options": [
+        {
+          "text": "An operator is capable of manipulating(mathematical and logical computations) a certain value or operand",
+          "is_correct": false
+        },
+        {
+          "text": "The undefined property indicates that a variable has not been assigned a value, or declared but not initialized at all",
+          "is_correct": false
+        },
+        {
+          "text": "In ES5, you would have to use newline escape characters('\\\\n') and concatenation symbols(+) in order to get multi-line strings",
+          "is_correct": false
+        },
+        {
+          "text": "The concatenation operator(+) is applicable for both number and string types",
+          "is_correct": true
+        }
+      ]
+    },
+    {
+      "text": "#Answer: 2",
+      "explanation": "JavaScript follows IEEE 754 spec standards. As per this spec, NaNs are never equal for floating-point numbers.\n\n</p>\n</details>\n\n---\n\n**[\u2b06 Back to Top](#table-of-contents)**",
+      "options": [
+        {
+          "text": "In ES5, you would have to use newline escape characters('\\\\n') and concatenation symbols(+) in order to get multi-line strings",
+          "is_correct": false
+        },
+        {
+          "text": "The output is going to be `33`",
+          "is_correct": false
+        },
+        {
+          "text": "JavaScript provides two types of equality operators:\n\n    - **Loose equality (`==`, `!=`)**: Performs type conversion if the types differ, comparing values after converting them to a common type",
+          "is_correct": false
+        },
+        {
+          "text": "JavaScript follows IEEE 754 spec standards",
+          "is_correct": true
+        }
+      ]
+    },
+    {
+      "text": "#Answer: 1",
+      "explanation": "Set has few exceptions from equality check,\n\n1. All NaN values are equal\n2. Both +0 and -0 considered as different values\n\n</p>\n</details>\n\n---\n\n**[\u2b06 Back to Top](#table-of-contents)**",
+      "options": [
+        {
+          "text": "Converts operands to the same type before making the comparison",
+          "is_correct": false
+        },
+        {
+          "text": "The NaN property is a global property that represents \"Not-a-Number\" value",
+          "is_correct": false
+        },
+        {
+          "text": "Set has few exceptions from equality check,\n\n1",
+          "is_correct": true
+        },
+        {
+          "text": "An enum is a type restricting variables to one value from a predefined set of constants",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "#Answer: 4",
+      "explanation": "The return value of `typeof myNumber` or `typeof myString` is always a truthy value (either \"number\" or \"string\"). The ! operator operates on either `typeof myNumber` or `typeof myString`, converting them to boolean values. Since the value of both `!typeof myNumber` and `!typeof myString` is false, the if condition fails, and control goes to else block.\n\nTo make the ! operator operate on the equality expression, one needs to add parentheses:\n\n```\nif (!(typeof myNumber === \"string\"))\n```\n\nOr simply use the inequality operator:\n\n```\nif (typeof myNumber !== \"string\")\n```\n\n</p>\n\n</details>\n\n---\n\n**[\u2b06 Back to Top](#table-of-contents)**",
+      "options": [
+        {
+          "text": "JavaScript provides two types of equality operators:\n\n    - **Loose equality (`==`, `!=`)**: Performs type conversion if the types differ, comparing values after converting them to a common type",
+          "is_correct": false
+        },
+        {
+          "text": "In ES5, you would have to use newline escape characters('\\\\n') and concatenation symbols(+) in order to get multi-line strings",
+          "is_correct": false
+        },
+        {
+          "text": "The return value of `typeof myNumber` or `typeof myString` is always a truthy value (either \"number\" or \"string\")",
+          "is_correct": true
+        },
+        {
+          "text": "It is a logical operator that returns its right-hand side operand when its left-hand side operand is null or undefined, and otherwise returns its left-hand side operand",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "#Answer: 2",
+      "explanation": "Emojis are unicodes and the unicode for smile symbol is \"U+1F642\". The unicode comparison of same emojies is equivalent to string comparison. Hence, the output is always true.\n\n</p>\n\n</details>\n\n---\n\n**[\u2b06 Back to Top](#table-of-contents)**",
+      "options": [
+        {
+          "text": "Progressive web applications (PWAs) are a type of mobile app delivered through the web, built using common web technologies including HTML, CSS and JavaScript",
+          "is_correct": false
+        },
+        {
+          "text": "You can use the logical or operator `||` in an assignment expression to provide a default value",
+          "is_correct": false
+        },
+        {
+          "text": "The output is going to be `33`",
+          "is_correct": false
+        },
+        {
+          "text": "Emojis are unicodes and the unicode for smile symbol is \"U+1F642\"",
+          "is_correct": true
+        }
+      ]
+    }
+  ]
+}

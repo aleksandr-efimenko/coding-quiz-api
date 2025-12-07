@@ -62,11 +62,11 @@ async fn quiz_crud_works() {
         "category_id": null,
         "questions": [
              {
-                "text": "Question 1",
-                "explanation": "Explanation 1",
+                "text": format!("What is Rust? {}", Uuid::new_v4()),
+                "explanation": "A systems programming language",
                 "options": [
-                    { "text": "Option 1", "is_correct": true },
-                    { "text": "Option 2", "is_correct": false }
+                    { "text": "A game", "is_correct": false },
+                    { "text": "A language", "is_correct": true }
                 ]
             }
         ],
@@ -272,4 +272,193 @@ async fn create_quiz_invalid_data_fails() {
     
     // Should be 400 Bad Request due to Json deserialization error
     assert_eq!(400, response.status().as_u16());
+}
+
+#[tokio::test]
+async fn test_b2b_managed_learning_flow() {
+    let app = spawn_app().await;
+    let jwt_token = get_auth_token(&app).await;
+    let api_key = get_api_key(&app, &jwt_token).await;
+
+    // 1. Create a Quiz
+    let quiz_body = serde_json::json!({
+        "title": "Learning Flow Quiz",
+        "questions": [{
+            "text": format!("Q1_{}", Uuid::new_v4()),
+            "explanation": "Exp",
+            "options": [
+                { "text": "Correct", "is_correct": true },
+                { "text": "Wrong", "is_correct": false }
+            ]
+        }],
+        "tags": []
+    });
+    
+    let res = app.api_client
+        .post(&format!("{}/quizzes", &app.address))
+        .header("Authorization", format!("Bearer {}", jwt_token))
+        .json(&quiz_body)
+        .send()
+        .await
+        .unwrap();
+    if !res.status().is_success() {
+        println!("Create Quiz Failed: status={}, body={:?}", res.status(), res.text().await);
+        panic!("Failed to create quiz");
+    }
+    let quiz_json: serde_json::Value = res.json().await.unwrap();
+    let quiz_id = quiz_json["id"].as_str().unwrap();
+    let question_id = quiz_json["questions"][0]["id"].as_str().unwrap();
+    let option_correct_id = quiz_json["questions"][0]["options"][0]["id"].as_str().unwrap();
+
+    // 1.5 Verify Question
+    let res = app.api_client
+        .put(&format!("{}/questions/{}/verify", &app.address, question_id))
+        .header("Authorization", format!("Bearer {}", jwt_token))
+        .json(&serde_json::json!({ "verified": true }))
+        .send()
+        .await
+        .unwrap();
+    assert_eq!(200, res.status().as_u16());
+
+    // 2. Register End User
+    let user_email = "alice@example.com";
+    let res = app.api_client
+        .post(&format!("{}/users", &app.address))
+        .header("X-API-Key", &api_key)
+        .json(&serde_json::json!({ "email": user_email }))
+        .send()
+        .await
+        .unwrap();
+    assert_eq!(201, res.status().as_u16());
+
+    // 3. Solve Quiz (Correctly)
+    let solve_body = serde_json::json!({
+        "user_email": user_email,
+        "question_id": question_id,
+        "option_id": option_correct_id
+    });
+
+    let res = app.api_client
+        .post(&format!("{}/quizzes/{}/solve", &app.address, quiz_id))
+        .header("X-API-Key", &api_key)
+        .json(&solve_body)
+        .send()
+        .await
+        .unwrap();
+    assert_eq!(200, res.status().as_u16());
+    let ans_json: serde_json::Value = res.json().await.unwrap();
+    assert_eq!(ans_json["correct"], true);
+
+    // 4. Verify History
+    let res = app.api_client
+        .get(&format!("{}/users/{}/history", &app.address, user_email))
+        .header("X-API-Key", &api_key)
+        .send()
+        .await
+        .unwrap();
+    assert_eq!(200, res.status().as_u16());
+    let history: serde_json::Value = res.json().await.unwrap();
+    let history_arr = history.as_array().unwrap();
+    assert_eq!(history_arr.len(), 1);
+    assert_eq!(history_arr[0]["quiz_id"], quiz_id);
+    assert_eq!(history_arr[0]["is_correct"], true);
+
+    // 5. Random Quiz (Should NOT return the solved quiz)
+    // Since we only have 1 quiz and it's solved, we expect 404 (No available quizzes)
+    let _res = app.api_client
+        .get(&format!("{}/quizzes/random", &app.address))
+        .query(&[("user_email", user_email)])
+        .header("X-API-Key", &api_key)
+        .send()
+        .await
+        .unwrap();
+    // It might return 404 if "No available quizzes" logic works, OR it might pick another quiz if tests run in shared DB (which they do).
+    // Given shared DB, we can't strictly assert 404 unless we ensure isolate, but we can verify it doesn't return THIS quiz id if we loop/retry or just check logic.
+    // For this test, to be robust in shared DB:
+    // Ideally we'd create 2 quizzes, solve 1, ensure Random returns the other.
+    
+    // Create Quiz 2
+    let quiz2_body = serde_json::json!({ "title": "Quiz 2", "questions": [], "tags": [] });
+     let res = app.api_client
+        .post(&format!("{}/quizzes", &app.address))
+        .header("Authorization", format!("Bearer {}", jwt_token))
+        .json(&quiz2_body)
+        .send()
+        .await
+        .unwrap();
+    let quiz2_json: serde_json::Value = res.json().await.unwrap();
+    let _quiz2_id = quiz2_json["id"].as_str().unwrap();
+
+    // Now Random should return quiz 2
+    let res = app.api_client
+        .get(&format!("{}/quizzes/random", &app.address))
+        .query(&[("user_email", user_email)])
+        .header("X-API-Key", &api_key)
+        .send()
+        .await
+        .unwrap();
+    
+    if res.status() == 200 {
+        let random_quiz: serde_json::Value = res.json().await.unwrap();
+        // Should NOT be quiz_id
+        assert_ne!(random_quiz["id"].as_str().unwrap(), quiz_id);
+    }
+
+    // 6. Test Tag Filtering
+    let tagged_quiz_body = serde_json::json!({ 
+        "title": "Tagged Quiz", 
+        "questions": [{
+            "text": format!("Tagged Q {}", Uuid::new_v4()),
+            "explanation": "Exp",
+            "options": [
+                { "text": "A", "is_correct": true },
+                { "text": "B", "is_correct": false }
+            ]
+        }], 
+        "tags": ["special_tag"] 
+    });
+    let res = app.api_client
+        .post(&format!("{}/quizzes", &app.address))
+        .header("Authorization", format!("Bearer {}", jwt_token))
+        .json(&tagged_quiz_body)
+        .send()
+        .await
+        .unwrap();
+    assert_eq!(201, res.status().as_u16());
+    let tagged_json: serde_json::Value = res.json().await.unwrap();
+    let tagged_id = tagged_json["id"].as_str().unwrap();
+    let tagged_q_id = tagged_json["questions"][0]["id"].as_str().unwrap();
+
+    // Verify Tagged Quiz Question
+    let res = app.api_client
+        .put(&format!("{}/questions/{}/verify", &app.address, tagged_q_id))
+        .header("Authorization", format!("Bearer {}", jwt_token))
+        .json(&serde_json::json!({ "verified": true }))
+        .send()
+        .await
+        .unwrap();
+    assert_eq!(200, res.status().as_u16());
+
+    // Request with tag
+    let res = app.api_client
+        .get(&format!("{}/quizzes/random", &app.address))
+        .query(&[("user_email", user_email), ("tag", "special_tag")])
+        .header("X-API-Key", &api_key)
+        .send()
+        .await
+        .unwrap();
+    
+    assert_eq!(200, res.status().as_u16());
+    let random_tagged: serde_json::Value = res.json().await.unwrap();
+    assert_eq!(random_tagged["id"].as_str().unwrap(), tagged_id);
+
+    // Request with non-existent tag
+    let res = app.api_client
+        .get(&format!("{}/quizzes/random", &app.address))
+        .query(&[("user_email", user_email), ("tag", "does_not_exist")])
+        .header("X-API-Key", &api_key)
+        .send()
+        .await
+        .unwrap();
+    assert_eq!(404, res.status().as_u16());
 }

@@ -1,6 +1,6 @@
 {
   "db_name": "PostgreSQL",
-  "query": "UPDATE quizzes SET title = $1 WHERE id = $2",
+  "query": "UPDATE quizzes SET difficulty = $1 WHERE id = $2",
   "describe": {
     "columns": [],
     "parameters": {
@@ -11,5 +11,5 @@
     },
     "nullable": []
   },
-  "hash": "0662133da6829bbe518977a49d3230e317d9aef4be8ed276f8f68c9583169853"
+  "hash": "fe518cff05b39f84d00e63bd7ef923cd281874c3f64d770227e6500e6bf7da52"
 }

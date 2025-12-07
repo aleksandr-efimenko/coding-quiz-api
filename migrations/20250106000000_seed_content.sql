@@ -1,2 +1,0 @@
--- Legacy content moved to seed/runner.rs
--- This file is now empty to prevent duplicate insertion during migration.

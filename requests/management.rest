@@ -9,7 +9,7 @@
 GET {{baseUrl}}/health
 
 ### 1. Register Developer
-POST {{baseUrl}}/auth/register
+POST {{baseUrl}}/developer/register
 Content-Type: application/json
 
 {
@@ -19,7 +19,7 @@ Content-Type: application/json
 
 ### 2. Login Developer (Get JWT)
 # @name login
-POST {{baseUrl}}/auth/login
+POST {{baseUrl}}/developer/login
 Content-Type: application/json
 
 {
@@ -29,11 +29,11 @@ Content-Type: application/json
 
 ### 3. Generate API Key
 # @name generate_key
-POST {{baseUrl}}/auth/api-keys
+POST {{baseUrl}}/developer/api-keys
 Authorization: Bearer {{developerToken}}
 
 ### 4. Get Developer Profile
-GET {{baseUrl}}/auth/me
+GET {{baseUrl}}/developer/me
 Authorization: Bearer {{developerToken}}
 
 ### 5. Create Category

@@ -1,0 +1,40 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "SELECT id, quiz_id, is_correct, created_at as \"answered_at!\" FROM quiz_history WHERE quiz_user_id = $1 ORDER BY created_at DESC",
+  "describe": {
+    "columns": [
+      {
+        "ordinal": 0,
+        "name": "id",
+        "type_info": "Int8"
+      },
+      {
+        "ordinal": 1,
+        "name": "quiz_id",
+        "type_info": "Int8"
+      },
+      {
+        "ordinal": 2,
+        "name": "is_correct",
+        "type_info": "Bool"
+      },
+      {
+        "ordinal": 3,
+        "name": "answered_at!",
+        "type_info": "Timestamptz"
+      }
+    ],
+    "parameters": {
+      "Left": [
+        "Int8"
+      ]
+    },
+    "nullable": [
+      false,
+      false,
+      false,
+      false
+    ]
+  },
+  "hash": "1e56d19586872b52c255b1d05f4b829c86f09c441d94d9fc2b226ca5fd8f74a0"
+}

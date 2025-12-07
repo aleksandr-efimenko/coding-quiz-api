@@ -3,16 +3,13 @@ use dotenv::dotenv;
 use std::env;
 
 #[derive(sqlx::FromRow, Debug)]
+#[allow(dead_code)]
 struct Tag {
     id: uuid::Uuid, 
     name: String,
 }
 
-#[derive(sqlx::FromRow, Debug)]
-struct QuizTag {
-    quiz_id: uuid::Uuid,
-    tag_id: uuid::Uuid,
-}
+
 
 #[actix_web::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {

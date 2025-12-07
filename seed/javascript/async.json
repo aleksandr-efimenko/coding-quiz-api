@@ -1,0 +1,1747 @@
+{
+  "title": "JavaScript Async Quiz",
+  "tags": [
+    "async",
+    "javascript"
+  ],
+  "questions": [
+    {
+      "text": "What are lambda expressions or arrow functions",
+      "explanation": "**Arrow functions** (also known as \"lambda expressions\") provide a concise syntax for writing function expressions in JavaScript. Introduced in ES6, arrow functions are often shorter and more readable, especially for simple operations or callbacks.",
+      "options": [
+        {
+          "text": "Arrow functions** (also known as \"lambda expressions\") provide a concise syntax for writing function expressions in JavaScript",
+          "is_correct": true
+        },
+        {
+          "text": "Even though a promise is resolved immediately, it won't be executed immediately because its **",
+          "is_correct": false
+        },
+        {
+          "text": "A higher-order function is a function that either accepts another function as an argument, returns a function as its result, or both",
+          "is_correct": false
+        },
+        {
+          "text": "The asynchronous thunks are useful to make network requests",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Key Features:",
+      "explanation": "- Arrow functions do **not** have their own `this`, `arguments`, `super`, or `new.target` bindings. They inherit these from their surrounding (lexical) context.\n    - They are best suited for non-method functions, such as callbacks or simple computations.\n    - Arrow functions **cannot** be used as constructors and do not have a `prototype` property.\n    - They also cannot be used with `new`, `yield`, or as generator functions.",
+      "options": [
+        {
+          "text": "Below are the list of some new features of ES6,\n\n      1",
+          "is_correct": false
+        },
+        {
+          "text": "RxJS (Reactive Extensions for JavaScript) is a library for implementing reactive programming using observables that makes it easier to compose asynchronous or callback-based code",
+          "is_correct": false
+        },
+        {
+          "text": "Arrow functions do **not** have their own `this`, `arguments`, `super`, or `new",
+          "is_correct": true
+        },
+        {
+          "text": "The forEach method will not wait until all items are finished but it just runs the tasks and goes next",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "What is a first class function",
+      "explanation": "In JavaScript, **first-class functions(first-class citizens)** mean that functions are treated like any other variable. That means:\n\n    1. You can assign a function to a variable.\n    2. You can pass a function as an argument to another function.\n    3. You can return a function from another function.\n\n    This capability enables powerful patterns like callbacks, higher-order functions, event handling, and functional programming in JavaScript.\n    \n    For example, the handler function below is assigned to a variable and then passed as an argument to the `addEventListener` method.\n\n    ```javascript\n    const handler = () => console.log(\"This is a click handler function\");\n    document.addEventListener(\"click\", handler);\n    ```\n\n    **[\u2b06 Back to Top](#table-of-contents)**\n\n12.",
+      "options": [
+        {
+          "text": "AJAX stands for Asynchronous JavaScript and XML and it is a group of related technologies(HTML, CSS, JavaScript, XMLHttpRequest API etc) used to display data asynchronously",
+          "is_correct": false
+        },
+        {
+          "text": "In JavaScript, **first-class functions(first-class citizens)** mean that functions are treated like any other variable",
+          "is_correct": true
+        },
+        {
+          "text": "Microtask Queue is the new queue where all the tasks initiated by promise objects get processed before the callback queue",
+          "is_correct": false
+        },
+        {
+          "text": "An async function is a function declared with the `async` keyword which enables asynchronous, promise-based behavior to be written in a cleaner style by avoiding promise chains",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "What is a higher order function",
+      "explanation": "A higher-order function is a function that either accepts another function as an argument, returns a function as its result, or both. This concept is a core part of JavaScript's functional programming capabilities and is widely used for creating modular, reusable, and expressive code.\n\n    The syntactic structure of higher order function will be explained with an example as follows,\n\n      ```javascript\n      // First-order function (does not accept or return another function)\n      const firstOrderFunc = () => \n        console.log(\"Hello, I am a first-order function\");\n\n      // Higher-order function (accepts a function as an argument)\n      const higherOrder = (callback) => callback();\n\n      // Passing the first-order function to the higher-order function\n      higherOrder(firstOrderFunc);\n      ```\n\n    In this example:\n\n    1. `firstOrderFunc` is a regular (first-order) function.\n\n    2. `higherOrder` is a higher-order function because it takes another function as an argument.\n\n    3. `firstOrderFunc` is also called a **callback function** because it is passed to and executed by another function.\n\n    **[\u2b06 Back to Top](#table-of-contents)**\n\n14.",
+      "options": [
+        {
+          "text": "While using asynchronous code, JavaScript\u2019s ES6 promises can make your life a lot easier without having callback pyramids and error handling on every second line",
+          "is_correct": false
+        },
+        {
+          "text": "A higher-order function is a function that either accepts another function as an argument, returns a function as its result, or both",
+          "is_correct": true
+        },
+        {
+          "text": "The await expression returns value 10 with promise resolution and the code after each await expression can be treated as existing in a `",
+          "is_correct": false
+        },
+        {
+          "text": "Throttling is a programming technique used to control the rate at which a function is executed",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "What is memoization",
+      "explanation": "Memoization is a functional programming technique which attempts to increase a function\u2019s performance by caching its previously computed results. Each time a memoized function is called, its parameters are used to index the cache. If the data is present, then it can be returned, without executing the entire function. Otherwise the function is executed and then the result is added to the cache.\n    Let's take an example of adding function with memoization,\n\n    ```javascript\n    const memoizeAddition = () => {\n      let cache = {};\n      return (value) => {\n        if (value in cache) {\n          console.log(\"Fetching from cache\");\n          return cache[value]; // Here, cache.value cannot be used as property name starts with the number which is not a valid JavaScript  identifier. Hence, can only be accessed using the square bracket notation.\n        } else {\n          console.log(\"Calculating result\");\n          let result = value + 20;\n          cache[value] = result;\n          return result;\n        }\n      };\n    };\n    // returned function from memoizeAddition\n    const addition = memoizeAddition();\n    console.log(addition(20)); //output: 40 calculated\n    console.log(addition(20)); //output: 40 cached\n    ```\n\n    **[\u2b06 Back to Top](#table-of-contents)**\n\n26.",
+      "options": [
+        {
+          "text": "Arrow functions** (also known as \"lambda expressions\") provide a concise syntax for writing function expressions in JavaScript",
+          "is_correct": false
+        },
+        {
+          "text": "Below are the list of pros and cons of promises over callbacks,\n\n    **Pros:**\n\n    1",
+          "is_correct": false
+        },
+        {
+          "text": "The event queue follows the queue data structure",
+          "is_correct": false
+        },
+        {
+          "text": "Memoization is a functional programming technique which attempts to increase a function\u2019s performance by caching its previously computed results",
+          "is_correct": true
+        }
+      ]
+    },
+    {
+      "text": "How do you reuse information across service worker restarts",
+      "explanation": "The problem with service worker is that it gets terminated when not in use, and restarted when it's next needed, so you cannot rely on global state within a service worker's `onfetch` and `onmessage` handlers. In this case, service workers will have access to IndexedDB API in order to persist and reuse across restarts.\n\n    **[\u2b06 Back to Top](#table-of-contents)**\n\n35.",
+      "options": [
+        {
+          "text": "The problem with service worker is that it gets terminated when not in use, and restarted when it's next needed, so you cannot rely on global state within a service worker's `onfetch` and `onmessage` handlers",
+          "is_correct": true
+        },
+        {
+          "text": "Web speech API is used to enable modern browsers recognize and synthesize speech(i",
+          "is_correct": false
+        },
+        {
+          "text": "You can't use setTimeout(fn, 0) to execute the code immediately due to minimum delay of greater than 0ms",
+          "is_correct": false
+        },
+        {
+          "text": "Async functions always return a promise",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Give an example of a web worker",
+      "explanation": "You need to follow below steps to start using web workers for counting example\n\n    1. Create a Web Worker File: You need to write a script to increment the count value. Let's name it as counter.js\n\n    ```javascript\n    let i = 0;\n\n    function timedCount() {\n      i = i + 1;\n      postMessage(i);\n      setTimeout(\"timedCount()\", 500);\n    }\n\n    timedCount();\n    ```\n\n    Here postMessage() method is used to post a message back to the HTML page\n\n    2. Create a Web Worker Object: You can create a web worker object by checking for browser support. Let's name this file as web_worker_example.js\n\n    ```javascript\n    if (typeof w == \"undefined\") {\n      w = new Worker(\"counter.js\");\n    }\n    ```\n\n    and we can receive messages from web worker\n\n    ```javascript\n    w.onmessage = function (event) {\n      document.getElementById(\"message\").innerHTML = event.data;\n    };\n    ```\n\n    3. Terminate a Web Worker:\n       Web workers will continue to listen for messages (even after the external script is finished) until it is terminated. You can use the terminate() method to terminate listening to the messages.\n\n    ```javascript\n    w.terminate();\n    ```\n\n    4. Reuse the Web Worker: If you set the worker variable to undefined you can reuse the code\n\n    ```javascript\n    w = undefined;\n    ```\n\n    **[\u2b06 Back to Top](#table-of-contents)**\n\n51.",
+      "options": [
+        {
+          "text": "You need to follow below steps to start using web workers for counting example\n\n    1",
+          "is_correct": true
+        },
+        {
+          "text": "The easiest and safest way to ignore promise errors is void that error",
+          "is_correct": false
+        },
+        {
+          "text": "The await expression returns value 10 with promise resolution and the code after each await expression can be treated as existing in a `",
+          "is_correct": false
+        },
+        {
+          "text": "A callback function is a function passed into another function as an argument",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "What is a promise",
+      "explanation": "A **Promise** is a JavaScript object that represents the eventual completion (or failure) of an asynchronous operation and its resulting value. It acts as a placeholder for a value that may not be available yet but will be resolved in the future.\n\n    A Promise can be in one of **three states**:\n    - `pending`: Initial state, neither fulfilled nor rejected.\n    - `fulfilled`: The operation completed successfully.\n    - `rejected`: The operation failed (e.g., due to a network error).",
+      "options": [
+        {
+          "text": "The asynchronous thunks are useful to make network requests",
+          "is_correct": false
+        },
+        {
+          "text": "Closures are a powerful feature in programming languages like JavaScript",
+          "is_correct": false
+        },
+        {
+          "text": "The postMessages are synchronous in IE8 browser but they are asynchronous in IE9 and all other modern browsers (i",
+          "is_correct": false
+        },
+        {
+          "text": "A **Promise** is a JavaScript object that represents the eventual completion (or failure) of an asynchronous operation and its resulting value",
+          "is_correct": true
+        }
+      ]
+    },
+    {
+      "text": "Example: Creating and Using a Promise",
+      "explanation": "```javascript\n    const promise = new Promise((resolve, reject) => {\n      setTimeout(() => {\n        resolve(\"I'm a Promise!\");\n      }, 5000);\n    });\n\n    promise\n      .then((value) => console.log(value)) // Logs after 5 seconds: \"I'm a Promise!\"\n      .catch((error) => console.error(error))  // Handles any rejection\n      .finally(() => console.log(\"Done\"));     // Runs regardless of success or failure\n    ```\n    In the above example:\n\n    *   A `Promise` is created to handle an asynchronous operation with `resolve` and `reject` callbacks.\n    *   The `setTimeout` resolves the promise with a value after 5 seconds.\n    *   `.then()`, `.catch()`, and `.finally()` are used to handle success, errors, and cleanup respectively.\n\n    The action flow of a promise will be as below,\n\n    ![Screenshot](images/promises.png)\n\n    **[\u2b06 Back to Top](#table-of-contents)**\n\n53.",
+      "options": [
+        {
+          "text": "Web speech API is used to enable modern browsers recognize and synthesize speech(i",
+          "is_correct": false
+        },
+        {
+          "text": "In the above example:\n\n    *   A `Promise` is created to handle an asynchronous operation with `resolve` and `reject` callbacks",
+          "is_correct": true
+        },
+        {
+          "text": "You need to follow below steps to start using web workers for counting example\n\n    1",
+          "is_correct": false
+        },
+        {
+          "text": "The clearTimeout() function is used in javascript to clear the timeout which has been set by setTimeout()function before that",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Why do you need a promise",
+      "explanation": "Promises are **used to handle asynchronous operations**, especially in languages like JavaScript, which often work with non-blocking operations such as network requests, file I/O, and timers. When an operation is asynchronous, it doesn't immediately return a result; instead, it works in the background and provides the result later. Handling this in a clean, organized way can be difficult without a structured approach.\n\n    Promises are used to:\n\n    1.  **Handle asynchronous operations**.\n    2.  **Provide a cleaner alternative to callbacks**.\n    3.  **Avoid callback hell**.\n    4.  **Make code more readable and maintainable**.\n\n    **[\u2b06 Back to Top](#table-of-contents)**\n\n54.",
+      "options": [
+        {
+          "text": "The await expression returns value 10 with promise resolution and the code after each await expression can be treated as existing in a `",
+          "is_correct": false
+        },
+        {
+          "text": "Memoization is a functional programming technique which attempts to increase a function\u2019s performance by caching its previously computed results",
+          "is_correct": false
+        },
+        {
+          "text": "A task is any javascript code/program which is scheduled to be run by the standard mechanisms such as initially starting to run a program, run an event callback, or an interval or timeout being fired",
+          "is_correct": false
+        },
+        {
+          "text": "Promises are **used to handle asynchronous operations**, especially in languages like JavaScript, which often work with non-blocking operations such as network requests, file I/O, and timers",
+          "is_correct": true
+        }
+      ]
+    },
+    {
+      "text": "Explain the three states of promise",
+      "explanation": "Promises have three states:\n\n    1. **Pending:** This is an initial state of the Promise before an operation begins\n    2. **Fulfilled:** This state indicates that the specified operation was completed.\n    3. **Rejected:** This state indicates that the operation did not complete. In this case an error value will be thrown.\n\n    **[\u2b06 Back to Top](#table-of-contents)**\n\n55.",
+      "options": [
+        {
+          "text": "Memory leaks can lead to poor performance, slow loading times and even crashes in web applications",
+          "is_correct": false
+        },
+        {
+          "text": "Closures are a powerful feature in programming languages like JavaScript",
+          "is_correct": false
+        },
+        {
+          "text": "The forEach method will not wait until all items are finished but it just runs the tasks and goes next",
+          "is_correct": false
+        },
+        {
+          "text": "Promises have three states:\n\n    1",
+          "is_correct": true
+        }
+      ]
+    },
+    {
+      "text": "What is a callback function",
+      "explanation": "A callback function is a function passed into another function as an argument. This function is invoked inside the outer function to complete an action.\n    Let's take a simple example of how to use callback function\n\n    ```javascript\n    function callbackFunction(name) {\n      console.log(\"Hello \" + name);\n    }\n\n    function outerFunction(callback) {\n      let name = prompt(\"Please enter your name.\");\n      callback(name);\n    }\n\n    outerFunction(callbackFunction);\n    ```\n\n    **[\u2b06 Back to Top](#table-of-contents)**\n\n56.",
+      "options": [
+        {
+          "text": "A callback function is a function passed into another function as an argument",
+          "is_correct": true
+        },
+        {
+          "text": "js is a server-side platform built on Chrome's JavaScript runtime for easily building fast and scalable network applications",
+          "is_correct": false
+        },
+        {
+          "text": "In JavaScript, **first-class functions(first-class citizens)** mean that functions are treated like any other variable",
+          "is_correct": false
+        },
+        {
+          "text": "The event queue follows the queue data structure",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Why do we need callbacks",
+      "explanation": "The callbacks are needed because javascript is an event driven language. That means instead of waiting for a response, javascript will keep executing while listening for other events.\n    Let's take an example with the first function invoking an API call(simulated by setTimeout) and the next function which logs the message.\n\n    ```javascript\n    function firstFunction() {\n      // Simulate a code delay\n      setTimeout(function () {\n        console.log(\"First function called\");\n      }, 1000);\n    }\n    function secondFunction() {\n      console.log(\"Second function called\");\n    }\n    firstFunction();\n    secondFunction();\n\n    // Output:\n    // Second function called\n    // First function called\n    ```\n\n    As observed from the output, javascript didn't wait for the response of the first function and the remaining code block got executed. So callbacks are used in a way to make sure that certain code doesn\u2019t execute until the other code finishes execution.\n\n    **[\u2b06 Back to Top](#table-of-contents)**\n\n57.",
+      "options": [
+        {
+          "text": "The Proxy object is used to define custom behavior for fundamental operations such as property lookup, assignment, enumeration, function invocation, etc",
+          "is_correct": false
+        },
+        {
+          "text": "The callbacks are needed because javascript is an event driven language",
+          "is_correct": true
+        },
+        {
+          "text": "Debouncing is a programming technique used to limit how often a function is executed",
+          "is_correct": false
+        },
+        {
+          "text": "Throttling is a programming technique used to control the rate at which a function is executed",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "What is a callback hell",
+      "explanation": "Callback Hell is an anti-pattern with multiple nested callbacks which makes code hard to read and debug when dealing with asynchronous logic. The callback hell looks like below,\n\n    ```javascript\n    async1(function(){\n        async2(function(){\n            async3(function(){\n                async4(function(){\n                    ....\n                });\n            });\n        });\n    });\n    ```\n\n    **[\u2b06 Back to Top](#table-of-contents)**\n\n58.",
+      "options": [
+        {
+          "text": "Callback Hell is an anti-pattern with multiple nested callbacks which makes code hard to read and debug when dealing with asynchronous logic",
+          "is_correct": true
+        },
+        {
+          "text": "A higher-order function is a function that either accepts another function as an argument, returns a function as its result, or both",
+          "is_correct": false
+        },
+        {
+          "text": "Both map and forEach functions are used to iterate over an arrays but there are some differences in their functionality",
+          "is_correct": false
+        },
+        {
+          "text": "Async functions always return a promise",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "What are the main rules of promise",
+      "explanation": "A promise must follow a specific set of rules:\n\n    1. A promise is an object that supplies a standard-compliant `.then()` method\n    2. A pending promise may transition into either fulfilled or rejected state\n    3. A fulfilled or rejected promise is settled and it must not transition into any other state.\n    4. Once a promise is settled, the value must not change.\n\n    **[\u2b06 Back to Top](#table-of-contents)**\n\n63.",
+      "options": [
+        {
+          "text": "The dynamic imports using `import()` function syntax allows us to load modules on demand by using promises or the async/await syntax",
+          "is_correct": false
+        },
+        {
+          "text": "Both map and forEach functions are used to iterate over an arrays but there are some differences in their functionality",
+          "is_correct": false
+        },
+        {
+          "text": "A promise must follow a specific set of rules:\n\n    1",
+          "is_correct": true
+        },
+        {
+          "text": "**Set Timeout:** setTimeout() is to schedule execution of a one-time callback after delay milliseconds",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "What is callback in callback",
+      "explanation": "You can nest one callback inside in another callback to execute the actions sequentially one by one. This is known as callbacks in callbacks. Beware, too many levels of nesting lead to [Callback hell](https://github.com/sudheerj/javascript-interview-questions?tab=readme-ov-file#what-is-a-callback-hell)\n\n    ```javascript\n    loadScript(\"/script1.js\", function (script) {\n      console.log(\"first script is loaded\");\n\n      loadScript(\"/script2.js\", function (script) {\n        console.log(\"second script is loaded\");\n\n        loadScript(\"/script3.js\", function (script) {\n          console.log(\"third script is loaded\");\n          // after all scripts are loaded\n        });\n      });\n    });\n    ```\n\n    **[\u2b06 Back to Top](#table-of-contents)**\n\n64.",
+      "options": [
+        {
+          "text": "The statements order is based on the event loop mechanism",
+          "is_correct": false
+        },
+        {
+          "text": "The asynchronous thunks are useful to make network requests",
+          "is_correct": false
+        },
+        {
+          "text": "In the above example:\n\n    *   A `Promise` is created to handle an asynchronous operation with `resolve` and `reject` callbacks",
+          "is_correct": false
+        },
+        {
+          "text": "You can nest one callback inside in another callback to execute the actions sequentially one by one",
+          "is_correct": true
+        }
+      ]
+    },
+    {
+      "text": "What is promise chaining",
+      "explanation": "The process of executing a sequence of asynchronous tasks one after another using promises is known as Promise chaining. Let's take an example of promise chaining for calculating the final result,\n\n    ```javascript\n    new Promise(function (resolve, reject) {\n      setTimeout(() => resolve(1), 1000);\n    })\n      .then(function (result) {\n        console.log(result); // 1\n        return result * 2;\n      })\n      .then(function (result) {\n        console.log(result); // 2\n        return result * 3;\n      })\n      .then(function (result) {\n        console.log(result); // 6\n        return result * 4;\n      });\n    ```\n\n    In the above handlers, the result is passed to the chain of .then() handlers with the below work flow,\n\n    1. The initial promise resolves in 1 second,\n    2. After that `.then` handler is called by logging the result(1) and then return a promise with the value of result \\* 2.\n    3. After that the value passed to the next `.then` handler by logging the result(2) and return a promise with result \\* 3.\n    4. Finally the value passed to the last `.then` handler by logging the result(6) and return a promise with result \\* 4.\n\n    **[\u2b06 Back to Top](#table-of-contents)**\n\n65.",
+      "options": [
+        {
+          "text": "Arrow functions do **not** have their own `this`, `arguments`, `super`, or `new",
+          "is_correct": false
+        },
+        {
+          "text": "The process of executing a sequence of asynchronous tasks one after another using promises is known as Promise chaining",
+          "is_correct": true
+        },
+        {
+          "text": "The `void` operator evaluates the given expression and then returns `undefined` (i",
+          "is_correct": false
+        },
+        {
+          "text": "The callbacks are needed because javascript is an event driven language",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "What is promise.all",
+      "explanation": "Promise.all is a promise that takes an array of promises as an input (an iterable), and it gets resolved when all the promises get resolved or any one of them gets rejected. For example, the syntax of promise.all method is below,\n\n    ```javascript\n    Promise.all([Promise1, Promise2, Promise3]) .then(result) => {   console.log(result) }) .catch(error => console.log(`Error in promises ${error}`))\n    ```\n\n    **Note:** Remember that the order of the promises(output the result) is maintained as per input order.\n\n    **[\u2b06 Back to Top](#table-of-contents)**\n\n66.",
+      "options": [
+        {
+          "text": "A promise must follow a specific set of rules:\n\n    1",
+          "is_correct": false
+        },
+        {
+          "text": "all is a promise that takes an array of promises as an input (an iterable), and it gets resolved when all the promises get resolved or any one of them gets rejected",
+          "is_correct": true
+        },
+        {
+          "text": "Even though there is a timer of 5 seconds supplied to `setTimeout` callback, it won't get executed until the main thread is free and finished executing the remaining part of the code",
+          "is_correct": false
+        },
+        {
+          "text": "Web speech API is used to enable modern browsers recognize and synthesize speech(i",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "What is the purpose of the race method in promise",
+      "explanation": "Promise.race() method will return the promise instance which is firstly resolved or rejected. Let's take an example of race() method where promise2 is resolved first\n\n    ```javascript\n    var promise1 = new Promise(function (resolve, reject) {\n      setTimeout(resolve, 500, \"one\");\n    });\n    var promise2 = new Promise(function (resolve, reject) {\n      setTimeout(resolve, 100, \"two\");\n    });\n\n    Promise.race([promise1, promise2]).then(function (value) {\n      console.log(value); // \"two\" // Both promises will resolve, but promise2 is faster\n    });\n    ```\n\n    **[\u2b06 Back to Top](#table-of-contents)**\n\n67.",
+      "options": [
+        {
+          "text": "race() method will return the promise instance which is firstly resolved or rejected",
+          "is_correct": true
+        },
+        {
+          "text": "The variable `message` is still treated as closure(since it has been used in inner function) eventhough it has been declared after setTimeout function",
+          "is_correct": false
+        },
+        {
+          "text": "Below are the list of pros and cons of promises over callbacks,\n\n    **Pros:**\n\n    1",
+          "is_correct": false
+        },
+        {
+          "text": "Even though a promise is resolved immediately, it won't be executed immediately because its **",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "What are the pros and cons of promises over callbacks",
+      "explanation": "Below are the list of pros and cons of promises over callbacks,\n\n    **Pros:**\n\n    1. It avoids callback hell which is unreadable\n    2. Easy to write sequential asynchronous code with .then()\n    3. Easy to write parallel asynchronous code with Promise.all()\n    4. Solves some of the common problems of callbacks(call the callback too late, too early, many times and swallow errors/exceptions)\n\n    **Cons:**\n\n    5. It makes little complex code\n    6. You need to load a polyfill if ES6 is not supported\n\n    **[\u2b06 Back to Top](#table-of-contents)**\n\n95.",
+      "options": [
+        {
+          "text": "Microtask Queue is the new queue where all the tasks initiated by promise objects get processed before the callback queue",
+          "is_correct": false
+        },
+        {
+          "text": "RxJS (Reactive Extensions for JavaScript) is a library for implementing reactive programming using observables that makes it easier to compose asynchronous or callback-based code",
+          "is_correct": false
+        },
+        {
+          "text": "Below are the list of pros and cons of promises over callbacks,\n\n    **Pros:**\n\n    1",
+          "is_correct": true
+        },
+        {
+          "text": "The clearTimeout() function is used in javascript to clear the timeout which has been set by setTimeout()function before that",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "What is the use of setTimeout",
+      "explanation": "The setTimeout() method is used to call a function or evaluate an expression after a specified number of milliseconds. For example, let's log a message after 2 seconds using setTimeout method,\n\n      ```javascript\n      setTimeout(function () {\n        console.log(\"Good morning\");\n      }, 2000);\n      ```\n\n      **[\u2b06 Back to Top](#table-of-contents)**\n\n108.",
+      "options": [
+        {
+          "text": "AJAX stands for Asynchronous JavaScript and XML and it is a group of related technologies(HTML, CSS, JavaScript, XMLHttpRequest API etc) used to display data asynchronously",
+          "is_correct": false
+        },
+        {
+          "text": "Memory leaks can lead to poor performance, slow loading times and even crashes in web applications",
+          "is_correct": false
+        },
+        {
+          "text": "An async function is a function declared with the `async` keyword which enables asynchronous, promise-based behavior to be written in a cleaner style by avoiding promise chains",
+          "is_correct": false
+        },
+        {
+          "text": "The setTimeout() method is used to call a function or evaluate an expression after a specified number of milliseconds",
+          "is_correct": true
+        }
+      ]
+    },
+    {
+      "text": "What is the use of setInterval",
+      "explanation": "The setInterval() method is used to call a function or evaluate an expression at specified intervals (in milliseconds). For example, let's log a message after 2 seconds using setInterval method,\n\n      ```javascript\n      setInterval(function () {\n        console.log(\"Good morning\");\n      }, 2000);\n      ```\n\n      **[\u2b06 Back to Top](#table-of-contents)**\n\n109.",
+      "options": [
+        {
+          "text": "An async function is a function declared with the `async` keyword which enables asynchronous, promise-based behavior to be written in a cleaner style by avoiding promise chains",
+          "is_correct": false
+        },
+        {
+          "text": "Closures are a powerful feature in programming languages like JavaScript",
+          "is_correct": false
+        },
+        {
+          "text": "The setInterval() method is used to call a function or evaluate an expression at specified intervals (in milliseconds)",
+          "is_correct": true
+        },
+        {
+          "text": "In the above example:\n\n    *   A `Promise` is created to handle an asynchronous operation with `resolve` and `reject` callbacks",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "What is the purpose of clearTimeout method",
+      "explanation": "The clearTimeout() function is used in javascript to clear the timeout which has been set by setTimeout()function before that. i.e, The return value of setTimeout() function is stored in a variable and it\u2019s passed into the clearTimeout() function to clear the timer.\n\n      For example, the below setTimeout method is used to display the message after 3 seconds. This timeout can be cleared by the clearTimeout() method.\n\n      ```javascript\n      <script>\n           var msg;\n           function greeting() {\n              alert('Good morning');\n           }\n           function start() {\n             msg =setTimeout(greeting, 3000);\n\n           }\n\n           function stop() {\n               clearTimeout(msg);\n           }\n      </script>\n      ```\n\n      **[\u2b06 Back to Top](#table-of-contents)**\n\n119.",
+      "options": [
+        {
+          "text": "A side effect is the modification of the state through the invocation of a function or expression",
+          "is_correct": false
+        },
+        {
+          "text": "Memory leaks can lead to poor performance, slow loading times and even crashes in web applications",
+          "is_correct": false
+        },
+        {
+          "text": "Debouncing is a programming technique used to limit how often a function is executed",
+          "is_correct": false
+        },
+        {
+          "text": "The clearTimeout() function is used in javascript to clear the timeout which has been set by setTimeout()function before that",
+          "is_correct": true
+        }
+      ]
+    },
+    {
+      "text": "What is the purpose of clearInterval method",
+      "explanation": "The clearInterval() function is used in javascript to clear the interval which has been set by setInterval() function. i.e, The return value returned by setInterval() function is stored in a variable and it\u2019s passed into the clearInterval() function to clear the interval.\n\n      For example, the below setInterval method is used to display the message for every 3 seconds. This interval can be cleared by the clearInterval() method.\n\n      ```javascript\n      <script>\n           var msg;\n           function greeting() {\n              alert('Good morning');\n           }\n           function start() {\n             msg = setInterval(greeting, 3000);\n\n           }\n\n           function stop() {\n               clearInterval(msg);\n           }\n      </script>\n      ```\n\n      **[\u2b06 Back to Top](#table-of-contents)**\n\n120.",
+      "options": [
+        {
+          "text": "The clearInterval() function is used in javascript to clear the interval which has been set by setInterval() function",
+          "is_correct": true
+        },
+        {
+          "text": "Below are the list of different ways to deal with Asynchronous code",
+          "is_correct": false
+        },
+        {
+          "text": "The callbacks are needed because javascript is an event driven language",
+          "is_correct": false
+        },
+        {
+          "text": "A **Promise** is a JavaScript object that represents the eventual completion (or failure) of an asynchronous operation and its resulting value",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "How do you make asynchronous HTTP request",
+      "explanation": "Browsers provide an XMLHttpRequest object which can be used to make asynchronous HTTP requests from JavaScript by passing the 3rd parameter as true.\n\n      ```javascript\n      function httpGetAsync(theUrl, callback) {\n        var xmlHttpReq = new XMLHttpRequest();\n        xmlHttpReq.onreadystatechange = function () {\n          if (xmlHttpReq.readyState == 4 && xmlHttpReq.status == 200)\n            callback(xmlHttpReq.responseText);\n        };\n        xmlHttpReq.open(\"GET\", theUrl, true); // true for asynchronous\n        xmlHttpReq.send(null);\n      }\n      ```\n\n      Today this is considered deprecated, because an async `fetch` call (in browsers later than 2016) is simpler and more robust.\n\n      **[\u2b06 Back to Top](#table-of-contents)**\n\n172.",
+      "options": [
+        {
+          "text": "Until a few days back, One shortcoming of native promises is no direct way to cancel a fetch request",
+          "is_correct": false
+        },
+        {
+          "text": "Browsers provide an XMLHttpRequest object which can be used to make asynchronous HTTP requests from JavaScript by passing the 3rd parameter as true",
+          "is_correct": true
+        },
+        {
+          "text": "The postMessages are synchronous in IE8 browser but they are asynchronous in IE9 and all other modern browsers (i",
+          "is_correct": false
+        },
+        {
+          "text": "When the JavaScript engine parses the above code, the first two statements are asynchronous which will be executed later and third statement is synchronous statement which will be moved to callstack, executed and prints the number 3 in the console",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "What is a proxy object",
+      "explanation": "The Proxy object is used to define custom behavior for fundamental operations such as property lookup, assignment, enumeration, function invocation, etc.\n\n      A proxy is created with two parameters: a target object which you want to proxy and a handler object which contains methods to intercept fundamental operations. The syntax would be as follows,\n\n      ```javascript\n      var p = new Proxy(target, handler);\n      ```\n\n      Let's take a look at below examples of proxy object and how the get method which customize the lookup behavior,\n\n      ```javascript\n      //Example1:\n\n      const person = {\n        name: \"Sudheer Jonna\",\n        age: 35,\n      };\n\n      const handler = {\n        get(target, prop) {\n          if (prop === \"name\") {\n            return \"Mr. \" + target[prop];\n          }\n          return target[prop];\n        },\n      };\n\n      const proxy = new Proxy(person, handler);\n\n      //Example2:\n\n      var handler1 = {\n        get: function (obj, prop) {\n          return prop in obj ? obj[prop] : 100;\n        },\n      };\n\n      var p = new Proxy({}, handler1);\n      p.a = 10;\n      p.b = null;\n\n      console.log(p.a, p.b); // 10, null\n      console.log(\"c\" in p, p.c); // false, 100\n      ```\n\n      In the above code, it uses `get` handler which define the behavior of the proxy when an operation is performed on it. These proxies are mainly used for some of the below cross-cutting concerns.\n\n      1. Logging\n      2. Authentication or Authorization\n      3. Data binding and observables\n      4. Function parameter validation\n\n      **Note:** This feature was introduced with ES6.\n\n      **[\u2b06 Back to Top](#table-of-contents)**\n\n196.",
+      "options": [
+        {
+          "text": "The clearTimeout() function is used in javascript to clear the timeout which has been set by setTimeout()function before that",
+          "is_correct": false
+        },
+        {
+          "text": "Some of the most common use cases of observables are web sockets with push notifications, user input changes, repeating intervals, etc\n\n     **\u2b06 Back to Top**\n\n404",
+          "is_correct": false
+        },
+        {
+          "text": "The Proxy object is used to define custom behavior for fundamental operations such as property lookup, assignment, enumeration, function invocation, etc",
+          "is_correct": true
+        },
+        {
+          "text": "In JavaScript, you need to be mindful of removing event listeners to avoid memory leaks \u2014 especially in long-lived apps like single-page applications (SPAs) or when working with frameworks/libraries",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "What is an anonymous function",
+      "explanation": "An anonymous function is a function without a name! Anonymous functions are commonly assigned to a variable name or used as a callback function. The syntax would be as below,\n\n      ```javascript\n      function (optionalParameters) {\n        //do something\n      }\n\n      const myFunction = function(){ //Anonymous function assigned to a variable\n        //do something\n      };\n\n      [1, 2, 3].map(function(element){ //Anonymous function used as a callback function\n        //do something\n      });\n      ```\n\n      Let's see the above anonymous function in an example,\n\n      ```javascript\n      var x = function (a, b) {\n        return a * b;\n      };\n      var z = x(5, 10);\n      console.log(z); // 50\n      ```\n\n      **[\u2b06 Back to Top](#table-of-contents)**\n\n216.",
+      "options": [
+        {
+          "text": "You can't use setTimeout(fn, 0) to execute the code immediately due to minimum delay of greater than 0ms",
+          "is_correct": false
+        },
+        {
+          "text": "An anonymous function is a function without a name! Anonymous functions are commonly assigned to a variable name or used as a callback function",
+          "is_correct": true
+        },
+        {
+          "text": "The clearInterval() function is used in javascript to clear the interval which has been set by setInterval() function",
+          "is_correct": false
+        },
+        {
+          "text": "In the above example:\n\n    *   A `Promise` is created to handle an asynchronous operation with `resolve` and `reject` callbacks",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "What is nodejs",
+      "explanation": "Node.js is a server-side platform built on Chrome's JavaScript runtime for easily building fast and scalable network applications. It is an event-based, non-blocking, asynchronous I/O runtime that uses Google's V8 JavaScript engine and libuv library.\n\n      **[\u2b06 Back to Top](#table-of-contents)**\n\n233.",
+      "options": [
+        {
+          "text": "js is a server-side platform built on Chrome's JavaScript runtime for easily building fast and scalable network applications",
+          "is_correct": true
+        },
+        {
+          "text": "jQuery is a popular cross-browser JavaScript library that provides Document Object Model (DOM) traversal, event handling, animations and AJAX interactions by minimizing the discrepancies across browsers",
+          "is_correct": false
+        },
+        {
+          "text": "The `queueMicrotask` function is used to schedule a microtask, which is a function that will be executed asynchronously in the microtask queue",
+          "is_correct": false
+        },
+        {
+          "text": "The setTimeout() method is used to call a function or evaluate an expression after a specified number of milliseconds",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "What is the event queue",
+      "explanation": "The event queue follows the queue data structure. It stores async callbacks to be added to the call stack. It is also known as the Callback Queue or Macrotask Queue.\n\n      Whenever the call stack receives an async function, it is moved into the Web API. Based on the function, Web API executes it and awaits the result. Once it is finished, it moves the callback into the event queue (the callback of a promise is moved into the microtask queue).\n\n      The event loop constantly checks whether or not the call stack is empty. Once the call stack is empty and there is a callback in the event queue, the event loop moves the callback into the call stack. But if there is a callback in the microtask queue as well, it is moved first. The microtask queue has a higher priority than the event queue.\n\n      **[\u2b06 Back to Top](#table-of-contents)**\n\n240.",
+      "options": [
+        {
+          "text": "Arrow functions** (also known as \"lambda expressions\") provide a concise syntax for writing function expressions in JavaScript",
+          "is_correct": false
+        },
+        {
+          "text": "The event queue follows the queue data structure",
+          "is_correct": true
+        },
+        {
+          "text": "RxJS (Reactive Extensions for JavaScript) is a library for implementing reactive programming using observables that makes it easier to compose asynchronous or callback-based code",
+          "is_correct": false
+        },
+        {
+          "text": "A **Promise** is a JavaScript object that represents the eventual completion (or failure) of an asynchronous operation and its resulting value",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "What is jQuery",
+      "explanation": "jQuery is a popular cross-browser JavaScript library that provides Document Object Model (DOM) traversal, event handling, animations and AJAX interactions by minimizing the discrepancies across browsers. It is widely famous with its philosophy of \u201cWrite less, do more\u201d. For example, you can display welcome message on the page load using jQuery as below,\n\n      ```javascript\n      $(document).ready(function () {\n        // It selects the document and apply the function on page load\n        alert(\"Welcome to jQuery world\");\n      });\n      ```\n\n      **Note:** You can download it from jquery's official site or install it from CDNs, like google.\n\n      **[\u2b06 Back to Top](#table-of-contents)**\n\n298.",
+      "options": [
+        {
+          "text": "The setInterval() method is used to call a function or evaluate an expression at specified intervals (in milliseconds)",
+          "is_correct": false
+        },
+        {
+          "text": "In JavaScript, there are multiple event loops that can be used depending on the context of your application",
+          "is_correct": false
+        },
+        {
+          "text": "jQuery is a popular cross-browser JavaScript library that provides Document Object Model (DOM) traversal, event handling, animations and AJAX interactions by minimizing the discrepancies across browsers",
+          "is_correct": true
+        },
+        {
+          "text": "RxJS (Reactive Extensions for JavaScript) is a library for implementing reactive programming using observables that makes it easier to compose asynchronous or callback-based code",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "What is a void operator",
+      "explanation": "The `void` operator evaluates the given expression and then returns `undefined` (i.e, without returning value). The syntax would be as below,\n\n      ```javascript\n      void expression;\n      void expression;\n      ```\n\n      Let's display a message without any redirection or reload\n\n      ```javascript\n      <a href=\"javascript:void(alert('Welcome to JS world'))\">\n        Click here to see a message\n      </a>\n      ```\n\n      **Note:** This operator is often used to obtain the undefined primitive value, using `void(0)`. Also it can be used to call asynchronous functions without waiting for the result.\n\n      **[\u2b06 Back to Top](#table-of-contents)**\n\n301.",
+      "options": [
+        {
+          "text": "Promises have three states:\n\n    1",
+          "is_correct": false
+        },
+        {
+          "text": "The `void` operator evaluates the given expression and then returns `undefined` (i",
+          "is_correct": true
+        },
+        {
+          "text": "Closures are a powerful feature in programming languages like JavaScript",
+          "is_correct": false
+        },
+        {
+          "text": "Both browser and NodeJS javascript environments throttles with a minimum delay that is greater than 0ms",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "List down some of the features of ES6",
+      "explanation": "Below are the list of some new features of ES6,\n\n      1. Support for constants or immutable variables\n      2. Block-scope support for variables, constants and functions\n      3. Arrow functions\n      4. Default parameters\n      5. Rest and Spread Parameters\n      6. Template Literals\n      7. Multi-line Strings\n      8. Destructuring Assignment\n      9. Enhanced Object Literals\n      10. Promises\n      11. Classes\n      12. Modules\n\n      **[\u2b06 Back to Top](#table-of-contents)**\n\n306.",
+      "options": [
+        {
+          "text": "Promises are **used to handle asynchronous operations**, especially in languages like JavaScript, which often work with non-blocking operations such as network requests, file I/O, and timers",
+          "is_correct": false
+        },
+        {
+          "text": "Even though \u201cprocessArray\u201d is an async function, the anonymous function that we use for `forEach` is synchronous",
+          "is_correct": false
+        },
+        {
+          "text": "RxJS (Reactive Extensions for JavaScript) is a library for implementing reactive programming using observables that makes it easier to compose asynchronous or callback-based code",
+          "is_correct": false
+        },
+        {
+          "text": "Below are the list of some new features of ES6,\n\n      1",
+          "is_correct": true
+        }
+      ]
+    },
+    {
+      "text": "What are dynamic imports",
+      "explanation": "The dynamic imports using `import()` function syntax allows us to load modules on demand by using promises or the async/await syntax. Currently this feature is in [stage4 proposal](https://github.com/tc39/proposal-dynamic-import). The main advantage of dynamic imports is reduction of our bundle's sizes, the size/payload response of our requests and overall improvements in the user experience.\n      The syntax of dynamic imports would be as below,\n\n      ```javascript\n      import(\"./Module\").then((Module) => Module.method());\n      ```\n\n      **[\u2b06 Back to Top](#table-of-contents)**\n\n320.",
+      "options": [
+        {
+          "text": "race() method will return the promise instance which is firstly resolved or rejected",
+          "is_correct": false
+        },
+        {
+          "text": "Even though a promise is resolved immediately, it won't be executed immediately because its **",
+          "is_correct": false
+        },
+        {
+          "text": "The dynamic imports using `import()` function syntax allows us to load modules on demand by using promises or the async/await syntax",
+          "is_correct": true
+        },
+        {
+          "text": "The variable `message` is still treated as closure(since it has been used in inner function) eventhough it has been declared after setTimeout function",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Is postMessages synchronous",
+      "explanation": "The postMessages are synchronous in IE8 browser but they are asynchronous in IE9 and all other modern browsers (i.e, IE9+, Firefox, Chrome, Safari).Due to this asynchronous behaviour, we use a callback mechanism when the postMessage is returned.\n\n      **[\u2b06 Back to Top](#table-of-contents)**\n\n331.",
+      "options": [
+        {
+          "text": "The event queue follows the queue data structure",
+          "is_correct": false
+        },
+        {
+          "text": "Below are the list of pros and cons of promises over callbacks,\n\n    **Pros:**\n\n    1",
+          "is_correct": false
+        },
+        {
+          "text": "Arrow functions do **not** have their own `this`, `arguments`, `super`, or `new",
+          "is_correct": false
+        },
+        {
+          "text": "The postMessages are synchronous in IE8 browser but they are asynchronous in IE9 and all other modern browsers (i",
+          "is_correct": true
+        }
+      ]
+    },
+    {
+      "text": "What are asynchronous thunks",
+      "explanation": "The asynchronous thunks are useful to make network requests. Let's see an example of network requests,\n\n      ```javascript\n      function fetchData(fn) {\n        fetch(\"https://jsonplaceholder.typicode.com/todos/1\")\n          .then((response) => response.json())\n          .then((json) => fn(json));\n      }\n\n      const asyncThunk = function () {\n        return fetchData(function getData(data) {\n          console.log(data);\n        });\n      };\n\n      asyncThunk();\n      ```\n\n      The `getData` function won't be called immediately but it will be invoked only when the data is available from API endpoint. The setTimeout function is also used to make our code asynchronous. The best real time example is redux state management library which uses the asynchronous thunks to delay the actions to dispatch.\n\n      **[\u2b06 Back to Top](#table-of-contents)**\n\n356.",
+      "options": [
+        {
+          "text": "An anonymous function is a function without a name! Anonymous functions are commonly assigned to a variable name or used as a callback function",
+          "is_correct": false
+        },
+        {
+          "text": "A callback function is a function passed into another function as an argument",
+          "is_correct": false
+        },
+        {
+          "text": "The asynchronous thunks are useful to make network requests",
+          "is_correct": true
+        },
+        {
+          "text": "Memory leaks can lead to poor performance, slow loading times and even crashes in web applications",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "What is AJAX",
+      "explanation": "AJAX stands for Asynchronous JavaScript and XML and it is a group of related technologies(HTML, CSS, JavaScript, XMLHttpRequest API etc) used to display data asynchronously. i.e. We can send data to the server and get data from the server without reloading the web page.\n\n     **[\u2b06 Back to Top](#table-of-contents)**\n\n385.",
+      "options": [
+        {
+          "text": "You can nest one callback inside in another callback to execute the actions sequentially one by one",
+          "is_correct": false
+        },
+        {
+          "text": "AJAX stands for Asynchronous JavaScript and XML and it is a group of related technologies(HTML, CSS, JavaScript, XMLHttpRequest API etc) used to display data asynchronously",
+          "is_correct": true
+        },
+        {
+          "text": "Promises have three states:\n\n    1",
+          "is_correct": false
+        },
+        {
+          "text": "Below are the list of different ways to deal with Asynchronous code",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "What are the different ways to deal with Asynchronous Code",
+      "explanation": "Below are the list of different ways to deal with Asynchronous code.\n\n     1. Callbacks\n     2. Promises\n     3. Async/await\n     4. Third-party libraries such as async.js,bluebird etc\n\n     **[\u2b06 Back to Top](#table-of-contents)**\n\n386.",
+      "options": [
+        {
+          "text": "The forEach method will not wait until all items are finished but it just runs the tasks and goes next",
+          "is_correct": false
+        },
+        {
+          "text": "Closures are a powerful feature in programming languages like JavaScript",
+          "is_correct": false
+        },
+        {
+          "text": "Below are the list of different ways to deal with Asynchronous code",
+          "is_correct": true
+        },
+        {
+          "text": "The creation of custom HTML elements involves two main steps,\n\n     1",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "How to cancel a fetch request",
+      "explanation": "Until a few days back, One shortcoming of native promises is no direct way to cancel a fetch request. But the new `AbortController` from js specification allows you to use a signal to abort one or multiple fetch calls.\n     The basic flow of cancelling a fetch request would be as below,\n\n     1. Create an `AbortController` instance\n     2. Get the signal property of an instance and pass the signal as a fetch option for signal\n     3. Call the AbortController's abort property to cancel all fetches that use that signal\n        For example, passing the same signal to multiple fetch calls will cancel all requests with that signal,\n\n     ```javascript\n     const controller = new AbortController();\n     const { signal } = controller;\n\n     fetch(\"http://localhost:8000\", { signal })\n       .then((response) => {\n         console.log(`Request 1 is complete!`);\n       })\n       .catch((e) => {\n         if (e.name === \"AbortError\") {\n           // We know it's been canceled!\n         }\n       });\n\n     fetch(\"http://localhost:8000\", { signal })\n       .then((response) => {\n         console.log(`Request 2 is complete!`);\n       })\n       .catch((e) => {\n         if (e.name === \"AbortError\") {\n           // We know it's been canceled!\n         }\n       });\n\n     // Wait 2 seconds to abort both requests\n     setTimeout(() => controller.abort(), 2000);\n     ```\n\n     **[\u2b06 Back to Top](#table-of-contents)**\n\n387.",
+      "options": [
+        {
+          "text": "The await expression returns value 10 with promise resolution and the code after each await expression can be treated as existing in a `",
+          "is_correct": false
+        },
+        {
+          "text": "In JavaScript, **first-class functions(first-class citizens)** mean that functions are treated like any other variable",
+          "is_correct": false
+        },
+        {
+          "text": "Below are the list of different ways to deal with Asynchronous code",
+          "is_correct": false
+        },
+        {
+          "text": "Until a few days back, One shortcoming of native promises is no direct way to cancel a fetch request",
+          "is_correct": true
+        }
+      ]
+    },
+    {
+      "text": "What is web speech API",
+      "explanation": "Web speech API is used to enable modern browsers recognize and synthesize speech(i.e, voice data into web apps). This API was introduced by W3C Community in the year 2012. It has two main parts:\n\n     1. **SpeechRecognition (Asynchronous Speech Recognition or Speech-to-Text):** It provides the ability to recognize voice context from an audio input and respond accordingly. This is accessed by the `SpeechRecognition` interface.\n        The example below shows how to use this API to get text from speech,\n\n     ```javascript\n     window.SpeechRecognition =\n       window.webkitSpeechRecognition || window.SpeechRecognition; // webkitSpeechRecognition for Chrome and SpeechRecognition for FF\n     const recognition = new window.SpeechRecognition();\n     recognition.onresult = (event) => {\n       // SpeechRecognitionEvent type\n       const speechToText = event.results[0][0].transcript;\n       console.log(speechToText);\n     };\n     recognition.start();\n     ```\n\n     In this API, browser is going to ask you for permission to use your microphone\n\n     2. **SpeechSynthesis (Text-to-Speech):** It provides the ability to recognize voice context from an audio input and respond. This is accessed by the `SpeechSynthesis` interface.\n        For example, the below code is used to get voice/speech from text,\n\n     ```javascript\n     if (\"speechSynthesis\" in window) {\n       var speech = new SpeechSynthesisUtterance(\"Hello World!\");\n       speech.lang = \"en-US\";\n       window.speechSynthesis.speak(speech);\n     }\n     ```\n\n     The above examples can be tested on chrome(33+) browser's developer console.\n     **Note:** This API is still a working draft and only available in Chrome and Firefox browsers(ofcourse Chrome only implemented the specification)\n\n     **[\u2b06 Back to Top](#table-of-contents)**\n\n388.",
+      "options": [
+        {
+          "text": "An anonymous function is a function without a name! Anonymous functions are commonly assigned to a variable name or used as a callback function",
+          "is_correct": false
+        },
+        {
+          "text": "In JavaScript, there are multiple event loops that can be used depending on the context of your application",
+          "is_correct": false
+        },
+        {
+          "text": "The `queueMicrotask` function is used to schedule a microtask, which is a function that will be executed asynchronously in the microtask queue",
+          "is_correct": false
+        },
+        {
+          "text": "Web speech API is used to enable modern browsers recognize and synthesize speech(i",
+          "is_correct": true
+        }
+      ]
+    },
+    {
+      "text": "What is minimum timeout throttling",
+      "explanation": "Both browser and NodeJS javascript environments throttles with a minimum delay that is greater than 0ms. That means even though setting a delay of 0ms will not happen instantaneously.\n     **Browsers:** They have a minimum delay of 4ms. This throttle occurs when successive calls are triggered due to callback nesting(certain depth) or after a certain number of successive intervals.\n     Note: The older browsers have a minimum delay of 10ms.\n     **Nodejs:** They have a minimum delay of 1ms. This throttle happens when the delay is larger than 2147483647 or less than 1.\n     The best example to explain this timeout throttling behavior is the order of below code snippet.\n\n     ```javascript\n     function runMeFirst() {\n       console.log(\"My script is initialized\");\n     }\n     setTimeout(runMeFirst, 0);\n     console.log(\"Script loaded\");\n     ```\n\n     and the output would be in\n\n     ```cmd\n     Script loaded\n     My script is initialized\n     ```\n\n     If you don't use `setTimeout`, the order of logs will be sequential.\n\n     ```javascript\n     function runMeFirst() {\n       console.log(\"My script is initialized\");\n     }\n     runMeFirst();\n     console.log(\"Script loaded\");\n     ```\n\n     and the output is,\n\n     ```cmd\n     My script is initialized\n     Script loaded\n     ```\n\n     **[\u2b06 Back to Top](#table-of-contents)**\n\n389.",
+      "options": [
+        {
+          "text": "Both browser and NodeJS javascript environments throttles with a minimum delay that is greater than 0ms",
+          "is_correct": true
+        },
+        {
+          "text": "When the JavaScript engine parses the above code, the first two statements are asynchronous which will be executed later and third statement is synchronous statement which will be moved to callstack, executed and prints the number 3 in the console",
+          "is_correct": false
+        },
+        {
+          "text": "Async functions always return a promise",
+          "is_correct": false
+        },
+        {
+          "text": "While using asynchronous code, JavaScript\u2019s ES6 promises can make your life a lot easier without having callback pyramids and error handling on every second line",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "How do you implement zero timeout in modern browsers",
+      "explanation": "You can't use setTimeout(fn, 0) to execute the code immediately due to minimum delay of greater than 0ms. But you can use window.postMessage() to achieve this behavior.\n\n     **[\u2b06 Back to Top](#table-of-contents)**\n\n390.",
+      "options": [
+        {
+          "text": "Arrow functions** (also known as \"lambda expressions\") provide a concise syntax for writing function expressions in JavaScript",
+          "is_correct": false
+        },
+        {
+          "text": "You can't use setTimeout(fn, 0) to execute the code immediately due to minimum delay of greater than 0ms",
+          "is_correct": true
+        },
+        {
+          "text": "js is a server-side platform built on Chrome's JavaScript runtime for easily building fast and scalable network applications",
+          "is_correct": false
+        },
+        {
+          "text": "A callback function is a function passed into another function as an argument",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "What are tasks in event loop",
+      "explanation": "A task is any javascript code/program which is scheduled to be run by the standard mechanisms such as initially starting to run a program, run an event callback, or an interval or timeout being fired. All these tasks are scheduled on a task queue.\n     Below are the list of use cases to add tasks to the task queue,\n\n     1. When a new javascript program is executed directly from console or running by the `<script>` element, the task will be added to the task queue.\n     2. When an event fires, the event callback added to task queue\n     3. When a setTimeout or setInterval is reached, the corresponding callback added to task queue\n\n     **[\u2b06 Back to Top](#table-of-contents)**\n\n391.",
+      "options": [
+        {
+          "text": "The `void` operator evaluates the given expression and then returns `undefined` (i",
+          "is_correct": false
+        },
+        {
+          "text": "```javascript\nconsole",
+          "is_correct": false
+        },
+        {
+          "text": "A task is any javascript code/program which is scheduled to be run by the standard mechanisms such as initially starting to run a program, run an event callback, or an interval or timeout being fired",
+          "is_correct": true
+        },
+        {
+          "text": "The polyfills for array methods such as map, filter and reduce methods can be created using array prototype",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "What is microtask",
+      "explanation": "A microtask is a type of JavaScript callback that is scheduled to run immediately after the currently executing script and before the next event loop tick. Microtasks are executed after the current task completes and before any new tasks (macrotasks) are run. This ensures a fast and predictable update cycle.\n\n     Common sources of microtasks stored in the microtask queue include:\n\n     1. **Promises:**\n        When a Promise is resolved or rejected, its `.then()`, `.catch()`, and `.finally()` callbacks are placed in the microtask queue.\n\n        ```javascript\n        Promise.resolve().then(() => {\n         console.log('Microtask from a Promise');\n        });\n        ```\n\n      2. **queueMicrotask():**\n     \n         A method that explicitly schedules a function to be run in the microtask queue.\n\n         ```javascript\n          queueMicrotask(() => {\n             console.log('Microtask from  queueMicrotask');\n           });\n         ```\n\n      3. **MutationObserver callbacks:**\n\n         Observers changes in the DOM and triggers a callback as a microtask.\n\n         ```javascript\n            const observer = new MutationObserver(() => {\n              console.log('Microtask from MutationObserver');\n            })\n            observer.observe(document.body, {childList: true});\n         ```\n\n      4. **await:**  \n         Await internally uses Promises, so the code after `await` is scheduled as a microtask.\n\n         ```javascript\n          async function asyncFunction() {\n            await null;\n            console.log('Microtask from Await'); // Schedule this code as microtask\n          }\n         ```\n     **Note:** All of these microtasks are processed in the same turn of the event loop.\n\n     **[\u2b06 Back to Top](#table-of-contents)**\n\n392.",
+      "options": [
+        {
+          "text": "A higher-order function is a function that either accepts another function as an argument, returns a function as its result, or both",
+          "is_correct": false
+        },
+        {
+          "text": "The `void` operator evaluates the given expression and then returns `undefined` (i",
+          "is_correct": false
+        },
+        {
+          "text": "A microtask is a type of JavaScript callback that is scheduled to run immediately after the currently executing script and before the next event loop tick",
+          "is_correct": true
+        },
+        {
+          "text": "Promises are **used to handle asynchronous operations**, especially in languages like JavaScript, which often work with non-blocking operations such as network requests, file I/O, and timers",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "What are different event loops",
+      "explanation": "In JavaScript, there are multiple event loops that can be used depending on the context of your application. The most common event loops are:\n\n     1. The Browser Event Loop\n     2. The Node.js Event Loop\n\n- Browser Event Loop: The Browser Event Loop is used in client-side JavaScript applications and is responsible for handling events that occur within the browser environment, such as user interactions (clicks, keypresses, etc.), HTTP requests, and other asynchronous actions.\n\n- The Node.js Event Loop is used in server-side JavaScript applications and is responsible for handling events that occur within the Node.js runtime environment, such as file I/O, network I/O, and other asynchronous actions.\n\n  **[\u2b06 Back to Top](#table-of-contents)**\n\n393.",
+      "options": [
+        {
+          "text": "In JavaScript, you need to be mindful of removing event listeners to avoid memory leaks \u2014 especially in long-lived apps like single-page applications (SPAs) or when working with frameworks/libraries",
+          "is_correct": false
+        },
+        {
+          "text": "**Set Timeout:** setTimeout() is to schedule execution of a one-time callback after delay milliseconds",
+          "is_correct": false
+        },
+        {
+          "text": "In JavaScript, there are multiple event loops that can be used depending on the context of your application",
+          "is_correct": true
+        },
+        {
+          "text": "The forEach method will not wait until all items are finished but it just runs the tasks and goes next",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "What is the purpose of queueMicrotask",
+      "explanation": "The `queueMicrotask` function is used to schedule a microtask, which is a function that will be executed asynchronously in the microtask queue. The purpose of `queueMicrotask` is to ensure that a function is executed after the current task has finished, but before the browser performs any rendering or handles user events.\n\n     Example:\n\n     ```javascript\n     console.log(\"Start\"); //1\n\n     queueMicrotask(() => {\n       console.log(\"Inside microtask\"); // 3\n     });\n\n     console.log(\"End\"); //2\n     ```\n\n     By using queueMicrotask, you can ensure that certain tasks or callbacks are executed at the earliest opportunity during the JavaScript event loop, making it useful for performing work that needs to be done asynchronously but with higher priority than regular `setTimeout` or `setInterval` callbacks.\n\n     **[\u2b06 Back to Top](#table-of-contents)**\n\n394.",
+      "options": [
+        {
+          "text": "The `queueMicrotask` function is used to schedule a microtask, which is a function that will be executed asynchronously in the microtask queue",
+          "is_correct": true
+        },
+        {
+          "text": "In the above example:\n\n    *   A `Promise` is created to handle an asynchronous operation with `resolve` and `reject` callbacks",
+          "is_correct": false
+        },
+        {
+          "text": "An Observable is basically a function that can return a stream of values either synchronously or asynchronously to an observer over time",
+          "is_correct": false
+        },
+        {
+          "text": "AJAX stands for Asynchronous JavaScript and XML and it is a group of related technologies(HTML, CSS, JavaScript, XMLHttpRequest API etc) used to display data asynchronously",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "What is an event table",
+      "explanation": "Event Table is a data structure that stores and keeps track of all the events which will be executed asynchronously like after some time interval or after the resolution of some API requests. i.e Whenever you call a setTimeout function or invoke async operation, it is added to the Event Table.\n     It doesn't not execute functions on it\u2019s own. The main purpose of the event table is to keep track of events and send them to the Event Queue as shown in the below diagram.\n\n     ![Screenshot](images/event-table.png)\n\n     **[\u2b06 Back to Top](#table-of-contents)**\n\n398.",
+      "options": [
+        {
+          "text": "Event Table is a data structure that stores and keeps track of all the events which will be executed asynchronously like after some time interval or after the resolution of some API requests",
+          "is_correct": true
+        },
+        {
+          "text": "all is a promise that takes an array of promises as an input (an iterable), and it gets resolved when all the promises get resolved or any one of them gets rejected",
+          "is_correct": false
+        },
+        {
+          "text": "The dynamic imports using `import()` function syntax allows us to load modules on demand by using promises or the async/await syntax",
+          "is_correct": false
+        },
+        {
+          "text": "A side effect is the modification of the state through the invocation of a function or expression",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "What is a microTask queue",
+      "explanation": "Microtask Queue is the new queue where all the tasks initiated by promise objects get processed before the callback queue.\n     The microtasks queue are processed before the next rendering and painting jobs. But if these microtasks are running for a long time then it leads to visual degradation.\n\n     **[\u2b06 Back to Top](#table-of-contents)**\n\n399.",
+      "options": [
+        {
+          "text": "An Observable is basically a function that can return a stream of values either synchronously or asynchronously to an observer over time",
+          "is_correct": false
+        },
+        {
+          "text": "Browsers provide an XMLHttpRequest object which can be used to make asynchronous HTTP requests from JavaScript by passing the 3rd parameter as true",
+          "is_correct": false
+        },
+        {
+          "text": "Web speech API is used to enable modern browsers recognize and synthesize speech(i",
+          "is_correct": false
+        },
+        {
+          "text": "Microtask Queue is the new queue where all the tasks initiated by promise objects get processed before the callback queue",
+          "is_correct": true
+        }
+      ]
+    },
+    {
+      "text": "What are the common use cases of observables",
+      "explanation": "Some of the most common use cases of observables are web sockets with push notifications, user input changes, repeating intervals, etc\n\n     **[\u2b06 Back to Top](#table-of-contents)**\n\n404.",
+      "options": [
+        {
+          "text": "Some of the most common use cases of observables are web sockets with push notifications, user input changes, repeating intervals, etc\n\n     **\u2b06 Back to Top**\n\n404",
+          "is_correct": true
+        },
+        {
+          "text": "Even though there is a timer of 5 seconds supplied to `setTimeout` callback, it won't get executed until the main thread is free and finished executing the remaining part of the code",
+          "is_correct": false
+        },
+        {
+          "text": "A callback function is a function passed into another function as an argument",
+          "is_correct": false
+        },
+        {
+          "text": "The await expression returns value 10 with promise resolution and the code after each await expression can be treated as existing in a `",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "What is RxJS",
+      "explanation": "RxJS (Reactive Extensions for JavaScript) is a library for implementing reactive programming using observables that makes it easier to compose asynchronous or callback-based code. It also provides utility functions for creating and working with observables.\n\n     **[\u2b06 Back to Top](#table-of-contents)**\n\n405.",
+      "options": [
+        {
+          "text": "There are several built-in higher order functions exists on arrays, strings, DOM and promise methods in javascript",
+          "is_correct": false
+        },
+        {
+          "text": "The postMessages are synchronous in IE8 browser but they are asynchronous in IE9 and all other modern browsers (i",
+          "is_correct": false
+        },
+        {
+          "text": "Microtask Queue is the new queue where all the tasks initiated by promise objects get processed before the callback queue",
+          "is_correct": false
+        },
+        {
+          "text": "RxJS (Reactive Extensions for JavaScript) is a library for implementing reactive programming using observables that makes it easier to compose asynchronous or callback-based code",
+          "is_correct": true
+        }
+      ]
+    },
+    {
+      "text": "What is an observable",
+      "explanation": "An Observable is basically a function that can return a stream of values either synchronously or asynchronously to an observer over time. The consumer can get the value by calling `subscribe()` method.\n     Let's look at a simple example of an Observable\n\n     ```javascript\n     import { Observable } from \"rxjs\";\n\n     const observable = new Observable((observer) => {\n       setTimeout(() => {\n         observer.next(\"Message from a Observable!\");\n       }, 3000);\n     });\n\n     observable.subscribe((value) => console.log(value));\n     ```\n\n     ![Screenshot](images/observables.png)\n\n     **Note:** Observables are not part of the JavaScript language yet but they are being proposed to be added to the language\n\n     **[\u2b06 Back to Top](#table-of-contents)**\n\n409.",
+      "options": [
+        {
+          "text": "An async function is a function declared with the `async` keyword which enables asynchronous, promise-based behavior to be written in a cleaner style by avoiding promise chains",
+          "is_correct": false
+        },
+        {
+          "text": "An Observable is basically a function that can return a stream of values either synchronously or asynchronously to an observer over time",
+          "is_correct": true
+        },
+        {
+          "text": "In JavaScript, **first-class functions(first-class citizens)** mean that functions are treated like any other variable",
+          "is_correct": false
+        },
+        {
+          "text": "Promises have three states:\n\n    1",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "What is an async function",
+      "explanation": "An async function is a function declared with the `async` keyword which enables asynchronous, promise-based behavior to be written in a cleaner style by avoiding promise chains. These functions can contain zero or more `await` expressions.\n\n     Let's take a below async function example,\n\n     ```javascript\n     async function logger() {\n       let data = await fetch(\"http://someapi.com/users\"); // pause until fetch returns\n       console.log(data);\n     }\n     logger();\n     ```\n\n     It is basically syntax sugar over ES2015 promises and generators.\n\n     **[\u2b06 Back to Top](#table-of-contents)**\n\n411.",
+      "options": [
+        {
+          "text": "An async function is a function declared with the `async` keyword which enables asynchronous, promise-based behavior to be written in a cleaner style by avoiding promise chains",
+          "is_correct": true
+        },
+        {
+          "text": "The process of executing a sequence of asynchronous tasks one after another using promises is known as Promise chaining",
+          "is_correct": false
+        },
+        {
+          "text": "Promises are **used to handle asynchronous operations**, especially in languages like JavaScript, which often work with non-blocking operations such as network requests, file I/O, and timers",
+          "is_correct": false
+        },
+        {
+          "text": "Even though \u201cprocessArray\u201d is an async function, the anonymous function that we use for `forEach` is synchronous",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "How do you prevent promises swallowing errors",
+      "explanation": "While using asynchronous code, JavaScript\u2019s ES6 promises can make your life a lot easier without having callback pyramids and error handling on every second line. But Promises have some pitfalls and the biggest one is swallowing errors by default.\n\n     Let's say you expect to print an error to the console for all the below cases,\n\n     ```javascript\n     Promise.resolve(\"promised value\").then(function () {\n       throw new Error(\"error\");\n     });\n\n     Promise.reject(\"error value\").catch(function () {\n       throw new Error(\"error\");\n     });\n\n     new Promise(function (resolve, reject) {\n       throw new Error(\"error\");\n     });\n     ```\n\n     But there are many modern JavaScript environments that won't print any errors. You can fix this problem in different ways,\n\n     1. **Add catch block at the end of each chain:** You can add catch block to the end of each of your promise chains\n\n        ```javascript\n        Promise.resolve(\"promised value\")\n          .then(function () {\n            throw new Error(\"error\");\n          })\n          .catch(function (error) {\n            console.error(error.stack);\n          });\n        ```\n\n        But it is quite difficult to type for each promise chain and verbose too.\n\n     2. **Add done method:** You can replace first solution's then and catch blocks with done method\n\n        ```javascript\n        Promise.resolve(\"promised value\").done(function () {\n          throw new Error(\"error\");\n        });\n        ```\n\n        Let's say you want to fetch data using HTTP and later perform processing on the resulting data asynchronously. You can write `done` block as below,\n\n        ```javascript\n        getDataFromHttp()\n          .then(function (result) {\n            return processDataAsync(result);\n          })\n          .done(function (processed) {\n            displayData(processed);\n          });\n        ```\n\n        In future, if the processing library API changed to synchronous then you can remove `done` block as below,\n\n        ```javascript\n        getDataFromHttp().then(function (result) {\n          return displayData(processDataAsync(result));\n        });\n        ```\n\n        and then you forgot to add `done` block to `then` block leads to silent errors.\n\n     3. **Extend ES6 Promises by Bluebird:**\n        Bluebird extends the ES6 Promises API to avoid the issue in the second solution. This library has a \u201cdefault\u201d onRejection handler which will print all errors from rejected Promises to stderr. After installation, you can process unhandled rejections\n\n        ```javascript\n        Promise.onPossiblyUnhandledRejection(function (error) {\n          throw error;\n        });\n        ```\n\n        and discard a rejection, just handle it with an empty catch\n\n        ```javascript\n        Promise.reject(\"error value\").catch(function () {});\n        ```\n\n     **[\u2b06 Back to Top](#table-of-contents)**\n\n412.",
+      "options": [
+        {
+          "text": "While using asynchronous code, JavaScript\u2019s ES6 promises can make your life a lot easier without having callback pyramids and error handling on every second line",
+          "is_correct": true
+        },
+        {
+          "text": "Browsers provide an XMLHttpRequest object which can be used to make asynchronous HTTP requests from JavaScript by passing the 3rd parameter as true",
+          "is_correct": false
+        },
+        {
+          "text": "Event Table is a data structure that stores and keeps track of all the events which will be executed asynchronously like after some time interval or after the resolution of some API requests",
+          "is_correct": false
+        },
+        {
+          "text": "The process of executing a sequence of asynchronous tasks one after another using promises is known as Promise chaining",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "How do you check an object is a promise or not",
+      "explanation": "If you don't know if a value is a promise or not, wrapping the value as `Promise.resolve(value)` which returns a promise\n\n     ```javascript\n     function isPromise(object) {\n       if (Promise && Promise.resolve) {\n         return Promise.resolve(object) == object;\n       } else {\n         throw \"Promise not supported in your environment\";\n       }\n     }\n\n     var i = 1;\n     var promise = new Promise(function (resolve, reject) {\n       resolve();\n     });\n\n     console.log(isPromise(i)); // false\n     console.log(isPromise(promise)); // true\n     ```\n\n     Another way is to check for `.then()` handler type\n\n     ```javascript\n     function isPromise(value) {\n       return Boolean(value && typeof value.then === \"function\");\n     }\n     var i = 1;\n     var promise = new Promise(function (resolve, reject) {\n       resolve();\n     });\n\n     console.log(isPromise(i)); // false\n     console.log(isPromise(promise)); // true\n     ```\n\n     **[\u2b06 Back to Top](#table-of-contents)**\n\n416.",
+      "options": [
+        {
+          "text": "**Set Timeout:** setTimeout() is to schedule execution of a one-time callback after delay milliseconds",
+          "is_correct": false
+        },
+        {
+          "text": "If you don't know if a value is a promise or not, wrapping the value as `Promise",
+          "is_correct": true
+        },
+        {
+          "text": "Closures are a powerful feature in programming languages like JavaScript",
+          "is_correct": false
+        },
+        {
+          "text": "While using asynchronous code, JavaScript\u2019s ES6 promises can make your life a lot easier without having callback pyramids and error handling on every second line",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "What is the easiest way to ignore promise errors?",
+      "explanation": "The easiest and safest way to ignore promise errors is void that error. This approach is ESLint friendly too.\n\n     ```js\n     await promise.catch((e) => void e);\n     ```\n\n     **[\u2b06 Back to Top](#table-of-contents)**\n\n427.",
+      "options": [
+        {
+          "text": "The easiest and safest way to ignore promise errors is void that error",
+          "is_correct": true
+        },
+        {
+          "text": "A **Promise** is a JavaScript object that represents the eventual completion (or failure) of an asynchronous operation and its resulting value",
+          "is_correct": false
+        },
+        {
+          "text": "Event Table is a data structure that stores and keeps track of all the events which will be executed asynchronously like after some time interval or after the resolution of some API requests",
+          "is_correct": false
+        },
+        {
+          "text": "The asynchronous thunks are useful to make network requests",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "What is the difference between setTimeout, setImmediate and process.nextTick?",
+      "explanation": "1. **Set Timeout:** setTimeout() is to schedule execution of a one-time callback after delay milliseconds.\n     2. **Set Immediate:** The setImmediate function is used to execute a function right after the current event loop finishes.\n     3. **Process NextTick:** If process.nextTick() is called in a given phase, all the callbacks passed to process.nextTick() will be resolved before the event loop continues. This will block the event loop and create I/O Starvation if process.nextTick() is called recursively.\n\n     **[\u2b06 Back to Top](#table-of-contents)**\n\n433.",
+      "options": [
+        {
+          "text": "The statements order is based on the event loop mechanism",
+          "is_correct": false
+        },
+        {
+          "text": "**Set Timeout:** setTimeout() is to schedule execution of a one-time callback after delay milliseconds",
+          "is_correct": true
+        },
+        {
+          "text": "Arrow functions do **not** have their own `this`, `arguments`, `super`, or `new",
+          "is_correct": false
+        },
+        {
+          "text": "An Observable is basically a function that can return a stream of values either synchronously or asynchronously to an observer over time",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "How do you create custom HTML element?",
+      "explanation": "The creation of custom HTML elements involves two main steps,\n\n     1. **Define your custom HTML element:** First you need to define some custom class by extending HTMLElement class.\n        After that define your component properties (styles,text etc) using `connectedCallback` method.\n        **Note:** The browser exposes a function called `customElements.define` inorder to reuse the element.\n        ```javascript\n        class CustomElement extends HTMLElement {\n          connectedCallback() {\n            this.innerHTML = \"This is a custom element\";\n          }\n        }\n        customElements.define(\"custom-element\", CustomElement);\n        ```\n     2. **Use custom element just like other HTML element:** Declare your custom element as a HTML tag.\n\n     ```javascript\n        <body>\n             <custom-element>\n        </body>\n     ```\n\n     **[\u2b06 Back to Top](#table-of-contents)**\n\n435.",
+      "options": [
+        {
+          "text": "race() method will return the promise instance which is firstly resolved or rejected",
+          "is_correct": false
+        },
+        {
+          "text": "The creation of custom HTML elements involves two main steps,\n\n     1",
+          "is_correct": true
+        },
+        {
+          "text": "The await expression returns value 10 with promise resolution and the code after each await expression can be treated as existing in a `",
+          "is_correct": false
+        },
+        {
+          "text": "The clearInterval() function is used in javascript to clear the interval which has been set by setInterval() function",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "What is debouncing?",
+      "explanation": "Debouncing is a programming technique used to limit how often a function is executed. Specifically, it ensures that a function is only triggered after a certain amount of time has passed since it was last invoked. This prevents unnecessary or excessive function calls, which can help optimize performance and reduce unnecessary CPU usage or API requests.\n\n    For example, when a user types in a search box, you typically want to wait until they\u2019ve finished typing before fetching suggestions. Without debouncing, an API call would be triggered on every keystroke, potentially causing performance issues. With debouncing, the function call is postponed until the user stops typing for a specified period (e.g., 300ms). If the user types again before this time elapses, the timer resets.\n\n    **Typical use cases for debouncing include:**\n\n    *   Search box suggestions (wait until typing pauses before fetching results)\n    *   Auto-saving text fields (save only after the user stops typing)\n    *   Preventing double-clicks on buttons\n    *   Handling window resize or scroll events efficiently\n\n    **Example Debounce Function:**\n\n    JavaScript\n\n    ```css\n    function debounce(func, timeout = 500) {\n      let timer;\n      return function (...args) {\n        clearTimeout(timer);\n        timer = setTimeout(() => {\n          func.apply(this, args);\n        }, timeout);\n      };\n    }\n    ```\n\n    **Usage Example:**\n\n    JavaScript\n\n    ```css\n    function fetchResults() {\n      console.log(\"Fetching input suggestions\");\n    }\n    const processChange = debounce(fetchResults, 300);\n\n    // Attach to input element\n    <input type=\"text\" onkeyup=\"processChange()\" />\n\n    // Attach to button\n    <button onclick=\"processChange()\">Click me</button>\n\n    // Attach to window event\n    window.addEventListener(\"scroll\", processChange);\n    ```\n\n    **How it works:**  \n    When `processChange` is invoked (e.g., by typing or clicking), any pending execution is canceled, and the function is scheduled to run after the specified delay. If another event occurs before the delay is up, the timer resets, and the function will only run after events have stopped for the delay duration.\n\n    Debouncing is an essential tool for improving user experience and application performance, especially when dealing with events that can fire rapidly and repeatedly.\n\n **[\u2b06 Back to Top](#table-of-contents)**\n\n438.",
+      "options": [
+        {
+          "text": "Some of the most common use cases of observables are web sockets with push notifications, user input changes, repeating intervals, etc\n\n     **\u2b06 Back to Top**\n\n404",
+          "is_correct": false
+        },
+        {
+          "text": "js is a server-side platform built on Chrome's JavaScript runtime for easily building fast and scalable network applications",
+          "is_correct": false
+        },
+        {
+          "text": "Debouncing is a programming technique used to limit how often a function is executed",
+          "is_correct": true
+        },
+        {
+          "text": "The setTimeout() method is used to call a function or evaluate an expression after a specified number of milliseconds",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "What is throttling?",
+      "explanation": "Throttling is a programming technique used to control the rate at which a function is executed. When an event is triggered continuously\u2014such as during window resizing, scrolling, or mouse movement\u2014throttling ensures that the associated event handler is not called more often than a specified interval. This helps improve performance by reducing the number of expensive function calls and preventing performance bottlenecks.\n\n      **Common use cases:**\n\n      *   Window resize events\n      *   Scroll events\n      *   Mouse movement or drag events\n      *   API rate limiting\n\n      **How does throttling work?**  \n      Throttling will execute the function at most once every specified time interval, ignoring additional calls until the interval has passed.\n\n      **Example: Throttle Implementation and Usage**\n\n      JavaScript\n\n      ```css\n      // Simple throttle function: allows 'func' to run at most once every 'limit' ms\n      function throttle(func, limit) {\n        let inThrottle = false;\n        return function(...args) {\n          if (!inThrottle) {\n            func.apply(this, args);\n            inThrottle = true;\n            setTimeout(() => (inThrottle = false), limit);\n          }\n        };\n      }\n\n      // Usage: throttling a scroll event handler\n      function handleScrollAnimation() {\n        console.log('Scroll event triggered');\n      }\n\n      window.addEventListener(\n        \"scroll\",\n        throttle(handleScrollAnimation, 100) // Will run at most once every 100ms\n      );\n      ```\n     **[\u2b06 Back to Top](#table-of-contents)**\n\n439.",
+      "options": [
+        {
+          "text": "The setInterval() method is used to call a function or evaluate an expression at specified intervals (in milliseconds)",
+          "is_correct": false
+        },
+        {
+          "text": "Throttling is a programming technique used to control the rate at which a function is executed",
+          "is_correct": true
+        },
+        {
+          "text": "The variable `message` is still treated as closure(since it has been used in inner function) eventhough it has been declared after setTimeout function",
+          "is_correct": false
+        },
+        {
+          "text": "A callback function is a function passed into another function as an argument",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "What are the possible side-effects in javascript?",
+      "explanation": "A side effect is the modification of the state through the invocation of a function or expression. These side effects make our function impure by default. Below are some side effects which make function impure,\n\n- Making an HTTP request. Asynchronous functions such as fetch and promise are impure.\n- DOM manipulations\n- Mutating the input data\n- Printing to a screen or console: For example, console.log() and alert()\n- Fetching the current time\n- Math.random() calls: Modifies the internal state of Math object\n\n**[\u2b06 Back to Top](#table-of-contents)**\n\n448.",
+      "options": [
+        {
+          "text": "A callback function is a function passed into another function as an argument",
+          "is_correct": false
+        },
+        {
+          "text": "Some of the most common use cases of observables are web sockets with push notifications, user input changes, repeating intervals, etc\n\n     **\u2b06 Back to Top**\n\n404",
+          "is_correct": false
+        },
+        {
+          "text": "A side effect is the modification of the state through the invocation of a function or expression",
+          "is_correct": true
+        },
+        {
+          "text": "Async functions always return a promise",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "How to use await outside of async function prior to ES2022?",
+      "explanation": "Prior to ES2022, if you attempted to use an await outside of an async function resulted in a SyntaxError.\n\n     ```javascript\n     await Promise.resolve(console.log(\"Hello await\")); // SyntaxError: await is only valid in async function\n     ```\n\n     But you can fix this issue with an alternative IIFE (Immediately Invoked Function Expression) to get access to the feature.\n\n     ```javascript\n     (async function () {\n       await Promise.resolve(console.log(\"Hello await\")); // Hello await\n     })();\n     ```\n\n     In ES2022, you can write top-level await without writing any hacks.\n\n     ```javascript\n     await Promise.resolve(console.log(\"Hello await\")); //Hello await\n     ```\n\n**[\u2b06 Back to Top](#table-of-contents)**\n\n452.",
+      "options": [
+        {
+          "text": "Closures are a powerful feature in programming languages like JavaScript",
+          "is_correct": false
+        },
+        {
+          "text": "Both map and forEach functions are used to iterate over an arrays but there are some differences in their functionality",
+          "is_correct": false
+        },
+        {
+          "text": "Web speech API is used to enable modern browsers recognize and synthesize speech(i",
+          "is_correct": false
+        },
+        {
+          "text": "Prior to ES2022, if you attempted to use an await outside of an async function resulted in a SyntaxError",
+          "is_correct": true
+        }
+      ]
+    },
+    {
+      "text": "What are the uses of closures?",
+      "explanation": "Closures are a powerful feature in programming languages like JavaScript. They allow functions to retain access to variables from their containing (enclosing) scope even after the outer function has finished executing. This means that a function defined within another function can access variables from the outer function, even if the outer function has already returned.\n     Here are some common use cases of closures:\n\n- Data Privacy: Closures can be used to create private variables and methods. By defining variables within a function's scope and returning inner functions that have access to those variables, you can create a form of encapsulation, limiting access to certain data or functionality.\n\n- Function Factories: Closures are often used to create functions with pre-set parameters. This is useful when you need to create multiple functions with similar behavior but different configurations.\n\n- Callback Functions: Closures are frequently used in asynchronous programming, such as handling event listeners or AJAX requests. The inner function captures variables from the outer scope and can access them when the callback is invoked.\n\n- Memoization: Closures can be used for memoization, a technique to optimize performance by caching the results of expensive function calls. The inner function can remember the results of previous calls and return the cached result if the same input is provided again.\n\n- iterators and Generators: Closures can be used to create iterators and generators, which are essential for working with collections of data in modern JavaScript.\n\n**[\u2b06 Back to Top](#table-of-contents)**\n\n454.",
+      "options": [
+        {
+          "text": "Closures are a powerful feature in programming languages like JavaScript",
+          "is_correct": true
+        },
+        {
+          "text": "In JavaScript, **first-class functions(first-class citizens)** mean that functions are treated like any other variable",
+          "is_correct": false
+        },
+        {
+          "text": "If you don't know if a value is a promise or not, wrapping the value as `Promise",
+          "is_correct": false
+        },
+        {
+          "text": "A **Promise** is a JavaScript object that represents the eventual completion (or failure) of an asynchronous operation and its resulting value",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "What are the possible reasons for memory leaks?",
+      "explanation": "Memory leaks can lead to poor performance, slow loading times and even crashes in web applications. Some of the common causes of memory leaks are listed below,\n\n     1. The execessive usage of global variables or omitting the `var` keyword in local scope.\n     2. Forgetting to clear the timers set up by `setTimeout` or `setInterval`.\n     3. Closures retain references to variables from their parent scope, which leads to variables might not garbage collected even they are no longer used.\n\n456.",
+      "options": [
+        {
+          "text": "Memory leaks can lead to poor performance, slow loading times and even crashes in web applications",
+          "is_correct": true
+        },
+        {
+          "text": "There are several built-in higher order functions exists on arrays, strings, DOM and promise methods in javascript",
+          "is_correct": false
+        },
+        {
+          "text": "The process of executing a sequence of asynchronous tasks one after another using promises is known as Promise chaining",
+          "is_correct": false
+        },
+        {
+          "text": "The callbacks are needed because javascript is an event driven language",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "What are the examples of built-in higher order functions?",
+      "explanation": "There are several built-in higher order functions exists on arrays, strings, DOM and promise methods in javascript. These higher order functions provides significant level of abstraction. The list of functions on these categories are listed below,\n\n     1. **arrays:** map, filter, reduce, sort, forEach, some etc.\n     2. **DOM**: The DOM method `element.addEventListener(type, handler)` also accepts the function handler as a second argument.\n     3. **Strings:** replace() method.\n\n     **[\u2b06 Back to Top](#table-of-contents)**\n\n458.",
+      "options": [
+        {
+          "text": "The dynamic imports using `import()` function syntax allows us to load modules on demand by using promises or the async/await syntax",
+          "is_correct": false
+        },
+        {
+          "text": "A **Promise** is a JavaScript object that represents the eventual completion (or failure) of an asynchronous operation and its resulting value",
+          "is_correct": false
+        },
+        {
+          "text": "There are several built-in higher order functions exists on arrays, strings, DOM and promise methods in javascript",
+          "is_correct": true
+        },
+        {
+          "text": "You can nest one callback inside in another callback to execute the actions sequentially one by one",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "How do you create polyfills for map, filter and reduce methods?",
+      "explanation": "The polyfills for array methods such as map, filter and reduce methods can be created using array prototype.\n\n1.  **map:**\n\n    The built-in `Array.map` method syntax will be helpful to write polyfill. The map method takes the callback function as an argument and that callback function can have below three arguments passed into it.\n\n    i. Current value\n    ii. Index of current value(optional)\n    iii. array(optional)\n\n    The syntax would like below,\n\n    ```js\n    let newArray = arr.map(callback(currentValue[, index, arr) {\n       // return new array after executing the code\n    })\n    ```\n\n    Let's build our map polyfill based on the above syntax,\n\n    ```js\n    Array.prototype.myMap = function (cb) {\n      let newArr = [];\n      for (let i = 0; i < this.length; i++) {\n        newArr.push(cb(this[i], i, this));\n      }\n      return newArr;\n    };\n\n    const nums = [1, 2, 3, 4, 5];\n    const multiplyByTwo = nums.myMap((x) => x * 2);\n    console.log(multiplyByTwo); // [2, 4, 6, 8, 10]\n    ```\n\n    In the above code, custom method name 'myMap' has been used to avoid conflicts with built-in method.\n\n2.  **filter:**\n    Similar to map method, `Array.filter` method takes callback function as an argument and the callback function can have three agurguments passed into it.\n\n        i. Current value\n        ii. Index of current value(optional)\n        iii. array(optional)\n\n    The syntax looks like below,\n\n    ```js\n    let newArray = arr.filter(callback(currentValue[, index, arr) {\n      // return new array whose elements satisfy the callback conditions\n    })\n    ```\n\n    Let's build our filter polyfill based on the above syntax,\n\n    ```js\n    Array.prototype.myFilter = function (cb) {\n      let newArr = [];\n      for (let i = 0; i < this.length; i++) {\n        if (cb(this[i], i, this)) {\n          newArr.push(this[i]);\n        }\n      }\n      return newArr;\n    };\n\n    const nums = [1, 2, 3, 4, 5, 6];\n    const evenNums = nums.myFilter((x) => x % 2);\n    console.log(evenNums); // [2, 4, 6]\n    ```\n\n3.  **reduce:**\n\n          The built-in `Array.reduce` method syntax will be helpful to write our own polyfill. The reduce method takes the callback function as first argument and the initial value as second argument.\n\n          The callback function can have four arguments passed into it.\n          i. Accumulator\n          ii. Current value\n          iii. Index of current value(optional)\n          iv. array(optional)\n\n        The syntax would like below,\n\n        ```js\n        arr.reduce(callback((acc, curr, i, arr) => {}), initValue);\n        ```\n        Let's build our reduce polyfill based on the above syntax,\n\n        ```js\n        Array.prototype.myReduce = function(cb, initialValue) {\n            let accumulator = initialValue;\n            for(let i=0; i< this.length; i++) {\n                accumulator = accumulator ? cb(accumulator, this[i], i, this) : this[i];\n            }\n            return accumulator;\n        }\n          const nums = [1, 2, 3, 4, 5, 6];\n          const sum = nums.myReduce((acc, curr, i, arr) => {\n            return acc += curr\n          }, 0);\n          console.log(sum); // 21\n        ```\n\n    **[\u2b06 Back to Top](#table-of-contents)**\n\n460.",
+      "options": [
+        {
+          "text": "race() method will return the promise instance which is firstly resolved or rejected",
+          "is_correct": false
+        },
+        {
+          "text": "Both browser and NodeJS javascript environments throttles with a minimum delay that is greater than 0ms",
+          "is_correct": false
+        },
+        {
+          "text": "The polyfills for array methods such as map, filter and reduce methods can be created using array prototype",
+          "is_correct": true
+        },
+        {
+          "text": "While using asynchronous code, JavaScript\u2019s ES6 promises can make your life a lot easier without having callback pyramids and error handling on every second line",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "What is the difference between map and forEach functions?",
+      "explanation": "Both map and forEach functions are used to iterate over an arrays but there are some differences in their functionality.\n\n    1. **Returning values:** The `map` method returns a new array with transformed elements whereas `forEach` method returns `undefined` eventhough both of them are doing the same job.\n\n    ```javascript\n      const arr = [1, 2, 3, 4, 5];\n      arr.map(x => x * x); // [1, 4, 9, 16, 25]\n      arr.forEach(x => x * x); //\n\n      The `forEach()` method in JavaScript always returns undefined. This is because forEach() is used to iterate over arrays and perform side effects on each element, rather than returning a `new array or transforming the original array`\n    ```\n\n    2. **Chaining methods:** The `map` method is chainable. i.e, It can be attached with `reduce`, `filter`, `sort` and other methods as well. Whereas `forEach` cannot be attached with any other methods because it returns `undefined` value.\n\n    ```javascript\n    const arr = [1, 2, 3, 4, 5];\n    arr.map((x) => x * x).reduce((total, cur) => total + cur); // 55\n    arr.forEach((x) => x * x).reduce((total, cur) => total + cur); //Uncaught TypeError: Cannot read properties of undefine(reading 'reduce')\n    ```\n\n    3. **Mutation:** The `map` method doesn't mutate the original array by returning new array. Whereas `forEach` method also doesn't mutate the original array but it's callback is allowed to mutate the original array.\n\n    **Note:** Both these methods existed since ES5 onwards.\n\n**[\u2b06 Back to Top](#table-of-contents)**\n\n461.",
+      "options": [
+        {
+          "text": "The dynamic imports using `import()` function syntax allows us to load modules on demand by using promises or the async/await syntax",
+          "is_correct": false
+        },
+        {
+          "text": "Both map and forEach functions are used to iterate over an arrays but there are some differences in their functionality",
+          "is_correct": true
+        },
+        {
+          "text": "The `queueMicrotask` function is used to schedule a microtask, which is a function that will be executed asynchronously in the microtask queue",
+          "is_correct": false
+        },
+        {
+          "text": "Throttling is a programming technique used to control the rate at which a function is executed",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "What are the different ways to execute external scripts?",
+      "explanation": "There are three different ways to execute external scripts,\n\n     1. async: The script is downloaded in parallel to parsing the page, and executed as soon as it is available even before parsing completes. The parsing of the page is going to be interuppted once the script is downloaded completely and then the script is executed. Thereafter, the parsing of the remaining page will continue.\n\n        The syntax for async usage is as shown below,\n\n        ```html\n        <script src=\"demo.js\" async></script>\n        ```\n\n     2. defer: The script is downloaded in parallel to parsing the page, and executed after the page has finished parsing.\n\n        The syntax for defer usage is as shown below,\n\n        ```html\n        <script src=\"demo.js\" defer></script>\n        ```\n\n     3. Neither async or defer: The script is downloaded and executed immediately by blocking parsing of the page until the script execution is completed.\n\n     **Note:** You should only use either async or defer attribute if the `src` attribute is present.\n\n     **[\u2b06 Back to Top](#table-of-contents)**\n\n467.",
+      "options": [
+        {
+          "text": "You can nest one callback inside in another callback to execute the actions sequentially one by one",
+          "is_correct": false
+        },
+        {
+          "text": "Web speech API is used to enable modern browsers recognize and synthesize speech(i",
+          "is_correct": false
+        },
+        {
+          "text": "The callbacks are needed because javascript is an event driven language",
+          "is_correct": false
+        },
+        {
+          "text": "There are three different ways to execute external scripts,\n\n     1",
+          "is_correct": true
+        }
+      ]
+    },
+    {
+      "text": "Why is it important to remove event listeners after use?",
+      "explanation": "In JavaScript, you need to be mindful of removing event listeners to avoid memory leaks \u2014 especially in long-lived apps like single-page applications (SPAs) or when working with frameworks/libraries. Eventhough JavaScript has automatic garbage collection, memory leaks can still happen if:\n\n  1. A DOM element is removed, but a listener still references it.\n  2. A callback (event listener) holds a reference to a large object or closure that can't be cleaned up.\n  3. Global objects like window, document etc retain listeners indefinitely unless manually removed.\n\n  So if you add any event listeners to DOM element, it is a good practice to remove it after its usage as shown below,\n\n  ```javascript\n     const button = document.getElementById(\"btn\");\n\n      function handleClick() {\n        console.log(\"Clicked!\");\n      }\n\n      button.addEventListener(\"click\", handleClick);\n\n      // Always remove when done\n      button.removeEventListener(\"click\", handleClick);\n  ```\n\n  **[\u2b06 Back to Top](#table-of-contents)**\n477.",
+      "options": [
+        {
+          "text": "Arrow functions do **not** have their own `this`, `arguments`, `super`, or `new",
+          "is_correct": false
+        },
+        {
+          "text": "The creation of custom HTML elements involves two main steps,\n\n     1",
+          "is_correct": false
+        },
+        {
+          "text": "In JavaScript, you need to be mindful of removing event listeners to avoid memory leaks \u2014 especially in long-lived apps like single-page applications (SPAs) or when working with frameworks/libraries",
+          "is_correct": true
+        },
+        {
+          "text": "The clearTimeout() function is used in javascript to clear the timeout which has been set by setTimeout()function before that",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "#Answer: 4",
+      "explanation": "The statements order is based on the event loop mechanism. The order of statements follows the below order,\n\n1. At first, the main function is pushed to the stack.\n2. Then the browser pushes the first statement of the main function( i.e, A's console.log) to the stack, executing and popping out immediately.\n3. But `setTimeout` statement moved to Browser API to apply the delay for callback.\n4. In the meantime, C's console.log added to stack, executed and popped out.\n5. The callback of `setTimeout` moved from Browser API to message queue.\n6. The `main` function popped out from stack because there are no statements to execute\n7. The callback moved from message queue to the stack since the stack is empty.\n8. The `console.log` for B is added to the stack and display on the console.\n\n</p>\n</details>\n\n---\n\n**[\u2b06 Back to Top](#table-of-contents)**",
+      "options": [
+        {
+          "text": "In the above example:\n\n    *   A `Promise` is created to handle an asynchronous operation with `resolve` and `reject` callbacks",
+          "is_correct": false
+        },
+        {
+          "text": "Closures are a powerful feature in programming languages like JavaScript",
+          "is_correct": false
+        },
+        {
+          "text": "The statements order is based on the event loop mechanism",
+          "is_correct": true
+        },
+        {
+          "text": "The variable `message` is still treated as closure(since it has been used in inner function) eventhough it has been declared after setTimeout function",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "#Answer: 1",
+      "explanation": "Async functions always return a promise. But even if the return value of an async function is not explicitly a promise, it will be implicitly wrapped in a promise. The above async function is equivalent to below expression,\n\n```javascript\nfunction func() {\n  return Promise.resolve(10);\n}\n```\n\n</p>\n</details>\n\n---\n\n**[\u2b06 Back to Top](#table-of-contents)**",
+      "options": [
+        {
+          "text": "Async functions always return a promise",
+          "is_correct": true
+        },
+        {
+          "text": "Arrow functions do **not** have their own `this`, `arguments`, `super`, or `new",
+          "is_correct": false
+        },
+        {
+          "text": "The polyfills for array methods such as map, filter and reduce methods can be created using array prototype",
+          "is_correct": false
+        },
+        {
+          "text": "The clearInterval() function is used in javascript to clear the interval which has been set by setInterval() function",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "#Answer: 4",
+      "explanation": "The await expression returns value 10 with promise resolution and the code after each await expression can be treated as existing in a `.then` callback. In this case, there is no return expression at the end of the function. Hence, the default return value of `undefined` is returned as the resolution of the promise. The above async function is equivalent to below expression,\n\n```javascript\nfunction func() {\n  return Promise.resolve(10).then(() => undefined);\n}\n```\n\n</p>\n</details>\n\n---\n\n**[\u2b06 Back to Top](#table-of-contents)**",
+      "options": [
+        {
+          "text": "Until a few days back, One shortcoming of native promises is no direct way to cancel a fetch request",
+          "is_correct": false
+        },
+        {
+          "text": "The await expression returns value 10 with promise resolution and the code after each await expression can be treated as existing in a `",
+          "is_correct": true
+        },
+        {
+          "text": "A callback function is a function passed into another function as an argument",
+          "is_correct": false
+        },
+        {
+          "text": "**Set Timeout:** setTimeout() is to schedule execution of a one-time callback after delay milliseconds",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "#Answer: 1",
+      "explanation": "Even though \u201cprocessArray\u201d is an async function, the anonymous function that we use for `forEach` is synchronous. If you use await inside a synchronous function then it throws a syntax error.\n\n</p>\n\n</details>\n\n---\n\n**[\u2b06 Back to Top](#table-of-contents)**",
+      "options": [
+        {
+          "text": "Debouncing is a programming technique used to limit how often a function is executed",
+          "is_correct": false
+        },
+        {
+          "text": "Even though \u201cprocessArray\u201d is an async function, the anonymous function that we use for `forEach` is synchronous",
+          "is_correct": true
+        },
+        {
+          "text": "```javascript\nconsole",
+          "is_correct": false
+        },
+        {
+          "text": "Arrow functions do **not** have their own `this`, `arguments`, `super`, or `new",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "#Answer: 4",
+      "explanation": "The forEach method will not wait until all items are finished but it just runs the tasks and goes next. Hence, the last statement is displayed first followed by a sequence of promise resolutions.\n\nBut you control the array sequence using for..of loop,\n\n```javascript\nasync function processArray(array) {\n  for (const item of array) {\n    await delayedLog(item);\n  }\n  console.log(\"Process completed!\");\n}\n```\n\n</p>\n</details>\n\n---\n\n**[\u2b06 Back to Top](#table-of-contents)**",
+      "options": [
+        {
+          "text": "The forEach method will not wait until all items are finished but it just runs the tasks and goes next",
+          "is_correct": true
+        },
+        {
+          "text": "There are three different ways to execute external scripts,\n\n     1",
+          "is_correct": false
+        },
+        {
+          "text": "The polyfills for array methods such as map, filter and reduce methods can be created using array prototype",
+          "is_correct": false
+        },
+        {
+          "text": "Promises have three states:\n\n    1",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "#Answer: 3",
+      "explanation": "Even though a promise is resolved immediately, it won't be executed immediately because its **.then/catch/finally** handlers or callbacks(aka task) are pushed into the queue. Whenever the JavaScript engine becomes free from the current program, it pulls a task from the queue and executes it. This is the reason why last statement is printed first before the log of promise handler.\n\n**Note:** We call the above queue as \"MicroTask Queue\"\n\n</p>\n\n</details>\n\n---\n\n**[\u2b06 Back to Top](#table-of-contents)**",
+      "options": [
+        {
+          "text": "Throttling is a programming technique used to control the rate at which a function is executed",
+          "is_correct": false
+        },
+        {
+          "text": "Even though a promise is resolved immediately, it won't be executed immediately because its **",
+          "is_correct": true
+        },
+        {
+          "text": "The problem with service worker is that it gets terminated when not in use, and restarted when it's next needed, so you cannot rely on global state within a service worker's `onfetch` and `onmessage` handlers",
+          "is_correct": false
+        },
+        {
+          "text": "**Set Timeout:** setTimeout() is to schedule execution of a one-time callback after delay milliseconds",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "#Answer: 4",
+      "explanation": "When the JavaScript engine parses the above code, the first two statements are asynchronous which will be executed later and third statement is synchronous statement which will be moved to callstack, executed and prints the number 3 in the console. Next, Promise is native in ES6 and it will be moved to Job queue which has high priority than callback queue in the execution order. At last, since setTimeout is part of WebAPI the callback function moved to callback queue and executed. Hence, you will see number 2 printed first followed by 1.\n\n</details>\n\n---\n\n**[\u2b06 Back to Top](#table-of-contents)**",
+      "options": [
+        {
+          "text": "When the JavaScript engine parses the above code, the first two statements are asynchronous which will be executed later and third statement is synchronous statement which will be moved to callstack, executed and prints the number 3 in the console",
+          "is_correct": true
+        },
+        {
+          "text": "Both browser and NodeJS javascript environments throttles with a minimum delay that is greater than 0ms",
+          "is_correct": false
+        },
+        {
+          "text": "In JavaScript, **first-class functions(first-class citizens)** mean that functions are treated like any other variable",
+          "is_correct": false
+        },
+        {
+          "text": "The postMessages are synchronous in IE8 browser but they are asynchronous in IE9 and all other modern browsers (i",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "#Answer: 3",
+      "explanation": "The variable `message` is still treated as closure(since it has been used in inner function) eventhough it has been declared after setTimeout function. The function with in setTimeout function will be sent to WebAPI and the variable declaration executed with in 5 seconds with the assigned value. Hence, the text declared for the variable will be displayed.\n\n</p>\n</details>\n\n---\n\n**[\u2b06 Back to Top](#table-of-contents)**",
+      "options": [
+        {
+          "text": "An Observable is basically a function that can return a stream of values either synchronously or asynchronously to an observer over time",
+          "is_correct": false
+        },
+        {
+          "text": "The clearInterval() function is used in javascript to clear the interval which has been set by setInterval() function",
+          "is_correct": false
+        },
+        {
+          "text": "The variable `message` is still treated as closure(since it has been used in inner function) eventhough it has been declared after setTimeout function",
+          "is_correct": true
+        },
+        {
+          "text": "The dynamic imports using `import()` function syntax allows us to load modules on demand by using promises or the async/await syntax",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "#Answer: 3",
+      "explanation": "The above promises settled at the same time but one of them resolved and other one rejected. When you use `.all` method on these promises, the result will be short circuted by throwing an error due to rejection in second promise. But If you use `.allSettled` method then result of both the promises will be returned irrespective of resolved or rejected promise status without throwing any error.\n\n```javascript\nPromise.allSettled([promiseOne, promiseTwo]).then((data) => console.log(data));\n```\n\n</p>\n</details>\n\n---\n\n**[\u2b06 Back to Top](#table-of-contents)**",
+      "options": [
+        {
+          "text": "The above promises settled at the same time but one of them resolved and other one rejected",
+          "is_correct": true
+        },
+        {
+          "text": "A side effect is the modification of the state through the invocation of a function or expression",
+          "is_correct": false
+        },
+        {
+          "text": "You can nest one callback inside in another callback to execute the actions sequentially one by one",
+          "is_correct": false
+        },
+        {
+          "text": "An async function is a function declared with the `async` keyword which enables asynchronous, promise-based behavior to be written in a cleaner style by avoiding promise chains",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "#Answer: 3",
+      "explanation": "If you put `setTimeout` and `setInterval` methods inside the try clause and an exception is thrown, the catch clause will not catch any of them. This is because the try...catch statement works synchronously, and the function in the above code is executed asynchronously after a certain period of time. Hence, you will see runtime exception without catching the error. To resolve this issue, you have to put the try...catch block inside the function as below,\n\n```javascript\nsetTimeout(() => {\n  try {\n    console.log(\"try block\");\n    throw new Error(`An exception is thrown`);\n  } catch (err) {\n    console.log(\"Error: \", err);\n  }\n}, 1000);\n```\n\nYou can use `.catch()` function in promises to avoid these issues with asynchronous code.\n\n</p>\n</details>\n\n---\n\n**[\u2b06 Back to Top](#table-of-contents)**",
+      "options": [
+        {
+          "text": "The postMessages are synchronous in IE8 browser but they are asynchronous in IE9 and all other modern browsers (i",
+          "is_correct": false
+        },
+        {
+          "text": "If you put `setTimeout` and `setInterval` methods inside the try clause and an exception is thrown, the catch clause will not catch any of them",
+          "is_correct": true
+        },
+        {
+          "text": "The asynchronous thunks are useful to make network requests",
+          "is_correct": false
+        },
+        {
+          "text": "A microtask is a type of JavaScript callback that is scheduled to run immediately after the currently executing script and before the next event loop tick",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "What is the time taken to execute below timeout callback?",
+      "explanation": "```javascript\nconsole.log(\"Start code\");\n\nsetTimeout(function () {\n  console.log(\"Callback code\");\n}, 5000);\n\nconsole.log(\"After callback\");\n\nlet startTime = new Date().getTime();\nlet endTime = startTime;\n\nwhile (endTime <= startTime + 10000) {\n  endTime = new Date().getTime();\n}\n\nconsole.log(\"End code\");\n```\n\n- 1: > 10 sec\n- 2: Immediately\n- 3: < 10 sec\n- 4: <= 5sec\n\n<details><summary><b>Answer</b></summary>\n<p>",
+      "options": [
+        {
+          "text": "Web speech API is used to enable modern browsers recognize and synthesize speech(i",
+          "is_correct": false
+        },
+        {
+          "text": "The clearInterval() function is used in javascript to clear the interval which has been set by setInterval() function",
+          "is_correct": false
+        },
+        {
+          "text": "```javascript\nconsole",
+          "is_correct": true
+        },
+        {
+          "text": "A callback function is a function passed into another function as an argument",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "#Answer: 1",
+      "explanation": "Even though there is a timer of 5 seconds supplied to `setTimeout` callback, it won't get executed until the main thread is free and finished executing the remaining part of the code. In this example, the remaining code(while loop) takes 10seconds to finish it's execution. In the mean time, the callback will be stored in callback queue upon completion of its 5 seconds timer. After 10 seconds, the callback will be moved to callstack because the callstack is empty by poping out global execution context.\n\n</p>\n</details>\n\n**[\u2b06 Back to Top](#table-of-contents)**",
+      "options": [
+        {
+          "text": "Even though there is a timer of 5 seconds supplied to `setTimeout` callback, it won't get executed until the main thread is free and finished executing the remaining part of the code",
+          "is_correct": true
+        },
+        {
+          "text": "In JavaScript, there are multiple event loops that can be used depending on the context of your application",
+          "is_correct": false
+        },
+        {
+          "text": "Browsers provide an XMLHttpRequest object which can be used to make asynchronous HTTP requests from JavaScript by passing the 3rd parameter as true",
+          "is_correct": false
+        },
+        {
+          "text": "While using asynchronous code, JavaScript\u2019s ES6 promises can make your life a lot easier without having callback pyramids and error handling on every second line",
+          "is_correct": false
+        }
+      ]
+    }
+  ]
+}
