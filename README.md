@@ -1,160 +1,82 @@
-# Coding Quiz API (B2B Managed Learning Platform)
+# Coding Quiz API (In-Memory Learning Platform)
 
-A RESTful API designed for a B2B2C model where developers can create quizzes and manage their own users' learning progress. Built with Rust, Actix-web, PostgreSQL, and SQLx.
+A RESTful API designed for developers to create quizzes and practice coding concepts. Completely in-memory, stateless, and public. Built with Rust and Actix-web.
 
-## Architecture: Managed B2B
+## Architecture: In-Memory & Public
 
-This API operates on a B2B2C model:
-1.  **Developers** register and manage content (Quizzes, Categories) and obtain an API Key.
-2.  **Developers** register their **Users** (End-Users) via the API throughout their own application lifecycle.
-3.  **Consumption**: Developers use their API Key to fetch quizzes, submit answers on behalf of their users, and track user history.
+This API operates as a stateless service:
+1.  **Public Access**: No authentication required. All endpoints are open.
+2.  **In-Memory**: All data (quizzes, categories) is loaded from JSON seed files at startup.
+3.  **Stateless**: No database persistence. Restarting the server resets the state.
 
 ## Features
 
--   **Dual Authentication**:
-    -   **JWT (Bearer)**: For Management (Developers creating quizzes, generating API keys).
-    -   **API Key (`X-API-Key`)**: For Consumption (Client apps registering users, solving quizzes).
--   **User Management**: Developers can create and delete "Quiz Users" scoped to their account.
--   **Stateful Learning**: Tracks which quizzes a user has solved.
--   **Smart Content Delivery**: `GET /quizzes/random` allows fetching random unsolved quizzes, filtering by tag or category.
--   **Verified Content**: Questions must be explicitly verified (`PUT /questions/{id}/verify`) to be visible to consumers.
+-   **Public API**: No API Keys or JWTs needed.
+-   **In-Memory Speed**: Extremely fast response times.
+-   **JSON Seeding**: Easy to extend content by adding JSON files to `seed/`.
+-   **Smart Content Delivery**: `GET /quizzes/random` allows fetching random quizzes, filtering by tag.
 -   **OpenAPI Documentation**: Interactive API docs via Swagger UI.
 
 ## Prerequisites
 
 -   **Rust** (latest stable)
--   **PostgreSQL** (running locally or via Docker)
--   **SQLx CLI** (for migrations): `cargo install sqlx-cli`
--   **Docker** (optional, for containerized run)
 
 ## Setup
 
 1.  **Clone the repository**.
 
-2.  **Environment Variables**:
-    Create a `.env` file in the root directory:
-    ```env
-    DATABASE_URL=postgres://postgres:password@localhost:5432/coding_quiz_api
-    RUST_LOG=info
-    ```
-
-3.  **Database Setup**:
+2.  **Run the Server**:
     ```bash
-    # Create database
-    sqlx database create
-
-    # Run migrations
-    sqlx migrate run
-    ```
-
-4.  **Run the Server**:
-    **Local:**
-    ```bash
-    # Ensure DB is running (e.g., via docker compose up db)
     cargo run
-    ```
-    *Note: If building gives "Connection refused" errors, run `SQLX_OFFLINE=true cargo build`.*
-
-    **Docker:**
-    ```bash
-    # Build and run
-    docker compose up --build
     ```
 
 ## API Documentation
 
-The API documentation is split into two interfaces:
+The API documentation is available at:
 
-*   **Public (Consumption)**: `http://localhost:8080/swagger-ui/public/`
-    *   Auth: `X-API-Key`
-    *   Endpoints: Quizzes, User History, Stats, Tags.
-*   **Private (Management)**: `http://localhost:8080/swagger-ui/private/`
-    *   Auth: `Bearer <JWT>` (API), **Basic Auth** (UI).
-    *   **UI Credentials**: `admin` / `password` (Default).
-    *   Set `SWAGGER_USERNAME` and `SWAGGER_PASSWORD` to change.
-    *   Endpoints: Content Creation, API Key Generation.
+*   **Swagger UI**: `http://localhost:8080/swagger-ui/`
+    *   Endpoints: Quizzes, Categories, Solving.
 
 ### Key Features
-*   **Search**: Filter quizzes by title (`GET /quizzes?search=Rust`).
-*   **Difficulty**: Quizzes are classified as `Easy`, `Medium`, or `Hard`.
-*   **Advanced Filtering**: Filter random quizzes by multiple tags and difficulty.
-*   **User Stats**: Track user accuracy and total quizzes taken.
+*   **Search**: Filter quizzes by title or category.
+*   **Random Quiz**: Get a random quiz to solve.
+*   **Tags**: Filter content by specific topics (e.g., `rust`, `javascript`).
 
-## Database Management
+## Data Seeding
 
-### Migrations
-The project uses `sqlx` for migrations.
--   **Run Migrations**: `sqlx migrate run`
--   **Create Migration**: `sqlx migrate add <name>`
--   **Revert Last**: `sqlx migrate revert`
-
-### Scripts & Seeding
-We included utility scripts in the `scripts/` and `seed/` directories.
-
-**Seeding the Database:**
-To populate the database with initial categories and quizzes:
-```bash
-# Verify database connection first
-cargo run --bin check_db
-
-# Run the seeder
-cargo run --bin seed
-```
-*Note: Make sure your server or DB is reachable.*
-
-**Resetting the Database (Docker):**
-If you encounter `VersionMissing` or sync errors:
-```bash
-docker compose down -v  # Deletes volume!
-docker compose up --build
-```
+The application automatically loads quizzes from the `seed/` directory on startup.
+-   To add more quizzes, simply add a valid JSON file to `seed/javascript/` (or create new folders) and restart the server.
 
 ## API Reference
 
-### 1. Management (Developer - JWT)
-*Authentication*: `Authorization: Bearer <jwt_token>`
-
--   `POST /developer/register`: Register as a developer.
--   `POST /developer/login`: Login to get JWT.
--   `POST /developer/api-keys`: Generate an API Key for your application.
--   `POST /quizzes`: Create a new quiz.
--   `PUT /questions/{id}/verify`: Verify a question (make it public).
+### 1. Management (Public)
+-   `POST /categories`: Create a new category (Ephemeral).
+-   `POST /quizzes`: Create a new quiz (Ephemeral).
 -   `PUT /quizzes/{id}`: Update a quiz.
 -   `DELETE /quizzes/{id}`: Delete a quiz.
 
-### 2. Consumption (Client App - API Key)
-*Authentication*: `X-API-Key: <your_api_key>`
-
-#### User Management
--   `POST /users`: Register a new end-user (e.g., `alice@example.com`).
--   `DELETE /users/{email}`: Delete a user and their history.
--   `GET /users/{email}/history`: Get all quiz attempts for a user.
-
-#### Quiz Consumption
+### 2. Consumption (Public)
+-   `GET /categories`: List all categories.
 -   `GET /quizzes`: List all quizzes.
--   `GET /quizzes/{id}`: Get details for a specific quiz (Verified questions only).
+-   `GET /quizzes/{id}`: Get details for a specific quiz.
 -   `GET /quizzes/random`: Get a random quiz.
-    -   `?user_email=alice@example.com` (Required): Scopes to user history.
     -   `?tag=rust` (Optional): Filter by tag.
-    -   `?category_id=...` (Optional): Filter by category.
-    -   `?include_solved=true` (Optional): Include quizzes already solved (default false).
 
 #### Solving
 -   `POST /quizzes/{id}/solve`: Submit an answer.
     ```json
     {
-      "user_email": "alice@example.com",
       "question_id": "...",
       "option_id": "..."
     }
     ```
-    *Records the attempt in the user's history.*
+    *Returns correct/incorrect status and explanation.*
 
 ## Testing REST Clients
-Use the `.rest` files in the `requests/` directory with the [REST Client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) extension for VS Code.
+Use the `.rest` files in the `rest_client/` directory with the [REST Client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) extension for VS Code.
 
--   `requests/management.rest`: For registering, login, and creating content.
--   `requests/consumption.rest`: For simulating the client app flow (register user -> solve -> history).
+-   `rest_client/management.rest`: For creating content.
+-   `rest_client/consumption.rest`: For solving quizzes.
 
 ## License
 MIT

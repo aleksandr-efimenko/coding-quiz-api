@@ -1,61 +1,36 @@
 @baseUrl = http://127.0.0.1:8080
-@apiKey = b2T2K05nVbGRs8NrqDauaLMHLNYeMiFj
-@userEmail = alice@example.com
 
 # -----------------------------------------------------
-# CONSUMPTION API (Requires API Key)
+# CONSUMPTION API (Public)
 # -----------------------------------------------------
 
-### 1. Register Quiz User
-POST {{baseUrl}}/users
-X-API-Key: {{apiKey}}
-Content-Type: application/json
+### 1. List Quizzes
+GET {{baseUrl}}/quizzes?page=1&per_page=50
 
-{
-    "email": "{{userEmail}}"
-}
+### 2. List Quizzes (with filtering)
+# Works but strict match on in-memory filter usually
+GET {{baseUrl}}/quizzes?page=1&per_page=10
 
-### 2. List Quizzes (with Search)
-GET {{baseUrl}}/quizzes?page=1&per_page=50&search=rust
-X-API-Key: {{apiKey}}
-
-### 3. Get Random Quiz (Smart - excludes solved)
-GET {{baseUrl}}/quizzes/random?user_email={{userEmail}}
-X-API-Key: {{apiKey}}
+### 3. Get Random Quiz
+GET {{baseUrl}}/quizzes/random
 
 ### 4. Get Random Quiz (With Filters)
-# Filter by tag, category, and optionally include solved quizzes
-GET {{baseUrl}}/quizzes/random?user_email={{userEmail}}&tags=rust,async&difficulty=Medium&include_solved=true
-X-API-Key: {{apiKey}}
+# Filter by tag
+GET {{baseUrl}}/quizzes/random?tag=javascript
 
 ### 5. Solve Quiz
 # Replace with valid IDs from List or Random response
-@quizId = REPLACE_WITH_QUIZ_ID
-@questionId = REPLACE_WITH_QUESTION_ID
-@optionId = REPLACE_WITH_OPTION_ID
+@quizId = 0E9S17M560002
+@questionId = 0E9S17M560003
+@optionId = 0E9S17M560004
 
 POST {{baseUrl}}/quizzes/{{quizId}}/solve
-X-API-Key: {{apiKey}}
 Content-Type: application/json
 
 {
-    "user_email": "{{userEmail}}",
     "question_id": "{{questionId}}",
     "option_id": "{{optionId}}"
 }
 
-### 6. Get User History
-GET {{baseUrl}}/users/{{userEmail}}/history
-X-API-Key: {{apiKey}}
-
-### 7. Delete Quiz User (Cleanup)
-DELETE {{baseUrl}}/users/{{userEmail}}
-X-API-Key: {{apiKey}}
-
-### 8. List Tags (Discovery)
-GET {{baseUrl}}/tags
-X-API-Key: {{apiKey}}
-
-### 9. Get User Stats
-GET {{baseUrl}}/users/{{userEmail}}/stats
-X-API-Key: {{apiKey}}
+### 6. List Categories
+GET {{baseUrl}}/categories

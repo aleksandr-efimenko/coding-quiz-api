@@ -1,61 +1,29 @@
 @baseUrl = http://127.0.0.1:8080
-@developerToken = {{login.response.body.token}}
 
 # -----------------------------------------------------
-# MANAGEMENT API (Requires JWT)
+# MANAGEMENT API (Public/Ephemeral)
 # -----------------------------------------------------
 
-### Health Check (System)
+### Health Check
 GET {{baseUrl}}/health
 
-### 1. Register Developer
-POST {{baseUrl}}/developer/register
-Content-Type: application/json
-
-{
-  "username": "dev_user_new",
-  "password": "password123"
-}
-
-### 2. Login Developer (Get JWT)
-# @name login
-POST {{baseUrl}}/developer/login
-Content-Type: application/json
-
-{
-  "username": "dev_user_new",
-  "password": "password123"
-}
-
-### 3. Generate API Key
-# @name generate_key
-POST {{baseUrl}}/developer/api-keys
-Authorization: Bearer {{developerToken}}
-
-### 4. Get Developer Profile
-GET {{baseUrl}}/developer/me
-Authorization: Bearer {{developerToken}}
-
-### 5. Create Category
+### 1. Create Category
 # @name create_category
 POST {{baseUrl}}/categories
-Authorization: Bearer {{developerToken}}
 Content-Type: application/json
 
 {
   "name": "Rust Programming"
 }
 
-### 6. Create Quiz
-@categoryId = {{create_category.response.body.id}}
+### 2. Create Quiz
 # @name create_quiz
 POST {{baseUrl}}/quizzes
-Authorization: Bearer {{developerToken}}
 Content-Type: application/json
 
 {
     "title": "Rust Basics",
-    "category_id": "{{categoryId}}", 
+    "category_id": null, 
     "tags": ["rust", "variables"],
     "questions": [
         {
@@ -69,10 +37,9 @@ Content-Type: application/json
     ]
 }
 
-### 7. Update Quiz
+### 3. Update Quiz
 @quizId = {{create_quiz.response.body.id}}
 PUT {{baseUrl}}/quizzes/{{quizId}}
-Authorization: Bearer {{developerToken}}
 Content-Type: application/json
 
 {
@@ -80,6 +47,5 @@ Content-Type: application/json
     "tags": ["rust", "variables", "updated"]
 }
 
-### 8. Delete Quiz
+### 4. Delete Quiz
 # DELETE {{baseUrl}}/quizzes/{{quizId}}
-# Authorization: Bearer {{developerToken}}
