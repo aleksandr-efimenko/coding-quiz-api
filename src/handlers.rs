@@ -8,7 +8,7 @@ use crate::models::{
 };
 use crate::state::AppState;
 use crate::auth;
-use uuid::Uuid;
+use crate::id::Id;
 
 #[utoipa::path(
     get,
@@ -41,7 +41,7 @@ pub async fn create_quiz(
     req: web::Json<CreateQuizRequest>,
     _: auth::JwtMiddleware, // Require auth
 ) -> impl Responder {
-    let quiz_id = Uuid::new_v4();
+    let quiz_id = Id::new();
     
     // Start transaction
     let mut tx = match data.db.begin().await {
@@ -51,9 +51,9 @@ pub async fn create_quiz(
 
     if let Err(_) = sqlx::query!(
         "INSERT INTO quizzes (id, title, category_id) VALUES ($1, $2, $3)",
-        quiz_id,
+        quiz_id as Id,
         req.title,
-        req.category_id
+        req.category_id as Option<Id>
     )
     .execute(&mut *tx)
     .await {
@@ -63,11 +63,11 @@ pub async fn create_quiz(
     let mut response_questions = Vec::new();
 
     for q in &req.questions {
-        let question_id = Uuid::new_v4();
+        let question_id = Id::new();
         if let Err(_) = sqlx::query!(
             "INSERT INTO questions (id, quiz_id, text, explanation) VALUES ($1, $2, $3, $4)",
-            question_id,
-            quiz_id,
+            question_id as Id,
+            quiz_id as Id,
             q.text,
             q.explanation
         )
@@ -78,11 +78,11 @@ pub async fn create_quiz(
 
         let mut response_options = Vec::new();
         for o in &q.options {
-            let option_id = Uuid::new_v4();
+            let option_id = Id::new();
             if let Err(_) = sqlx::query!(
                 "INSERT INTO question_options (id, question_id, text, is_correct) VALUES ($1, $2, $3, $4)",
-                option_id,
-                question_id,
+                option_id as Id,
+                question_id as Id,
                 o.text,
                 o.is_correct
             )
@@ -110,20 +110,20 @@ pub async fn create_quiz(
             // Upsert tag
             let tag_id = match sqlx::query!(
                 "INSERT INTO tags (id, name) VALUES ($1, $2) ON CONFLICT (name) DO UPDATE SET name = EXCLUDED.name RETURNING id",
-                Uuid::new_v4(),
+                Id::new() as Id,
                 tag_name
             )
             .fetch_one(&mut *tx)
             .await {
-                Ok(rec) => rec.id,
+                Ok(rec) => Id::from(rec.id), // DB id is i64
                 Err(_) => return HttpResponse::InternalServerError().body("Failed to upsert tag"),
             };
 
             // Link quiz to tag
             if let Err(_) = sqlx::query!(
                 "INSERT INTO quiz_tags (quiz_id, tag_id) VALUES ($1, $2) ON CONFLICT DO NOTHING",
-                quiz_id,
-                tag_id
+                quiz_id as Id,
+                tag_id as Id
             )
             .execute(&mut *tx)
             .await {
@@ -151,7 +151,7 @@ pub async fn create_quiz(
     path = "/quizzes/{id}",
     tag = "Consumption",
     params(
-        ("id" = Uuid, Path, description = "Quiz ID")
+        ("id" = Id, Path, description = "Quiz ID")
     ),
     responses(
         (status = 200, description = "Get Quiz by ID", body = Quiz),
@@ -165,14 +165,14 @@ pub async fn create_quiz(
 )]
 pub async fn get_quiz(
     data: web::Data<AppState>,
-    path: web::Path<uuid::Uuid>,
+    path: web::Path<Id>,
     auth: auth::ApiKeyMiddleware,
 ) -> impl Responder {
     // Log usage
     let _ = sqlx::query!(
         "INSERT INTO usage_logs (id, api_key_id, endpoint, status_code) VALUES ($1, $2, $3, $4)",
-        Uuid::new_v4(),
-        auth.api_key_id,
+        Id::new() as Id,
+        auth.api_key_id as Id,
         "get_quiz",
         200
     )
@@ -183,7 +183,7 @@ pub async fn get_quiz(
     
     let rec = match sqlx::query!(
         "SELECT id, title, category_id FROM quizzes WHERE id = $1",
-        quiz_id
+        quiz_id as Id
     )
     .fetch_optional(&data.db)
     .await {
@@ -193,9 +193,9 @@ pub async fn get_quiz(
     };
 
     let mut full_quiz = Quiz {
-        id: rec.id,
+        id: Id::from(rec.id),
         title: rec.title,
-        category_id: rec.category_id,
+        category_id: rec.category_id.map(Id::from),
         questions: vec![],
         tags: vec![],
     };
@@ -230,7 +230,7 @@ pub async fn get_quiz(
     // Fetch tags
     let tags = match sqlx::query!(
         "SELECT t.name FROM tags t JOIN quiz_tags qt ON t.id = qt.tag_id WHERE qt.quiz_id = $1",
-        quiz_id
+        quiz_id as Id
     )
     .fetch_all(&data.db)
     .await {
@@ -244,7 +244,7 @@ pub async fn get_quiz(
 
 #[derive(serde::Deserialize, utoipa::IntoParams)]
 pub struct ListQuizzesFilter {
-    category_id: Option<Uuid>,
+    category_id: Option<Id>,
     pub exclude_ids: Option<String>,
     pub page: Option<u32>,
     pub per_page: Option<u32>,
@@ -270,8 +270,8 @@ pub async fn list_quizzes(
     // Log usage
     let _ = sqlx::query!(
         "INSERT INTO usage_logs (id, api_key_id, endpoint, status_code) VALUES ($1, $2, $3, $4)",
-        Uuid::new_v4(),
-        auth.api_key_id,
+        Id::new() as Id,
+        auth.api_key_id as Id,
         "list_quizzes",
         200
     )
@@ -291,7 +291,7 @@ pub async fn list_quizzes(
     if let Some(ex_ids) = &filter.exclude_ids {
         let ids: Vec<String> = ex_ids.split(',')
             .map(|s| s.trim())
-            .filter_map(|s| Uuid::parse_str(s).ok())
+            .filter_map(|s| s.parse::<Id>().ok())
             .map(|u| format!("'{}'", u))
             .collect();
         
@@ -343,7 +343,7 @@ pub async fn list_quizzes(
     request_body = SubmitAnswerRequest,
     tag = "Consumption",
     params(
-        ("id" = Uuid, Path, description = "Quiz ID")
+        ("id" = Id, Path, description = "Quiz ID")
     ),
     responses(
         (status = 200, description = "Answer result", body = AnswerResponse),
@@ -357,15 +357,15 @@ pub async fn list_quizzes(
 )]
 pub async fn submit_answer(
     data: web::Data<AppState>,
-    _path: web::Path<uuid::Uuid>,
+    _path: web::Path<Id>,
     req: web::Json<SubmitAnswerRequest>,
     auth: auth::ApiKeyMiddleware,
 ) -> impl Responder {
     // Log usage
     let _ = sqlx::query!(
         "INSERT INTO usage_logs (id, api_key_id, endpoint, status_code) VALUES ($1, $2, $3, $4)",
-        Uuid::new_v4(),
-        auth.api_key_id,
+        Id::new() as Id,
+        auth.api_key_id as Id,
         "submit_answer",
         200
     )
@@ -375,8 +375,8 @@ pub async fn submit_answer(
     // Determine correctness (stateless check)
     let is_correct = match sqlx::query!(
         "SELECT is_correct FROM question_options WHERE id = $1 AND question_id = $2",
-        req.option_id,
-        req.question_id
+        req.option_id as Id,
+        req.question_id as Id
     )
     .fetch_optional(&data.db)
     .await {
@@ -388,7 +388,7 @@ pub async fn submit_answer(
     // Fetch explanation
     let question_data = match sqlx::query!(
         "SELECT explanation FROM questions WHERE id = $1",
-        req.question_id
+        req.question_id as Id
     )
     .fetch_optional(&data.db)
     .await {
@@ -426,11 +426,11 @@ pub async fn auth_register(
         Err(_) => return HttpResponse::InternalServerError().body("Hashing failed"),
     };
 
-    let user_id = Uuid::new_v4();
+    let user_id = Id::new();
 
     if let Err(_) = sqlx::query!(
         "INSERT INTO developers (id, username, password_hash) VALUES ($1, $2, $3)",
-        user_id,
+        user_id as Id,
         req.username,
         password_hash
     )
@@ -473,7 +473,7 @@ pub async fn auth_login(
         return HttpResponse::Unauthorized().body("Invalid credentials");
     }
 
-    let token = match auth::create_token(&user.username) {
+    let token = match auth::create_token(&user.username, user.id) {
         Ok(t) => t,
         Err(_) => return HttpResponse::InternalServerError().body("Token creation failed"),
     };
@@ -500,10 +500,10 @@ pub async fn create_category(
     req: web::Json<CreateCategoryRequest>,
     _: auth::JwtMiddleware,
 ) -> impl Responder {
-    let category_id = Uuid::new_v4();
+    let category_id = Id::new();
     if let Err(_) = sqlx::query!(
         "INSERT INTO categories (id, name) VALUES ($1, $2)",
-        category_id,
+        category_id as Id,
         req.name
     )
     .execute(&data.db)
@@ -533,8 +533,8 @@ pub async fn list_categories(
     // Log usage
     let _ = sqlx::query!(
         "INSERT INTO usage_logs (id, api_key_id, endpoint, status_code) VALUES ($1, $2, $3, $4)",
-        Uuid::new_v4(),
-        auth.api_key_id,
+        Id::new() as Id,
+        auth.api_key_id as Id,
         "list_categories",
         200
     )
@@ -585,7 +585,7 @@ pub async fn get_me(
         };
 
     HttpResponse::Ok().json(DeveloperResponse {
-        id: user.id,
+        id: Id::from(user.id),
         username: user.username,
     })
 }
@@ -616,11 +616,11 @@ pub async fn generate_api_key(
         };
 
     let (key, hash) = auth::generate_api_key();
-    let key_id = Uuid::new_v4();
+    let key_id = Id::new();
 
     if let Err(e) = sqlx::query!(
         "INSERT INTO api_keys (id, developer_id, key_hash) VALUES ($1, $2, $3)",
-        key_id,
+        key_id as Id,
         dev.id,
         hash
     )
@@ -638,7 +638,7 @@ pub async fn generate_api_key(
     path = "/quizzes/{id}",
     tag = "Management",
     params(
-        ("id" = Uuid, Path, description = "Quiz ID")
+        ("id" = Id, Path, description = "Quiz ID")
     ),
     responses(
         (status = 204, description = "Quiz deleted"),
@@ -651,11 +651,11 @@ pub async fn generate_api_key(
 )]
 pub async fn delete_quiz(
     data: web::Data<AppState>,
-    path: web::Path<Uuid>,
+    path: web::Path<Id>,
     _: auth::JwtMiddleware,
 ) -> impl Responder {
     let quiz_id = path.into_inner();
-    let result = sqlx::query!("DELETE FROM quizzes WHERE id = $1", quiz_id)
+    let result = sqlx::query!("DELETE FROM quizzes WHERE id = $1", quiz_id as Id)
         .execute(&data.db)
         .await;
 
@@ -677,7 +677,7 @@ pub async fn delete_quiz(
     request_body = UpdateQuizRequest,
     tag = "Management",
     params(
-        ("id" = Uuid, Path, description = "Quiz ID")
+        ("id" = Id, Path, description = "Quiz ID")
     ),
     responses(
         (status = 200, description = "Quiz updated", body = Quiz),
@@ -690,7 +690,7 @@ pub async fn delete_quiz(
 )]
 pub async fn update_quiz(
     data: web::Data<AppState>,
-    path: web::Path<Uuid>,
+    path: web::Path<Id>,
     req: web::Json<UpdateQuizRequest>,
     _: auth::JwtMiddleware,
 ) -> impl Responder {
@@ -701,7 +701,7 @@ pub async fn update_quiz(
     };
 
     let mut exists = false;
-    let check = sqlx::query!("SELECT id FROM quizzes WHERE id = $1", quiz_id).fetch_optional(&mut *tx).await;
+    let check = sqlx::query!("SELECT id FROM quizzes WHERE id = $1", quiz_id as Id).fetch_optional(&mut *tx).await;
     match check {
         Ok(Some(_)) => exists = true,
         Ok(None) => return HttpResponse::NotFound().body("Quiz not found"),
@@ -709,14 +709,14 @@ pub async fn update_quiz(
     }
 
     if let Some(title) = &req.title {
-        if let Err(_) = sqlx::query!("UPDATE quizzes SET title = $1 WHERE id = $2", title, quiz_id)
+        if let Err(_) = sqlx::query!("UPDATE quizzes SET title = $1 WHERE id = $2", title, quiz_id as Id)
             .execute(&mut *tx).await {
              return HttpResponse::InternalServerError().body("Error updating title");
         }
     }
     
     if let Some(category_id) = req.category_id {
-         if let Err(_) = sqlx::query!("UPDATE quizzes SET category_id = $1 WHERE id = $2", category_id, quiz_id)
+         if let Err(_) = sqlx::query!("UPDATE quizzes SET category_id = $1 WHERE id = $2", category_id as Id, quiz_id as Id)
             .execute(&mut *tx).await {
              return HttpResponse::InternalServerError().body("Error updating category");
         }
@@ -725,7 +725,7 @@ pub async fn update_quiz(
     // Handle Tags if provided
     if let Some(tags) = &req.tags {
         // Clear existing tags
-        if let Err(_) = sqlx::query!("DELETE FROM quiz_tags WHERE quiz_id = $1", quiz_id)
+        if let Err(_) = sqlx::query!("DELETE FROM quiz_tags WHERE quiz_id = $1", quiz_id as Id)
             .execute(&mut *tx).await {
             return HttpResponse::InternalServerError().body("Error clearing tags");
         }
@@ -745,7 +745,7 @@ pub async fn update_quiz(
                 UNION ALL
                 SELECT id AS "id!", name AS "name!" FROM tags WHERE name = $2
                 "#,
-                Uuid::new_v4(),
+                Id::new() as Id,
                 tag_name
             )
             .fetch_one(&mut *tx)
@@ -755,8 +755,8 @@ pub async fn update_quiz(
                 Ok(t) => {
                     if let Err(_) = sqlx::query!(
                         "INSERT INTO quiz_tags (quiz_id, tag_id) VALUES ($1, $2)",
-                        quiz_id,
-                        t.id
+                        quiz_id as Id,
+                        t.id as Id
                     )
                     .execute(&mut *tx)
                     .await {
@@ -775,7 +775,7 @@ pub async fn update_quiz(
     // Re-fetch quiz logic
     let rec = match sqlx::query!(
         "SELECT id, title, category_id FROM quizzes WHERE id = $1",
-        quiz_id
+        quiz_id as Id
     )
     .fetch_optional(&data.db)
     .await {
@@ -810,9 +810,9 @@ pub async fn update_quiz(
     }
     
     let mut full_quiz = Quiz {
-        id: rec.id,
+        id: Id::from(rec.id),
         title: rec.title,
-        category_id: rec.category_id,
+        category_id: rec.category_id.map(Id::from),
         questions: full_questions,
         tags: vec![],
     };
@@ -820,7 +820,7 @@ pub async fn update_quiz(
     // Fetch tags
     let tags = match sqlx::query!(
         "SELECT t.name FROM tags t JOIN quiz_tags qt ON t.id = qt.tag_id WHERE qt.quiz_id = $1",
-        quiz_id
+        quiz_id as Id
     )
     .fetch_all(&data.db)
     .await {

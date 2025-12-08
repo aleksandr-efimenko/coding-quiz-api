@@ -9,6 +9,7 @@ use jsonwebtoken::{encode, decode, Header, Validation, EncodingKey, DecodingKey}
 use chrono::{Utc, Duration};
 use crate::models::Claims;
 use crate::state::AppState;
+use crate::id::Id;
 use actix_web::{web, FromRequest, Error as ActixError, http};
 use std::future::{Ready, ready};
 use actix_web::dev::Payload;
@@ -34,7 +35,7 @@ pub fn verify_password(hash: &str, password: &str) -> bool {
     Argon2::default().verify_password(password.as_bytes(), &parsed_hash).is_ok()
 }
 
-pub fn create_token(username: &str) -> Result<String, jsonwebtoken::errors::Error> {
+pub fn create_token(username: &str, developer_id: Id) -> Result<String, jsonwebtoken::errors::Error> {
     let expiration = Utc::now()
         .checked_add_signed(Duration::hours(24))
         .expect("valid timestamp")
@@ -43,6 +44,7 @@ pub fn create_token(username: &str) -> Result<String, jsonwebtoken::errors::Erro
     let claims = Claims {
         sub: username.to_owned(),
         exp: expiration,
+        developer_id: developer_id.to_i64(),
     };
 
     encode(&Header::default(), &claims, &EncodingKey::from_secret(SECRET))
@@ -99,8 +101,8 @@ pub fn generate_api_key() -> (String, String) {
 }
 
 pub struct ApiKeyMiddleware {
-    pub developer_id: uuid::Uuid,
-    pub api_key_id: uuid::Uuid,
+    pub developer_id: Id,
+    pub api_key_id: Id,
 }
 
 impl FromRequest for ApiKeyMiddleware {
@@ -129,6 +131,15 @@ impl FromRequest for ApiKeyMiddleware {
                 None => return Err(actix_web::error::ErrorInternalServerError("State not found")),
             };
 
+            // Using Id::new() is just for type hinting in query_as! macros sometimes needed but here query! infers types
+            // However, return type of query! needs to match Id.
+            // Since Id implements Decode for BIGINT (i64), let's see.
+            // If the table column is BIGINT, sqlx returns i64.
+            // Check if I can map it directly.
+            // Usually sqlx::query! returns anonymous struct with primitive types.
+            // So `record.id` will be i64.
+            // I need to convert it to Id.
+            
             let record = match sqlx::query!(
                 "SELECT id, developer_id FROM api_keys WHERE key_hash = $1",
                 hash
@@ -144,8 +155,8 @@ impl FromRequest for ApiKeyMiddleware {
             };
             
             Ok(ApiKeyMiddleware {
-                developer_id: record.developer_id,
-                api_key_id: record.id,
+                developer_id: Id::from(record.developer_id),
+                api_key_id: Id::from(record.id),
             })
         })
     }

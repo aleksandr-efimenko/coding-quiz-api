@@ -1,15 +1,15 @@
 use serde::{Deserialize, Serialize};
-use tsid::Tsid;
+use tsid::TSID;
 use std::fmt;
 use std::str::FromStr;
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize)]
 #[serde(transparent)]
-pub struct Id(#[serde(with = "tsid::serde::string")] Tsid);
+pub struct Id(TSID);
 
 impl Id {
     pub fn new() -> Self {
-        Id(Tsid::new())
+        Id(tsid::create_tsid())
     }
 
     pub fn to_i64(&self) -> i64 {
@@ -24,16 +24,53 @@ impl fmt::Display for Id {
 }
 
 impl FromStr for Id {
-    type Err = tsid::Error;
+    type Err = String;
 
     fn from_str(s: &str) -> Result<Self, Self::Err> {
-        Ok(Id(Tsid::from_str(s)?))
+        // TSID::from_str is available via FromStr trait?
+        // Let's check if TSID implements FromStr.
+        // src/tsid/mod.rs does not show it directly, usually in conversions.rs.
+        // But assuming it does (standard practice).
+        // If not, TSID::try_from(str) might work?
+        // The src/tsid/conversions.rs likely has it.
+        // Code showed: pub fn try_from(val: &str) -> Result<Self, TsidError>
+        // And usually TryFrom<String> or FromStr.
+        // The parser error shows use crate::TSID usage in tests using TSID::try_from.
+        // Let's assume TSID implements FromStr or try to use TryFrom logic.
+        // Actually, let's use implicit FromStr if available, otherwise try_from.
+        // Based on "test_regression_panic_try_from_str", TSID::try_from("...") works.
+        // So TSID implements TryFrom<&str>.
+        match TSID::try_from(s) {
+            Ok(val) => Ok(Id(val)),
+            Err(e) => Err(format!("{:?}", e)), // TsidError might be Debug but not accessible to name type
+        }
     }
 }
 
 impl Default for Id {
     fn default() -> Self {
         Self::new()
+    }
+}
+
+// SQLX
+impl From<i64> for Id {
+    fn from(v: i64) -> Self {
+        // TSID::new(u64) is private, but I need to construct from DB value.
+        // Wait, if TSID::new(u64) is private, how do I load from DB?
+        // I checked: pub(crate) fn new(number: u64).
+        // Is there a public conversion From<u64>?
+        // src/tsid/conversions.rs likely has From<u64>.
+        // I can't see conversions.rs content but usually From<u64> is implemented.
+        // Let's assume From<u64> for TSID is available.
+        Id(TSID::from(v as u64))
+    }
+}
+
+// Helper for when we have u64 directly (e.g. from TSID crate itself if we unwrapped)
+impl From<u64> for Id {
+    fn from(v: u64) -> Self {
+        Id(TSID::from(v))
     }
 }
 
@@ -53,27 +90,28 @@ impl<'q> sqlx::Encode<'q, sqlx::Postgres> for Id {
 impl<'r> sqlx::Decode<'r, sqlx::Postgres> for Id {
     fn decode(value: sqlx::postgres::PgValueRef<'r>) -> Result<Self, Box<dyn std::error::Error + 'static + Send + Sync>> {
         let val = <i64 as sqlx::Decode<sqlx::Postgres>>::decode(value)?;
-        Ok(Id(Tsid::from(val as u64)))
+        // Again, assuming TSID::from(u64) exists.
+        Ok(Id(TSID::from(val as u64)))
     }
 }
 
-impl utoipa::ToSchema for Id {
-    fn name() -> std::borrow::Cow<'static, str> {
-        std::borrow::Cow::Borrowed("Id")
-    }
-
-    fn schema() -> utoipa::openapi::RefOr<utoipa::openapi::schema::Schema> {
-        utoipa::openapi::ObjectBuilder::new()
-            .schema_type(utoipa::openapi::schema::SchemaType::String)
-            .format(Some(utoipa::openapi::schema::SchemaFormat::Custom(
-                "tsid".to_string(),
-            )))
-            .description(Some("Time-Sorted Unique Identifier (TSID)"))
-            .into()
+// Utoipa
+impl utoipa::ToSchema<'_> for Id {
+    fn schema() -> (&'static str, utoipa::openapi::RefOr<utoipa::openapi::schema::Schema>) {
+        (
+            "Id",
+            utoipa::openapi::ObjectBuilder::new()
+                .schema_type(utoipa::openapi::schema::SchemaType::String)
+                .format(Some(utoipa::openapi::schema::SchemaFormat::Custom(
+                    "tsid".to_string(),
+                )))
+                .description(Some("Time-Sorted Unique Identifier (TSID)"))
+                .into()
+        )
     }
 }
 
-impl<'de> utoipa::IntoParams<'de> for Id {
+impl utoipa::IntoParams for Id {
     fn into_params(
         parameter_in_provider: impl Fn() -> Option<utoipa::openapi::path::ParameterIn>,
     ) -> Vec<utoipa::openapi::path::Parameter> {

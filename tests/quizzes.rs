@@ -1,5 +1,6 @@
 use crate::common::spawn_app;
 use uuid::Uuid;
+use coding_quiz_api::id::Id;
 
 mod common;
 
@@ -207,7 +208,7 @@ async fn get_non_existent_quiz_fails() {
     let app = spawn_app().await;
     let token = get_auth_token(&app).await;
     let api_key = get_api_key(&app, &token).await;
-    let non_existent_id = Uuid::new_v4();
+    let non_existent_id = Id::new();
 
     let response = app.api_client
         .get(&format!("{}/quizzes/{}", &app.address, non_existent_id))
@@ -223,7 +224,7 @@ async fn get_non_existent_quiz_fails() {
 async fn delete_non_existent_quiz_fails() {
     let app = spawn_app().await;
     let token = get_auth_token(&app).await;
-    let non_existent_id = Uuid::new_v4();
+    let non_existent_id = Id::new();
 
     let response = app.api_client
         .delete(&format!("{}/quizzes/{}", &app.address, non_existent_id))
@@ -239,7 +240,7 @@ async fn delete_non_existent_quiz_fails() {
 async fn update_non_existent_quiz_fails() {
     let app = spawn_app().await;
     let token = get_auth_token(&app).await;
-    let non_existent_id = Uuid::new_v4();
+    let non_existent_id = Id::new();
     let update_body = serde_json::json!({ "title": "New Title" });
 
     let response = app.api_client
