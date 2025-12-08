@@ -20,9 +20,9 @@ async fn main() -> std::io::Result<()> {
         .await
         .expect("Failed to run migrations");
 
-    log::info!("Starting server at http://127.0.0.1:8080");
-    log::info!("Swagger UI available at http://127.0.0.1:8080/swagger-ui/");
+    log::info!("Starting server at http://0.0.0.0:8080");
+    log::info!("Swagger UI available at http://localhost:8080/swagger-ui/");
 
-    let listener = TcpListener::bind("127.0.0.1:8080")?;
+    let listener = TcpListener::bind("0.0.0.0:8080")?;
     run(listener, pool)?.await
 }
