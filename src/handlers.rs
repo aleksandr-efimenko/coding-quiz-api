@@ -695,6 +695,7 @@ pub async fn update_quiz(
     _: auth::JwtMiddleware,
 ) -> impl Responder {
     let quiz_id = path.into_inner();
+    println!("Handler update_quiz received ID: {:?}", quiz_id);
     let mut tx = match data.db.begin().await {
         Ok(tx) => tx,
         Err(_) => return HttpResponse::InternalServerError().body("Database error starting transaction")

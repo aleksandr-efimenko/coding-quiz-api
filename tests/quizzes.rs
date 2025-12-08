@@ -1,60 +1,15 @@
 use crate::common::spawn_app;
 use uuid::Uuid;
 use coding_quiz_api::id::Id;
+use crate::common::{get_auth_token, get_api_key};
 
 mod common;
-
-async fn get_auth_token(app: &common::TestApp) -> String {
-    let username = format!("user_{}", Uuid::new_v4());
-    let password = "password123";
-
-    let register_body = serde_json::json!({
-        "username": username,
-        "password": password
-    });
-
-    app.api_client
-        .post(&format!("{}/auth/register", &app.address))
-        .json(&register_body)
-        .send()
-        .await
-        .expect("Failed to execute request.");
-
-    let login_body = serde_json::json!({
-        "username": username,
-        "password": password
-    });
-
-    let response = app.api_client
-        .post(&format!("{}/auth/login", &app.address))
-        .json(&login_body)
-        .send()
-        .await
-        .expect("Failed to execute request.");
-        
-    let json: serde_json::Value = response.json().await.expect("Failed to read JSON");
-    json["token"].as_str().unwrap().to_string()
-}
-
-async fn get_api_key(app: &common::TestApp, token: &str) -> String {
-    let response = app.api_client
-        .post(&format!("{}/auth/api-keys", &app.address))
-        .header("Authorization", format!("Bearer {}", token))
-        .send()
-        .await
-        .expect("Failed to execute request.");
-        
-    // 201 Created
-    assert_eq!(201, response.status().as_u16());
-    let json: serde_json::Value = response.json().await.expect("Failed to read JSON");
-    json["api_key"].as_str().unwrap().to_string()
-}
 
 #[tokio::test]
 async fn quiz_crud_works() {
     let app = spawn_app().await;
-    let jwt_token = get_auth_token(&app).await;
-    let api_key = get_api_key(&app, &jwt_token).await;
+    let jwt_token = common::get_auth_token(&app).await;
+    let api_key = common::get_api_key(&app, &jwt_token).await;
     
     // 1. Create Quiz (Management - JWT)
     let quiz_title = "Integration Test Quiz";
@@ -144,8 +99,8 @@ async fn quiz_crud_works() {
 #[tokio::test]
 async fn list_quizzes_filtering_works() {
     let app = spawn_app().await;
-    let jwt_token = get_auth_token(&app).await;
-    let api_key = get_api_key(&app, &jwt_token).await;
+    let jwt_token = common::get_auth_token(&app).await;
+    let api_key = common::get_api_key(&app, &jwt_token).await;
 
     // Create 3 quizzes
     let ids: Vec<String> = futures::future::join_all((0..3).map(|i| {
@@ -206,7 +161,7 @@ async fn list_quizzes_filtering_works() {
 #[tokio::test]
 async fn get_non_existent_quiz_fails() {
     let app = spawn_app().await;
-    let token = get_auth_token(&app).await;
+    let token = common::get_auth_token(&app).await;
     let api_key = get_api_key(&app, &token).await;
     let non_existent_id = Id::new();
 
@@ -223,7 +178,7 @@ async fn get_non_existent_quiz_fails() {
 #[tokio::test]
 async fn delete_non_existent_quiz_fails() {
     let app = spawn_app().await;
-    let token = get_auth_token(&app).await;
+    let token = common::get_auth_token(&app).await;
     let non_existent_id = Id::new();
 
     let response = app.api_client
@@ -239,7 +194,7 @@ async fn delete_non_existent_quiz_fails() {
 #[tokio::test]
 async fn update_non_existent_quiz_fails() {
     let app = spawn_app().await;
-    let token = get_auth_token(&app).await;
+    let token = common::get_auth_token(&app).await;
     let non_existent_id = Id::new();
     let update_body = serde_json::json!({ "title": "New Title" });
 
@@ -257,7 +212,7 @@ async fn update_non_existent_quiz_fails() {
 #[tokio::test]
 async fn create_quiz_invalid_data_fails() {
     let app = spawn_app().await;
-    let token = get_auth_token(&app).await;
+    let token = common::get_auth_token(&app).await;
     // Missing title and questions
     let invalid_body = serde_json::json!({
         "tags": ["test"]
@@ -278,8 +233,8 @@ async fn create_quiz_invalid_data_fails() {
 #[tokio::test]
 async fn test_b2b_managed_learning_flow() {
     let app = spawn_app().await;
-    let jwt_token = get_auth_token(&app).await;
-    let api_key = get_api_key(&app, &jwt_token).await;
+    let jwt_token = common::get_auth_token(&app).await;
+    let api_key = common::get_api_key(&app, &jwt_token).await;
 
     // 1. Create a Quiz
     let quiz_body = serde_json::json!({

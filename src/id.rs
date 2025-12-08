@@ -130,3 +130,26 @@ impl utoipa::IntoParams for Id {
             .build()]
     }
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn id_serialization_roundtrip() {
+        let original_id = Id::new();
+        // Test String serialization (JSON)
+        let json = serde_json::to_string(&original_id).expect("Serialize failed");
+        // Should be a string due to tsid serde_as_string
+        assert!(json.starts_with("\""));
+        assert!(json.ends_with("\""));
+        
+        let parsed_id: Id = serde_json::from_str(&json).expect("Deserialize failed");
+        assert_eq!(original_id, parsed_id, "JSON roundtrip mismatch");
+
+        // Test FromStr via string value (URL path usage)
+        let id_str = json.trim_matches('"');
+        let from_str_id = Id::from_str(id_str).expect("FromStr failed");
+        assert_eq!(original_id, from_str_id, "FromStr roundtrip mismatch");
+    }
+}

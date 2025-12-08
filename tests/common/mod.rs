@@ -2,6 +2,7 @@ use coding_quiz_api::run;
 use sqlx::PgPool;
 use std::net::TcpListener;
 use sqlx::postgres::PgPoolOptions;
+use uuid::Uuid;
 
 #[allow(dead_code)]
 pub struct TestApp {
@@ -67,4 +68,50 @@ async fn configure_database() -> PgPool {
         .expect("Failed to migrate database");
 
     pool
+}
+
+pub async fn get_auth_token(app: &TestApp) -> String {
+    let username = format!("user_{}", Uuid::new_v4());
+    let password = "password123";
+
+    let register_body = serde_json::json!({
+        "username": username,
+        "password": password
+    });
+
+    app.api_client
+        .post(&format!("{}/auth/register", &app.address))
+        .json(&register_body)
+        .send()
+        .await
+        .expect("Failed to execute request.");
+
+    let login_body = serde_json::json!({
+        "username": username,
+        "password": password
+    });
+
+    let response = app.api_client
+        .post(&format!("{}/auth/login", &app.address))
+        .json(&login_body)
+        .send()
+        .await
+        .expect("Failed to execute request.");
+        
+    let json: serde_json::Value = response.json().await.expect("Failed to read JSON");
+    json["token"].as_str().unwrap().to_string()
+}
+
+pub async fn get_api_key(app: &TestApp, token: &str) -> String {
+    let response = app.api_client
+        .post(&format!("{}/auth/api-keys", &app.address))
+        .header("Authorization", format!("Bearer {}", token))
+        .send()
+        .await
+        .expect("Failed to execute request.");
+        
+    // 201 Created
+    assert_eq!(201, response.status().as_u16());
+    let json: serde_json::Value = response.json().await.expect("Failed to read JSON");
+    json["api_key"].as_str().unwrap().to_string()
 }
