@@ -1,29 +1,28 @@
 use actix_web::{web, App, HttpServer, middleware};
 use actix_web::dev::Server;
 use std::net::TcpListener;
-use env_logger::Env;
+use std::sync::RwLock;
 use utoipa::OpenApi;
 use utoipa_swagger_ui::SwaggerUi;
-use sqlx::PgPool;
+use crate::models::{
+    CreateQuizRequest, Quiz, Question, QuestionOption, 
+    SubmitAnswerRequest, AnswerResponse,
+    Category, CreateCategoryRequest, CreateQuestionRequest, CreateOptionRequest,
+    UpdateQuizRequest, PaginationParams, ErrorResponse
+};
 
 pub mod models;
 pub mod state;
 pub mod handlers;
-pub mod auth;
+pub mod auth; // Empty module
 pub mod id;
 
 use state::AppState;
-
-use models::*;
 
 #[derive(OpenApi)]
 #[openapi(
     paths(
         handlers::health_check,
-        handlers::auth_register,
-        handlers::auth_login,
-        handlers::get_me,
-        handlers::generate_api_key,
         handlers::create_category,
         handlers::list_categories,
         handlers::create_quiz,
@@ -32,60 +31,30 @@ use models::*;
         handlers::submit_answer,
         handlers::delete_quiz,
         handlers::update_quiz,
+        handlers::get_random_quiz,
     ),
     components(
         schemas(
             CreateQuizRequest, Quiz, Question, QuestionOption, 
             SubmitAnswerRequest, AnswerResponse,
-            RegisterRequest, LoginRequest, TokenResponse, 
             Category, CreateCategoryRequest, CreateQuestionRequest, CreateOptionRequest,
             UpdateQuizRequest,
-            PaginationParams, DeveloperResponse, ErrorResponse
+            PaginationParams, ErrorResponse
         )
     ),
     tags(
         (name = "System", description = "System endpoints"),
-        (name = "Management", description = "Developer management endpoints (JWT)"),
-        (name = "Consumption", description = "Public consumption endpoints (API Key)")
-    ),
-    modifiers(&SecurityAddon)
+        (name = "Management", description = "Quiz management endpoints"),
+        (name = "Consumption", description = "Public consumption endpoints")
+    )
 )]
 pub struct ApiDoc;
 
-pub struct SecurityAddon;
-
-impl utoipa::Modify for SecurityAddon {
-    fn modify(&self, openapi: &mut utoipa::openapi::OpenApi) {
-        if let Some(components) = openapi.components.as_mut() {
-            components.add_security_scheme(
-                "jwt",
-                utoipa::openapi::security::SecurityScheme::Http(
-                    utoipa::openapi::security::HttpBuilder::new()
-                        .scheme(utoipa::openapi::security::HttpAuthScheme::Bearer)
-                        .bearer_format("JWT")
-                        .build(),
-                ),
-            );
-
-            components.add_security_scheme(
-                "api_key",
-                utoipa::openapi::security::SecurityScheme::ApiKey(
-                    utoipa::openapi::security::ApiKey::Header(
-                        utoipa::openapi::security::ApiKeyValue::new("X-API-Key"),
-                    ),
-                ),
-            );
-        }
-    }
-}
-
-pub fn run(listener: TcpListener, db_pool: PgPool) -> Result<Server, std::io::Error> {
+pub fn run(listener: TcpListener, quizzes: Vec<Quiz>, categories: Vec<Category>) -> Result<Server, std::io::Error> {
     let data = web::Data::new(AppState {
-        db: db_pool,
+        quizzes: RwLock::new(quizzes),
+        categories: RwLock::new(categories),
     });
-
-    // Logging init usually handled in main, but we can check if it's already set
-    // env_logger::init_from_env(Env::default().default_filter_or("info"));
 
     let server = HttpServer::new(move || {
         App::new()
@@ -95,13 +64,6 @@ pub fn run(listener: TcpListener, db_pool: PgPool) -> Result<Server, std::io::Er
                 SwaggerUi::new("/swagger-ui/{_:.*}").url("/api-docs/openapi.json", ApiDoc::openapi())
             )
             .route("/health", web::get().to(handlers::health_check))
-            .service(
-                web::scope("/auth")
-                    .route("/register", web::post().to(handlers::auth_register))
-                    .route("/login", web::post().to(handlers::auth_login))
-                    .route("/me", web::get().to(handlers::get_me))
-                    .route("/api-keys", web::post().to(handlers::generate_api_key))
-            )
             .service(
                 web::scope("/categories")
                     .route("", web::post().to(handlers::create_category))
@@ -116,11 +78,6 @@ pub fn run(listener: TcpListener, db_pool: PgPool) -> Result<Server, std::io::Er
                     .route("/{id}", web::put().to(handlers::update_quiz))
                     .route("/{id}", web::delete().to(handlers::delete_quiz))
                     .route("/{id}/solve", web::post().to(handlers::submit_answer))
-            )
-            .service(
-                web::scope("/users")
-                    .route("", web::post().to(handlers::create_user))
-                    .route("/{email}/history", web::get().to(handlers::get_history))
             )
     })
     .listen(listener)?

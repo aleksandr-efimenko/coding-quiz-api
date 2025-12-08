@@ -1,5 +1,7 @@
-use sqlx::PgPool;
+use std::sync::RwLock;
+use crate::models::{Quiz, Category};
 
 pub struct AppState {
-    pub db: PgPool,
+    pub quizzes: RwLock<Vec<Quiz>>,
+    pub categories: RwLock<Vec<Category>>,
 }

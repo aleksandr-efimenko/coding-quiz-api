@@ -65,38 +65,7 @@ impl Default for Id {
     }
 }
 
-// SQLX
-impl From<i64> for Id {
-    fn from(v: i64) -> Self {
-        Id(v)
-    }
-}
-
-impl From<u64> for Id {
-    fn from(v: u64) -> Self {
-        Id(v as i64)
-    }
-}
-
-impl sqlx::Type<sqlx::Postgres> for Id {
-    fn type_info() -> sqlx::postgres::PgTypeInfo {
-        <i64 as sqlx::Type<sqlx::Postgres>>::type_info()
-    }
-}
-
-impl<'q> sqlx::Encode<'q, sqlx::Postgres> for Id {
-    fn encode_by_ref(&self, buf: &mut sqlx::postgres::PgArgumentBuffer) -> sqlx::encode::IsNull {
-        let val = self.0;
-        <i64 as sqlx::Encode<sqlx::Postgres>>::encode(val, buf)
-    }
-}
-
-impl<'r> sqlx::Decode<'r, sqlx::Postgres> for Id {
-    fn decode(value: sqlx::postgres::PgValueRef<'r>) -> Result<Self, Box<dyn std::error::Error + 'static + Send + Sync>> {
-        let val = <i64 as sqlx::Decode<sqlx::Postgres>>::decode(value)?;
-        Ok(Id(val))
-    }
-}
+// SQLX traits removed
 
 // Utoipa
 impl utoipa::ToSchema<'_> for Id {
