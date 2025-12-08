@@ -111,10 +111,16 @@ pub fn run(listener: TcpListener, db_pool: PgPool) -> Result<Server, std::io::Er
                 web::scope("/quizzes")
                     .route("", web::post().to(handlers::create_quiz))
                     .route("", web::get().to(handlers::list_quizzes))
+                    .route("/random", web::get().to(handlers::get_random_quiz))
                     .route("/{id}", web::get().to(handlers::get_quiz))
                     .route("/{id}", web::put().to(handlers::update_quiz))
                     .route("/{id}", web::delete().to(handlers::delete_quiz))
                     .route("/{id}/solve", web::post().to(handlers::submit_answer))
+            )
+            .service(
+                web::scope("/users")
+                    .route("", web::post().to(handlers::create_user))
+                    .route("/{email}/history", web::get().to(handlers::get_history))
             )
     })
     .listen(listener)?

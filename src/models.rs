@@ -62,6 +62,7 @@ pub struct CreateOptionRequest {
 pub struct SubmitAnswerRequest {
     pub question_id: Id,
     pub option_id: Id,
+    pub user_email: Option<String>,
 }
 
 #[derive(Debug, Serialize, ToSchema)]
@@ -154,4 +155,24 @@ pub struct DeveloperResponse {
 #[derive(Debug, Serialize, ToSchema)]
 pub struct ErrorResponse {
     pub error: String,
+}
+
+#[derive(Debug, Serialize, Deserialize, FromRow, ToSchema)]
+pub struct EndUser {
+    pub id: Id,
+    pub email: String,
+}
+
+#[derive(Debug, Deserialize, ToSchema)]
+pub struct CreateEndUserRequest {
+    pub email: String,
+}
+
+#[derive(Debug, Serialize, FromRow, ToSchema)]
+pub struct UserAnswerHistory {
+    pub quiz_id: Id,
+    pub question_id: Id,
+    pub option_id: Id,
+    pub is_correct: bool,
+    pub created_at: chrono::DateTime<chrono::Utc>,
 }

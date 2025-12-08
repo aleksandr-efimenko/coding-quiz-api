@@ -66,6 +66,7 @@ async fn get_quiz_data(app: &common::TestApp) -> (String, String, String, String
 async fn submit_correct_answer_returns_true() {
     let app = spawn_app().await;
     let (token, quiz_id, question_id, correct_id, _) = get_quiz_data(&app).await;
+    let api_key = crate::common::get_api_key(&app, &token).await;
 
     let submit_body = serde_json::json!({
         "question_id": question_id,
@@ -74,7 +75,7 @@ async fn submit_correct_answer_returns_true() {
 
     let response = app.api_client
         .post(&format!("{}/quizzes/{}/solve", &app.address, quiz_id))
-        .header("Authorization", format!("Bearer {}", token))
+        .header("X-API-Key", api_key)
         .json(&submit_body)
         .send()
         .await
@@ -90,6 +91,7 @@ async fn submit_correct_answer_returns_true() {
 async fn submit_incorrect_answer_returns_false() {
     let app = spawn_app().await;
     let (token, quiz_id, question_id, _, wrong_id) = get_quiz_data(&app).await;
+    let api_key = crate::common::get_api_key(&app, &token).await;
 
     let submit_body = serde_json::json!({
         "question_id": question_id,
@@ -98,7 +100,7 @@ async fn submit_incorrect_answer_returns_false() {
 
     let response = app.api_client
         .post(&format!("{}/quizzes/{}/solve", &app.address, quiz_id))
-        .header("Authorization", format!("Bearer {}", token))
+        .header("X-API-Key", api_key)
         .json(&submit_body)
         .send()
         .await

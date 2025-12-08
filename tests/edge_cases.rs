@@ -407,29 +407,6 @@ async fn update_quiz_tags_replaces_old_tags() {
 
     let quiz: serde_json::Value = response.json().await.unwrap();
     let quiz_id = quiz["id"].as_str().unwrap();
-    eprintln!("Created Quiz ID from JSON: {}", quiz_id);
-
-    // Inspect DB
-    let quizzes = sqlx::query!("SELECT id, title FROM quizzes")
-        .fetch_all(&app.db_pool)
-        .await
-        .expect("Failed to fetch quizzes from DB");
-    
-    for q in &quizzes {
-        eprintln!("DB Quiz: id={}, title={}", Id::from(q.id).to_string(), q.title);
-        eprintln!("DB Quiz Raw ID: {}", q.id);
-    }
-    
-    if quizzes.is_empty() {
-        eprintln!("DB IS EMPTY!");
-    } else {
-        let db_id_str = Id::from(quizzes[0].id).to_string(); // Assuming tsid feature works on to_string
-        // Wait, Id::to_string() relies on Display impl? 
-        // I need to check if Id implements Display.
-        // If not, I'll use serde_json::to_string
-        let db_id_json = serde_json::to_string(&Id::from(quizzes[0].id)).unwrap();
-        eprintln!("DB Quiz ID JSON: {}", db_id_json);
-    }
 
     // Update with new tags
     let update_body = serde_json::json!({
