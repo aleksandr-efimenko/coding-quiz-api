@@ -22,6 +22,7 @@ struct QuestionSeed {
 struct OptionSeed {
     text: String,
     is_correct: bool,
+    description: Option<String>,
 }
 
 #[tokio::main]
@@ -73,9 +74,9 @@ async fn insert_quiz(pool: &sqlx::PgPool, quiz: QuizSeed) -> Result<(), Box<dyn 
     
     sqlx::query!(
         "INSERT INTO quizzes (id, title, category_id) VALUES ($1, $2, $3)",
-        quiz_id as Id,
+        quiz_id.to_i64(),
         quiz.title,
-        category_id as Option<Id>
+        category_id.map(|v| v.to_i64())
     )
     .execute(&mut *tx)
     .await?;
@@ -85,7 +86,7 @@ async fn insert_quiz(pool: &sqlx::PgPool, quiz: QuizSeed) -> Result<(), Box<dyn 
         // Upsert tag
         let tag_id = match sqlx::query!(
             "INSERT INTO tags (id, name) VALUES ($1, $2) ON CONFLICT (name) DO UPDATE SET name = EXCLUDED.name RETURNING id",
-            Id::new() as Id,
+            Id::new().to_i64(),
             tag_name
         )
         .fetch_one(&mut *tx)
@@ -100,8 +101,8 @@ async fn insert_quiz(pool: &sqlx::PgPool, quiz: QuizSeed) -> Result<(), Box<dyn 
         // Link tag
         sqlx::query!(
             "INSERT INTO quiz_tags (quiz_id, tag_id) VALUES ($1, $2) ON CONFLICT DO NOTHING",
-            quiz_id as Id,
-            tag_id as Id
+            quiz_id.to_i64(),
+            tag_id.to_i64()
         )
         .execute(&mut *tx)
         .await?;
@@ -110,25 +111,31 @@ async fn insert_quiz(pool: &sqlx::PgPool, quiz: QuizSeed) -> Result<(), Box<dyn 
     // 3. Create Questions
     for q in quiz.questions {
         let question_id = Id::new();
-        sqlx::query!(
-            "INSERT INTO questions (id, quiz_id, text, explanation) VALUES ($1, $2, $3, $4)",
-            question_id as Id,
-            quiz_id as Id,
+        let result = sqlx::query!(
+            "INSERT INTO questions (id, quiz_id, text, explanation) VALUES ($1, $2, $3, $4) ON CONFLICT (text) DO NOTHING",
+            question_id.to_i64(),
+            quiz_id.to_i64(),
             q.text,
             q.explanation
         )
         .execute(&mut *tx)
         .await?;
 
+        if result.rows_affected() == 0 {
+            println!("Skipping duplicate question: {}", q.text);
+            continue;
+        }
+
         // 4. Create Options
         for opt in q.options {
             let option_id = Id::new();
             sqlx::query!(
-                "INSERT INTO question_options (id, question_id, text, is_correct) VALUES ($1, $2, $3, $4)",
-                option_id as Id,
-                question_id as Id,
+                "INSERT INTO question_options (id, question_id, text, is_correct, description) VALUES ($1, $2, $3, $4, $5)",
+                option_id.to_i64(),
+                question_id.to_i64(),
                 opt.text,
-                opt.is_correct
+                opt.is_correct,
+                opt.description
             )
             .execute(&mut *tx)
             .await?;

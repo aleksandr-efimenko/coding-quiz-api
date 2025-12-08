@@ -1,0 +1,46 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "SELECT quiz_id, question_id, option_id, is_correct, created_at FROM user_answers WHERE user_id = $1 ORDER BY created_at DESC",
+  "describe": {
+    "columns": [
+      {
+        "ordinal": 0,
+        "name": "quiz_id",
+        "type_info": "Int8"
+      },
+      {
+        "ordinal": 1,
+        "name": "question_id",
+        "type_info": "Int8"
+      },
+      {
+        "ordinal": 2,
+        "name": "option_id",
+        "type_info": "Int8"
+      },
+      {
+        "ordinal": 3,
+        "name": "is_correct",
+        "type_info": "Bool"
+      },
+      {
+        "ordinal": 4,
+        "name": "created_at",
+        "type_info": "Timestamptz"
+      }
+    ],
+    "parameters": {
+      "Left": [
+        "Int8"
+      ]
+    },
+    "nullable": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ]
+  },
+  "hash": "8889e5dd4bb7d5f8b796b85e4b0b151a7ad71ae02abb218b5810e32001e25289"
+}

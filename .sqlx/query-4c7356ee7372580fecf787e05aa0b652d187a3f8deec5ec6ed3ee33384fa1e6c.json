@@ -1,6 +1,6 @@
 {
   "db_name": "PostgreSQL",
-  "query": "SELECT id, title FROM quizzes",
+  "query": "SELECT id, email FROM end_users WHERE email = $1",
   "describe": {
     "columns": [
       {
@@ -10,17 +10,19 @@
       },
       {
         "ordinal": 1,
-        "name": "title",
+        "name": "email",
         "type_info": "Text"
       }
     ],
     "parameters": {
-      "Left": []
+      "Left": [
+        "Text"
+      ]
     },
     "nullable": [
       false,
       false
     ]
   },
-  "hash": "36bff4dac8a05d075545a9f180d931d1991bfd271db3e2005c8d940da348ddc9"
+  "hash": "4c7356ee7372580fecf787e05aa0b652d187a3f8deec5ec6ed3ee33384fa1e6c"
 }

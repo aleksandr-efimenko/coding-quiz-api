@@ -11,19 +11,23 @@
       "options": [
         {
           "text": "Yes, it is possible to get and debug HTML elements in the console just like inspecting elements",
-          "is_correct": false
+          "is_correct": false,
+          "description": "Debugging elements is not related to postMessage security."
         },
         {
           "text": "Refer to topic: What is AJAX",
-          "is_correct": false
+          "is_correct": false,
+          "description": "AJAX is different from window messaging."
         },
         {
           "text": "The event queue follows the queue data structure",
-          "is_correct": false
+          "is_correct": false,
+          "description": "Event queue structure is a general JS concept, not specific to postMessage security."
         },
         {
           "text": "Yes, postMessages can be considered very secure as long as the programmer/developer is careful about checking the origin and source of an arriving message",
-          "is_correct": true
+          "is_correct": true,
+          "description": "Correct! Origin verification is critical for secure cross-origin messaging."
         }
       ]
     }

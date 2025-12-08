@@ -81,11 +81,12 @@ pub async fn create_quiz(
         for o in &q.options {
             let option_id = Id::new();
             if let Err(_) = sqlx::query!(
-                "INSERT INTO question_options (id, question_id, text, is_correct) VALUES ($1, $2, $3, $4)",
+                "INSERT INTO question_options (id, question_id, text, is_correct, description) VALUES ($1, $2, $3, $4, $5)",
                 option_id.to_i64(),
                 question_id.to_i64(),
                 o.text,
-                o.is_correct
+                o.is_correct,
+                o.description
             )
             .execute(&mut *tx)
             .await {
@@ -95,6 +96,7 @@ pub async fn create_quiz(
                 id: option_id,
                 text: o.text.clone(),
                 is_correct: o.is_correct,
+                description: o.description.clone(),
             });
         }
         
@@ -214,7 +216,7 @@ pub async fn get_quiz(
     let mut full_questions = Vec::new();
     for mut q in questions {
         let options = match sqlx::query_as::<_, QuestionOption>(
-            "SELECT id, text, is_correct FROM question_options WHERE question_id = $1"
+            "SELECT id, text, is_correct, description FROM question_options WHERE question_id = $1"
         )
         .bind(q.id.to_i64())
         .fetch_all(&data.db)
@@ -824,7 +826,7 @@ pub async fn update_quiz(
     let mut full_questions = Vec::new();
     for mut q in questions {
         let options = match sqlx::query_as::<_, QuestionOption>(
-            "SELECT id, text, is_correct FROM question_options WHERE question_id = $1"
+            "SELECT id, text, is_correct, description FROM question_options WHERE question_id = $1"
         )
         .bind(q.id.to_i64())
         .fetch_all(&data.db)
@@ -1036,7 +1038,7 @@ pub async fn get_random_quiz(
     let mut full_questions = Vec::new();
     for mut q in questions {
         let options = match sqlx::query_as::<_, QuestionOption>(
-            "SELECT id, text, is_correct FROM question_options WHERE question_id = $1"
+            "SELECT id, text, is_correct, description FROM question_options WHERE question_id = $1"
         )
         .bind(q.id.to_i64())
         .fetch_all(&data.db)

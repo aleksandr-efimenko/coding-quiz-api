@@ -11,19 +11,23 @@
       "options": [
         {
           "text": "An iterator is an object which defines a sequence and a return value upon its termination",
-          "is_correct": false
+          "is_correct": false,
+          "description": "This is unrelated to App Shell models."
         },
         {
           "text": "A callback function is a function passed into another function as an argument",
-          "is_correct": false
+          "is_correct": false,
+          "description": "This defines a callback, not an App Shell."
         },
         {
           "text": "Below are the some of main applications of `Object",
-          "is_correct": false
+          "is_correct": false,
+          "description": "This option seems incomplete and incorrect."
         },
         {
           "text": "An application shell (or app shell) architecture is one way to build a Progressive Web App that reliably and instantly loads on your users' screens, similar to what you see in native applications",
-          "is_correct": true
+          "is_correct": true,
+          "description": "Correct! The App Shell architecture is a design pattern for building PWAs."
         }
       ]
     }

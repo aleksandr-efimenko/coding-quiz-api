@@ -28,6 +28,7 @@ pub struct QuestionOption {
     pub text: String,
     #[serde(skip_serializing)] 
     pub is_correct: bool,
+    pub description: Option<String>,
 }
 
 #[derive(Debug, Deserialize, ToSchema)]
@@ -52,10 +53,11 @@ pub struct CreateQuestionRequest {
     pub explanation: Option<String>,
 }
 
-#[derive(Debug, Deserialize, ToSchema)]
+#[derive(Debug, Deserialize, Serialize, ToSchema, Clone)]
 pub struct CreateOptionRequest {
     pub text: String,
     pub is_correct: bool,
+    pub description: Option<String>,
 }
 
 #[derive(Debug, Deserialize, ToSchema)]
