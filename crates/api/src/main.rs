@@ -92,15 +92,56 @@ fn load_quizzes() -> Vec<Quiz> {
     quizzes
 }
 
-#[actix_web::main]
+#[tokio::main]
 async fn main() -> std::io::Result<()> {
     env_logger::init_from_env(Env::default().default_filter_or("info"));
 
     let quizzes = load_quizzes();
 
-    log::info!("Starting server at http://0.0.0.0:8080");
-    log::info!("Swagger UI available at http://localhost:8080/swagger-ui/");
+    // Check if running in Lambda environment
+    let is_lambda = std::env::var("AWS_LAMBDA_RUNTIME_API").is_ok();
 
-    let listener = TcpListener::bind("0.0.0.0:8080")?;
-    run(listener, quizzes, Vec::new())?.await
+    if is_lambda {
+        log::info!("Starting Lambda handler");
+        let app_factory = move || {
+            // Need to recreate app factory logic here or extract it
+             use actix_web::{web, App, middleware};
+             use utoipa_swagger_ui::SwaggerUi;
+             use utoipa::OpenApi;
+             let data = web::Data::new(coding_quiz_api::state::AppState {
+                quizzes: std::sync::RwLock::new(quizzes.clone()),
+                categories: std::sync::RwLock::new(Vec::new()), 
+            });
+
+            App::new()
+                .app_data(data)
+                .wrap(middleware::Logger::default())
+                .service(
+                    SwaggerUi::new("/swagger-ui/{_:.*}").url("/api-docs/openapi.json", coding_quiz_api::ApiDoc::openapi())
+                )
+                .route("/health", web::get().to(coding_quiz_api::handlers::health_check))
+                .service(
+                    web::scope("/categories")
+                        .route("", web::post().to(coding_quiz_api::handlers::create_category))
+                        .route("", web::get().to(coding_quiz_api::handlers::list_categories))
+                )
+                .service(
+                    web::scope("/quizzes")
+                        .route("", web::post().to(coding_quiz_api::handlers::create_quiz))
+                        .route("", web::get().to(coding_quiz_api::handlers::list_quizzes))
+                        .route("/random", web::get().to(coding_quiz_api::handlers::get_random_quiz))
+                        .route("/{id}", web::get().to(coding_quiz_api::handlers::get_quiz))
+                        .route("/{id}", web::put().to(coding_quiz_api::handlers::update_quiz))
+                        .route("/{id}", web::delete().to(coding_quiz_api::handlers::delete_quiz))
+                        .route("/{id}/solve", web::post().to(coding_quiz_api::handlers::submit_answer))
+                )
+        };
+        lambda_web::run_actix_on_lambda(app_factory).await.map_err(|e| std::io::Error::new(std::io::ErrorKind::Other, e))?;
+    } else {
+        log::info!("Starting server at http://0.0.0.0:8080");
+        log::info!("Swagger UI available at http://localhost:8080/swagger-ui/");
+        let listener = TcpListener::bind("0.0.0.0:8080")?;
+        run(listener, quizzes, Vec::new())?.await?;
+    }
+    Ok(())
 }
