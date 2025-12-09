@@ -7,14 +7,14 @@
   "questions": [
     {
       "text": "What is a first order function",
-      "explanation": "A first-order function is a function that doesn\u2019t accept another function as an argument and doesn\u2019t return a function as its return value. i.e,  It's a regular function that works with primitive or non-function values.\n\n    ```javascript\n    const firstOrder = () => console.log(\"I am a first order function!\");\n    ```\n\n    **[\u2b06 Back to Top](#table-of-contents)**\n\n13.",
+      "explanation": "A first-order function is a function that doesn’t accept another function as an argument and doesn’t return a function as its return value. i.e,  It's a regular function that works with primitive or non-function values.\n\n    ```javascript\n    const firstOrder = () => console.log(\"I am a first order function!\");\n    ```\n\n    \n\n13.",
       "options": [
         {
           "text": "Node is a single thread, but some of the functions included in the Node",
           "is_correct": false
         },
         {
-          "text": "A first-order function is a function that doesn\u2019t accept another function as an argument and doesn\u2019t return a function as its return value",
+          "text": "A first-order function is a function that doesn’t accept another function as an argument and doesn’t return a function as its return value",
           "is_correct": true
         },
         {
@@ -29,7 +29,7 @@
     },
     {
       "text": "What is a unary function",
-      "explanation": "A unary function (also known as a **monadic** function) is a function that **accepts exactly one argument**. The term \"unary\" simply refers to the function's arity\u2014the number of arguments it takes.\n\n    Let us take an example of unary function,\n\n    ```javascript\n    const unaryFunction = (a) => console.log(a + 10); // This will add 10 to the input and log the result\n    unaryFunction(5); // Output: 15\n    ```\n    In this example:\n\n    - `unaryFunction` takes a single parameter `a`, making it a unary function.\n    - It performs a simple operation: adding 10 to the input and printing the result.\n\n    **[\u2b06 Back to Top](#table-of-contents)**\n\n15.",
+      "explanation": "A unary function (also known as a **monadic** function) is a function that **accepts exactly one argument**. The term \"unary\" simply refers to the function's arity—the number of arguments it takes.\n\n    Let us take an example of unary function,\n\n    ```javascript\n    const unaryFunction = (a) => console.log(a + 10); // This will add 10 to the input and log the result\n    unaryFunction(5); // Output: 15\n    ```\n    In this example:\n\n    - `unaryFunction` takes a single parameter `a`, making it a unary function.\n    - It performs a simple operation: adding 10 to the input and printing the result.\n\n    \n\n15.",
       "options": [
         {
           "text": "A **pure function** is a function whose output depends only on its input arguments and produces no side effects",
@@ -95,7 +95,7 @@
     },
     {
       "text": "What is an IIFE (Immediately Invoked Function Expression)",
-      "explanation": "IIFE (Immediately Invoked Function Expression) is a JavaScript function that runs as soon as it is defined. The signature of it would be as below,\n\n    ```javascript\n    (function () {\n      // logic here\n    })();\n    ```\n\n    The primary reason to use an IIFE is to obtain data privacy because any variables declared within the IIFE cannot be accessed by the outside world. i.e, If you try to access variables from the IIFE then it throws an error as below,\n\n    ```javascript\n    (function () {\n      var message = \"IIFE\";\n      console.log(message);\n    })();\n    console.log(message); //Error: message is not defined\n    ```\n\n    **[\u2b06 Back to Top](#table-of-contents)**\n\n24.",
+      "explanation": "IIFE (Immediately Invoked Function Expression) is a JavaScript function that runs as soon as it is defined. The signature of it would be as below,\n\n    ```javascript\n    (function () {\n      // logic here\n    })();\n    ```\n\n    The primary reason to use an IIFE is to obtain data privacy because any variables declared within the IIFE cannot be accessed by the outside world. i.e, If you try to access variables from the IIFE then it throws an error as below,\n\n    ```javascript\n    (function () {\n      var message = \"IIFE\";\n      console.log(message);\n    })();\n    console.log(message); //Error: message is not defined\n    ```\n\n    \n\n24.",
       "options": [
         {
           "text": "Unlike regular functions, the arrow functions doesn't not allow duplicate parameters in either strict or non-strict mode",
@@ -117,7 +117,7 @@
     },
     {
       "text": "How do you decode or encode a URL in JavaScript?",
-      "explanation": "`encodeURI()` function is used to encode an URL. This function requires a URL string as a parameter and return that encoded string.\n    `decodeURI()` function is used to decode an URL. This function requires an encoded URL string as parameter and return that decoded string.\n\n    **Note:** If you want to encode characters such as `/ ? : @ & = + $ #` then you need to use `encodeURIComponent()`.\n\n    ```javascript\n    let uri = \"employeeDetails?name=john&occupation=manager\";\n    let encoded_uri = encodeURI(uri);\n    let decoded_uri = decodeURI(encoded_uri);\n    ```\n\n    **[\u2b06 Back to Top](#table-of-contents)**\n\n25.",
+      "explanation": "`encodeURI()` function is used to encode an URL. This function requires a URL string as a parameter and return that encoded string.\n    `decodeURI()` function is used to decode an URL. This function requires an encoded URL string as parameter and return that decoded string.\n\n    **Note:** If you want to encode characters such as `/ ? : @ & = + $ #` then you need to use `encodeURIComponent()`.\n\n    ```javascript\n    let uri = \"employeeDetails?name=john&occupation=manager\";\n    let encoded_uri = encodeURI(uri);\n    let decoded_uri = decodeURI(encoded_uri);\n    ```\n\n    \n\n25.",
       "options": [
         {
           "text": "The function declarations are hoisted similar to any variables",
@@ -139,7 +139,7 @@
     },
     {
       "text": "What is Hoisting",
-      "explanation": "Hoisting is JavaScript's default behavior where **variable and function declarations** are moved to the top of their scope before code execution. This means you can access certain variables and functions even before they are defined in the code.\n\n\nExample of variable hoisting:\n\n```js\nconsole.log(message); // Output: undefined\nvar message = \"The variable has been hoisted\";\n```\n\n```js\nvar message;\nconsole.log(message); // undefined\nmessage = \"The variable has been hoisted\";\n```\n\nExample of function hoisting:\n\n```js\nmessage(\"Good morning\"); // Output: Good morning\n\nfunction message(name) {\n  console.log(name);\n}\n```\n\nBecause of hoisting, functions can be used before they are declared.\n\n    **[\u2b06 Back to Top](#table-of-contents)**\n\n27.",
+      "explanation": "Hoisting is JavaScript's default behavior where **variable and function declarations** are moved to the top of their scope before code execution. This means you can access certain variables and functions even before they are defined in the code.\n\n\nExample of variable hoisting:\n\n```js\nconsole.log(message); // Output: undefined\nvar message = \"The variable has been hoisted\";\n```\n\n```js\nvar message;\nconsole.log(message); // undefined\nmessage = \"The variable has been hoisted\";\n```\n\nExample of function hoisting:\n\n```js\nmessage(\"Good morning\"); // Output: Good morning\n\nfunction message(name) {\n  console.log(name);\n}\n```\n\nBecause of hoisting, functions can be used before they are declared.\n\n    \n\n27.",
       "options": [
         {
           "text": "You might have seen expressions used in switch condition but it is also possible to use for switch cases by assigning true value for the switch condition",
@@ -161,7 +161,7 @@
     },
     {
       "text": "What are closures",
-      "explanation": "A closure is the combination of a function bundled(enclosed) together with its lexical environment within which that function was declared. i.e, It is an inner function that has access to the outer or enclosing function\u2019s variables, functions and other data even after the outer function has finished its execution. The closure has three scope chains.\n\n    1. Own scope where variables defined between its curly brackets\n    2. Outer function's variables\n    3. Global variables\n\n    Let's take an example of closure concept,\n\n    ```javascript\n    function Welcome(name) {\n      var greetingInfo = function (message) {\n        console.log(message + \" \" + name);\n      };\n      return greetingInfo;\n    }\n    var myFunction = Welcome(\"John\");\n    myFunction(\"Welcome \"); //Output: Welcome John\n    myFunction(\"Hello Mr.\"); //output: Hello Mr. John\n    ```\n\n    As per the above code, the inner function(i.e, greetingInfo) has access to the variables in the outer function scope(i.e, Welcome) even after the outer function has returned.\n\n    **[\u2b06 Back to Top](#table-of-contents)**\n\n29.",
+      "explanation": "A closure is the combination of a function bundled(enclosed) together with its lexical environment within which that function was declared. i.e, It is an inner function that has access to the outer or enclosing function’s variables, functions and other data even after the outer function has finished its execution. The closure has three scope chains.\n\n    1. Own scope where variables defined between its curly brackets\n    2. Outer function's variables\n    3. Global variables\n\n    Let's take an example of closure concept,\n\n    ```javascript\n    function Welcome(name) {\n      var greetingInfo = function (message) {\n        console.log(message + \" \" + name);\n      };\n      return greetingInfo;\n    }\n    var myFunction = Welcome(\"John\");\n    myFunction(\"Welcome \"); //Output: Welcome John\n    myFunction(\"Hello Mr.\"); //output: Hello Mr. John\n    ```\n\n    As per the above code, the inner function(i.e, greetingInfo) has access to the variables in the outer function scope(i.e, Welcome) even after the outer function has returned.\n\n    \n\n29.",
       "options": [
         {
           "text": "No, you cannot redeclare let and const variables",
@@ -183,7 +183,7 @@
     },
     {
       "text": "What is a storage event and its event handler",
-      "explanation": "The StorageEvent is an event that fires when a storage area has been changed in the context of another document. Whereas onstorage property is an EventHandler for processing storage events.\n    The syntax would be as below\n\n    ```javascript\n    window.onstorage = functionRef;\n    ```\n\n    Let's take the example usage of onstorage event handler which logs the storage key and it's values\n\n    ```javascript\n    window.onstorage = function (e) {\n      console.log(\n        \"The \" +\n          e.key +\n          \" key has been changed from \" +\n          e.oldValue +\n          \" to \" +\n          e.newValue +\n          \".\"\n      );\n    };\n    ```\n\n    **[\u2b06 Back to Top](#table-of-contents)**\n\n47.",
+      "explanation": "The StorageEvent is an event that fires when a storage area has been changed in the context of another document. Whereas onstorage property is an EventHandler for processing storage events.\n    The syntax would be as below\n\n    ```javascript\n    window.onstorage = functionRef;\n    ```\n\n    Let's take the example usage of onstorage event handler which logs the storage key and it's values\n\n    ```javascript\n    window.onstorage = function (e) {\n      console.log(\n        \"The \" +\n          e.key +\n          \" key has been changed from \" +\n          e.oldValue +\n          \" to \" +\n          e.newValue +\n          \".\"\n      );\n    };\n    ```\n\n    \n\n47.",
       "options": [
         {
           "text": "Solution 1 (Iterative generation)\n\n\njavascript\nconst HEX_PREFIX = \"#\";\nconst HEX_RADIX = 16;\nconst HEX_LENGTH = 6;\n\nfunction generateRandomHex() {\n  return (\n    HEX_PREFIX +\n    Math",
@@ -205,10 +205,10 @@
     },
     {
       "text": "What is a strict mode in javascript",
-      "explanation": "JavaScript\u2019s \"use strict\" directive is used to opt into a stricter parsing and error-handling mode for your scripts or functions. It helps catch common bugs, makes your code more secure, and prepares it for future versions of JavaScript.\n\n    Strict Mode is a new feature in ECMAScript 5 that allows you to place a program, or a function, in a \u201cstrict\u201d operating context. This way it prevents certain actions from being taken and throws more exceptions. The literal expression `\"use strict\";` instructs the browser to use the javascript code in the Strict mode. This also enables block-scoped variables.\n\n    **[\u2b06 Back to Top](#table-of-contents)**\n\n68.",
+      "explanation": "JavaScript’s \"use strict\" directive is used to opt into a stricter parsing and error-handling mode for your scripts or functions. It helps catch common bugs, makes your code more secure, and prepares it for future versions of JavaScript.\n\n    Strict Mode is a new feature in ECMAScript 5 that allows you to place a program, or a function, in a “strict” operating context. This way it prevents certain actions from being taken and throws more exceptions. The literal expression `\"use strict\";` instructs the browser to use the javascript code in the Strict mode. This also enables block-scoped variables.\n\n    \n\n68.",
       "options": [
         {
-          "text": "JavaScript\u2019s \"use strict\" directive is used to opt into a stricter parsing and error-handling mode for your scripts or functions",
+          "text": "JavaScript’s \"use strict\" directive is used to opt into a stricter parsing and error-handling mode for your scripts or functions",
           "is_correct": true
         },
         {
@@ -227,7 +227,7 @@
     },
     {
       "text": "How do you declare strict mode",
-      "explanation": "The strict mode is declared by adding \"use strict\"; to the beginning of a script or a function.\n    If declared at the beginning of a script, it has global scope.\n\n    ```javascript\n    \"use strict\";\n    x = 3.14; // This will cause an error because x is not declared\n    ```\n\n    and if you declare inside a function, it has local scope\n\n    ```javascript\n    x = 3.14; // This will not cause an error.\n    myFunction();\n\n    function myFunction() {\n      \"use strict\";\n      y = 3.14; // This will cause an error\n    }\n    ```\n\n    **[\u2b06 Back to Top](#table-of-contents)**\n\n70.",
+      "explanation": "The strict mode is declared by adding \"use strict\"; to the beginning of a script or a function.\n    If declared at the beginning of a script, it has global scope.\n\n    ```javascript\n    \"use strict\";\n    x = 3.14; // This will cause an error because x is not declared\n    ```\n\n    and if you declare inside a function, it has local scope\n\n    ```javascript\n    x = 3.14; // This will not cause an error.\n    myFunction();\n\n    function myFunction() {\n      \"use strict\";\n      y = 3.14; // This will cause an error\n    }\n    ```\n\n    \n\n70.",
       "options": [
         {
           "text": "In ES5, we need to depend on logical OR operators to handle default values of function parameters",
@@ -249,7 +249,7 @@
     },
     {
       "text": "What is eval",
-      "explanation": "The eval() function evaluates JavaScript code represented as a string. The string can be a JavaScript expression, variable, statement, or sequence of statements.\n\n    ```javascript\n    console.log(eval(\"1 + 2\")); //  3\n    ```\n\n    **[\u2b06 Back to Top](#table-of-contents)**\n\n77.",
+      "explanation": "The eval() function evaluates JavaScript code represented as a string. The string can be a JavaScript expression, variable, statement, or sequence of statements.\n\n    ```javascript\n    console.log(eval(\"1 + 2\")); //  3\n    ```\n\n    \n\n77.",
       "options": [
         {
           "text": "The eval() function evaluates JavaScript code represented as a string",
@@ -264,14 +264,14 @@
           "is_correct": false
         },
         {
-          "text": "A first-order function is a function that doesn\u2019t accept another function as an argument and doesn\u2019t return a function as its return value",
+          "text": "A first-order function is a function that doesn’t accept another function as an argument and doesn’t return a function as its return value",
           "is_correct": false
         }
       ]
     },
     {
       "text": "How do you detect caps lock key turned on or not",
-      "explanation": "The `mouseEvent getModifierState()` is used to return a boolean value that indicates whether the specified modifier key is activated or not. The modifiers such as CapsLock, ScrollLock and NumLock are activated when they are clicked, and deactivated when they are clicked again.\n\n    Let's take an input element to detect the CapsLock on/off behavior with an example:\n\n    ```html\n    <input type=\"password\" onmousedown=\"enterInput(event)\" />\n\n    <p id=\"feedback\"></p>\n\n    <script>\n      function enterInput(e) {\n        var flag = e.getModifierState(\"CapsLock\");\n        if (flag) {\n          document.getElementById(\"feedback\").innerHTML = \"CapsLock activated\";\n        } else {\n          document.getElementById(\"feedback\").innerHTML =\n            \"CapsLock not activated\";\n        }\n      }\n    </script>\n    ```\n\n    **[\u2b06 Back to Top](#table-of-contents)**\n\n80.",
+      "explanation": "The `mouseEvent getModifierState()` is used to return a boolean value that indicates whether the specified modifier key is activated or not. The modifiers such as CapsLock, ScrollLock and NumLock are activated when they are clicked, and deactivated when they are clicked again.\n\n    Let's take an input element to detect the CapsLock on/off behavior with an example:\n\n    ```html\n    <input type=\"password\" onmousedown=\"enterInput(event)\" />\n\n    <p id=\"feedback\"></p>\n\n    <script>\n      function enterInput(e) {\n        var flag = e.getModifierState(\"CapsLock\");\n        if (flag) {\n          document.getElementById(\"feedback\").innerHTML = \"CapsLock activated\";\n        } else {\n          document.getElementById(\"feedback\").innerHTML =\n            \"CapsLock not activated\";\n        }\n      }\n    </script>\n    ```\n\n    \n\n80.",
       "options": [
         {
           "text": "Hoisting is JavaScript's default behavior where **variable and function declarations** are moved to the top of their scope before code execution",
@@ -293,7 +293,7 @@
     },
     {
       "text": "What is isNaN",
-      "explanation": "The isNaN() function is used to determine whether a value is an illegal number (Not-a-Number) or not. i.e, This function returns true if the value equates to NaN. Otherwise it returns false.\n\n    ```javascript\n    isNaN(\"Hello\"); //true\n    isNaN(\"100\"); //false\n    ```\n\n    **[\u2b06 Back to Top](#table-of-contents)**\n\n81.",
+      "explanation": "The isNaN() function is used to determine whether a value is an illegal number (Not-a-Number) or not. i.e, This function returns true if the value equates to NaN. Otherwise it returns false.\n\n    ```javascript\n    isNaN(\"Hello\"); //true\n    isNaN(\"100\"); //false\n    ```\n\n    \n\n81.",
       "options": [
         {
           "text": "The isNaN() function is used to determine whether a value is an illegal number (Not-a-Number) or not",
@@ -315,7 +315,7 @@
     },
     {
       "text": "What is the purpose of isFinite function",
-      "explanation": "The isFinite() function is used to determine whether a number is a finite, legal number. It returns false if the value is +infinity, -infinity, or NaN (Not-a-Number), otherwise it returns true.\n\n    ```javascript\n    isFinite(Infinity); // false\n    isFinite(NaN); // false\n    isFinite(-Infinity); // false\n\n    isFinite(100); // true\n    ```\n\n    **[\u2b06 Back to Top](#table-of-contents)**\n\n86.",
+      "explanation": "The isFinite() function is used to determine whether a number is a finite, legal number. It returns false if the value is +infinity, -infinity, or NaN (Not-a-Number), otherwise it returns true.\n\n    ```javascript\n    isFinite(Infinity); // false\n    isFinite(NaN); // false\n    isFinite(-Infinity); // false\n\n    isFinite(100); // true\n    ```\n\n    \n\n86.",
       "options": [
         {
           "text": "The isFinite() function is used to determine whether a number is a finite, legal number",
@@ -326,7 +326,7 @@
           "is_correct": false
         },
         {
-          "text": "JavaScript\u2019s \"use strict\" directive is used to opt into a stricter parsing and error-handling mode for your scripts or functions",
+          "text": "JavaScript’s \"use strict\" directive is used to opt into a stricter parsing and error-handling mode for your scripts or functions",
           "is_correct": false
         },
         {
@@ -337,7 +337,7 @@
     },
     {
       "text": "How do you submit a form using JavaScript",
-      "explanation": "You can submit a form using `document.forms[0].submit()`. All the form input's information is submitted using onsubmit event handler\n\n    ```javascript\n    function submit() {\n      document.forms[0].submit();\n    }\n    ```\n\n    **[\u2b06 Back to Top](#table-of-contents)**\n\n90.",
+      "explanation": "You can submit a form using `document.forms[0].submit()`. All the form input's information is submitted using onsubmit event handler\n\n    ```javascript\n    function submit() {\n      document.forms[0].submit();\n    }\n    ```\n\n    \n\n90.",
       "options": [
         {
           "text": "The easiest approach is using regular expressions to detect and replace newlines in the string",
@@ -359,7 +359,7 @@
     },
     {
       "text": "What are events",
-      "explanation": "Events are \"things\" that happen to HTML elements. When JavaScript is used in HTML pages, JavaScript can `react` on these events. Some of the examples of HTML events are,\n\n      1. Web page has finished loading\n      2. Input field was changed\n      3. Button was clicked\n\n      Let's describe the behavior of click event for button element,\n\n      ```javascript\n      <!doctype html>\n      <html>\n       <head>\n         <script>\n           function greeting() {\n             alert('Hello! Good morning');\n           }\n         </script>\n       </head>\n       <body>\n         <button type=\"button\" onclick=\"greeting()\">Click me</button>\n       </body>\n      </html>\n      ```\n\n      **[\u2b06 Back to Top](#table-of-contents)**\n\n102.",
+      "explanation": "Events are \"things\" that happen to HTML elements. When JavaScript is used in HTML pages, JavaScript can `react` on these events. Some of the examples of HTML events are,\n\n      1. Web page has finished loading\n      2. Input field was changed\n      3. Button was clicked\n\n      Let's describe the behavior of click event for button element,\n\n      ```javascript\n      <!doctype html>\n      <html>\n       <head>\n         <script>\n           function greeting() {\n             alert('Hello! Good morning');\n           }\n         </script>\n       </head>\n       <body>\n         <button type=\"button\" onclick=\"greeting()\">Click me</button>\n       </body>\n      </html>\n      ```\n\n      \n\n102.",
       "options": [
         {
           "text": "You might have seen expressions used in switch condition but it is also possible to use for switch cases by assigning true value for the switch condition",
@@ -381,7 +381,7 @@
     },
     {
       "text": "What is the use of preventDefault method",
-      "explanation": "The preventDefault() method cancels the event if it is cancelable, meaning that the default action or behaviour that belongs to the event will not occur. For example, prevent form submission when clicking on submit button and prevent opening the page URL when clicking on hyperlink are some common use cases.\n\n      ```javascript\n      document\n        .getElementById(\"link\")\n        .addEventListener(\"click\", function (event) {\n          event.preventDefault();\n        });\n      ```\n\n      **Note:** Remember that not all events are cancelable.\n\n      **[\u2b06 Back to Top](#table-of-contents)**\n\n104.",
+      "explanation": "The preventDefault() method cancels the event if it is cancelable, meaning that the default action or behaviour that belongs to the event will not occur. For example, prevent form submission when clicking on submit button and prevent opening the page URL when clicking on hyperlink are some common use cases.\n\n      ```javascript\n      document\n        .getElementById(\"link\")\n        .addEventListener(\"click\", function (event) {\n          event.preventDefault();\n        });\n      ```\n\n      **Note:** Remember that not all events are cancelable.\n\n      \n\n104.",
       "options": [
         {
           "text": "and 10 is logged to the console",
@@ -403,7 +403,7 @@
     },
     {
       "text": "What is the use of stopPropagation method",
-      "explanation": "The stopPropagation method is used to stop the event from bubbling up the event chain. For example, the below nested divs with stopPropagation method prevents default event propagation when clicking on nested div(Div1)\n\n      ```javascript\n      <p>Click DIV1 Element</p>\n      <div onclick=\"secondFunc()\">DIV 2\n        <div onclick=\"firstFunc(event)\">DIV 1</div>\n      </div>\n\n      <script>\n      function firstFunc(event) {\n        alert(\"DIV 1\");\n        event.stopPropagation();\n      }\n\n      function secondFunc() {\n        alert(\"DIV 2\");\n      }\n      </script>\n      ```\n\n      **[\u2b06 Back to Top](#table-of-contents)**\n\n105.",
+      "explanation": "The stopPropagation method is used to stop the event from bubbling up the event chain. For example, the below nested divs with stopPropagation method prevents default event propagation when clicking on nested div(Div1)\n\n      ```javascript\n      <p>Click DIV1 Element</p>\n      <div onclick=\"secondFunc()\">DIV 2\n        <div onclick=\"firstFunc(event)\">DIV 1</div>\n      </div>\n\n      <script>\n      function firstFunc(event) {\n        alert(\"DIV 1\");\n        event.stopPropagation();\n      }\n\n      function secondFunc() {\n        alert(\"DIV 2\");\n      }\n      </script>\n      ```\n\n      \n\n105.",
       "options": [
         {
           "text": "Immediately Invoked Function Expressions(IIFE) requires a pair of parenthesis to wrap the function which contains set of statements",
@@ -425,7 +425,7 @@
     },
     {
       "text": "What is an event delegation",
-      "explanation": "Event delegation is a technique for listening to events where you delegate a parent element as the listener for all of the events that happen inside it.\n\n      For example, if you wanted to detect field changes inside a specific form, you can use event delegation technique,\n\n      ```javascript\n      var form = document.querySelector(\"#registration-form\");\n\n      // Listen for changes to fields inside the form\n      form.addEventListener(\n        \"input\",\n        function (event) {\n          // Log the field that was changed\n          console.log(event.target);\n        },\n        false\n      );\n      ```\n\n      **[\u2b06 Back to Top](#table-of-contents)**\n\n111.",
+      "explanation": "Event delegation is a technique for listening to events where you delegate a parent element as the listener for all of the events that happen inside it.\n\n      For example, if you wanted to detect field changes inside a specific form, you can use event delegation technique,\n\n      ```javascript\n      var form = document.querySelector(\"#registration-form\");\n\n      // Listen for changes to fields inside the form\n      form.addEventListener(\n        \"input\",\n        function (event) {\n          // Log the field that was changed\n          console.log(event.target);\n        },\n        false\n      );\n      ```\n\n      \n\n111.",
       "options": [
         {
           "text": "The eval() function evaluates JavaScript code represented as a string",
@@ -447,7 +447,7 @@
     },
     {
       "text": "How do you validate an email in javascript",
-      "explanation": "You can validate an email in javascript using regular expressions. It is recommended to do validations on the server side instead of the client side. Because the javascript can be disabled on the client side.\n\n      ```javascript\n      function validateEmail(email) {\n        var re =\n          /^(([^<>()\\[\\]\\\\.,;:\\s@\"]+(\\.[^<>()\\[\\]\\\\.,;:\\s@\"]+)*)|(\".+\"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$/;\n        return re.test(String(email).toLowerCase());\n      }\n      ```\n\n      **[\u2b06 Back to Top](#table-of-contents)**\n\n      The above regular expression accepts unicode characters.\n\n123.",
+      "explanation": "You can validate an email in javascript using regular expressions. It is recommended to do validations on the server side instead of the client side. Because the javascript can be disabled on the client side.\n\n      ```javascript\n      function validateEmail(email) {\n        var re =\n          /^(([^<>()\\[\\]\\\\.,;:\\s@\"]+(\\.[^<>()\\[\\]\\\\.,;:\\s@\"]+)*)|(\".+\"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$/;\n        return re.test(String(email).toLowerCase());\n      }\n      ```\n\n      \n\n      The above regular expression accepts unicode characters.\n\n123.",
       "options": [
         {
           "text": "You can validate an email in javascript using regular expressions",
@@ -469,7 +469,7 @@
     },
     {
       "text": "What is the way to find the number of parameters expected by a function",
-      "explanation": "You can use `function.length` syntax to find the number of parameters expected by a function. Let's take an example of `sum` function to calculate the sum of numbers,\n\n      ```javascript\n      function sum(num1, num2, num3, num4) {\n        return num1 + num2 + num3 + num4;\n      }\n      sum.length; // 4 is the number of parameters expected.\n      ```\n\n      **[\u2b06 Back to Top](#table-of-contents)**\n\n143.",
+      "explanation": "You can use `function.length` syntax to find the number of parameters expected by a function. Let's take an example of `sum` function to calculate the sum of numbers,\n\n      ```javascript\n      function sum(num1, num2, num3, num4) {\n        return num1 + num2 + num3 + num4;\n      }\n      sum.length; // 4 is the number of parameters expected.\n      ```\n\n      \n\n143.",
       "options": [
         {
           "text": "You can use `function",
@@ -491,7 +491,7 @@
     },
     {
       "text": "What is a polyfill",
-      "explanation": "A polyfill is a piece of JS code used to provide modern functionality on older browsers that do not natively support it. For example, Silverlight plugin polyfill can be used to mimic the functionality of an HTML Canvas element on Microsoft Internet Explorer 7.\n\n      There are two main polyfill libraries available,\n\n      1. **Core.js**: It is a modular javascript library used for cutting-edge ECMAScript features.\n      2. **Polyfill.io:** It provides polyfills that are required for browser needs.\n\n      **[\u2b06 Back to Top](#table-of-contents)**\n\n144.",
+      "explanation": "A polyfill is a piece of JS code used to provide modern functionality on older browsers that do not natively support it. For example, Silverlight plugin polyfill can be used to mimic the functionality of an HTML Canvas element on Microsoft Internet Explorer 7.\n\n      There are two main polyfill libraries available,\n\n      1. **Core.js**: It is a modular javascript library used for cutting-edge ECMAScript features.\n      2. **Polyfill.io:** It provides polyfills that are required for browser needs.\n\n      \n\n144.",
       "options": [
         {
           "text": "You can validate an email in javascript using regular expressions",
@@ -513,7 +513,7 @@
     },
     {
       "text": "Can you write a random integers function to print integers within a range",
-      "explanation": "Yes, you can create a proper random function to return a random number between min and max (both included)\n\n      ```javascript\n      function randomInteger(min, max) {\n        return Math.floor(Math.random() * (max - min + 1)) + min;\n      }\n      randomInteger(1, 100); // returns a random integer from 1 to 100\n      randomInteger(1, 1000); // returns a random integer from 1 to 1000\n      ```\n\n      **[\u2b06 Back to Top](#table-of-contents)**\n\n152.",
+      "explanation": "Yes, you can create a proper random function to return a random number between min and max (both included)\n\n      ```javascript\n      function randomInteger(min, max) {\n        return Math.floor(Math.random() * (max - min + 1)) + min;\n      }\n      randomInteger(1, 100); // returns a random integer from 1 to 100\n      randomInteger(1, 1000); // returns a random integer from 1 to 1000\n      ```\n\n      \n\n152.",
       "options": [
         {
           "text": "`encodeURI()` function is used to encode an URL",
@@ -528,14 +528,14 @@
           "is_correct": false
         },
         {
-          "text": "Yes, you can create a proper random function to return a random number between min and max (both included)\n\n      \n\n      **\u2b06 Back to Top**\n\n152",
+          "text": "Yes, you can create a proper random function to return a random number between min and max (both included)\n\n      \n\n      **⬆ Back to Top**\n\n152",
           "is_correct": true
         }
       ]
     },
     {
       "text": "Is it recommended to use eval",
-      "explanation": "No, it allows arbitrary code to be run which causes a security problem. As we know that the eval() function is used to run text as code. In most of the cases, it should not be necessary to use it.\n\n      **[\u2b06 Back to Top](#table-of-contents)**\n\n155.",
+      "explanation": "No, it allows arbitrary code to be run which causes a security problem. As we know that the eval() function is used to run text as code. In most of the cases, it should not be necessary to use it.\n\n      \n\n155.",
       "options": [
         {
           "text": "No, it allows arbitrary code to be run which causes a security problem",
@@ -557,14 +557,14 @@
     },
     {
       "text": "What is a debugger statement",
-      "explanation": "The debugger statement invokes any available debugging functionality, such as setting a breakpoint. If no debugging functionality is available, this statement has no effect.\n      For example, in the below function a debugger statement has been inserted. So\n      execution is paused at the debugger statement just like a breakpoint in the script source.\n\n      ```javascript\n      function getProfile() {\n        // code goes here\n        debugger;\n        // code goes here\n      }\n      ```\n\n      **[\u2b06 Back to Top](#table-of-contents)**\n\n165.",
+      "explanation": "The debugger statement invokes any available debugging functionality, such as setting a breakpoint. If no debugging functionality is available, this statement has no effect.\n      For example, in the below function a debugger statement has been inserted. So\n      execution is paused at the debugger statement just like a breakpoint in the script source.\n\n      ```javascript\n      function getProfile() {\n        // code goes here\n        debugger;\n        // code goes here\n      }\n      ```\n\n      \n\n165.",
       "options": [
         {
           "text": "In ES5, we need to depend on logical OR operators to handle default values of function parameters",
           "is_correct": false
         },
         {
-          "text": "JavaScript\u2019s \"use strict\" directive is used to opt into a stricter parsing and error-handling mode for your scripts or functions",
+          "text": "JavaScript’s \"use strict\" directive is used to opt into a stricter parsing and error-handling mode for your scripts or functions",
           "is_correct": false
         },
         {
@@ -579,7 +579,7 @@
     },
     {
       "text": "How do you detect a mobile browser",
-      "explanation": "You can use regex which returns a true or false value depending on whether or not the user is browsing with a mobile.\n\n      ```javascript\n      window.mobilecheck = function () {\n        var mobileCheck = false;\n        (function (a) {\n          if (\n            /(android|bb\\d+|meego).+mobile|avantgo|bada\\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\\.(browser|link)|vodafone|wap|windows ce|xda|xiino/i.test(\n              a\n            ) ||\n            /1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\\-(n|u)|c55\\/|capi|ccwa|cdm\\-|cell|chtm|cldc|cmd\\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\\-s|devi|dica|dmob|do(c|p)o|ds(12|\\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\\-|_)|g1 u|g560|gene|gf\\-5|g\\-mo|go(\\.w|od)|gr(ad|un)|haie|hcit|hd\\-(m|p|t)|hei\\-|hi(pt|ta)|hp( i|ip)|hs\\-c|ht(c(\\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\\-(20|go|ma)|i230|iac( |\\-|\\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\\/)|klon|kpt |kwc\\-|kyo(c|k)|le(no|xi)|lg( g|\\/(k|l|u)|50|54|\\-[a-w])|libw|lynx|m1\\-w|m3ga|m50\\/|ma(te|ui|xo)|mc(01|21|ca)|m\\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\\-2|po(ck|rt|se)|prox|psio|pt\\-g|qa\\-a|qc(07|12|21|32|60|\\-[2-7]|i\\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\\-|oo|p\\-)|sdk\\/|se(c(\\-|0|1)|47|mc|nd|ri)|sgh\\-|shar|sie(\\-|m)|sk\\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\\-|v\\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\\-|tdg\\-|tel(i|m)|tim\\-|t\\-mo|to(pl|sh)|ts(70|m\\-|m3|m5)|tx\\-9|up(\\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\\-|your|zeto|zte\\-/i.test(\n              a.substr(0, 4)\n            )\n          )\n            mobileCheck = true;\n        })(navigator.userAgent || navigator.vendor || window.opera);\n        return mobileCheck;\n      };\n      ```\n\n      **[\u2b06 Back to Top](#table-of-contents)**\n\n168.",
+      "explanation": "You can use regex which returns a true or false value depending on whether or not the user is browsing with a mobile.\n\n      ```javascript\n      window.mobilecheck = function () {\n        var mobileCheck = false;\n        (function (a) {\n          if (\n            /(android|bb\\d+|meego).+mobile|avantgo|bada\\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\\.(browser|link)|vodafone|wap|windows ce|xda|xiino/i.test(\n              a\n            ) ||\n            /1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\\-(n|u)|c55\\/|capi|ccwa|cdm\\-|cell|chtm|cldc|cmd\\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\\-s|devi|dica|dmob|do(c|p)o|ds(12|\\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\\-|_)|g1 u|g560|gene|gf\\-5|g\\-mo|go(\\.w|od)|gr(ad|un)|haie|hcit|hd\\-(m|p|t)|hei\\-|hi(pt|ta)|hp( i|ip)|hs\\-c|ht(c(\\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\\-(20|go|ma)|i230|iac( |\\-|\\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\\/)|klon|kpt |kwc\\-|kyo(c|k)|le(no|xi)|lg( g|\\/(k|l|u)|50|54|\\-[a-w])|libw|lynx|m1\\-w|m3ga|m50\\/|ma(te|ui|xo)|mc(01|21|ca)|m\\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\\-2|po(ck|rt|se)|prox|psio|pt\\-g|qa\\-a|qc(07|12|21|32|60|\\-[2-7]|i\\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\\-|oo|p\\-)|sdk\\/|se(c(\\-|0|1)|47|mc|nd|ri)|sgh\\-|shar|sie(\\-|m)|sk\\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\\-|v\\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\\-|tdg\\-|tel(i|m)|tim\\-|t\\-mo|to(pl|sh)|ts(70|m\\-|m3|m5)|tx\\-9|up(\\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\\-|your|zeto|zte\\-/i.test(\n              a.substr(0, 4)\n            )\n          )\n            mobileCheck = true;\n        })(navigator.userAgent || navigator.vendor || window.opera);\n        return mobileCheck;\n      };\n      ```\n\n      \n\n168.",
       "options": [
         {
           "text": "You can use regex which returns a true or false value depending on whether or not the user is browsing with a mobile",
@@ -601,7 +601,7 @@
     },
     {
       "text": "How do you detect a mobile browser without regexp",
-      "explanation": "You can detect mobile browsers by simply running through a list of devices and checking if the useragent matches anything. This is an alternative solution for RegExp usage,\n\n      ```javascript\n      function detectmob() {\n        if (\n          navigator.userAgent.match(/Android/i) ||\n          navigator.userAgent.match(/webOS/i) ||\n          navigator.userAgent.match(/iPhone/i) ||\n          navigator.userAgent.match(/iPad/i) ||\n          navigator.userAgent.match(/iPod/i) ||\n          navigator.userAgent.match(/BlackBerry/i) ||\n          navigator.userAgent.match(/Windows Phone/i)\n        ) {\n          return true;\n        } else {\n          return false;\n        }\n      }\n      ```\n\n      **[\u2b06 Back to Top](#table-of-contents)**\n\n169.",
+      "explanation": "You can detect mobile browsers by simply running through a list of devices and checking if the useragent matches anything. This is an alternative solution for RegExp usage,\n\n      ```javascript\n      function detectmob() {\n        if (\n          navigator.userAgent.match(/Android/i) ||\n          navigator.userAgent.match(/webOS/i) ||\n          navigator.userAgent.match(/iPhone/i) ||\n          navigator.userAgent.match(/iPad/i) ||\n          navigator.userAgent.match(/iPod/i) ||\n          navigator.userAgent.match(/BlackBerry/i) ||\n          navigator.userAgent.match(/Windows Phone/i)\n        ) {\n          return true;\n        } else {\n          return false;\n        }\n      }\n      ```\n\n      \n\n169.",
       "options": [
         {
           "text": "You can detect mobile browsers by simply running through a list of devices and checking if the useragent matches anything",
@@ -623,7 +623,7 @@
     },
     {
       "text": "What are the ways to execute javascript after a page load",
-      "explanation": "You can execute javascript after page load in many different ways,\n\n      1. **window.onload:**\n\n      ```javascript\n      window.onload = function ...\n      ```\n\n      2. **document.onload:**\n\n      ```javascript\n      document.onload = function ...\n      ```\n\n      3. **body onload:**\n\n      ```javascript\n      <body onload=\"script();\">\n      ```\n\n      **[\u2b06 Back to Top](#table-of-contents)**\n\n177.",
+      "explanation": "You can execute javascript after page load in many different ways,\n\n      1. **window.onload:**\n\n      ```javascript\n      window.onload = function ...\n      ```\n\n      2. **document.onload:**\n\n      ```javascript\n      document.onload = function ...\n      ```\n\n      3. **body onload:**\n\n      ```javascript\n      <body onload=\"script();\">\n      ```\n\n      \n\n177.",
       "options": [
         {
           "text": "You can execute javascript after page load in many different ways,\n\n      1",
@@ -638,14 +638,14 @@
           "is_correct": false
         },
         {
-          "text": "JavaScript\u2019s \"use strict\" directive is used to opt into a stricter parsing and error-handling mode for your scripts or functions",
+          "text": "JavaScript’s \"use strict\" directive is used to opt into a stricter parsing and error-handling mode for your scripts or functions",
           "is_correct": false
         }
       ]
     },
     {
       "text": "How to convert a string to title case with javascript",
-      "explanation": "Title case means that the first letter of each word is capitalized. You can convert a string to title case using the below function,\n\n      ```javascript\n      function toTitleCase(str) {\n        return str.replace(/\\w\\S*/g, function (txt) {\n          return txt.charAt(0).toUpperCase() + txt.substring(1).toLowerCase();\n        });\n      }\n      toTitleCase(\"good morning john\"); // Good Morning John\n      ```\n\n      **[\u2b06 Back to Top](#table-of-contents)**\n\n184.",
+      "explanation": "Title case means that the first letter of each word is capitalized. You can convert a string to title case using the below function,\n\n      ```javascript\n      function toTitleCase(str) {\n        return str.replace(/\\w\\S*/g, function (txt) {\n          return txt.charAt(0).toUpperCase() + txt.substring(1).toLowerCase();\n        });\n      }\n      toTitleCase(\"good morning john\"); // Good Morning John\n      ```\n\n      \n\n184.",
       "options": [
         {
           "text": "Unlike regular functions, the arrow functions doesn't not allow duplicate parameters in either strict or non-strict mode",
@@ -667,7 +667,7 @@
     },
     {
       "text": "How do you encode an URL",
-      "explanation": "The `encodeURI()` function is used to encode complete URI which has special characters except (, / ? : @ & = + $ #) characters.\n\n      ```javascript\n      var uri = \"https://mozilla.org/?x=\u0448\u0435\u043b\u043b\u044b\";\n      var encoded = encodeURI(uri);\n      console.log(encoded); // https://mozilla.org/?x=%D1%88%D0%B5%D0%BB%D0%BB%D1%8B\n      ```\n\n      **[\u2b06 Back to Top](#table-of-contents)**\n\n212.",
+      "explanation": "The `encodeURI()` function is used to encode complete URI which has special characters except (, / ? : @ & = + $ #) characters.\n\n      ```javascript\n      var uri = \"https://mozilla.org/?x=шеллы\";\n      var encoded = encodeURI(uri);\n      console.log(encoded); // https://mozilla.org/?x=%D1%88%D0%B5%D0%BB%D0%BB%D1%8B\n      ```\n\n      \n\n212.",
       "options": [
         {
           "text": "and 10 is logged to the console",
@@ -689,10 +689,10 @@
     },
     {
       "text": "How do you decode an URL",
-      "explanation": "The `decodeURI()` function is used to decode a Uniform Resource Identifier (URI) previously created by `encodeURI()`.\n\n      ```javascript\n      var uri = \"https://mozilla.org/?x=\u0448\u0435\u043b\u043b\u044b\";\n      var encoded = encodeURI(uri);\n      console.log(encoded); // https://mozilla.org/?x=%D1%88%D0%B5%D0%BB%D0%BB%D1%8B\n      try {\n        console.log(decodeURI(encoded)); // \"https://mozilla.org/?x=\u0448\u0435\u043b\u043b\u044b\"\n      } catch (e) {\n        // catches a malformed URI\n        console.error(e);\n      }\n      ```\n\n      **[\u2b06 Back to Top](#table-of-contents)**\n\n213.",
+      "explanation": "The `decodeURI()` function is used to decode a Uniform Resource Identifier (URI) previously created by `encodeURI()`.\n\n      ```javascript\n      var uri = \"https://mozilla.org/?x=шеллы\";\n      var encoded = encodeURI(uri);\n      console.log(encoded); // https://mozilla.org/?x=%D1%88%D0%B5%D0%BB%D0%BB%D1%8B\n      try {\n        console.log(decodeURI(encoded)); // \"https://mozilla.org/?x=шеллы\"\n      } catch (e) {\n        // catches a malformed URI\n        console.error(e);\n      }\n      ```\n\n      \n\n213.",
       "options": [
         {
-          "text": "A first-order function is a function that doesn\u2019t accept another function as an argument and doesn\u2019t return a function as its return value",
+          "text": "A first-order function is a function that doesn’t accept another function as an argument and doesn’t return a function as its return value",
           "is_correct": false
         },
         {
@@ -711,7 +711,7 @@
     },
     {
       "text": "What is the precedence order between local and global variables",
-      "explanation": "A local variable takes precedence over a global variable with the same name. Let's see this behavior in an example.\n\n      ```javascript\n      var msg = \"Good morning\";\n      function greeting() {\n        msg = \"Good Evening\";\n        console.log(msg); // Good Evening\n      }\n      greeting();\n      ```\n\n      **[\u2b06 Back to Top](#table-of-contents)**\n\n217.",
+      "explanation": "A local variable takes precedence over a global variable with the same name. Let's see this behavior in an example.\n\n      ```javascript\n      var msg = \"Good morning\";\n      function greeting() {\n        msg = \"Good Evening\";\n        console.log(msg); // Good Evening\n      }\n      greeting();\n      ```\n\n      \n\n217.",
       "options": [
         {
           "text": "A local variable takes precedence over a global variable with the same name",
@@ -722,7 +722,7 @@
           "is_correct": false
         },
         {
-          "text": "A first-order function is a function that doesn\u2019t accept another function as an argument and doesn\u2019t return a function as its return value",
+          "text": "A first-order function is a function that doesn’t accept another function as an argument and doesn’t return a function as its return value",
           "is_correct": false
         },
         {
@@ -733,7 +733,7 @@
     },
     {
       "text": "What are the function parameter rules",
-      "explanation": "JavaScript functions follow below rules for parameters,\n\n      1. The function definitions do not specify data types for parameters.\n      2. Do not perform type checking on the passed arguments.\n      3. Do not check the number of arguments received.\n         i.e, The below function follows the above rules,\n\n      ```javascript\n      function functionName(parameter1, parameter2, parameter3) {\n        console.log(parameter1); // 1\n      }\n      functionName(1);\n      ```\n\n      **[\u2b06 Back to Top](#table-of-contents)**\n\n227.",
+      "explanation": "JavaScript functions follow below rules for parameters,\n\n      1. The function definitions do not specify data types for parameters.\n      2. Do not perform type checking on the passed arguments.\n      3. Do not check the number of arguments received.\n         i.e, The below function follows the above rules,\n\n      ```javascript\n      function functionName(parameter1, parameter2, parameter3) {\n        console.log(parameter1); // 1\n      }\n      functionName(1);\n      ```\n\n      \n\n227.",
       "options": [
         {
           "text": "JavaScript functions follow below rules for parameters,\n\n      1",
@@ -755,7 +755,7 @@
     },
     {
       "text": "When do you get a syntax error",
-      "explanation": "A SyntaxError is thrown if you try to evaluate code with a syntax error. For example, the below missing quote for the function parameter throws a syntax error\n\n      ```javascript\n      try {\n        eval(\"greeting('welcome)\"); // Missing ' will produce an error\n      } catch (err) {\n        console.log(err.name);\n      }\n      ```\n\n      **[\u2b06 Back to Top](#table-of-contents)**\n\n229.",
+      "explanation": "A SyntaxError is thrown if you try to evaluate code with a syntax error. For example, the below missing quote for the function parameter throws a syntax error\n\n      ```javascript\n      try {\n        eval(\"greeting('welcome)\"); // Missing ' will produce an error\n      } catch (err) {\n        console.log(err.name);\n      }\n      ```\n\n      \n\n229.",
       "options": [
         {
           "text": "A thunk is just a function which delays the evaluation of the value",
@@ -777,7 +777,7 @@
     },
     {
       "text": "What is the advantage of the comma operator",
-      "explanation": "It is normally used to include multiple expressions in a location that requires a single expression. One of the common usages of this comma operator is to supply multiple parameters in a `for` loop. For example, the below for loop uses multiple expressions in a single location using comma operator,\n\n      ```javascript\n      for (var a = 0, b =10; a <= 10; a++, b--)\n      ```\n\n      You can also use the comma operator in a return statement where it processes before returning.\n\n      ```javascript\n      function myFunction() {\n        var a = 1;\n        return (a += 10), a; // 11\n      }\n      ```\n\n      **[\u2b06 Back to Top](#table-of-contents)**\n\n252.",
+      "explanation": "It is normally used to include multiple expressions in a location that requires a single expression. One of the common usages of this comma operator is to supply multiple parameters in a `for` loop. For example, the below for loop uses multiple expressions in a single location using comma operator,\n\n      ```javascript\n      for (var a = 0, b =10; a <= 10; a++, b--)\n      ```\n\n      You can also use the comma operator in a return statement where it processes before returning.\n\n      ```javascript\n      function myFunction() {\n        var a = 1;\n        return (a += 10), a; // 11\n      }\n      ```\n\n      \n\n252.",
       "options": [
         {
           "text": "IIFE (Immediately Invoked Function Expression) is a JavaScript function that runs as soon as it is defined",
@@ -799,7 +799,7 @@
     },
     {
       "text": "What is obfuscation in javascript",
-      "explanation": "Obfuscation is the deliberate act of creating obfuscated javascript code(i.e, source or machine code) that is difficult for humans to understand. It is something similar to encryption, but a machine can understand the code and execute it.\n      Let's see the below function before Obfuscation,\n\n      ```javascript\n      function greeting() {\n        console.log(\"Hello, welcome to JS world\");\n      }\n      ```\n\n      And after the code Obfuscation, it would be appeared as below,\n\n      ```javascript\n      eval(\n        (function (p, a, c, k, e, d) {\n          e = function (c) {\n            return c;\n          };\n          if (!\"\".replace(/^/, String)) {\n            while (c--) {\n              d[c] = k[c] || c;\n            }\n            k = [\n              function (e) {\n                return d[e];\n              },\n            ];\n            e = function () {\n              return \"\\\\w+\";\n            };\n            c = 1;\n          }\n          while (c--) {\n            if (k[c]) {\n              p = p.replace(new RegExp(\"\\\\b\" + e(c) + \"\\\\b\", \"g\"), k[c]);\n            }\n          }\n          return p;\n        })(\n          \"2 1(){0.3('4, 7 6 5 8')}\",\n          9,\n          9,\n          \"console|greeting|function|log|Hello|JS|to|welcome|world\".split(\"|\"),\n          0,\n          {}\n        )\n      );\n      ```\n\n      **[\u2b06 Back to Top](#table-of-contents)**\n\n268.",
+      "explanation": "Obfuscation is the deliberate act of creating obfuscated javascript code(i.e, source or machine code) that is difficult for humans to understand. It is something similar to encryption, but a machine can understand the code and execute it.\n      Let's see the below function before Obfuscation,\n\n      ```javascript\n      function greeting() {\n        console.log(\"Hello, welcome to JS world\");\n      }\n      ```\n\n      And after the code Obfuscation, it would be appeared as below,\n\n      ```javascript\n      eval(\n        (function (p, a, c, k, e, d) {\n          e = function (c) {\n            return c;\n          };\n          if (!\"\".replace(/^/, String)) {\n            while (c--) {\n              d[c] = k[c] || c;\n            }\n            k = [\n              function (e) {\n                return d[e];\n              },\n            ];\n            e = function () {\n              return \"\\\\w+\";\n            };\n            c = 1;\n          }\n          while (c--) {\n            if (k[c]) {\n              p = p.replace(new RegExp(\"\\\\b\" + e(c) + \"\\\\b\", \"g\"), k[c]);\n            }\n          }\n          return p;\n        })(\n          \"2 1(){0.3('4, 7 6 5 8')}\",\n          9,\n          9,\n          \"console|greeting|function|log|Hello|JS|to|welcome|world\".split(\"|\"),\n          0,\n          {}\n        )\n      );\n      ```\n\n      \n\n268.",
       "options": [
         {
           "text": "Lexical scope is the ability for a function scope to access variables from the parent scope",
@@ -821,7 +821,7 @@
     },
     {
       "text": "What is Minification",
-      "explanation": "Minification is the process of removing all unnecessary characters(empty spaces are removed) and variables will be renamed without changing it's functionality. It is also a type of obfuscation .\n\n      **[\u2b06 Back to Top](#table-of-contents)**\n\n270.",
+      "explanation": "Minification is the process of removing all unnecessary characters(empty spaces are removed) and variables will be renamed without changing it's functionality. It is also a type of obfuscation .\n\n      \n\n270.",
       "options": [
         {
           "text": "Minification is the process of removing all unnecessary characters(empty spaces are removed) and variables will be renamed without changing it's functionality",
@@ -843,7 +843,7 @@
     },
     {
       "text": "What are the common tools used for minification",
-      "explanation": "There are many online/offline tools to minify the javascript files,\n\n      1. Google's Closure Compiler\n      2. UglifyJS2\n      3. jsmin\n      4. javascript-minifier.com/\n      5. prettydiff.com\n\n      **[\u2b06 Back to Top](#table-of-contents)**\n\n273.",
+      "explanation": "There are many online/offline tools to minify the javascript files,\n\n      1. Google's Closure Compiler\n      2. UglifyJS2\n      3. jsmin\n      4. javascript-minifier.com/\n      5. prettydiff.com\n\n      \n\n273.",
       "options": [
         {
           "text": "It is normally used to include multiple expressions in a location that requires a single expression",
@@ -865,7 +865,7 @@
     },
     {
       "text": "How do you perform form validation using javascript",
-      "explanation": "JavaScript can be used to perform HTML form validation. For example, if the form field is empty, the function needs to notify, and return false, to prevent the form being submitted.\n      Lets' perform user login in an html form,\n\n      ```html\n      <form name=\"myForm\" onsubmit=\"return validateForm()\" method=\"post\">\n        User name:\n        <input type=\"text\" name=\"uname\" />\n        <input type=\"submit\" value=\"Submit\" />\n      </form>\n      ```\n\n      And the validation on user login is below,\n\n      ```javascript\n      function validateForm() {\n        var x = document.forms[\"myForm\"][\"uname\"].value;\n        if (x == \"\") {\n          alert(\"The username shouldn't be empty\");\n          return false;\n        }\n      }\n      ```\n\n      **[\u2b06 Back to Top](#table-of-contents)**\n\n274.",
+      "explanation": "JavaScript can be used to perform HTML form validation. For example, if the form field is empty, the function needs to notify, and return false, to prevent the form being submitted.\n      Lets' perform user login in an html form,\n\n      ```html\n      <form name=\"myForm\" onsubmit=\"return validateForm()\" method=\"post\">\n        User name:\n        <input type=\"text\" name=\"uname\" />\n        <input type=\"submit\" value=\"Submit\" />\n      </form>\n      ```\n\n      And the validation on user login is below,\n\n      ```javascript\n      function validateForm() {\n        var x = document.forms[\"myForm\"][\"uname\"].value;\n        if (x == \"\") {\n          alert(\"The username shouldn't be empty\");\n          return false;\n        }\n      }\n      ```\n\n      \n\n274.",
       "options": [
         {
           "text": "IIFE (Immediately Invoked Function Expression) is a JavaScript function that runs as soon as it is defined",
@@ -887,7 +887,7 @@
     },
     {
       "text": "What are the DOM methods available for constraint validation",
-      "explanation": "The below DOM methods are available for constraint validation on an invalid input,\n\n      1. `checkValidity()`: It returns true if an input element contains valid data.\n      2. `setCustomValidity()`: It is used to set the `validationMessage` property of an input element.\n         Let's take an user login form with DOM validations\n\n      ```javascript\n      function myFunction() {\n        var userName = document.getElementById(\"uname\");\n        if (!userName.checkValidity()) {\n          document.getElementById(\"message\").innerHTML =\n            userName.validationMessage;\n        } else {\n          document.getElementById(\"message\").innerHTML =\n            \"Entered a valid username\";\n        }\n      }\n      ```\n\n      **[\u2b06 Back to Top](#table-of-contents)**\n\n276.",
+      "explanation": "The below DOM methods are available for constraint validation on an invalid input,\n\n      1. `checkValidity()`: It returns true if an input element contains valid data.\n      2. `setCustomValidity()`: It is used to set the `validationMessage` property of an input element.\n         Let's take an user login form with DOM validations\n\n      ```javascript\n      function myFunction() {\n        var userName = document.getElementById(\"uname\");\n        if (!userName.checkValidity()) {\n          document.getElementById(\"message\").innerHTML =\n            userName.validationMessage;\n        } else {\n          document.getElementById(\"message\").innerHTML =\n            \"Entered a valid username\";\n        }\n      }\n      ```\n\n      \n\n276.",
       "options": [
         {
           "text": "**isNaN**: The global function `isNaN` converts the argument to a Number and returns true if the resulting value is NaN",
@@ -902,14 +902,14 @@
           "is_correct": false
         },
         {
-          "text": "A first-order function is a function that doesn\u2019t accept another function as an argument and doesn\u2019t return a function as its return value",
+          "text": "A first-order function is a function that doesn’t accept another function as an argument and doesn’t return a function as its return value",
           "is_correct": false
         }
       ]
     },
     {
       "text": "How do you invoke javascript code in an iframe from the parent page",
-      "explanation": "Initially iFrame needs to be accessed using either `document.getElementBy` or `window.frames`. After that `contentWindow` property of iFrame gives the access for targetFunction\n\n      ```javascript\n      document.getElementById(\"targetFrame\").contentWindow.targetFunction();\n      window.frames[0].frameElement.contentWindow.targetFunction(); // Accessing iframe this way may not work in latest versions chrome and firefox\n      ```\n\n      **[\u2b06 Back to Top](#table-of-contents)**\n\n294.",
+      "explanation": "Initially iFrame needs to be accessed using either `document.getElementBy` or `window.frames`. After that `contentWindow` property of iFrame gives the access for targetFunction\n\n      ```javascript\n      document.getElementById(\"targetFrame\").contentWindow.targetFunction();\n      window.frames[0].frameElement.contentWindow.targetFunction(); // Accessing iframe this way may not work in latest versions chrome and firefox\n      ```\n\n      \n\n294.",
       "options": [
         {
           "text": "Parameter is the variable name of a function definition whereas an argument represents the value given to a function when it is invoked",
@@ -931,7 +931,7 @@
     },
     {
       "text": "How to set the cursor to wait",
-      "explanation": "The cursor can be set to wait in JavaScript by using the property `cursor`. Let's perform this behavior on page load using the below function.\n\n      ```javascript\n      function myFunction() {\n        window.document.body.style.cursor = \"wait\";\n      }\n      ```\n\n      and this function invoked on page load\n\n      ```html\n      <body onload=\"myFunction()\"></body>\n      ```\n\n      **[\u2b06 Back to Top](#table-of-contents)**\n\n302.",
+      "explanation": "The cursor can be set to wait in JavaScript by using the property `cursor`. Let's perform this behavior on page load using the below function.\n\n      ```javascript\n      function myFunction() {\n        window.document.body.style.cursor = \"wait\";\n      }\n      ```\n\n      and this function invoked on page load\n\n      ```html\n      <body onload=\"myFunction()\"></body>\n      ```\n\n      \n\n302.",
       "options": [
         {
           "text": "Node is a single thread, but some of the functions included in the Node",
@@ -953,7 +953,7 @@
     },
     {
       "text": "Can I redeclare let and const variables",
-      "explanation": "No, you cannot redeclare let and const variables. If you do, it throws below error\n\n      ```bash\n      Uncaught SyntaxError: Identifier 'someVariable' has already been declared\n      ```\n\n      **Explanation:** The variable declaration with `var` keyword refers to a function scope and the variable is treated as if it were declared at the top of the enclosing scope due to hoisting feature. So all the multiple declarations contributing to the same hoisted variable without any error. Let's take an example of re-declaring variables in the same scope for both var and let/const variables.\n\n      ```javascript\n      var name = \"John\";\n      function myFunc() {\n        var name = \"Nick\";\n        var name = \"Abraham\"; // Re-assigned in the same function block\n        alert(name); // Abraham\n      }\n      myFunc();\n      alert(name); // John\n      ```\n\n      The block-scoped multi-declaration throws syntax error,\n\n      ```javascript\n      let name = \"John\";\n      function myFunc() {\n        let name = \"Nick\";\n        let name = \"Abraham\"; // Uncaught SyntaxError: Identifier 'name' has already been declared\n        alert(name);\n      }\n\n      myFunc();\n      alert(name);\n      ```\n\n      **[\u2b06 Back to Top](#table-of-contents)**\n\n308.",
+      "explanation": "No, you cannot redeclare let and const variables. If you do, it throws below error\n\n      ```bash\n      Uncaught SyntaxError: Identifier 'someVariable' has already been declared\n      ```\n\n      **Explanation:** The variable declaration with `var` keyword refers to a function scope and the variable is treated as if it were declared at the top of the enclosing scope due to hoisting feature. So all the multiple declarations contributing to the same hoisted variable without any error. Let's take an example of re-declaring variables in the same scope for both var and let/const variables.\n\n      ```javascript\n      var name = \"John\";\n      function myFunc() {\n        var name = \"Nick\";\n        var name = \"Abraham\"; // Re-assigned in the same function block\n        alert(name); // Abraham\n      }\n      myFunc();\n      alert(name); // John\n      ```\n\n      The block-scoped multi-declaration throws syntax error,\n\n      ```javascript\n      let name = \"John\";\n      function myFunc() {\n        let name = \"Nick\";\n        let name = \"Abraham\"; // Uncaught SyntaxError: Identifier 'name' has already been declared\n        alert(name);\n      }\n\n      myFunc();\n      alert(name);\n      ```\n\n      \n\n308.",
       "options": [
         {
           "text": "A thunk is just a function which delays the evaluation of the value",
@@ -975,7 +975,7 @@
     },
     {
       "text": "What are default parameters",
-      "explanation": "In ES5, we need to depend on logical OR operators to handle default values of function parameters. Whereas in ES6, Default function parameters feature allows parameters to be initialized with default values if no value or undefined is passed. Let's compare the behavior with an examples,\n\n      ```javascript\n      //ES5\n      var calculateArea = function (height, width) {\n        height = height || 50;\n        width = width || 60;\n\n        return width * height;\n      };\n      console.log(calculateArea()); //300\n      ```\n\n      The default parameters makes the initialization more simpler,\n\n      ```javascript\n      //ES6\n      var calculateArea = function (height = 50, width = 60) {\n        return width * height;\n      };\n\n      console.log(calculateArea()); //300\n      ```\n\n      **[\u2b06 Back to Top](#table-of-contents)**\n\n310.",
+      "explanation": "In ES5, we need to depend on logical OR operators to handle default values of function parameters. Whereas in ES6, Default function parameters feature allows parameters to be initialized with default values if no value or undefined is passed. Let's compare the behavior with an examples,\n\n      ```javascript\n      //ES5\n      var calculateArea = function (height, width) {\n        height = height || 50;\n        width = width || 60;\n\n        return width * height;\n      };\n      console.log(calculateArea()); //300\n      ```\n\n      The default parameters makes the initialization more simpler,\n\n      ```javascript\n      //ES6\n      var calculateArea = function (height = 50, width = 60) {\n        return width * height;\n      };\n\n      console.log(calculateArea()); //300\n      ```\n\n      \n\n310.",
       "options": [
         {
           "text": "In ES5, we need to depend on logical OR operators to handle default values of function parameters",
@@ -997,7 +997,7 @@
     },
     {
       "text": "What are raw strings",
-      "explanation": "ES6 provides a raw strings feature using the `String.raw()` method which is used to get the raw string form of template strings. This feature allows you to access the raw strings as they were entered, without processing escape sequences. For example, the usage would be as below,\n\n      ```javascript\n      var calculationString = String.raw`The sum of numbers is \\n${\n        1 + 2 + 3 + 4\n      }!`;\n      console.log(calculationString); // The sum of numbers is \\n10!\n      ```\n\n      If you don't use raw strings, the newline character sequence will be processed by displaying the output in multiple lines\n\n      ```javascript\n      var calculationString = `The sum of numbers is \\n${1 + 2 + 3 + 4}!`;\n      console.log(calculationString);\n      // The sum of numbers is\n      // 10!\n      ```\n\n      Also, the raw property is available on the first argument to the tag function\n\n      ```javascript\n      function tag(strings) {\n        console.log(strings.raw[0]);\n      }\n      ```\n\n      **[\u2b06 Back to Top](#table-of-contents)**\n\n315.",
+      "explanation": "ES6 provides a raw strings feature using the `String.raw()` method which is used to get the raw string form of template strings. This feature allows you to access the raw strings as they were entered, without processing escape sequences. For example, the usage would be as below,\n\n      ```javascript\n      var calculationString = String.raw`The sum of numbers is \\n${\n        1 + 2 + 3 + 4\n      }!`;\n      console.log(calculationString); // The sum of numbers is \\n10!\n      ```\n\n      If you don't use raw strings, the newline character sequence will be processed by displaying the output in multiple lines\n\n      ```javascript\n      var calculationString = `The sum of numbers is \\n${1 + 2 + 3 + 4}!`;\n      console.log(calculationString);\n      // The sum of numbers is\n      // 10!\n      ```\n\n      Also, the raw property is available on the first argument to the tag function\n\n      ```javascript\n      function tag(strings) {\n        console.log(strings.raw[0]);\n      }\n      ```\n\n      \n\n315.",
       "options": [
         {
           "text": "ES6 provides a raw strings feature using the `String",
@@ -1008,7 +1008,7 @@
           "is_correct": false
         },
         {
-          "text": "A first-order function is a function that doesn\u2019t accept another function as an argument and doesn\u2019t return a function as its return value",
+          "text": "A first-order function is a function that doesn’t accept another function as an argument and doesn’t return a function as its return value",
           "is_correct": false
         },
         {
@@ -1019,7 +1019,7 @@
     },
     {
       "text": "How do you avoid receiving postMessages from attackers",
-      "explanation": "Since the listener listens for any message, an attacker can trick the application by sending a message from the attacker\u2019s origin, which gives an impression that the receiver received the message from the actual sender\u2019s window. You can avoid this issue by validating the origin of the message on the receiver's end using the \u201cmessage.origin\u201d attribute.\n\n      For example, let's check the sender's origin [http://www.some-sender.com](http://www.some-sender.com) on receiver side [www.some-receiver.com](www.some-receiver.com),\n\n      ```javascript\n      //Listener on http://www.some-receiver.com/\n      window.addEventListener(\"message\", function(message){\n          if(/^http://www\\.some-sender\\.com$/.test(message.origin)){\n               console.log('You received the data from valid sender', message.data);\n         }\n      });\n      ```\n\n      **[\u2b06 Back to Top](#table-of-contents)**\n\n329.",
+      "explanation": "Since the listener listens for any message, an attacker can trick the application by sending a message from the attacker’s origin, which gives an impression that the receiver received the message from the actual sender’s window. You can avoid this issue by validating the origin of the message on the receiver's end using the “message.origin” attribute.\n\n      For example, let's check the sender's origin [http://www.some-sender.com](http://www.some-sender.com) on receiver side [www.some-receiver.com](www.some-receiver.com),\n\n      ```javascript\n      //Listener on http://www.some-receiver.com/\n      window.addEventListener(\"message\", function(message){\n          if(/^http://www\\.some-sender\\.com$/.test(message.origin)){\n               console.log('You received the data from valid sender', message.data);\n         }\n      });\n      ```\n\n      \n\n329.",
       "options": [
         {
           "text": "You might have seen expressions used in switch condition but it is also possible to use for switch cases by assigning true value for the switch condition",
@@ -1034,14 +1034,14 @@
           "is_correct": false
         },
         {
-          "text": "Since the listener listens for any message, an attacker can trick the application by sending a message from the attacker\u2019s origin, which gives an impression that the receiver received the message from the actual sender\u2019s window",
+          "text": "Since the listener listens for any message, an attacker can trick the application by sending a message from the attacker’s origin, which gives an impression that the receiver received the message from the actual sender’s window",
           "is_correct": true
         }
       ]
     },
     {
       "text": "What is the difference between a parameter and an argument",
-      "explanation": "Parameter is the variable name of a function definition whereas an argument represents the value given to a function when it is invoked. Let's explain this with a simple function\n\n      ```javascript\n      function myFunction(parameter1, parameter2, parameter3) {\n        console.log(arguments[0]); // \"argument1\"\n        console.log(arguments[1]); // \"argument2\"\n        console.log(arguments[2]); // \"argument3\"\n      }\n      myFunction(\"argument1\", \"argument2\", \"argument3\");\n      ```\n\n      **[\u2b06 Back to Top](#table-of-contents)**\n\n344.",
+      "explanation": "Parameter is the variable name of a function definition whereas an argument represents the value given to a function when it is invoked. Let's explain this with a simple function\n\n      ```javascript\n      function myFunction(parameter1, parameter2, parameter3) {\n        console.log(arguments[0]); // \"argument1\"\n        console.log(arguments[1]); // \"argument2\"\n        console.log(arguments[2]); // \"argument3\"\n      }\n      myFunction(\"argument1\", \"argument2\", \"argument3\");\n      ```\n\n      \n\n344.",
       "options": [
         {
           "text": "You need to select the content(using",
@@ -1063,7 +1063,7 @@
     },
     {
       "text": "What is a thunk function",
-      "explanation": "A thunk is just a function which delays the evaluation of the value. It doesn\u2019t take any arguments but gives the value whenever you invoke the thunk. i.e, It is used not to execute now but it will be sometime in the future. Let's take a synchronous example,\n\n      ```javascript\n      const add = (x, y) => x + y;\n\n      const thunk = () => add(2, 3);\n\n      thunk(); // 5\n      ```\n\n      **[\u2b06 Back to Top](#table-of-contents)**\n\n355.",
+      "explanation": "A thunk is just a function which delays the evaluation of the value. It doesn’t take any arguments but gives the value whenever you invoke the thunk. i.e, It is used not to execute now but it will be sometime in the future. Let's take a synchronous example,\n\n      ```javascript\n      const add = (x, y) => x + y;\n\n      const thunk = () => add(2, 3);\n\n      thunk(); // 5\n      ```\n\n      \n\n355.",
       "options": [
         {
           "text": "You can use `indexOf` to compare input with multiple values instead of checking each value as one condition",
@@ -1074,7 +1074,7 @@
           "is_correct": false
         },
         {
-          "text": "JavaScript\u2019s \"use strict\" directive is used to opt into a stricter parsing and error-handling mode for your scripts or functions",
+          "text": "JavaScript’s \"use strict\" directive is used to opt into a stricter parsing and error-handling mode for your scripts or functions",
           "is_correct": false
         },
         {
@@ -1085,7 +1085,7 @@
     },
     {
       "text": "How to remove all line breaks from a string",
-      "explanation": "The easiest approach is using regular expressions to detect and replace newlines in the string. In this case, we use replace function along with string to replace with, which in our case is an empty string.\n\n      ```javascript\n      function remove_linebreaks( var message ) {\n          return message.replace( /[\\r\\n]+/gm, \"\" );\n      }\n      ```\n\n      In the above expression, g and m are for global and multiline flags.\n\n      **[\u2b06 Back to Top](#table-of-contents)**\n\n358.",
+      "explanation": "The easiest approach is using regular expressions to detect and replace newlines in the string. In this case, we use replace function along with string to replace with, which in our case is an empty string.\n\n      ```javascript\n      function remove_linebreaks( var message ) {\n          return message.replace( /[\\r\\n]+/gm, \"\" );\n      }\n      ```\n\n      In the above expression, g and m are for global and multiline flags.\n\n      \n\n358.",
       "options": [
         {
           "text": "You can execute javascript after page load in many different ways,\n\n      1",
@@ -1107,7 +1107,7 @@
     },
     {
       "text": "How do you verify that an argument is a Number or not",
-      "explanation": "The combination of IsNaN and isFinite methods are used to confirm whether an argument is a number or not.\n\n      ```javascript\n      function isNumber(n) {\n        return !isNaN(parseFloat(n)) && isFinite(n);\n      }\n      ```\n\n      **[\u2b06 Back to Top](#table-of-contents)**\n\n377.",
+      "explanation": "The combination of IsNaN and isFinite methods are used to confirm whether an argument is a number or not.\n\n      ```javascript\n      function isNumber(n) {\n        return !isNaN(parseFloat(n)) && isFinite(n);\n      }\n      ```\n\n      \n\n377.",
       "options": [
         {
           "text": "Node is a single thread, but some of the functions included in the Node",
@@ -1129,7 +1129,7 @@
     },
     {
       "text": "How do you create copy to clipboard button",
-      "explanation": "You need to select the content(using .select() method) of the input element and execute the copy command with execCommand (i.e, execCommand('copy')). You can also execute other system commands like cut and paste.\n\n      ```javascript\n      document.querySelector(\"#copy-button\").onclick = function () {\n        // Select the content\n        document.querySelector(\"#copy-input\").select();\n        // Copy to the clipboard\n        document.execCommand(\"copy\");\n      };\n      ```\n\n      **[\u2b06 Back to Top](#table-of-contents)**\n\n378.",
+      "explanation": "You need to select the content(using .select() method) of the input element and execute the copy command with execCommand (i.e, execCommand('copy')). You can also execute other system commands like cut and paste.\n\n      ```javascript\n      document.querySelector(\"#copy-button\").onclick = function () {\n        // Select the content\n        document.querySelector(\"#copy-input\").select();\n        // Copy to the clipboard\n        document.execCommand(\"copy\");\n      };\n      ```\n\n      \n\n378.",
       "options": [
         {
           "text": "Module scope is a feature introduced with ES6 (ES2015) modules that creates a scope specific to a module file, isolating variables and functions declared within it from the global scope and other modules",
@@ -1151,7 +1151,7 @@
     },
     {
       "text": "What is the easiest multi condition checking",
-      "explanation": "You can use `indexOf` to compare input with multiple values instead of checking each value as one condition.\n\n      ```javascript\n      // Verbose approach\n      if (\n        input === \"first\" ||\n        input === 1 ||\n        input === \"second\" ||\n        input === 2\n      ) {\n        someFunction();\n      }\n      // Shortcut\n      if ([\"first\", 1, \"second\", 2].indexOf(input) !== -1) {\n        someFunction();\n      }\n      ```\n\n      **[\u2b06 Back to Top](#table-of-contents)**\n\n381.",
+      "explanation": "You can use `indexOf` to compare input with multiple values instead of checking each value as one condition.\n\n      ```javascript\n      // Verbose approach\n      if (\n        input === \"first\" ||\n        input === 1 ||\n        input === \"second\" ||\n        input === 2\n      ) {\n        someFunction();\n      }\n      // Shortcut\n      if ([\"first\", 1, \"second\", 2].indexOf(input) !== -1) {\n        someFunction();\n      }\n      ```\n\n      \n\n381.",
       "options": [
         {
           "text": "IIFE (Immediately Invoked Function Expression) is a JavaScript function that runs as soon as it is defined",
@@ -1173,7 +1173,7 @@
     },
     {
       "text": "Is Node.js completely single threaded",
-      "explanation": "Node is a single thread, but some of the functions included in the Node.js standard library(e.g, fs module functions) are not single threaded. i.e, Their logic runs outside of the Node.js single thread to improve the speed and performance of a program.\n\n     **[\u2b06 Back to Top](#table-of-contents)**\n\n403.",
+      "explanation": "Node is a single thread, but some of the functions included in the Node.js standard library(e.g, fs module functions) are not single threaded. i.e, Their logic runs outside of the Node.js single thread to improve the speed and performance of a program.\n\n     \n\n403.",
       "options": [
         {
           "text": "You can validate an email in javascript using regular expressions",
@@ -1195,7 +1195,7 @@
     },
     {
       "text": "What is the difference between isNaN and Number.isNaN?",
-      "explanation": "1. **isNaN**: The global function `isNaN` converts the argument to a Number and returns true if the resulting value is NaN.\n     2. **Number.isNaN**: This method does not convert the argument. But it returns true when the type is a Number and value is NaN.\n\n     Let's see the difference with an example,\n\n     ```javascript\n     isNaN(\u2018hello\u2019);   // true\n     Number.isNaN('hello'); // false\n     ```\n\n     **[\u2b06 Back to Top](#table-of-contents)**\n\n424.",
+      "explanation": "1. **isNaN**: The global function `isNaN` converts the argument to a Number and returns true if the resulting value is NaN.\n     2. **Number.isNaN**: This method does not convert the argument. But it returns true when the type is a Number and value is NaN.\n\n     Let's see the difference with an example,\n\n     ```javascript\n     isNaN(‘hello’);   // true\n     Number.isNaN('hello'); // false\n     ```\n\n     \n\n424.",
       "options": [
         {
           "text": "**isNaN**: The global function `isNaN` converts the argument to a Number and returns true if the resulting value is NaN",
@@ -1217,7 +1217,7 @@
     },
     {
       "text": "How to invoke an IIFE without any extra brackets?",
-      "explanation": "Immediately Invoked Function Expressions(IIFE) requires a pair of parenthesis to wrap the function which contains set of statements.\n\n     ```js\n     (function (dt) {\n       console.log(dt.toLocaleTimeString());\n     })(new Date());\n     ```\n\n     Since both IIFE and void operator discard the result of an expression, you can avoid the extra brackets using `void operator` for IIFE as below,\n\n     ```js\n     void (function (dt) {\n       console.log(dt.toLocaleTimeString());\n     })(new Date());\n     ```\n\n     **[\u2b06 Back to Top](#table-of-contents)**\n\n425.",
+      "explanation": "Immediately Invoked Function Expressions(IIFE) requires a pair of parenthesis to wrap the function which contains set of statements.\n\n     ```js\n     (function (dt) {\n       console.log(dt.toLocaleTimeString());\n     })(new Date());\n     ```\n\n     Since both IIFE and void operator discard the result of an expression, you can avoid the extra brackets using `void operator` for IIFE as below,\n\n     ```js\n     void (function (dt) {\n       console.log(dt.toLocaleTimeString());\n     })(new Date());\n     ```\n\n     \n\n425.",
       "options": [
         {
           "text": "The strict mode is declared by adding \"use strict\"; to the beginning of a script or a function",
@@ -1239,7 +1239,7 @@
     },
     {
       "text": "Is that possible to use expressions in switch cases?",
-      "explanation": "You might have seen expressions used in switch condition but it is also possible to use for switch cases by assigning true value for the switch condition. Let's see the weather condition based on temperature as an example,\n\n     ```js\n     const weather = (function getWeather(temp) {\n       switch (true) {\n         case temp < 0:\n           return \"freezing\";\n         case temp < 10:\n           return \"cold\";\n         case temp < 24:\n           return \"cool\";\n         default:\n           return \"unknown\";\n       }\n     })(10);\n     ```\n\n     **[\u2b06 Back to Top](#table-of-contents)**\n\n426.",
+      "explanation": "You might have seen expressions used in switch condition but it is also possible to use for switch cases by assigning true value for the switch condition. Let's see the weather condition based on temperature as an example,\n\n     ```js\n     const weather = (function getWeather(temp) {\n       switch (true) {\n         case temp < 0:\n           return \"freezing\";\n         case temp < 10:\n           return \"cold\";\n         case temp < 24:\n           return \"cool\";\n         default:\n           return \"unknown\";\n       }\n     })(10);\n     ```\n\n     \n\n426.",
       "options": [
         {
           "text": "You might have seen expressions used in switch condition but it is also possible to use for switch cases by assigning true value for the switch condition",
@@ -1261,7 +1261,7 @@
     },
     {
       "text": "What is function execution context?",
-      "explanation": "Whenever a function is invoked, the JavaScript engine creates a different type of Execution Context known as a Function Execution Context (FEC) within the Global Execution Context (GEC) to evaluate and execute the code within that function.\n\n     **[\u2b06 Back to Top](#table-of-contents)**\n\n437.",
+      "explanation": "Whenever a function is invoked, the JavaScript engine creates a different type of Execution Context known as a Function Execution Context (FEC) within the Global Execution Context (GEC) to evaluate and execute the code within that function.\n\n     \n\n437.",
       "options": [
         {
           "text": "Whenever a function is invoked, the JavaScript engine creates a different type of Execution Context known as a Function Execution Context (FEC) within the Global Execution Context (GEC) to evaluate and execute the code within that function",
@@ -1283,7 +1283,7 @@
     },
     {
       "text": "What are compose and pipe functions?",
-      "explanation": "The \"compose\" and \"pipe\" are two techniques commonly used in functional programming to simplify complex operations and make code more readable. They are not native to JavaScript and higher-order functions. the `compose()` applies right to left any number of functions to the output of the previous function.\n\n     **[\u2b06 Back to Top](#table-of-contents)**\n\n449.",
+      "explanation": "The \"compose\" and \"pipe\" are two techniques commonly used in functional programming to simplify complex operations and make code more readable. They are not native to JavaScript and higher-order functions. the `compose()` applies right to left any number of functions to the output of the previous function.\n\n     \n\n449.",
       "options": [
         {
           "text": "Title case means that the first letter of each word is capitalized",
@@ -1305,7 +1305,7 @@
     },
     {
       "text": "What is Function Composition?",
-      "explanation": "It is an approach where the result of one function is passed on to the next function, which is passed to another until the final function is executed for the final result.\n\n     ```javascript\n     //example\n     const double = (x) => x * 2;\n     const square = (x) => x * x;\n\n     var output1 = double(2);\n     var output2 = square(output1);\n     console.log(output2);\n\n     var output_final = square(double(2));\n     console.log(output_final);\n     ```\n\n     **[\u2b06 Back to Top](#table-of-contents)**\n\n451.",
+      "explanation": "It is an approach where the result of one function is passed on to the next function, which is passed to another until the final function is executed for the final result.\n\n     ```javascript\n     //example\n     const double = (x) => x * 2;\n     const square = (x) => x * x;\n\n     var output1 = double(2);\n     var output2 = square(output1);\n     console.log(output2);\n\n     var output_final = square(double(2));\n     console.log(output_final);\n     ```\n\n     \n\n451.",
       "options": [
         {
           "text": "It is an approach where the result of one function is passed on to the next function, which is passed to another until the final function is executed for the final result",
@@ -1316,7 +1316,7 @@
           "is_correct": false
         },
         {
-          "text": "JavaScript\u2019s \"use strict\" directive is used to opt into a stricter parsing and error-handling mode for your scripts or functions",
+          "text": "JavaScript’s \"use strict\" directive is used to opt into a stricter parsing and error-handling mode for your scripts or functions",
           "is_correct": false
         },
         {
@@ -1327,7 +1327,7 @@
     },
     {
       "text": "What are the benefits higher order functions?",
-      "explanation": "The main benefits of higher order functions are:\n     1. Abstraction\n     2. Reusability\n     3. Immutability\n     4. Modularity\n\n**[\u2b06 Back to Top](#table-of-contents)**\n\n459.",
+      "explanation": "The main benefits of higher order functions are:\n     1. Abstraction\n     2. Reusability\n     3. Immutability\n     4. Modularity\n\n\n\n459.",
       "options": [
         {
           "text": "The main benefits of higher order functions are:\n     1",
@@ -1342,14 +1342,14 @@
           "is_correct": false
         },
         {
-          "text": "Yes, you can create a proper random function to return a random number between min and max (both included)\n\n      \n\n      **\u2b06 Back to Top**\n\n152",
+          "text": "Yes, you can create a proper random function to return a random number between min and max (both included)\n\n      \n\n      **⬆ Back to Top**\n\n152",
           "is_correct": false
         }
       ]
     },
     {
       "text": "What is Lexical Scope?",
-      "explanation": "Lexical scope is the ability for a function scope to access variables from the parent scope.\n\n     ```js\n     <script>\n             function x(){\n               var a=10;\n               function y(){\n                   console.log(a); // will print a , because of lexical scope, it will first look 'a' in\n               //its local memory space and then in its parent functions memory space\n               }\n               y();\n           }\n           x();\n     </script>\n     ```\n\n     **[\u2b06 Back to Top](#table-of-contents)**\n\n468.",
+      "explanation": "Lexical scope is the ability for a function scope to access variables from the parent scope.\n\n     ```js\n     <script>\n             function x(){\n               var a=10;\n               function y(){\n                   console.log(a); // will print a , because of lexical scope, it will first look 'a' in\n               //its local memory space and then in its parent functions memory space\n               }\n               y();\n           }\n           x();\n     </script>\n     ```\n\n     \n\n468.",
       "options": [
         {
           "text": "Lexical scope is the ability for a function scope to access variables from the parent scope",
@@ -1371,10 +1371,10 @@
     },
     {
       "text": "What is module scope in JavaScript?",
-      "explanation": "Module scope is a feature introduced with ES6 (ES2015) modules that creates a scope specific to a module file, isolating variables and functions declared within it from the global scope and other modules. Variables and functions declared in a module are private by default and can only be accessed by other modules if they are explicitly exported.\n\nKey characteristics of module scope:\n\n1.  Variables declared in a module are scoped to that module only.\n2.  Each module has its own top-level scope\n3.  Variables and functions need to be explicitly exported to be used in other modules\n4.  The global scope cannot access module variables unless they are explicitly exported and imported\n5.  Modules are always executed in strict mode\n\n```javascript\n// moduleA.js\n\n// This variable is PRIVATE to moduleA. It's like a tool inside a closed box.\nconst privateVariable = \"I am private\";\n\n// This variable is PUBLIC because it's exported. Others can use it when they import moduleA.\nexport const publicVariable = \"I am public\";\n\n// PUBLIC function because it's exported. But it can still access privateVariable inside moduleA.\nexport function publicFunction() {\n  console.log(privateVariable); // \u2705 This works because we're inside the same module.\n  return \"Hello from publicFunction!\";\n}\n\n// moduleB.js\n\n// Importing PUBLIC items from moduleA.\nimport { publicVariable, publicFunction } from \"./moduleA.js\";\n\nconsole.log(publicVariable); // \u2705 \"I am public\" - Works because it's exported.\nconsole.log(publicFunction()); // \u2705 \"Hello from publicFunction!\" - Works as well.\n\n// \u274c This will cause an ERROR because privateVariable was NOT exported from moduleA.\n// console.log(privateVariable);   // \u274c ReferenceError: privateVariable is not defined\n```\n\nCommon use cases and benefits:\n\n- Encapsulation of module-specific code\n- Prevention of global scope pollution\n- Better code organization and maintenance\n- Explicit dependency management\n- Protection of private implementation details\n\n**[\u2b06 Back to Top](#table-of-contents)**\n\n475.",
+      "explanation": "Module scope is a feature introduced with ES6 (ES2015) modules that creates a scope specific to a module file, isolating variables and functions declared within it from the global scope and other modules. Variables and functions declared in a module are private by default and can only be accessed by other modules if they are explicitly exported.\n\nKey characteristics of module scope:\n\n1.  Variables declared in a module are scoped to that module only.\n2.  Each module has its own top-level scope\n3.  Variables and functions need to be explicitly exported to be used in other modules\n4.  The global scope cannot access module variables unless they are explicitly exported and imported\n5.  Modules are always executed in strict mode\n\n```javascript\n// moduleA.js\n\n// This variable is PRIVATE to moduleA. It's like a tool inside a closed box.\nconst privateVariable = \"I am private\";\n\n// This variable is PUBLIC because it's exported. Others can use it when they import moduleA.\nexport const publicVariable = \"I am public\";\n\n// PUBLIC function because it's exported. But it can still access privateVariable inside moduleA.\nexport function publicFunction() {\n  console.log(privateVariable); // ✅ This works because we're inside the same module.\n  return \"Hello from publicFunction!\";\n}\n\n// moduleB.js\n\n// Importing PUBLIC items from moduleA.\nimport { publicVariable, publicFunction } from \"./moduleA.js\";\n\nconsole.log(publicVariable); // ✅ \"I am public\" - Works because it's exported.\nconsole.log(publicFunction()); // ✅ \"Hello from publicFunction!\" - Works as well.\n\n// ❌ This will cause an ERROR because privateVariable was NOT exported from moduleA.\n// console.log(privateVariable);   // ❌ ReferenceError: privateVariable is not defined\n```\n\nCommon use cases and benefits:\n\n- Encapsulation of module-specific code\n- Prevention of global scope pollution\n- Better code organization and maintenance\n- Explicit dependency management\n- Protection of private implementation details\n\n\n\n475.",
       "options": [
         {
-          "text": "Yes, you can create a proper random function to return a random number between min and max (both included)\n\n      \n\n      **\u2b06 Back to Top**\n\n152",
+          "text": "Yes, you can create a proper random function to return a random number between min and max (both included)\n\n      \n\n      **⬆ Back to Top**\n\n152",
           "is_correct": false
         },
         {
@@ -1393,7 +1393,7 @@
     },
     {
       "text": "What are shadowing and illegal shadowing?",
-      "explanation": "Both **shadowing** and **illegal shadowing** refer to how variable names can \"hide\" or override others within nested scopes.\n\n     **Shadowing** occurs when a variable declared within a certain scope (like a function or block) has the same name as a variable declared in an outer scope. The inner variable shadows the outer one \u2014 meaning, the inner variable takes precedence in its own scope.\n\n     Let's take an example where the inner `a` inside `func()` shadows the outer variable `a`.\n\n      ```javascript\n      let a = 10;\n\n      function func() {\n        let a = 20; // Shadows the outer 'a'\n        console.log(a); // 20\n      }\n\n      func();\n      console.log(a); // 10\n      ```\n\n     **Illegal shadowing** in JavaScript refers to a syntax error that happens when you try to declare a block-scoped variable (`let` or `const`) with the same name as a variable declared using `var` in the same or an overlapping scope. \n\n     For example, if you declare both block-scoped variable and function scoped variable using the same name inside a function causes an illegal shadowing.\n\n      ```javascript\n      function test() {\n        var a = 10;\n        let a = 20; // SyntaxError: Identifier 'a' has already been declared\n      }\n      ```\n    \n      As an another example, if you declare a variable with `let` or `const` in an outer scope, and then try to redeclare it with `var` inside a nested block, JavaScript throws an error \u2014 even though `var` is supposed to be function-scoped. Since the var appears in a block, it ends up trying to overwrite the `let` in the outer scope, which causes a conflict.\n\n      ```javascript\n      let a = 10;\n      {\n        var a = 20; // SyntaxError: Identifier 'a' has already been declared\n        console.log(a);\n      }\n      ```\n**[\u2b06 Back to Top](#table-of-contents)**\n\n476.",
+      "explanation": "Both **shadowing** and **illegal shadowing** refer to how variable names can \"hide\" or override others within nested scopes.\n\n     **Shadowing** occurs when a variable declared within a certain scope (like a function or block) has the same name as a variable declared in an outer scope. The inner variable shadows the outer one — meaning, the inner variable takes precedence in its own scope.\n\n     Let's take an example where the inner `a` inside `func()` shadows the outer variable `a`.\n\n      ```javascript\n      let a = 10;\n\n      function func() {\n        let a = 20; // Shadows the outer 'a'\n        console.log(a); // 20\n      }\n\n      func();\n      console.log(a); // 10\n      ```\n\n     **Illegal shadowing** in JavaScript refers to a syntax error that happens when you try to declare a block-scoped variable (`let` or `const`) with the same name as a variable declared using `var` in the same or an overlapping scope. \n\n     For example, if you declare both block-scoped variable and function scoped variable using the same name inside a function causes an illegal shadowing.\n\n      ```javascript\n      function test() {\n        var a = 10;\n        let a = 20; // SyntaxError: Identifier 'a' has already been declared\n      }\n      ```\n    \n      As an another example, if you declare a variable with `let` or `const` in an outer scope, and then try to redeclare it with `var` inside a nested block, JavaScript throws an error — even though `var` is supposed to be function-scoped. Since the var appears in a block, it ends up trying to overwrite the `let` in the outer scope, which causes a conflict.\n\n      ```javascript\n      let a = 10;\n      {\n        var a = 20; // SyntaxError: Identifier 'a' has already been declared\n        console.log(a);\n      }\n      ```\n\n\n476.",
       "options": [
         {
           "text": "Both **shadowing** and **illegal shadowing** refer to how variable names can \"hide\" or override others within nested scopes",
@@ -1415,7 +1415,7 @@
     },
     {
       "text": "#Answer: 4",
-      "explanation": "The function declarations are hoisted similar to any variables. So the placement for `Vehicle` function declaration doesn't make any difference.\n\n</p>\n</details>\n\n---\n\n**[\u2b06 Back to Top](#table-of-contents)**",
+      "explanation": "The function declarations are hoisted similar to any variables. So the placement for `Vehicle` function declaration doesn't make any difference.\n\n</p>\n</details>\n\n---",
       "options": [
         {
           "text": "The StorageEvent is an event that fires when a storage area has been changed in the context of another document",
@@ -1437,7 +1437,7 @@
     },
     {
       "text": "#Answer: 3",
-      "explanation": "Of course the return value of `foo()` is 1 due to the increment operator. But the statement `let x = y = 0` declares a local variable x. Whereas y declared as a global variable accidentally. This statement is equivalent to,\n\n```javascript\nlet x;\nwindow.y = 0;\nx = window.y;\n```\n\nSince the block scoped variable x is undefined outside of the function, the type will be undefined too. Whereas the global variable `y` is available outside the function, the value is 0 and type is number.\n\n</p>\n</details>\n\n---\n\n**[\u2b06 Back to Top](#table-of-contents)**",
+      "explanation": "Of course the return value of `foo()` is 1 due to the increment operator. But the statement `let x = y = 0` declares a local variable x. Whereas y declared as a global variable accidentally. This statement is equivalent to,\n\n```javascript\nlet x;\nwindow.y = 0;\nx = window.y;\n```\n\nSince the block scoped variable x is undefined outside of the function, the type will be undefined too. Whereas the global variable `y` is available outside the function, the value is 0 and type is number.\n\n</p>\n</details>\n\n---",
       "options": [
         {
           "text": "The debugger statement invokes any available debugging functionality, such as setting a breakpoint",
@@ -1459,7 +1459,7 @@
     },
     {
       "text": "#Answer: 3",
-      "explanation": "Unlike regular functions, the arrow functions doesn't not allow duplicate parameters in either strict or non-strict mode. So you can see `SyntaxError` in the console.\n\n</p>\n</details>\n\n---\n\n**[\u2b06 Back to Top](#table-of-contents)**",
+      "explanation": "Unlike regular functions, the arrow functions doesn't not allow duplicate parameters in either strict or non-strict mode. So you can see `SyntaxError` in the console.\n\n</p>\n</details>\n\n---",
       "options": [
         {
           "text": "You can use `indexOf` to compare input with multiple values instead of checking each value as one condition",
@@ -1481,7 +1481,7 @@
     },
     {
       "text": "#Answer: 1",
-      "explanation": "The functions and variables declared in the function body cannot be referred from default value parameter initializers. If you still try to access, it throws a run-time ReferenceError(i.e, `inner` is not defined).\n\n</p>\n\n</details>\n\n---\n\n**[\u2b06 Back to Top](#table-of-contents)**",
+      "explanation": "The functions and variables declared in the function body cannot be referred from default value parameter initializers. If you still try to access, it throws a run-time ReferenceError(i.e, `inner` is not defined).\n\n</p>\n\n</details>\n\n---",
       "options": [
         {
           "text": "A closure is the combination of a function bundled(enclosed) together with its lexical environment within which that function was declared",
@@ -1503,7 +1503,7 @@
     },
     {
       "text": "#Answer: 4",
-      "explanation": "The generator should not be re-used once the iterator is closed. i.e, Upon exiting a loop(on completion or using break & return), the generator is closed and trying to iterate over it again does not yield any more results. Hence, the second loop doesn't print any value.\n\n</p>\n\n</details>\n\n---\n\n**[\u2b06 Back to Top](#table-of-contents)**",
+      "explanation": "The generator should not be re-used once the iterator is closed. i.e, Upon exiting a loop(on completion or using break & return), the generator is closed and trying to iterate over it again does not yield any more results. Hence, the second loop doesn't print any value.\n\n</p>\n\n</details>\n\n---",
       "options": [
         {
           "text": "The generator should not be re-used once the iterator is closed",
@@ -1518,14 +1518,14 @@
           "is_correct": false
         },
         {
-          "text": "Since the listener listens for any message, an attacker can trick the application by sending a message from the attacker\u2019s origin, which gives an impression that the receiver received the message from the actual sender\u2019s window",
+          "text": "Since the listener listens for any message, an attacker can trick the application by sending a message from the attacker’s origin, which gives an impression that the receiver received the message from the actual sender’s window",
           "is_correct": false
         }
       ]
     },
     {
       "text": "#Answer: 1",
-      "explanation": "11 and 10 is logged to the console.\n\nThe innerFunc is a closure which captures the count variable from the outerscope. i.e, 10. But the conditional has another local variable `count` which overwrites the ourter `count` variable. So the first console.log displays value 11.\nWhereas the second console.log logs 10 by capturing the count variable from outerscope.\n\n</p>\n\n</details>\n\n---\n\n**[\u2b06 Back to Top](#table-of-contents)**",
+      "explanation": "11 and 10 is logged to the console.\n\nThe innerFunc is a closure which captures the count variable from the outerscope. i.e, 10. But the conditional has another local variable `count` which overwrites the ourter `count` variable. So the first console.log displays value 11.\nWhereas the second console.log logs 10 by capturing the count variable from outerscope.\n\n</p>\n\n</details>\n\n---",
       "options": [
         {
           "text": "A thunk is just a function which delays the evaluation of the value",
@@ -1547,7 +1547,7 @@
     },
     {
       "text": "#Answer: 2",
-      "explanation": "Hoisting will move variables and functions to be the top of scope. Even though getMessage is an arrow function the above function will considered as a variable due to it's variable declaration or assignment. So the variables will have undefined value in memory phase and throws an error '`getMessage` is not a function' at the code execution phase.\n\n</p>\n\n</details>\n\n---\n\n**[\u2b06 Back to Top](#table-of-contents)**",
+      "explanation": "Hoisting will move variables and functions to be the top of scope. Even though getMessage is an arrow function the above function will considered as a variable due to it's variable declaration or assignment. So the variables will have undefined value in memory phase and throws an error '`getMessage` is not a function' at the code execution phase.\n\n</p>\n\n</details>\n\n---",
       "options": [
         {
           "text": "The strict mode is declared by adding \"use strict\"; to the beginning of a script or a function",
@@ -1569,7 +1569,7 @@
     },
     {
       "text": "Write a function that returns a random HEX color",
-      "explanation": "<details><summary><b>Solution 1 (Iterative generation)</b></summary>\n<p>\n\n```javascript\nconst HEX_ALPHABET = [\n  \"0\",\n  \"1\",\n  \"2\",\n  \"3\",\n  \"4\",\n  \"5\",\n  \"6\",\n  \"7\",\n  \"8\",\n  \"9\",\n  \"a\",\n  \"b\",\n  \"c\",\n  \"d\",\n  \"e\",\n  \"f\",\n];\nconst HEX_PREFIX = \"#\";\nconst HEX_LENGTH = 6;\n\nfunction generateRandomHex() {\n  let randomHex = \"\";\n\n  for (let i = 0; i < HEX_LENGTH; i++) {\n    const randomIndex = Math.floor(Math.random() * HEX_ALPHABET.length);\n    randomHex += HEX_ALPHABET[randomIndex];\n  }\n\n  return HEX_PREFIX + randomHex;\n}\n```\n\n</p>\n\n</details>\n\n<details><summary><b>Solution 2 (One-liner)</b></summary>\n<p>\n\n```javascript\nconst HEX_PREFIX = \"#\";\nconst HEX_RADIX = 16;\nconst HEX_LENGTH = 6;\n\nfunction generateRandomHex() {\n  return (\n    HEX_PREFIX +\n    Math.floor(Math.random() * 0xffffff)\n      .toString(HEX_RADIX)\n      .padStart(HEX_LENGTH, \"0\")\n  );\n}\n```\n\n</p>\n\n</details>\n\n---\n\n**[\u2b06 Back to Top](#table-of-contents)**",
+      "explanation": "<details><summary><b>Solution 1 (Iterative generation)</b></summary>\n<p>\n\n```javascript\nconst HEX_ALPHABET = [\n  \"0\",\n  \"1\",\n  \"2\",\n  \"3\",\n  \"4\",\n  \"5\",\n  \"6\",\n  \"7\",\n  \"8\",\n  \"9\",\n  \"a\",\n  \"b\",\n  \"c\",\n  \"d\",\n  \"e\",\n  \"f\",\n];\nconst HEX_PREFIX = \"#\";\nconst HEX_LENGTH = 6;\n\nfunction generateRandomHex() {\n  let randomHex = \"\";\n\n  for (let i = 0; i < HEX_LENGTH; i++) {\n    const randomIndex = Math.floor(Math.random() * HEX_ALPHABET.length);\n    randomHex += HEX_ALPHABET[randomIndex];\n  }\n\n  return HEX_PREFIX + randomHex;\n}\n```\n\n</p>\n\n</details>\n\n<details><summary><b>Solution 2 (One-liner)</b></summary>\n<p>\n\n```javascript\nconst HEX_PREFIX = \"#\";\nconst HEX_RADIX = 16;\nconst HEX_LENGTH = 6;\n\nfunction generateRandomHex() {\n  return (\n    HEX_PREFIX +\n    Math.floor(Math.random() * 0xffffff)\n      .toString(HEX_RADIX)\n      .padStart(HEX_LENGTH, \"0\")\n  );\n}\n```\n\n</p>\n\n</details>\n\n---",
       "options": [
         {
           "text": "There are many online/offline tools to minify the javascript files,\n\n      1",
@@ -1591,7 +1591,7 @@
     },
     {
       "text": "#Answer: 3",
-      "explanation": "As part of hoisting, initially JavaScript Engine or compiler will store first function in heap memory but later rewrite or replaces with redefined function content.\n\n</p>\n</details>\n\n---\n\n**[\u2b06 Back to Top](#table-of-contents)**",
+      "explanation": "As part of hoisting, initially JavaScript Engine or compiler will store first function in heap memory but later rewrite or replaces with redefined function content.\n\n</p>\n</details>\n\n---",
       "options": [
         {
           "text": "You can submit a form using `document",

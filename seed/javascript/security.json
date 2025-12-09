@@ -7,7 +7,7 @@
   "questions": [
     {
       "text": "Is PostMessage secure",
-      "explanation": "Yes, postMessages can be considered very secure as long as the programmer/developer is careful about checking the origin and source of an arriving message. But if you try to send/receive a message without verifying its source will create cross-site scripting attacks.\n\n      **[\u2b06 Back to Top](#table-of-contents)**\n\n327.",
+      "explanation": "Yes, postMessages can be considered very secure as long as the programmer/developer is careful about checking the origin and source of an arriving message. But if you try to send/receive a message without verifying its source will create cross-site scripting attacks.\n\n      \n\n327.",
       "options": [
         {
           "text": "Yes, it is possible to get and debug HTML elements in the console just like inspecting elements",

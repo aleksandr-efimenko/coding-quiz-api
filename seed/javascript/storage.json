@@ -7,7 +7,7 @@
   "questions": [
     {
       "text": "What is IndexedDB",
-      "explanation": "IndexedDB is a low-level API for client-side storage of larger amounts of structured data, including files/blobs. This API uses indexes to enable high-performance searches of this data.\n\n    **[\u2b06 Back to Top](#table-of-contents)**\n\n36.",
+      "explanation": "IndexedDB is a low-level API for client-side storage of larger amounts of structured data, including files/blobs. This API uses indexes to enable high-performance searches of this data.\n\n    \n\n36.",
       "options": [
         {
           "text": "Refer to topic: What are the common use cases of observables",
@@ -29,7 +29,7 @@
     },
     {
       "text": "What are the methods available on session storage",
-      "explanation": "The session storage provided methods for reading, writing and clearing the session data\n\n    ```javascript\n    // Save data to sessionStorage\n    sessionStorage.setItem(\"key\", \"value\");\n\n    // Get saved data from sessionStorage\n    let data = sessionStorage.getItem(\"key\");\n\n    // Remove saved data from sessionStorage\n    sessionStorage.removeItem(\"key\");\n\n    // Remove all saved data from sessionStorage\n    sessionStorage.clear();\n    ```\n\n    **[\u2b06 Back to Top](#table-of-contents)**\n\n46.",
+      "explanation": "The session storage provided methods for reading, writing and clearing the session data\n\n    ```javascript\n    // Save data to sessionStorage\n    sessionStorage.setItem(\"key\", \"value\");\n\n    // Get saved data from sessionStorage\n    let data = sessionStorage.getItem(\"key\");\n\n    // Remove saved data from sessionStorage\n    sessionStorage.removeItem(\"key\");\n\n    // Remove all saved data from sessionStorage\n    sessionStorage.clear();\n    ```\n\n    \n\n46.",
       "options": [
         {
           "text": "Template literals or template strings are string literals allowing embedded expressions",

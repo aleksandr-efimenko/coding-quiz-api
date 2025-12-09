@@ -29,7 +29,7 @@
     },
     {
       "text": "What is the reason to choose the name let as a keyword",
-      "explanation": "The keyword `let` was chosen because it originates from mathematical notation, where \"let\" is used to introduce new variables (for example, \"let x = 5\"). This term was adopted by several early programming languages such as Scheme and BASIC, establishing a tradition in computer science. JavaScript follows this convention by using `let` to declare variables with block scope, providing a modern alternative to `var`. The choice helps make the language more familiar to programmers coming from other languages and aligns with the mathematical practice of variable assignment.\n\n    **[\u2b06 Back to Top](#table-of-contents)**\n\n21.",
+      "explanation": "The keyword `let` was chosen because it originates from mathematical notation, where \"let\" is used to introduce new variables (for example, \"let x = 5\"). This term was adopted by several early programming languages such as Scheme and BASIC, establishing a tradition in computer science. JavaScript follows this convention by using `let` to declare variables with block scope, providing a modern alternative to `var`. The choice helps make the language more familiar to programmers coming from other languages and aligns with the mathematical practice of variable assignment.\n\n    \n\n21.",
       "options": [
         {
           "text": "If you use an invalid number(outside of 0-7 range) in the octal literal, JavaScript will throw a SyntaxError",
@@ -51,7 +51,7 @@
     },
     {
       "text": "How do you redeclare variables in a switch block without an error",
-      "explanation": "When you try to redeclare variables using `let` or `const` in multiple `case` clauses of a `switch` statement, you will get a SyntaxError. This happens because, in JavaScript, all `case` clauses within a `switch` statement share the same block scope. For example:\n    \n    ```javascript\n    let counter = 1;\n    switch (x) {\n      case 0:\n        let name;\n        break;\n      case 1:\n        let name; // SyntaxError: Identifier 'name' has already been declared\n        break;\n    }\n    ```\n    \n    To avoid this error, you can create a new block scope within each `case` clause by wrapping the code in curly braces `{}`. This way, each `let` or `const` declaration is scoped only to that block, and redeclaration errors are avoided:\n    \n    ```javascript\n    let counter = 1;\n    switch (x) {\n      case 0: {\n        let name;\n        // code for case 0\n        break;\n      }\n      case 1: {\n        let name; // No SyntaxError\n        // code for case 1\n        break;\n      }\n    }\n    ```\n    \n    That means, to safely redeclare variables in different cases of a switch statement, wrap each case\u2019s code in its own block using curly braces. This ensures each variable declaration is scoped to its specific case block.\n    \n    **[\u2b06 Back to Top](#table-of-contents)**\n\n22.",
+      "explanation": "When you try to redeclare variables using `let` or `const` in multiple `case` clauses of a `switch` statement, you will get a SyntaxError. This happens because, in JavaScript, all `case` clauses within a `switch` statement share the same block scope. For example:\n    \n    ```javascript\n    let counter = 1;\n    switch (x) {\n      case 0:\n        let name;\n        break;\n      case 1:\n        let name; // SyntaxError: Identifier 'name' has already been declared\n        break;\n    }\n    ```\n    \n    To avoid this error, you can create a new block scope within each `case` clause by wrapping the code in curly braces `{}`. This way, each `let` or `const` declaration is scoped only to that block, and redeclaration errors are avoided:\n    \n    ```javascript\n    let counter = 1;\n    switch (x) {\n      case 0: {\n        let name;\n        // code for case 0\n        break;\n      }\n      case 1: {\n        let name; // No SyntaxError\n        // code for case 1\n        break;\n      }\n    }\n    ```\n    \n    That means, to safely redeclare variables in different cases of a switch statement, wrap each case’s code in its own block using curly braces. This ensures each variable declaration is scoped to its specific case block.\n    \n    \n\n22.",
       "options": [
         {
           "text": "You can round numbers to a certain number of decimals using `toFixed` method from native javascript",
@@ -73,7 +73,7 @@
     },
     {
       "text": "What is the purpose of the delete operator",
-      "explanation": "The delete operator is used to delete the property as well as its value.\n\n    ```javascript\n    var user = { firstName: \"John\", lastName: \"Doe\", age: 20 };\n    delete user.age;\n\n    console.log(user); // {firstName: \"John\", lastName:\"Doe\"}\n    ```\n\n    **[\u2b06 Back to Top](#table-of-contents)**\n\n72.",
+      "explanation": "The delete operator is used to delete the property as well as its value.\n\n    ```javascript\n    var user = { firstName: \"John\", lastName: \"Doe\", age: 20 };\n    delete user.age;\n\n    console.log(user); // {firstName: \"John\", lastName:\"Doe\"}\n    ```\n\n    \n\n72.",
       "options": [
         {
           "text": "**Block Scope:** The variable exists only within the nearest enclosing block (e",
@@ -95,7 +95,7 @@
     },
     {
       "text": "How do you define multiline strings",
-      "explanation": "You can define multiline string literals using the '\\n' character followed by line terminator('\\').\n\n      ```javascript\n      var str = \"This is a \\n very lengthy \\n sentence!\";\n      console.log(str);\n      ```\n\n      But if you have a space after the '\\n' character, there will be indentation inconsistencies.\n\n      **[\u2b06 Back to Top](#table-of-contents)**\n\n140.",
+      "explanation": "You can define multiline string literals using the '\\n' character followed by line terminator('\\').\n\n      ```javascript\n      var str = \"This is a \\n very lengthy \\n sentence!\";\n      console.log(str);\n      ```\n\n      But if you have a space after the '\\n' character, there will be indentation inconsistencies.\n\n      \n\n140.",
       "options": [
         {
           "text": "If you use an invalid number(outside of 0-7 range) in the octal literal, JavaScript will throw a SyntaxError",
@@ -117,7 +117,7 @@
     },
     {
       "text": "What are modifiers in regular expression",
-      "explanation": "Modifiers can be used to perform case-insensitive and global searches. Let's list some of the modifiers,\n\n      | Modifier | Description                                             |\n      | -------- | ------------------------------------------------------- |\n      | i        | Perform case-insensitive matching                       |\n      | g        | Perform a global match rather than stops at first match |\n      | m        | Perform multiline matching                              |\n\n      Let's take an example of global modifier,\n\n      ```javascript\n      var text = \"Learn JS one by one\";\n      var pattern = /one/g;\n      var result = text.match(pattern); // one,one\n      ```\n\n      **[\u2b06 Back to Top](#table-of-contents)**\n\n158.",
+      "explanation": "Modifiers can be used to perform case-insensitive and global searches. Let's list some of the modifiers,\n\n      | Modifier | Description                                             |\n      | -------- | ------------------------------------------------------- |\n      | i        | Perform case-insensitive matching                       |\n      | g        | Perform a global match rather than stops at first match |\n      | m        | Perform multiline matching                              |\n\n      Let's take an example of global modifier,\n\n      ```javascript\n      var text = \"Learn JS one by one\";\n      var pattern = /one/g;\n      var result = text.match(pattern); // one,one\n      ```\n\n      \n\n158.",
       "options": [
         {
           "text": "When you try to redeclare variables using `let` or `const` in multiple `case` clauses of a `switch` statement, you will get a SyntaxError",
@@ -139,7 +139,7 @@
     },
     {
       "text": "How do you convert date to another timezone in javascript",
-      "explanation": "You can use the toLocaleString() method to convert dates in one timezone to another. For example, let's convert current date to British English timezone as below,\n\n      ```javascript\n      console.log(new Date().toLocaleString(\"en-GB\", { timeZone: \"UTC\" })); //29/06/2019, 09:56:00\n      ```\n\n      **[\u2b06 Back to Top](#table-of-contents)**\n\n173.",
+      "explanation": "You can use the toLocaleString() method to convert dates in one timezone to another. For example, let's convert current date to British English timezone as below,\n\n      ```javascript\n      console.log(new Date().toLocaleString(\"en-GB\", { timeZone: \"UTC\" })); //29/06/2019, 09:56:00\n      ```\n\n      \n\n173.",
       "options": [
         {
           "text": "You can use the toLocaleString() method to convert dates in one timezone to another",
@@ -161,7 +161,7 @@
     },
     {
       "text": "How do you create an infinite loop",
-      "explanation": "You can create infinite loops using for and while loops without using any expressions. The for loop construct or syntax is better approach in terms of ESLint and code optimizer tools,\n\n      ```javascript\n      for (;;) {}\n      while (true) {}\n      ```\n\n      **[\u2b06 Back to Top](#table-of-contents)**\n\n303.",
+      "explanation": "You can create infinite loops using for and while loops without using any expressions. The for loop construct or syntax is better approach in terms of ESLint and code optimizer tools,\n\n      ```javascript\n      for (;;) {}\n      while (true) {}\n      ```\n\n      \n\n303.",
       "options": [
         {
           "text": "The keyword `let` was chosen because it originates from mathematical notation, where \"let\" is used to introduce new variables (for example, \"let x = 5\")",
@@ -183,7 +183,7 @@
     },
     {
       "text": "What are template literals",
-      "explanation": "Template literals or template strings are string literals allowing embedded expressions. These are enclosed by the back-tick (`) character instead of double or single quotes.\n      In ES6, this feature enables using dynamic expressions as below,\n\n      ```javascript\n      var greeting = `Welcome to JS World, Mr. ${firstName} ${lastName}.`;\n      ```\n\n      In ES5, you need break string like below,\n\n      ```javascript\n      var greeting = 'Welcome to JS World, Mr. ' + firstName + ' ' + lastName.`\n      ```\n\n      **Note:** You can use multi-line strings and string interpolation features with template literals.\n\n      **[\u2b06 Back to Top](#table-of-contents)**\n\n311.",
+      "explanation": "Template literals or template strings are string literals allowing embedded expressions. These are enclosed by the back-tick (`) character instead of double or single quotes.\n      In ES6, this feature enables using dynamic expressions as below,\n\n      ```javascript\n      var greeting = `Welcome to JS World, Mr. ${firstName} ${lastName}.`;\n      ```\n\n      In ES5, you need break string like below,\n\n      ```javascript\n      var greeting = 'Welcome to JS World, Mr. ' + firstName + ' ' + lastName.`\n      ```\n\n      **Note:** You can use multi-line strings and string interpolation features with template literals.\n\n      \n\n311.",
       "options": [
         {
           "text": "You can round numbers to a certain number of decimals using `toFixed` method from native javascript",
@@ -205,7 +205,7 @@
     },
     {
       "text": "Can I avoid using postMessages completely",
-      "explanation": "You cannot avoid using postMessages completely(or 100%). Even though your application doesn\u2019t use postMessage considering the risks, a lot of third party scripts use postMessage to communicate with the third party service. So your application might be using postMessage without your knowledge.\n\n      **[\u2b06 Back to Top](#table-of-contents)**\n\n330.",
+      "explanation": "You cannot avoid using postMessages completely(or 100%). Even though your application doesn’t use postMessage considering the risks, a lot of third party scripts use postMessage to communicate with the third party service. So your application might be using postMessage without your knowledge.\n\n      \n\n330.",
       "options": [
         {
           "text": "You cannot avoid using postMessages completely(or 100%)",
@@ -227,7 +227,7 @@
     },
     {
       "text": "How do you round numbers to certain decimals",
-      "explanation": "You can round numbers to a certain number of decimals using `toFixed` method from native javascript.\n\n      ```javascript\n      let pie = 3.141592653;\n      pie = pie.toFixed(3); // 3.142\n      ```\n\n      **[\u2b06 Back to Top](#table-of-contents)**\n\n369.",
+      "explanation": "You can round numbers to a certain number of decimals using `toFixed` method from native javascript.\n\n      ```javascript\n      let pie = 3.141592653;\n      pie = pie.toFixed(3); // 3.142\n      ```\n\n      \n\n369.",
       "options": [
         {
           "text": "You can round numbers to a certain number of decimals using `toFixed` method from native javascript",
@@ -249,7 +249,7 @@
     },
     {
       "text": "What is a Short circuit condition",
-      "explanation": "Short circuit conditions are meant for condensed way of writing simple if statements. Let's demonstrate the scenario using an example. If you would like to login to a portal with an authentication condition, the expression would be as below,\n\n     ```javascript\n     if (authenticate) {\n       loginToPorta();\n     }\n     ```\n\n     Since the javascript logical operators evaluated from left to right, the above expression can be simplified using && logical operator\n\n     ```javascript\n     authenticate && loginToPorta();\n     ```\n\n     **[\u2b06 Back to Top](#table-of-contents)**\n\n407.",
+      "explanation": "Short circuit conditions are meant for condensed way of writing simple if statements. Let's demonstrate the scenario using an example. If you would like to login to a portal with an authentication condition, the expression would be as below,\n\n     ```javascript\n     if (authenticate) {\n       loginToPorta();\n     }\n     ```\n\n     Since the javascript logical operators evaluated from left to right, the above expression can be simplified using && logical operator\n\n     ```javascript\n     authenticate && loginToPorta();\n     ```\n\n     \n\n407.",
       "options": [
         {
           "text": "Modifiers can be used to perform case-insensitive and global searches",
@@ -271,7 +271,7 @@
     },
     {
       "text": "How do style the console output using CSS?",
-      "explanation": "You can add CSS styling to the console output using the CSS format content specifier %c. The console string message can be appended after the specifier and CSS style in another argument. Let's print the red color text using console.log and CSS specifier as below,\n\n     ```js\n     console.log(\"%cThis is a red text\", \"color:red\");\n     ```\n\n     It is also possible to add more styles for the content. For example, the font-size can be modified for the above text\n\n     ```js\n     console.log(\n       \"%cThis is a red text with bigger font\",\n       \"color:red; font-size:20px\"\n     );\n     ```\n\n     **[\u2b06 Back to Top](#table-of-contents)**\n\n428.",
+      "explanation": "You can add CSS styling to the console output using the CSS format content specifier %c. The console string message can be appended after the specifier and CSS style in another argument. Let's print the red color text using console.log and CSS specifier as below,\n\n     ```js\n     console.log(\"%cThis is a red text\", \"color:red\");\n     ```\n\n     It is also possible to add more styles for the content. For example, the font-size can be modified for the above text\n\n     ```js\n     console.log(\n       \"%cThis is a red text with bigger font\",\n       \"color:red; font-size:20px\"\n     );\n     ```\n\n     \n\n428.",
       "options": [
         {
           "text": "If you use an invalid number(outside of 0-7 range) in the octal literal, JavaScript will throw a SyntaxError",
@@ -293,7 +293,7 @@
     },
     {
       "text": "What is the difference between substring and substr methods?",
-      "explanation": "Both `substring` and `substr` are used to extract parts of a string, but there are subtle differences between the substring() and substr() methods in terms of **syntax** and **behavior**.\n\n     1. `substring(start, end)`\n         - **Parameters:**\n             - `start`: The index to start extracting (inclusive).\n             - `end`: The index to stop extracting (exclusive).\n         - **Behavior:**\n             - If `start > end`, it **swaps the arguments**.\n             - Negative values are treated as `0`.\n\n         ```javascript\n          let str = \"Hello World\";\n          console.log(str.substring(0, 5));   // \"Hello\"\n          console.log(str.substring(5, 0));   // \"Hello\" (swapped)\n          console.log(str.substring(-3, 4));  // \"Hell\" (negative = 0)\n         ```\n     2. `substr(start, length)` _(Deprecated)_\n\n         - **Parameters:**\n           - `start`: The index to start extracting.\n           - `length`: The number of characters to extract.\n         - **Behavior:**\n           - If `start` is negative, it counts from the **end** of the string.\n           - If `length` is omitted, it extracts to the end of the string.\n\n         ```javascript\n         let str = \"Hello World\"; console.log(str.substr(0, 5)); // \"Hello\" \n         console.log(str.substr(-5, 3)); // \"Wor\" (starts from 'W')`\n         ```\n         **Note:** substr() is considered a legacy feature in ECMAScript, so it is best to avoid using it if possible.\n\n\n**[\u2b06 Back to Top](#table-of-contents)**\n\n471.",
+      "explanation": "Both `substring` and `substr` are used to extract parts of a string, but there are subtle differences between the substring() and substr() methods in terms of **syntax** and **behavior**.\n\n     1. `substring(start, end)`\n         - **Parameters:**\n             - `start`: The index to start extracting (inclusive).\n             - `end`: The index to stop extracting (exclusive).\n         - **Behavior:**\n             - If `start > end`, it **swaps the arguments**.\n             - Negative values are treated as `0`.\n\n         ```javascript\n          let str = \"Hello World\";\n          console.log(str.substring(0, 5));   // \"Hello\"\n          console.log(str.substring(5, 0));   // \"Hello\" (swapped)\n          console.log(str.substring(-3, 4));  // \"Hell\" (negative = 0)\n         ```\n     2. `substr(start, length)` _(Deprecated)_\n\n         - **Parameters:**\n           - `start`: The index to start extracting.\n           - `length`: The number of characters to extract.\n         - **Behavior:**\n           - If `start` is negative, it counts from the **end** of the string.\n           - If `length` is omitted, it extracts to the end of the string.\n\n         ```javascript\n         let str = \"Hello World\"; console.log(str.substr(0, 5)); // \"Hello\" \n         console.log(str.substr(-5, 3)); // \"Wor\" (starts from 'W')`\n         ```\n         **Note:** substr() is considered a legacy feature in ECMAScript, so it is best to avoid using it if possible.\n\n\n\n\n471.",
       "options": [
         {
           "text": "Both `substring` and `substr` are used to extract parts of a string, but there are subtle differences between the substring() and substr() methods in terms of **syntax** and **behavior**",
@@ -315,7 +315,7 @@
     },
     {
       "text": "#Answer: 1",
-      "explanation": "If you use an invalid number(outside of 0-7 range) in the octal literal, JavaScript will throw a SyntaxError. In ES5, it treats the octal literal as a decimal number.\n\n</p>\n\n</details>\n\n---\n\n**[\u2b06 Back to Top](#table-of-contents)**",
+      "explanation": "If you use an invalid number(outside of 0-7 range) in the octal literal, JavaScript will throw a SyntaxError. In ES5, it treats the octal literal as a decimal number.\n\n</p>\n\n</details>\n\n---",
       "options": [
         {
           "text": "You can use the toLocaleString() method to convert dates in one timezone to another",

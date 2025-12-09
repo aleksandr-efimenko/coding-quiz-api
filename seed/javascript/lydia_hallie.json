@@ -1,0 +1,86 @@
+{
+  "title": "JavaScript Questions (Lydia Hallie)",
+  "tags": [
+    "javascript",
+    "interview",
+    "advanced"
+  ],
+  "questions": [
+    {
+      "text": "What are the three phases of event propagation?",
+      "options": [
+        {
+          "text": "Target > Capturing > Bubbling",
+          "is_correct": false
+        },
+        {
+          "text": "Bubbling > Target > Capturing",
+          "is_correct": false
+        },
+        {
+          "text": "Target > Bubbling > Capturing",
+          "is_correct": false
+        },
+        {
+          "text": "Capturing > Target > Bubbling",
+          "is_correct": true
+        }
+      ],
+      "explanation": "During the **capturing** phase, the event goes through the ancestor elements down to the target element. It then reaches the **target** element, and **bubbling** begins.\n\n<img src=\"https://i.imgur.com/N18oRgd.png\" width=\"200\">\n\n</p>\n</details>\n\n---"
+    },
+    {
+      "text": "All object have prototypes.",
+      "options": [
+        {
+          "text": "true",
+          "is_correct": false
+        },
+        {
+          "text": "false",
+          "is_correct": true
+        }
+      ],
+      "explanation": "All objects have prototypes, except for the **base object**. The base object is the object created by the user, or an object that is created using the `new` keyword. The base object has access to some methods and properties, such as `.toString`. This is the reason why you can use built-in JavaScript methods! All of such methods are available on the prototype. Although JavaScript can't find it directly on your object, it goes down the prototype chain and finds it there, which makes it accessible for you.\n\n</p>\n</details>\n\n---"
+    },
+    {
+      "text": "The JavaScript global execution context creates two things for you: the global object, and the \"this\" keyword.",
+      "options": [
+        {
+          "text": "true",
+          "is_correct": true
+        },
+        {
+          "text": "false",
+          "is_correct": false
+        },
+        {
+          "text": "it depends",
+          "is_correct": false
+        }
+      ],
+      "explanation": "The base execution context is the global execution context: it's what's accessible everywhere in your code.\n\n</p>\n</details>\n\n---"
+    },
+    {
+      "text": "Everything in JavaScript is either a...",
+      "options": [
+        {
+          "text": "primitive or object",
+          "is_correct": true
+        },
+        {
+          "text": "function or object",
+          "is_correct": false
+        },
+        {
+          "text": "trick question! only objects",
+          "is_correct": false
+        },
+        {
+          "text": "number or object",
+          "is_correct": false
+        }
+      ],
+      "explanation": "JavaScript only has primitive types and objects.\n\nPrimitive types are `boolean`, `null`, `undefined`, `bigint`, `number`, `string`, and `symbol`.\n\nWhat differentiates a primitive from an object is that primitives do not have any properties or methods; however, you'll note that `'foo'.toUpperCase()` evaluates to `'FOO'` and does not result in a `TypeError`. This is because when you try to access a property or method on a primitive like a string, JavaScript will implicitly wrap the primitive type using one of the wrapper classes, i.e. `String`, and then immediately discard the wrapper after the expression evaluates. All primitives except for `null` and `undefined` exhibit this behavior.\n\n</p>\n</details>\n\n---"
+    }
+  ]
+}
