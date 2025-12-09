@@ -39,24 +39,28 @@ export class InfraStack extends cdk.Stack {
       description: 'Security Group for Redis Cluster',
     });
 
-    // Allow Redis ingress from Lambda
+    // Allow ElastiCache ingress from Lambda
     redisSg.addIngressRule(
       lambdaSg,
       ec2.Port.tcp(6379),
       'Allow connection from Lambda'
     );
 
-    // 3. ElastiCache (Redis)
+    // 3. ElastiCache 
     const subnetGroup = new elasticache.CfnSubnetGroup(this, 'RedisSubnetGroup', {
       description: 'Subnet group for Redis',
       subnetIds: vpc.isolatedSubnets.map((subnet) => subnet.subnetId),
     });
 
     const redisCluster = new elasticache.CfnReplicationGroup(this, 'CodingQuizRedis', {
-      replicationGroupDescription: 'Redis cluster for Coding Quiz API',
-      engine: 'redis',
+      replicationGroupDescription: 'Valkey cluster for Coding Quiz API',
+      engine: 'valkey',
+      engineVersion: '7.2',
+      cacheParameterGroupName: 'default.valkey7',
       cacheNodeType: 'cache.t4g.micro',
-      numCacheClusters: 1,
+      numNodeGroups: 1,
+      replicasPerNodeGroup: 0,
+      automaticFailoverEnabled: false,
       cacheSubnetGroupName: subnetGroup.ref,
       securityGroupIds: [redisSg.securityGroupId],
       port: 6379,
@@ -67,6 +71,7 @@ export class InfraStack extends cdk.Stack {
       runtime: lambda.Runtime.PROVIDED_AL2023,
       architecture: lambda.Architecture.ARM_64,
       handler: 'bootstrap',
+      reservedConcurrentExecutions: 1,
       timeout: cdk.Duration.seconds(30),
       code: lambda.Code.fromAsset(path.join(__dirname, '../../target/lambda/authorizer')), // Placeholder, overridden below
     };
@@ -85,7 +90,6 @@ export class InfraStack extends cdk.Stack {
       securityGroups: [lambdaSg],
       environment: {
         RUST_LOG: 'info',
-        // REDIS_URL: `redis://${redisCluster.attrPrimaryEndPointAddress}:6379` // Can un-comment when app supports it
       },
     });
 
@@ -123,7 +127,7 @@ export class InfraStack extends cdk.Stack {
       path: '/{proxy+}',
       methods: [apigwv2.HttpMethod.ANY],
       integration: apiIntegration,
-      // Uses default authorizer
+      authorizer: authorizer,
     });
 
     // Exports

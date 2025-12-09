@@ -7,7 +7,6 @@
   "questions": [
     {
       "text": "How do you manipulate DOM using a service worker",
-      "explanation": "Service worker can't access the DOM directly. But it can communicate with the pages it controls by responding to messages sent via the `postMessage` interface, and those pages can manipulate the DOM.\n\n    \n\n34.",
       "options": [
         {
           "text": "Service worker can't access the DOM directly",
@@ -25,11 +24,11 @@
           "text": "The `DOMContentLoaded` event is fired when the initial HTML document has been completely loaded and parsed, without waiting for assets(stylesheets, images, and subframes) to finish loading",
           "is_correct": false
         }
-      ]
+      ],
+      "explanation": "Service worker can't access the DOM directly. But it can communicate with the pages it controls by responding to messages sent via the `postMessage` interface, and those pages can manipulate the DOM.\n\n34."
     },
     {
       "text": "What is a Cookie",
-      "explanation": "A cookie is a piece of data that is stored on your computer to be accessed by your browser. Cookies are saved as key/value pairs.\n    For example, you can create a cookie named username as below,\n\n    ```javascript\n    document.cookie = \"username=John\";\n    ```\n\n    ![Screenshot](images/cookie.png)\n\n    \n\n39.",
       "options": [
         {
           "text": "A cookie is a piece of data that is stored on your computer to be accessed by your browser",
@@ -47,11 +46,11 @@
           "text": "Below are some of the advantages of typescript over javascript,\n\n      1",
           "is_correct": false
         }
-      ]
+      ],
+      "explanation": "A cookie is a piece of data that is stored on your computer to be accessed by your browser. Cookies are saved as key/value pairs.\n    For example, you can create a cookie named username as below,\n\n    ```javascript\n    document.cookie = \"username=John\";\n    ```\n\n    ![Screenshot](images/cookie.png)\n\n39."
     },
     {
       "text": "What are the options in a cookie",
-      "explanation": "There are few below options available for a cookie,\n\n    1. By default, the cookie is deleted when the browser is closed but you can change this behavior by setting expiry date (in UTC time).\n\n    ```javascript\n    document.cookie = \"username=John; expires=Sat, 8 Jun 2019 12:00:00 UTC\";\n    ```\n\n    2. By default, the cookie belongs to a current page. But you can tell the browser what path the cookie belongs to using a path parameter.\n\n    ```javascript\n    document.cookie = \"username=John; path=/services\";\n    ```\n\n    \n\n41.",
       "options": [
         {
           "text": "JavaScript is an interpreted language, not a compiled language",
@@ -66,14 +65,14 @@
           "is_correct": false
         },
         {
-          "text": "You need to check browser support for web workers before using it\n\n    \n\n    **⬆ Back to Top**\n\n50",
+          "text": "You need to check browser support for web workers before using it\n\n    **⬆ **\n\n50",
           "is_correct": false
         }
-      ]
+      ],
+      "explanation": "There are few below options available for a cookie,\n\n    1. By default, the cookie is deleted when the browser is closed but you can change this behavior by setting expiry date (in UTC time).\n\n    ```javascript\n    document.cookie = \"username=John; expires=Sat, 8 Jun 2019 12:00:00 UTC\";\n    ```\n\n    2. By default, the cookie belongs to a current page. But you can tell the browser what path the cookie belongs to using a path parameter.\n\n    ```javascript\n    document.cookie = \"username=John; path=/services\";\n    ```\n\n41."
     },
     {
       "text": "How do you delete a cookie",
-      "explanation": "You can delete a cookie by setting the expiry date as a passed date. You don't need to specify a cookie value in this case.\n    For example, you can delete a username cookie in the current page as below.\n\n    ```javascript\n    document.cookie =\n      \"username=; expires=Fri, 07 Jun 2019 00:00:00 UTC; path=/;\";\n    ```\n\n    **Note:** You should define the cookie path option to ensure that you delete the right cookie. Some browsers doesn't allow to delete a cookie unless you specify a path parameter.\n\n    \n\n42.",
       "options": [
         {
           "text": "JavaScript is an interpreted language, not a compiled language",
@@ -91,11 +90,11 @@
           "text": "Below are some of the use cases of using dynamic imports over static imports,\n\n      1",
           "is_correct": false
         }
-      ]
+      ],
+      "explanation": "You can delete a cookie by setting the expiry date as a passed date. You don't need to specify a cookie value in this case.\n    For example, you can delete a username cookie in the current page as below.\n\n    ```javascript\n    document.cookie =\n      \"username=; expires=Fri, 07 Jun 2019 00:00:00 UTC; path=/;\";\n    ```\n\n    **Note:** You should define the cookie path option to ensure that you delete the right cookie. Some browsers doesn't allow to delete a cookie unless you specify a path parameter.\n\n42."
     },
     {
       "text": "What are the differences between cookie, local storage and session storage",
-      "explanation": "Below are some of the differences between cookie, local storage and session storage,\n\n    | Feature                           | Cookie                                                                                                              | Local storage         | Session storage     |\n    | --------------------------------- | ------------------------------------------------------------------------------------------------------------------- | --------------------- | ------------------- |\n    | Accessed on client or server side | Both server-side & client-side. The `set-cookie` HTTP response header is used by server inorder to send it to user. | client-side only      | client-side only    |\n    | Expiry                            | Manually configured using Expires option                                                                            | Forever until deleted | until tab is closed |\n    | SSL support                       | Supported                                                                                                           | Not supported         | Not supported       |\n    | Maximum data size                 | 4KB                                                                                                                 | 5 MB                  | 5MB                 |\n    | Accessible from                   | Any window                                                                                                          | Any window            | Same tab            |\n    | Sent with requests                | Yes                                                                                                                 | No                    | No                  |\n\n    \n\n43.",
       "options": [
         {
           "text": "The `set-cookie` HTTP response header is used by server inorder to send it to user",
@@ -113,11 +112,11 @@
           "text": "The `DOMContentLoaded` event is fired when the initial HTML document has been completely loaded and parsed, without waiting for assets(stylesheets, images, and subframes) to finish loading",
           "is_correct": false
         }
-      ]
+      ],
+      "explanation": "Below are some of the differences between cookie, local storage and session storage,\n\n    | Feature                           | Cookie                                                                                                              | Local storage         | Session storage     |\n    | --------------------------------- | ------------------------------------------------------------------------------------------------------------------- | --------------------- | ------------------- |\n    | Accessed on client or server side | Both server-side & client-side. The `set-cookie` HTTP response header is used by server inorder to send it to user. | client-side only      | client-side only    |\n    | Expiry                            | Manually configured using Expires option                                                                            | Forever until deleted | until tab is closed |\n    | SSL support                       | Supported                                                                                                           | Not supported         | Not supported       |\n    | Maximum data size                 | 4KB                                                                                                                 | 5 MB                  | 5MB                 |\n    | Accessible from                   | Any window                                                                                                          | Any window            | Same tab            |\n    | Sent with requests                | Yes                                                                                                                 | No                    | No                  |\n\n43."
     },
     {
       "text": "What is the main difference between localStorage and sessionStorage",
-      "explanation": "LocalStorage is the same as SessionStorage but it persists the data even when the browser is closed and reopened(i.e it has no expiration time) whereas in sessionStorage data gets cleared when the page session ends.\n\n    \n\n44.",
       "options": [
         {
           "text": "You can use URLSearchParams to get query string values in javascript",
@@ -135,11 +134,11 @@
           "text": "LocalStorage is the same as SessionStorage but it persists the data even when the browser is closed and reopened(i",
           "is_correct": true
         }
-      ]
+      ],
+      "explanation": "LocalStorage is the same as SessionStorage but it persists the data even when the browser is closed and reopened(i.e it has no expiration time) whereas in sessionStorage data gets cleared when the page session ends.\n\n44."
     },
     {
       "text": "How do you check web storage browser support",
-      "explanation": "You need to check browser support for localStorage and sessionStorage before using web storage,\n\n    ```javascript\n    if (typeof Storage !== \"undefined\") {\n      // Code for localStorage/sessionStorage.\n    } else {\n      // Sorry! No Web Storage support..\n    }\n    ```\n\n    \n\n49.",
       "options": [
         {
           "text": "The validity property of an input element provides a set of properties related to the validity of data",
@@ -150,21 +149,21 @@
           "is_correct": false
         },
         {
-          "text": "You need to check browser support for web workers before using it\n\n    \n\n    **⬆ Back to Top**\n\n50",
+          "text": "You need to check browser support for web workers before using it\n\n    **⬆ **\n\n50",
           "is_correct": false
         },
         {
-          "text": "You need to check browser support for localStorage and sessionStorage before using web storage,\n\n    \n\n    **⬆ Back to Top**\n\n49",
+          "text": "You need to check browser support for localStorage and sessionStorage before using web storage,\n\n    **⬆ **\n\n49",
           "is_correct": true
         }
-      ]
+      ],
+      "explanation": "You need to check browser support for localStorage and sessionStorage before using web storage,\n\n    ```javascript\n    if (typeof Storage !== \"undefined\") {\n      // Code for localStorage/sessionStorage.\n    } else {\n      // Sorry! No Web Storage support..\n    }\n    ```\n\n49."
     },
     {
       "text": "How do you check web workers browser support",
-      "explanation": "You need to check browser support for web workers before using it\n\n    ```javascript\n    if (typeof Worker !== \"undefined\") {\n      // code for Web worker support.\n    } else {\n      // Sorry! No Web Worker support..\n    }\n    ```\n\n    \n\n50.",
       "options": [
         {
-          "text": "You need to check browser support for web workers before using it\n\n    \n\n    **⬆ Back to Top**\n\n50",
+          "text": "You need to check browser support for web workers before using it\n\n    **⬆ **\n\n50",
           "is_correct": true
         },
         {
@@ -179,18 +178,18 @@
           "text": "When using rest parameters, trailing commas are not allowed and will throw a SyntaxError",
           "is_correct": false
         }
-      ]
+      ],
+      "explanation": "You need to check browser support for web workers before using it\n\n    ```javascript\n    if (typeof Worker !== \"undefined\") {\n      // code for Web worker support.\n    } else {\n      // Sorry! No Web Worker support..\n    }\n    ```\n\n50."
     },
     {
       "text": "How do you check browser support for server-sent events",
-      "explanation": "You can perform browser support for server-sent events before using it as below,\n\n    ```javascript\n    if (typeof EventSource !== \"undefined\") {\n      // Server-sent events supported. Let's have some code here!\n    } else {\n      // No server-sent events supported\n    }\n    ```\n\n    \n\n61.",
       "options": [
         {
           "text": "The second argument of postMessage method specifies which origin is allowed to receive the message",
           "is_correct": false
         },
         {
-          "text": "You need to check browser support for web workers before using it\n\n    \n\n    **⬆ Back to Top**\n\n50",
+          "text": "You need to check browser support for web workers before using it\n\n    **⬆ **\n\n50",
           "is_correct": false
         },
         {
@@ -198,14 +197,14 @@
           "is_correct": false
         },
         {
-          "text": "You can perform browser support for server-sent events before using it as below,\n\n    \n\n    **⬆ Back to Top**\n\n61",
+          "text": "You can perform browser support for server-sent events before using it as below,\n\n    **⬆ **\n\n61",
           "is_correct": true
         }
-      ]
+      ],
+      "explanation": "You can perform browser support for server-sent events before using it as below,\n\n    ```javascript\n    if (typeof EventSource !== \"undefined\") {\n      // Server-sent events supported. Let's have some code here!\n    } else {\n      // No server-sent events supported\n    }\n    ```\n\n61."
     },
     {
       "text": "What is the difference between document load and DOMContentLoaded events",
-      "explanation": "The `DOMContentLoaded` event is fired when the initial HTML document has been completely loaded and parsed, without waiting for assets(stylesheets, images, and subframes) to finish loading. Whereas The load event is fired when the whole page has loaded, including all dependent resources(stylesheets, images).\n\n    \n\n92.",
       "options": [
         {
           "text": "The `DOMContentLoaded` event is fired when the initial HTML document has been completely loaded and parsed, without waiting for assets(stylesheets, images, and subframes) to finish loading",
@@ -223,11 +222,11 @@
           "text": "Babel is a JavaScript transpiler to convert ECMAScript 2015+ code into a backwards compatible version of JavaScript in current and older browsers or environments",
           "is_correct": false
         }
-      ]
+      ],
+      "explanation": "The `DOMContentLoaded` event is fired when the initial HTML document has been completely loaded and parsed, without waiting for assets(stylesheets, images, and subframes) to finish loading. Whereas The load event is fired when the whole page has loaded, including all dependent resources(stylesheets, images).\n\n92."
     },
     {
       "text": "What is the difference between an attribute and a property",
-      "explanation": "Attributes are defined on the HTML markup whereas properties are defined on the DOM. For example, the below HTML element has 2 attributes: `type` and `value`,\n\n    ```javascript\n    <input type=\"text\" value=\"Name:\">\n    ```\n\n    You can retrieve the attribute value as below, for example after typing \"Good morning\" into the input field:\n\n    ```javascript\n    const input = document.querySelector(\"input\");\n    console.log(input.getAttribute(\"value\")); // Good morning\n    console.log(input.value); // Good morning\n    ```\n\n    And after you change the value of the text field to \"Good evening\", it becomes like\n\n    ```javascript\n    console.log(input.getAttribute(\"value\")); // Good evening\n    console.log(input.value); // Good evening\n    ```\n\n    \n\n96.",
       "options": [
         {
           "text": "The `set-cookie` HTTP response header is used by server inorder to send it to user",
@@ -245,11 +244,11 @@
           "text": "Below are some of the use cases of using dynamic imports over static imports,\n\n      1",
           "is_correct": false
         }
-      ]
+      ],
+      "explanation": "Attributes are defined on the HTML markup whereas properties are defined on the DOM. For example, the below HTML element has 2 attributes: `type` and `value`,\n\n    ```javascript\n    \n    ```\n\n    You can retrieve the attribute value as below, for example after typing \"Good morning\" into the input field:\n\n    ```javascript\n    const input = document.querySelector(\"input\");\n    console.log(input.getAttribute(\"value\")); // Good morning\n    console.log(input.value); // Good morning\n    ```\n\n    And after you change the value of the text field to \"Good evening\", it becomes like\n\n    ```javascript\n    console.log(input.getAttribute(\"value\")); // Good evening\n    console.log(input.value); // Good evening\n    ```\n\n96."
     },
     {
       "text": "What is the purpose of void 0",
-      "explanation": "Void(0) is used to prevent the page from refreshing. This will be helpful to eliminate the unwanted side-effect, because it will return the undefined primitive value. It is commonly used for HTML documents that use href=\"JavaScript:Void(0);\" within an `<a>` element. i.e, when you click a link, the browser loads a new page or refreshes the same page. But this behavior will be prevented using this expression.\n    For example, the below link notify the message without reloading the page\n\n    ```javascript\n    <a href=\"JavaScript:void(0);\" onclick=\"alert('Well done!')\">\n      Click Me!\n    </a>\n    ```\n\n    \n\n98.",
       "options": [
         {
           "text": "Below are some of the use cases of using dynamic imports over static imports,\n\n      1",
@@ -267,18 +266,18 @@
           "text": "Void(0) is used to prevent the page from refreshing",
           "is_correct": true
         }
-      ]
+      ],
+      "explanation": "Void(0) is used to prevent the page from refreshing. This will be helpful to eliminate the unwanted side-effect, because it will return the undefined primitive value. It is commonly used for HTML documents that use href=\"JavaScript:Void(0);\" within an `` element. i.e, when you click a link, the browser loads a new page or refreshes the same page. But this behavior will be prevented using this expression.\n    For example, the below link notify the message without reloading the page\n\n    ```javascript\n    \n      Click Me!\n    \n    ```\n\n98."
     },
     {
       "text": "Is JavaScript a compiled or interpreted language",
-      "explanation": "JavaScript is an interpreted language, not a compiled language. An interpreter in the browser reads over the JavaScript code, interprets each line, and runs it. Nowadays modern browsers use a technology known as Just-In-Time (JIT) compilation, which compiles JavaScript to executable bytecode just as it is about to run.\n\n    \n\n99.",
       "options": [
         {
           "text": "JavaScript is an interpreted language, not a compiled language",
           "is_correct": true
         },
         {
-          "text": "You need to check browser support for web workers before using it\n\n    \n\n    **⬆ Back to Top**\n\n50",
+          "text": "You need to check browser support for web workers before using it\n\n    **⬆ **\n\n50",
           "is_correct": false
         },
         {
@@ -289,11 +288,11 @@
           "text": "V8 is an open source high-performance JavaScript engine used by the Google Chrome browser, written in C++",
           "is_correct": false
         }
-      ]
+      ],
+      "explanation": "JavaScript is an interpreted language, not a compiled language. An interpreter in the browser reads over the JavaScript code, interprets each line, and runs it. Nowadays modern browsers use a technology known as Just-In-Time (JIT) compilation, which compiles JavaScript to executable bytecode just as it is about to run.\n\n99."
     },
     {
       "text": "Why do you need JSON",
-      "explanation": "When exchanging data between a browser and a server, the data can only be text. Since JSON is text only, it can easily be sent to and from a server, and used as a data format by any programming language.\n\n      \n\n117.",
       "options": [
         {
           "text": "When exchanging data between a browser and a server, the data can only be text",
@@ -311,11 +310,11 @@
           "text": "LocalStorage is the same as SessionStorage but it persists the data even when the browser is closed and reopened(i",
           "is_correct": false
         }
-      ]
+      ],
+      "explanation": "When exchanging data between a browser and a server, the data can only be text. Since JSON is text only, it can easily be sent to and from a server, and used as a data format by any programming language.\n\n117."
     },
     {
       "text": "How do you get the current url with javascript",
-      "explanation": "You can use `window.location.href` expression to get the current url path and you can use the same expression for updating the URL too. You can also use `document.URL` for read-only purposes but this solution has issues in FF.\n\n      ```javascript\n      console.log(\"location.href\", window.location.href); // Returns full URL\n      ```\n\n      \n\n124.",
       "options": [
         {
           "text": "href` expression to get the current url path and you can use the same expression for updating the URL too",
@@ -333,11 +332,11 @@
           "text": "You can delete a cookie by setting the expiry date as a passed date",
           "is_correct": false
         }
-      ]
+      ],
+      "explanation": "You can use `window.location.href` expression to get the current url path and you can use the same expression for updating the URL too. You can also use `document.URL` for read-only purposes but this solution has issues in FF.\n\n      ```javascript\n      console.log(\"location.href\", window.location.href); // Returns full URL\n      ```\n\n124."
     },
     {
       "text": "How do get query string values in javascript",
-      "explanation": "You can use URLSearchParams to get query string values in javascript. Let's see an example to get the client code value from URL query string,\n\n      ```javascript\n      const urlParams = new URLSearchParams(window.location.search);\n      const clientCode = urlParams.get(\"clientCode\");\n      ```\n\n      \n\n126.",
       "options": [
         {
           "text": "The validity property of an input element provides a set of properties related to the validity of data",
@@ -355,11 +354,11 @@
           "text": "It throws a syntax error because the rest element should not have a trailing comma",
           "is_correct": false
         }
-      ]
+      ],
+      "explanation": "You can use URLSearchParams to get query string values in javascript. Let's see an example to get the client code value from URL query string,\n\n      ```javascript\n      const urlParams = new URLSearchParams(window.location.search);\n      const clientCode = urlParams.get(\"clientCode\");\n      ```\n\n126."
     },
     {
       "text": "How do you generate random integers",
-      "explanation": "You can use `Math.random()` with `Math.floor()` to return random integers. For example, if you want generate random integers between 1 to 10, the multiplication factor should be 10,\n\n      ```javascript\n      Math.floor(Math.random() * 10) + 1; // returns a random integer from 1 to 10\n      Math.floor(Math.random() * 100) + 1; // returns a random integer from 1 to 100\n      ```\n\n      **Note:** `Math.random()` returns a random number between 0 (inclusive), and 1 (exclusive)\n\n      \n\n151.",
       "options": [
         {
           "text": "Below are the list of some of the constraint validation DOM properties available,\n\n      1",
@@ -377,11 +376,11 @@
           "text": "random()` with `Math",
           "is_correct": true
         }
-      ]
+      ],
+      "explanation": "You can use `Math.random()` with `Math.floor()` to return random integers. For example, if you want generate random integers between 1 to 10, the multiplication factor should be 10,\n\n      ```javascript\n      Math.floor(Math.random() * 10) + 1; // returns a random integer from 1 to 10\n      Math.floor(Math.random() * 100) + 1; // returns a random integer from 1 to 100\n      ```\n\n      **Note:** `Math.random()` returns a random number between 0 (inclusive), and 1 (exclusive)\n\n151."
     },
     {
       "text": "What are the advantages of typescript over javascript",
-      "explanation": "Below are some of the advantages of typescript over javascript,\n\n      1. TypeScript is able to find compile time errors at the development time only and it makes sures less runtime errors. Whereas javascript is an interpreted language.\n      2. TypeScript is strongly-typed or supports static typing which allows for checking type correctness at compile time. This is not available in javascript.\n      3. TypeScript compiler can compile the .ts files into ES3,ES4 and ES5 unlike ES6 features of javascript which may not be supported in some browsers.\n\n      \n\n255.",
       "options": [
         {
           "text": "The validity property of an input element provides a set of properties related to the validity of data",
@@ -399,11 +398,11 @@
           "text": "Service worker can't access the DOM directly",
           "is_correct": false
         }
-      ]
+      ],
+      "explanation": "Below are some of the advantages of typescript over javascript,\n\n      1. TypeScript is able to find compile time errors at the development time only and it makes sures less runtime errors. Whereas javascript is an interpreted language.\n      2. TypeScript is strongly-typed or supports static typing which allows for checking type correctness at compile time. This is not available in javascript.\n      3. TypeScript compiler can compile the .ts files into ES3,ES4 and ES5 unlike ES6 features of javascript which may not be supported in some browsers.\n\n255."
     },
     {
       "text": "What are the available constraint validation DOM properties",
-      "explanation": "Below are the list of some of the constraint validation DOM properties available,\n\n      1. `validity`: It provides a list of boolean properties related to the validity of an input element.\n      2. `validationMessage`: It displays the message when the validity is false.\n      3. `willValidate`: It indicates if an input element will be validated or not.\n\n      \n\n277.",
       "options": [
         {
           "text": "V8 is an open source high-performance JavaScript engine used by the Google Chrome browser, written in C++",
@@ -421,11 +420,11 @@
           "text": "Below are the list of some of the constraint validation DOM properties available,\n\n      1",
           "is_correct": true
         }
-      ]
+      ],
+      "explanation": "Below are the list of some of the constraint validation DOM properties available,\n\n      1. `validity`: It provides a list of boolean properties related to the validity of an input element.\n      2. `validationMessage`: It displays the message when the validity is false.\n      3. `willValidate`: It indicates if an input element will be validated or not.\n\n277."
     },
     {
       "text": "What are the validity properties",
-      "explanation": "The validity property of an input element provides a set of properties related to the validity of data.\n\n      1. `customError`: It returns true, if a custom validity message is set.\n      2. `patternMismatch`: It returns true, if an element's value does not match its pattern attribute.\n      3. `rangeOverflow`: It returns true, if an element's value is greater than its max attribute.\n      4. `rangeUnderflow`: It returns true, if an element's value is less than its min attribute.\n      5. `stepMismatch`: It returns true, if an element's value is invalid according to step attribute.\n      6. `tooLong`: It returns true, if an element's value exceeds its maxLength attribute.\n      7. `typeMismatch`: It returns true, if an element's value is invalid according to type attribute.\n      8. `valueMissing`: It returns true, if an element with a required attribute has no value.\n      9. `valid`: It returns true, if an element's value is valid.\n\n      \n\n278.",
       "options": [
         {
           "text": "Below are some of the advantages of typescript over javascript,\n\n      1",
@@ -443,18 +442,18 @@
           "text": "When using rest parameters, trailing commas are not allowed and will throw a SyntaxError",
           "is_correct": false
         }
-      ]
+      ],
+      "explanation": "The validity property of an input element provides a set of properties related to the validity of data.\n\n      1. `customError`: It returns true, if a custom validity message is set.\n      2. `patternMismatch`: It returns true, if an element's value does not match its pattern attribute.\n      3. `rangeOverflow`: It returns true, if an element's value is greater than its max attribute.\n      4. `rangeUnderflow`: It returns true, if an element's value is less than its min attribute.\n      5. `stepMismatch`: It returns true, if an element's value is invalid according to step attribute.\n      6. `tooLong`: It returns true, if an element's value exceeds its maxLength attribute.\n      7. `typeMismatch`: It returns true, if an element's value is invalid according to type attribute.\n      8. `valueMissing`: It returns true, if an element with a required attribute has no value.\n      9. `valid`: It returns true, if an element's value is valid.\n\n278."
     },
     {
       "text": "What is V8 JavaScript engine",
-      "explanation": "V8 is an open source high-performance JavaScript engine used by the Google Chrome browser, written in C++. It is also being used in the node.js project. It implements ECMAScript and WebAssembly, and runs on Windows 7 or later, macOS 10.12+, and Linux systems that use x64, IA-32, ARM, or MIPS processors.\n      **Note:** It can run standalone, or can be embedded into any C++ application.\n\n      \n\n299.",
       "options": [
         {
           "text": "V8 is an open source high-performance JavaScript engine used by the Google Chrome browser, written in C++",
           "is_correct": true
         },
         {
-          "text": "You need to check browser support for localStorage and sessionStorage before using web storage,\n\n    \n\n    **⬆ Back to Top**\n\n49",
+          "text": "You need to check browser support for localStorage and sessionStorage before using web storage,\n\n    **⬆ **\n\n49",
           "is_correct": false
         },
         {
@@ -465,11 +464,11 @@
           "text": "random()` with `Math",
           "is_correct": false
         }
-      ]
+      ],
+      "explanation": "V8 is an open source high-performance JavaScript engine used by the Google Chrome browser, written in C++. It is also being used in the node.js project. It implements ECMAScript and WebAssembly, and runs on Windows 7 or later, macOS 10.12+, and Linux systems that use x64, IA-32, ARM, or MIPS processors.\n      **Note:** It can run standalone, or can be embedded into any C++ application.\n\n299."
     },
     {
       "text": "What is ES6",
-      "explanation": "ES6 is the sixth edition of the javascript language and it was released in June 2015. It was initially known as ECMAScript 6 (ES6) and later renamed to ECMAScript 2015. Almost all the modern browsers support ES6 but for the old browsers there are many transpilers, like Babel.js etc.\n\n      \n\n307.",
       "options": [
         {
           "text": "When exchanging data between a browser and a server, the data can only be text",
@@ -487,11 +486,11 @@
           "text": "ES6 is the sixth edition of the javascript language and it was released in June 2015",
           "is_correct": true
         }
-      ]
+      ],
+      "explanation": "ES6 is the sixth edition of the javascript language and it was released in June 2015. It was initially known as ECMAScript 6 (ES6) and later renamed to ECMAScript 2015. Almost all the modern browsers support ES6 but for the old browsers there are many transpilers, like Babel.js etc.\n\n307."
     },
     {
       "text": "What are the use cases for dynamic imports",
-      "explanation": "Below are some of the use cases of using dynamic imports over static imports,\n\n      1. Import a module on-demand or conditionally. For example, if you want to load a polyfill on legacy browser\n\n         ```javascript\n         if (isLegacyBrowser()) {\n             import(···)\n             .then(···);\n         }\n         ```\n\n      2. Compute the module specifier at runtime. For example, you can use it for internationalization.\n\n         ```javascript\n         import(`messages_${getLocale()}.js`).then(···);\n         ```\n\n      3. Import a module from within a regular script instead a module.\n\n      \n\n321.",
       "options": [
         {
           "text": "A shim is a library that brings a new API to an older environment, using only the means of that environment",
@@ -509,11 +508,11 @@
           "text": "Void(0) is used to prevent the page from refreshing",
           "is_correct": false
         }
-      ]
+      ],
+      "explanation": "Below are some of the use cases of using dynamic imports over static imports,\n\n      1. Import a module on-demand or conditionally. For example, if you want to load a polyfill on legacy browser\n\n         ```javascript\n         if (isLegacyBrowser()) {\n             import(···)\n             .then(···);\n         }\n         ```\n\n      2. Compute the module specifier at runtime. For example, you can use it for internationalization.\n\n         ```javascript\n         import(`messages_${getLocale()}.js`).then(···);\n         ```\n\n      3. Import a module from within a regular script instead a module.\n\n321."
     },
     {
       "text": "What are the problems with postmessage target origin as wildcard",
-      "explanation": "The second argument of postMessage method specifies which origin is allowed to receive the message. If you use the wildcard “\\*” as an argument then any origin is allowed to receive the message. In this case, there is no way for the sender window to know if the target window is at the target origin when sending the message. If the target window has been navigated to another origin, the other origin would receive the data. Hence, this may lead to XSS vulnerabilities.\n\n      ```javascript\n      targetWindow.postMessage(message, \"*\");\n      ```\n\n      \n\n328.",
       "options": [
         {
           "text": "There are few below options available for a cookie,\n\n    1",
@@ -531,14 +530,14 @@
           "text": "random()` with `Math",
           "is_correct": false
         }
-      ]
+      ],
+      "explanation": "The second argument of postMessage method specifies which origin is allowed to receive the message. If you use the wildcard “\\*” as an argument then any origin is allowed to receive the message. In this case, there is no way for the sender window to know if the target window is at the target origin when sending the message. If the target window has been navigated to another origin, the other origin would receive the data. Hence, this may lead to XSS vulnerabilities.\n\n      ```javascript\n      targetWindow.postMessage(message, \"*\");\n      ```\n\n328."
     },
     {
       "text": "What is the output of below console statement with unary operator",
-      "explanation": "Let's take console statement with unary operator as given below,\n\n      ```javascript\n      console.log(+\"Hello\"); // NaN\n      ```\n\n      The output of the above console log statement returns NaN. Because the element is prefixed by the unary operator and the JavaScript interpreter will try to convert that element into a number type. Since the conversion fails, the value of the statement results in NaN value.\n\n      \n\n351.",
       "options": [
         {
-          "text": "Let's take console statement with unary operator as given below,\n\n      \n\n      The output of the above console log statement returns NaN",
+          "text": "Let's take console statement with unary operator as given below,\n\n      The output of the above console log statement returns NaN",
           "is_correct": true
         },
         {
@@ -550,14 +549,14 @@
           "is_correct": false
         },
         {
-          "text": "You need to check browser support for localStorage and sessionStorage before using web storage,\n\n    \n\n    **⬆ Back to Top**\n\n49",
+          "text": "You need to check browser support for localStorage and sessionStorage before using web storage,\n\n    **⬆ **\n\n49",
           "is_correct": false
         }
-      ]
+      ],
+      "explanation": "Let's take console statement with unary operator as given below,\n\n      ```javascript\n      console.log(+\"Hello\"); // NaN\n      ```\n\n      The output of the above console log statement returns NaN. Because the element is prefixed by the unary operator and the JavaScript interpreter will try to convert that element into a number type. Since the conversion fails, the value of the statement results in NaN value.\n\n351."
     },
     {
       "text": "What is the output of prepend additive operator on falsy values",
-      "explanation": "If you prepend the additive(+) operator on falsy values(null, undefined, NaN, false, \"\"), the falsy value converts to a number value zero. Let's display them on browser console as below,\n\n      ```javascript\n      console.log(+null); // 0\n      console.log(+undefined); // NaN\n      console.log(+false); // 0\n      console.log(+NaN); // NaN\n      console.log(+\"\"); // 0\n      ```\n\n      \n\n362.",
       "options": [
         {
           "text": "Below are the list of some of the constraint validation DOM properties available,\n\n      1",
@@ -575,11 +574,11 @@
           "text": "If you prepend the additive(+) operator on falsy values(null, undefined, NaN, false, \"\"), the falsy value converts to a number value zero",
           "is_correct": true
         }
-      ]
+      ],
+      "explanation": "If you prepend the additive(+) operator on falsy values(null, undefined, NaN, false, \"\"), the falsy value converts to a number value zero. Let's display them on browser console as below,\n\n      ```javascript\n      console.log(+null); // 0\n      console.log(+undefined); // NaN\n      console.log(+false); // 0\n      console.log(+NaN); // NaN\n      console.log(+\"\"); // 0\n      ```\n\n362."
     },
     {
       "text": "Is it possible to debug HTML elements in console",
-      "explanation": "Yes, it is possible to get and debug HTML elements in the console just like inspecting elements.\n\n      ```javascript\n      const element = document.getElementsByTagName(\"body\")[0];\n      console.log(element);\n      ```\n\n      It prints the HTML element in the console,\n\n      ![Screenshot](images/console-html.png)\n\n      \n\n375.",
       "options": [
         {
           "text": "A shim is a library that brings a new API to an older environment, using only the means of that environment",
@@ -597,11 +596,11 @@
           "text": "Below are some of the advantages of typescript over javascript,\n\n      1",
           "is_correct": false
         }
-      ]
+      ],
+      "explanation": "Yes, it is possible to get and debug HTML elements in the console just like inspecting elements.\n\n      ```javascript\n      const element = document.getElementsByTagName(\"body\")[0];\n      console.log(element);\n      ```\n\n      It prints the HTML element in the console,\n\n      ![Screenshot](images/console-html.png)\n\n375."
     },
     {
       "text": "What is the difference between shim and polyfill",
-      "explanation": "A shim is a library that brings a new API to an older environment, using only the means of that environment. It isn't necessarily restricted to a web application. For example, es5-shim.js is used to emulate ES5 features on older browsers (mainly pre IE9).\n     Whereas polyfill is a piece of code (or plugin) that provides the technology that you, the developer, expect the browser to provide natively.\n     In a simple sentence, a polyfill is a shim for a browser API.\n\n     \n\n400.",
       "options": [
         {
           "text": "Below are some of the advantages of typescript over javascript,\n\n      1",
@@ -619,11 +618,11 @@
           "text": "You can delete a cookie by setting the expiry date as a passed date",
           "is_correct": false
         }
-      ]
+      ],
+      "explanation": "A shim is a library that brings a new API to an older environment, using only the means of that environment. It isn't necessarily restricted to a web application. For example, es5-shim.js is used to emulate ES5 features on older browsers (mainly pre IE9).\n     Whereas polyfill is a piece of code (or plugin) that provides the technology that you, the developer, expect the browser to provide natively.\n     In a simple sentence, a polyfill is a shim for a browser API.\n\n400."
     },
     {
       "text": "What is babel",
-      "explanation": "Babel is a JavaScript transpiler to convert ECMAScript 2015+ code into a backwards compatible version of JavaScript in current and older browsers or environments. Some of the main features are listed below,\n\n     1. Transform syntax\n     2. Polyfill features that are missing in your target environment (using @babel/polyfill)\n     3. Source code transformations (or codemods)\n\n     \n\n402.",
       "options": [
         {
           "text": "You can delete a cookie by setting the expiry date as a passed date",
@@ -641,11 +640,11 @@
           "text": "V8 is an open source high-performance JavaScript engine used by the Google Chrome browser, written in C++",
           "is_correct": false
         }
-      ]
+      ],
+      "explanation": "Babel is a JavaScript transpiler to convert ECMAScript 2015+ code into a backwards compatible version of JavaScript in current and older browsers or environments. Some of the main features are listed below,\n\n     1. Transform syntax\n     2. Polyfill features that are missing in your target environment (using @babel/polyfill)\n     3. Source code transformations (or codemods)\n\n402."
     },
     {
       "text": "#Answer: 3",
-      "explanation": "When using rest parameters, trailing commas are not allowed and will throw a SyntaxError.\nIf you remove the trailing comma and last element then it displays 1st answer\n\n```javascript\nlet [a, ...b] = [1, 2, 3, 4, 5];\nconsole.log(a, b); // 1, [2, 3, 4, 5]\n```\n\n</p>\n</details>\n\n---",
       "options": [
         {
           "text": "The second argument of postMessage method specifies which origin is allowed to receive the message",
@@ -656,25 +655,25 @@
           "is_correct": false
         },
         {
-          "text": "You need to check browser support for web workers before using it\n\n    \n\n    **⬆ Back to Top**\n\n50",
+          "text": "You need to check browser support for web workers before using it\n\n    **⬆ **\n\n50",
           "is_correct": false
         },
         {
           "text": "When using rest parameters, trailing commas are not allowed and will throw a SyntaxError",
           "is_correct": true
         }
-      ]
+      ],
+      "explanation": "When using rest parameters, trailing commas are not allowed and will throw a SyntaxError.\nIf you remove the trailing comma and last element then it displays 1st answer\n\n```javascript\nlet [a, ...b] = [1, 2, 3, 4, 5];\nconsole.log(a, b); // 1, [2, 3, 4, 5]\n```"
     },
     {
       "text": "#Answer: 4",
-      "explanation": "It throws a syntax error because the rest element should not have a trailing comma. You should always consider using a rest operator as the last element.\n\n</p>\n\n</details>\n\n---",
       "options": [
         {
           "text": "The `set-cookie` HTTP response header is used by server inorder to send it to user",
           "is_correct": false
         },
         {
-          "text": "Let's take console statement with unary operator as given below,\n\n      \n\n      The output of the above console log statement returns NaN",
+          "text": "Let's take console statement with unary operator as given below,\n\n      The output of the above console log statement returns NaN",
           "is_correct": false
         },
         {
@@ -685,7 +684,8 @@
           "text": "It throws a syntax error because the rest element should not have a trailing comma",
           "is_correct": true
         }
-      ]
+      ],
+      "explanation": "It throws a syntax error because the rest element should not have a trailing comma. You should always consider using a rest operator as the last element."
     }
   ]
 }
